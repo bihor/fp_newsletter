@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-06-15T15:10:55Z" product-name="fp_newsletter">
+		<header/>
+		<body>
+			<trans-unit id="title">
+				<target>Newsletter-Abonnenten-Einstellungen</target>
+			</trans-unit>
+			<trans-unit id="template">
+				<target>HTML-Template:</target>
+			</trans-unit>
+			<trans-unit id="template.not_configured">
+				<target>kein Template ausgewählt!</target>
+			</trans-unit>
+			<trans-unit id="template.new">
+				<target>Newsletter: Anmeldung (und Abmeldung)</target>
+			</trans-unit>
+			<trans-unit id="template.subscribeVerify">
+				<target>Newsletter: Anmeldung verifizieren</target>
+			</trans-unit>
+			<trans-unit id="template.unsubscribe">
+				<target>Newsletter: Abmeldung via Formular</target>
+			</trans-unit>
+			<trans-unit id="template.unsubscribeDM">
+				<target>Newsletter: Abmeldung via Link</target>
+			</trans-unit>
+			<trans-unit id="template.unsubscribeVerify">
+				<target>Newsletter: Abmeldung verifizieren</target>
+			</trans-unit>
+			<trans-unit id="template.list">
+				<target>Liste: alle Aktionen</target>
+			</trans-unit>
+			<trans-unit id="subscribeUid">
+				<target>Seite für die Anmeldung</target>
+			</trans-unit>
+			<trans-unit id="subscribeVerifyUid">
+				<target>Seite für die Verifikation bei der Anmeldung</target>
+			</trans-unit>
+			<trans-unit id="unsubscribeUid">
+				<target>Seite für die Abmeldung</target>
+			</trans-unit>
+			<trans-unit id="unsubscribeVerifyUid">
+				<target>Seite für die Verifikation bei der Abmeldung</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

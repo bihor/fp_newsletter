@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-06-15T15:10:55Z" product-name="fp_newsletter">
+		<header/>
+		<body>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
+				<target>Newsletter-Abonnenten-Managment</target>
+			</trans-unit>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
+				<target>Plugin für Newsletter An- und Abmeldung. Tabelle: tt_address. Ein Log wird erstellt.</target>
+			</trans-unit>
+			<trans-unit id="gender.description">
+				<target>Anrede</target>
+			</trans-unit>
+			<trans-unit id="title.description">
+				<target>Title</target>
+			</trans-unit>
+			<trans-unit id="firstname.description">
+				<target>Vorname</target>
+			</trans-unit>
+			<trans-unit id="lastname.description">
+				<target>Nachname</target>
+			</trans-unit>
+			<trans-unit id="email.description">
+				<target>E-Mail</target>
+			</trans-unit>
+			<trans-unit id="status.description">
+				<target>Status</target>
+			</trans-unit>
+			<trans-unit id="securityhash.description">
+				<target>Security-Hash</target>
+			</trans-unit>
+			<trans-unit id="gdpr.description">
+				<target>DSGVO-Checkbox</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

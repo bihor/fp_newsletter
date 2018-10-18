@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2018-06-15T15:10:55Z" product-name="fp_newsletter">
+		<header/>
+		<body>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
+				<source>Newsletter subscriber managment</source>
+			</trans-unit>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
+				<source>Plugin for newsletter subscription and unsubscription. Used table: tt_address. A log is written.</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log">
+				<source>Log</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender">
+				<source>Gender</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.title">
+				<source>Title</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.firstname">
+				<source>Firstname</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.lastname">
+				<source>Lastname</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.email">
+				<source>E-Mail</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status">
+				<source>Status</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.securityhash">
+				<source>Security-hash</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
+				<source>GDPR</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc1">
+				<source>I agree that the operator and publisher may inform me about selected topics. My data is used exclusively for this purpose. In particular, no disclosure to unauthorized third parties. I am aware that I can revoke my consent at any time with effect for the future. The</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_link_text">
+				<source> Privacy Policy </source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc2">
+				<source>applies, which also includes other information about how to correct, delete and block my data.</source>
+			</trans-unit>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
+				<source>Newsletter managment</source>
+			</trans-unit>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
+				<source>Plugin for newsletter subscribtion and unsubscribtion</source>
+			</trans-unit>
+			<trans-unit id="subscribe">
+				<source>Subscribe</source>
+			</trans-unit>
+			<trans-unit id="unsubscribe">
+				<source>Unsubscribe</source>
+			</trans-unit>
+			<trans-unit id="unsubscribe_head">
+				<source>Unsubscribe from the newsletter</source>
+			</trans-unit>
+			<trans-unit id="email_send1">
+				<source>An email has been send to you. Please verify your email-address.</source>
+			</trans-unit>
+			<trans-unit id="email_verified">
+				<source>Your email-address is now verfied. You are now subscribed to our newsletter.</source>
+			</trans-unit>
+			<trans-unit id="email_removed">
+				<source>You have unsubscribed our newsletter successfully.</source>
+			</trans-unit>
+			<trans-unit id="wrong_parameters">
+				<source>Error: wrong parameters in the link.</source>
+			</trans-unit>
+			<trans-unit id="wrong_uid">
+				<source>Error: no entry for the given uid found.</source>
+			</trans-unit>
+			<trans-unit id="wrong_hash">
+				<source>Error: the given hash in the link is wrong.</source>
+			</trans-unit>
+			<trans-unit id="wrong_expired">
+				<source>Error: the link is expired!</source>
+			</trans-unit>
+			<trans-unit id="wrong_verified">
+				<source>Error: you have verified this email-address already!</source>
+			</trans-unit>
+			<trans-unit id="wrong_subscribed">
+				<source>Error: you are already subscribed to our newsletter!</source>
+			</trans-unit>
+			<trans-unit id="wrong_unsubscribed">
+				<source>Error: you are not subscribed, so you can not be unsubscribed!</source>
+			</trans-unit>
+			<trans-unit id="wrong_unsubscribed_parameters">
+				<source>Error: missing or wrong parameters for unsubcription!</source>
+			</trans-unit>
+			<trans-unit id="wrong_user">
+				<source>Error: user not found! Maybe you are already unsubscribed.</source>
+			</trans-unit>
+			<trans-unit id="wrong_insert">
+				<source>Error: sql insert error!</source>
+			</trans-unit>
+			<trans-unit id="required">
+				<source>required.</source>
+			</trans-unit>
+			<trans-unit id="errors">
+				<source>Error: please note this messages:</source>
+			</trans-unit>
+			<trans-unit id="error_email">
+				<source>- you need to enter an valid email-address!</source>
+			</trans-unit>
+			<trans-unit id="error_gdpr">
+				<source>- you need to accept the GDPR!</source>
+			</trans-unit>
+			<trans-unit id="error_not_here">
+				<source>Error: this point should not be reached!</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<T3DataStructure>
+  <sheets>
+    <sDEF>
+      <ROOT>
+        <TCEforms>
+          <sheetTitle>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:title</sheetTitle>
+        </TCEforms>
+        <type>array</type>
+        <el>
+          <switchableControllerActions>
+          <TCEforms>
+          <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template</label>
+          <config>
+          <type>select</type>
+          <items>
+            <numIndex index="0">
+                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.new</numIndex>
+                <numIndex index="1">Log->new;Log->create</numIndex>
+            </numIndex>
+            <numIndex index="1">
+                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.subscribeVerify</numIndex>
+                <numIndex index="1">Log->verify</numIndex>
+            </numIndex>
+            <numIndex index="2">
+                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribe</numIndex>
+                <numIndex index="1">Log->unsubscribe;Log->delete</numIndex>
+            </numIndex>
+            <numIndex index="3">
+                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeDM</numIndex>
+                <numIndex index="1">Log->unsubscribeDM;Log->delete</numIndex>
+            </numIndex>
+            <numIndex index="4">
+                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeVerify</numIndex>
+                <numIndex index="1">Log->verifyUnsubscribe</numIndex>
+            </numIndex>
+            <numIndex index="9">
+                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.list</numIndex>
+                <numIndex index="1">Log->list</numIndex>
+            </numIndex>
+            </items>
+          </config>
+          </TCEforms>
+          </switchableControllerActions>
+			<settings.subscribeUid>
+				<TCEforms>
+					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:subscribeUid</label>
+	                <config>
+						<type>group</type>
+						<internal_type>db</internal_type>
+						<allowed>pages</allowed>
+						<size>1</size>
+						<maxitems>1</maxitems>
+						<minitems>0</minitems>
+						<show_thumbs>0</show_thumbs>
+					</config>
+				</TCEforms>
+			</settings.subscribeUid>
+			<settings.subscribeVerifyUid>
+				<TCEforms>
+					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:subscribeVerifyUid</label>
+	                <config>
+						<type>group</type>
+						<internal_type>db</internal_type>
+						<allowed>pages</allowed>
+						<size>1</size>
+						<maxitems>1</maxitems>
+						<minitems>0</minitems>
+						<show_thumbs>0</show_thumbs>
+					</config>
+				</TCEforms>
+			</settings.subscribeVerifyUid>
+			<settings.unsubscribeUid>
+				<TCEforms>
+					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:unsubscribeUid</label>
+	                <config>
+						<type>group</type>
+						<internal_type>db</internal_type>
+						<allowed>pages</allowed>
+						<size>1</size>
+						<maxitems>1</maxitems>
+						<minitems>0</minitems>
+						<show_thumbs>0</show_thumbs>
+					</config>
+				</TCEforms>
+			</settings.unsubscribeUid>
+			<settings.unsubscribeVerifyUid>
+				<TCEforms>
+					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:unsubscribeVerifyUid</label>
+	                <config>
+						<type>group</type>
+						<internal_type>db</internal_type>
+						<allowed>pages</allowed>
+						<size>1</size>
+						<maxitems>1</maxitems>
+						<minitems>0</minitems>
+						<show_thumbs>0</show_thumbs>
+					</config>
+				</TCEforms>
+			</settings.unsubscribeVerifyUid>
+        </el>
+      </ROOT>
+    </sDEF>
+  </sheets>
+</T3DataStructure>

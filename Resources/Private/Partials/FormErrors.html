@@ -1,0 +1,16 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:form.validationResults for="{object}">
+	<f:if condition="{validationResults.flattenedErrors}">
+		<div class="alert alert-danger">{f:translate(key: 'errors', default: 'there are errors')}
+		<f:for each="{validationResults.flattenedErrors}" key="propertyPath" as="errors">
+			<f:if condition="{propertyPath} == 'log.email'">
+				<br>{f:translate(key: 'error_email', default: 'wrong email')}
+			</f:if>
+			<f:if condition="{propertyPath} == 'log.gdpr'">
+				<br>{f:translate(key: 'error_gdpr', default: 'wrong email')}
+			</f:if>
+		</f:for>
+		</div>
+	</f:if>
+</f:form.validationResults>
+</html>

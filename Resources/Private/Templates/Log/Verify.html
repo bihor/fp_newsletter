@@ -1,0 +1,35 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="main">
+<f:flashMessages />
+
+<f:if condition="{error} > 0">
+<f:then>
+	<f:if condition="{error} == 1">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_parameter', default: 'wrong parameters')}</p>
+	</f:if>
+	<f:if condition="{error} == 2">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_uid', default: 'wrong uid parameter')}</p>
+	</f:if>
+	<f:if condition="{error} == 3">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_hash', default: 'wrong hash parameter')}</p>
+	</f:if>
+	<f:if condition="{error} == 4">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_expired', default: 'hash expired')}</p>
+	</f:if>
+	<f:if condition="{error} == 5">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_verified', default: 'you are verified')}</p>
+	</f:if>
+	<f:if condition="{error} == 6">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_subscribed', default: 'you are already subscribed')}</p>
+	</f:if>
+	<f:if condition="{error} == 8">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_insert', default: 'sql insert error')}</p>
+	</f:if>
+</f:then>
+<f:else>
+	<p>{f:translate(key: 'email_verified', default: 'email verified')}</p>
+</f:else>
+</f:if>
+</f:section>
+</html>

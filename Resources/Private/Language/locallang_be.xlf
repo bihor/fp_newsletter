@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-12T15:59:31Z" product-name="fp_newsletter">
+		<header/>
+		<body>
+			<trans-unit id="title">
+				<source>Newsletter-subscriber-settings</source>
+			</trans-unit>
+			<trans-unit id="template">
+				<source>HTML-template:</source>
+			</trans-unit>
+			<trans-unit id="template.not_configured">
+				<source>no template layout selected!</source>
+			</trans-unit>
+			<trans-unit id="template.new">
+				<source>Newsletter: subscribe (and unsubscribe)</source>
+			</trans-unit>
+			<trans-unit id="template.subscribeVerify">
+				<source>Newsletter: verify subscription</source>
+			</trans-unit>
+			<trans-unit id="template.unsubscribe">
+				<source>Newsletter: unsubscribe via form</source>
+			</trans-unit>
+			<trans-unit id="template.unsubscribeDM">
+				<source>Newsletter: unsubscribe via link</source>
+			</trans-unit>
+			<trans-unit id="template.unsubscribeVerify">
+				<source>Newsletter: verify unsubscription</source>
+			</trans-unit>
+			<trans-unit id="template.list">
+				<source>List view: all actions</source>
+			</trans-unit>
+			<trans-unit id="subscribeUid">
+				<source>Page for the subscribtion</source>
+			</trans-unit>
+			<trans-unit id="subscribeVerifyUid">
+				<source>Page to verify email-address for subscription</source>
+			</trans-unit>
+			<trans-unit id="unsubscribeUid">
+				<source>Page for the unsubscribtion</source>
+			</trans-unit>
+			<trans-unit id="unsubscribeVerifyUid">
+				<source>Page to verify email-address for unsubscription</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

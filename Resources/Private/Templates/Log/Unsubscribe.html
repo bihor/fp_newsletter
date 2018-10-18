@@ -1,0 +1,16 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="main">
+<div style="display:none;">
+<f:flashMessages />
+</div>
+<f:render partial="FormErrors" arguments="{object:Log}" />
+
+<f:form pageUid="{settings.unsubscribeUid}" action="delete" name="log" object="{log}">
+	<f:render partial="Log/FormFieldsOut" arguments="{_all}" />
+	<f:form.submit value="{f:translate(key: 'unsubscribe', default: 'unsubscribe')}" class="btn btn-sm btn-primary" />
+</f:form>
+<br>
+<p>*) {f:translate(key: 'required', default: 'required')}</p>
+</f:section>
+</html>

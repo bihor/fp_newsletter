@@ -1,0 +1,20 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Default" />
+<f:section name="main">
+<f:flashMessages />
+
+<f:if condition="{error} > 0">
+<f:then>
+	<f:if condition="{error} == 10">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_unsubscribed_parameters', default: 'parameters are not valid')}</p>
+	</f:if>
+	<f:if condition="{error} == 11">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_user', default: 'parameters are not valid')}</p>
+	</f:if>
+</f:then>
+<f:else>
+	<p>{f:translate(key: 'error_not_here', default: 'you should not be here')}</p>
+</f:else>
+</f:if>
+</f:section>
+</html>
