@@ -11,5 +11,5 @@
 ChangeLog
 =========
 
-Version 0.9.1
-Pre-final version.
+Version 0.9.6: Pre-final version.
+Version 0.9.7: More documentation.

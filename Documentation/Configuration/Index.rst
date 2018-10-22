@@ -26,18 +26,11 @@ Target group: **Developers**
 TypoScript Reference
 --------------------
 
-Configuration via TypoScript (and FlexForms). You can overrite the text for other languges like this::
-
-  [globalVar = GP:L = 1]
-  plugin.tx_fpnewsletter_pi1.settings.company = Your company
-  [end]
-
-  Note: furthermore the language-uid is added to the email-template-name if the language-uid is greater than 0.
-  That means: you can use for every language an other email-template!
+Configuration via TypoScript (and FlexForms).
 
 
-Properties
-^^^^^^^^^^
+Properties for settings
+^^^^^^^^^^^^^^^^^^^^^^^
 
 .. container:: ts-properties
 
@@ -73,50 +66,8 @@ Properties
 Property details
 ^^^^^^^^^^^^^^^^
 
-.. only:: html
+You can overrite the text for other languges like this::
 
-	.. contents::
-		:local:
-		:depth: 1
-
-
-.. _ts-plugin-tx-extensionkey-stdwrap:
-
-allWrap
-"""""""
-
-:typoscript:`plugin.tx_extensionkey.allWrap =` :ref:`t3tsref:data-type-wrap`
-
-Wraps the whole item.
-
-
-.. _ts-plugin-tx-extensionkey-wrapitemandsub:
-
-wrapItemAndSub
-""""""""""""""
-
-:typoscript:`plugin.tx_extensionkey.wrapItemAndSub =` :ref:`t3tsref:data-type-wrap`
-
-Wraps the whole item and any submenu concatenated to it.
-
-
-.. _ts-plugin-tx-extensionkey-substelementUid:
-
-subst_elementUid
-""""""""""""""""
-
-:typoscript:`plugin.tx_extensionkey.subst_elementUid =` :ref:`t3tsref:data-type-boolean`
-
-If set, all appearances of the string ``{elementUid}`` in the total
-element html-code (after wrapped in allWrap_) are substituted with the
-uid number of the menu item. This is useful if you want to insert an
-identification code in the HTML in order to manipulate properties with
-JavaScript.
-
-
-.. _configuration-faq:
-
-FAQ
----
-
-Possible subsection: FAQ
+  [globalVar = GP:L = 1]
+  plugin.tx_fpnewsletter_pi1.settings.company = Your company
+  [end]

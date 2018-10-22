@@ -12,13 +12,13 @@ Links
 -----
 
 :TER:
-	https://typo3.org/extensions/repository/view/<extension key>
+	https://typo3.org/extensions/repository/view/fp_newsletter
 
 :Bug Tracker:
-	https://forge.typo3.org/projects/extension-<extension key>/issues
+	https://forge.typo3.org/projects/extension-fp_newsletter/issues
 
 :Git Repository:
-	https://github.com/<username>/<extension key>
+	https://github.com/bihor/fp_newsletter
 
 :Contact:
-	`@<username> <https://twitter.com/your-username>`__
+	`k.gusbeth@fixpunkt.com <https://www.fixpunkt.com/webentwicklung/typo3/typo3-extensions/>`__

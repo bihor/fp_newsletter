@@ -126,31 +126,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
     /**
-     * action edit
-     *
-     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log
-     * @ignorevalidation $log
-     * @return void
-     */
-    public function editAction(\Fixpunkt\FpNewsletter\Domain\Model\Log $log)
-    {
-        $this->view->assign('log', $log);
-    }
-
-    /**
-     * action update
-     *
-     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log
-     * @return void
-     */
-    public function updateAction(\Fixpunkt\FpNewsletter\Domain\Model\Log $log)
-    {
-        $this->addFlashMessage('The object was updated. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
-        $this->logRepository->update($log);
-        $this->redirect('list');
-    }
-
-    /**
      * action unsubscribe with form
      *
      * @return void

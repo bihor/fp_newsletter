@@ -9,11 +9,11 @@ call_user_func(
             'Fixpunkt.FpNewsletter',
             'Pi1',
             [
-                'Log' => 'new, create, edit, update, unsubscribe, unsubscribeDM, delete, verify, list'
+                'Log' => 'new, create, unsubscribe, unsubscribeDM, delete, verify, list'
             ],
             // non-cacheable actions
             [
-                'Log' => 'new, create, update, unsubscribe, unsubscribeDM, delete, verify'
+                'Log' => 'new, create, unsubscribe, unsubscribeDM, delete, verify'
             ]
         );
 

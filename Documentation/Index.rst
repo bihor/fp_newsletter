@@ -57,7 +57,6 @@ Newsletter managment
 	User/Index
 	Administrator/Index
 	Configuration/Index
-	Developer/Index
 	KnownProblems/Index
 	ToDoList/Index
 	ChangeLog/Index

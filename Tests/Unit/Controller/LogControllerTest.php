@@ -72,38 +72,6 @@ class LogControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     /**
      * @test
      */
-    public function editActionAssignsTheGivenLogToView()
-    {
-        $log = new \Fixpunkt\FpNewsletter\Domain\Model\Log();
-
-        $view = $this->getMockBuilder(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface::class)->getMock();
-        $this->inject($this->subject, 'view', $view);
-        $view->expects(self::once())->method('assign')->with('log', $log);
-
-        $this->subject->editAction($log);
-    }
-
-    /**
-     * @test
-     */
-    public function updateActionUpdatesTheGivenLogInLogRepository()
-    {
-        $log = new \Fixpunkt\FpNewsletter\Domain\Model\Log();
-
-        $logRepository = $this->getMockBuilder(\Fixpunkt\FpNewsletter\Domain\Repository\LogRepository::class)
-            ->setMethods(['update'])
-            ->disableOriginalConstructor()
-            ->getMock();
-
-        $logRepository->expects(self::once())->method('update')->with($log);
-        $this->inject($this->subject, 'logRepository', $logRepository);
-
-        $this->subject->updateAction($log);
-    }
-
-    /**
-     * @test
-     */
     public function deleteActionRemovesTheGivenLogFromLogRepository()
     {
         $log = new \Fixpunkt\FpNewsletter\Domain\Model\Log();
