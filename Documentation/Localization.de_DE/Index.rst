@@ -15,7 +15,7 @@
 .. only:: html
 
 	:Klassifikation:
-		extension_key
+		fp_newsletter
 
 	:Version:
 		|release|
@@ -24,10 +24,10 @@
 		de
 
 	:Beschreibung:
-		Geben Sie eine Beschreibung ein.
+		Plugin für Newsletter An- und Abmeldung. Benutzte Tabelle: tt_address. Ein Log aller Aktionen wird erstellt.
 
 	:Schlüsselwörter:
-		komma-getrennte,Liste,von,Schlüsselwörtern
+		tt_address,direct_mail,newsletter,subscription,unsubscription,dsgvo,gdpr
 
 	:Copyright:
 		###YEAR###
@@ -56,10 +56,9 @@
 	:titlesonly:
 
 ..	Introduction/Index
-..	UserManual/Index
-..	AdministratorManual/Index
+..	User/Index
+..	Administrator/Index
 ..	Configuration/Index
-..	DeveloperCorner/Index
 ..	KnownProblems/Index
 ..	ToDoList/Index
 ..	ChangeLog/Index

@@ -8,7 +8,7 @@
 .. _start:
 
 =============================================================
-Newsletter managment
+Newsletter subscriber managment
 =============================================================
 
 .. only:: html
@@ -23,7 +23,7 @@ Newsletter managment
 		en
 
 	:Description:
-		Plugin for newsletter subscription and unsubscription. Can be used for: tt_address. An log is written.
+		Plugin for newsletter subscription and unsubscription. Can be used for the table tt_address. A log is written.
 
 	:Keywords:
 		newsletter,subscription,unsubscription,verify,gdpr
@@ -44,6 +44,9 @@ Newsletter managment
 	:Rendered:
 		|today|
 
+    :Documentation:
+        `english Version <http://docs.typo3.org/typo3cms/extensions/fp_newsletter/>`_, `deutsche Version <http://docs.typo3.org/typo3cms/extensions/fp_newsletter/de-de/>`_
+    
 	The content of this document is related to TYPO3,
 	a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_.
 

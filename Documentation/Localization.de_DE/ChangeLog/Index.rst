@@ -3,14 +3,12 @@
 .. --------------------------------------------------
 .. -*- coding: utf-8 -*- with BOM.
 
-.. include:: ../Includes.txt
+.. include:: ../../Includes.txt
 
 
 .. _changelog:
 
-ChangeLog
-=========
+Änderungen
+==========
 
-Version 0.9.6: Pre-final version.
-Version 0.9.7: More documentation.
-Version 0.9.8: German documentation added.
+Version 0.9.8: erste Version für TER.

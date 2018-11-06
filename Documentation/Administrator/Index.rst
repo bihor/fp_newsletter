@@ -27,3 +27,5 @@ The translate-ViewHelper can not be used in this templates thats why you need to
 The default template is in german. SubscribeVerify1.html contains the english text. You can use this email-templates like this::
 
   SubscribeVerify<LANGUID>.html and SubscribeVerify<LANGUID>.txt
+
+Only for the language 0 you must remove the number. For the language 1 SubscribeVerify1.html is used automatically.

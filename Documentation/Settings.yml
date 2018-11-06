@@ -9,7 +9,7 @@
 ---
 conf.py:
   copyright: 2018
-  project: Newsletter managment
+  project: Newsletter subscriber managment
   version: 1.0.0
   release: 1.0.0
   intersphinx_mapping:
@@ -19,7 +19,7 @@ conf.py:
   latex_documents:
   - - Index
     - fp_newsletter.tex
-    - Newsletter managment
+    - Newsletter subscriber managment
     - Kurt Gusbeth
     - manual
   latex_elements:
