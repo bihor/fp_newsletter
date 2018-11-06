@@ -26,7 +26,8 @@ Bei der Double-Opt-In-Anmeldung und bei der Abmeldung muss man den Datenschutzbe
 
 .. Wichtig::
 
-   Dies ist bisher nur eine Beta-Version. Die implementierten Features funktionieren natürlich schon, nur fehlen noch einige optionale Features.
+   Dies ist bisher nur eine Beta-Version.
+   Die implementierten Features funktionieren natürlich schon, nur fehlen noch einige optionale Features.
 
 
 .. _screenshots:
@@ -34,7 +35,7 @@ Bei der Double-Opt-In-Anmeldung und bei der Abmeldung muss man den Datenschutzbe
 Screenshots
 -----------
 
-Einfach Ansicht des Anmelde-Formulars:
+Einfache Ansicht des Anmelde-Formulars:
 
 .. figure:: ../../Images/frontend.png
    :width: 814px
