@@ -36,7 +36,7 @@ Screenshots
 
 Einfach Ansicht des Anmelde-Formulars:
 
-.. figure:: ../Images/frontend.png
+.. figure:: ../../Images/frontend.png
    :width: 814px
    :alt: Frontend page
 
