@@ -29,3 +29,15 @@ The default template is in german. SubscribeVerify1.html contains the english te
   SubscribeVerify<LANGUID>.html and SubscribeVerify<LANGUID>.txt
 
 Only for the language 0 you must remove the number. For the language 1 SubscribeVerify1.html is used automatically.
+
+
+Newsletter
+----------
+
+When you send a newsletter you want to add an unsubscription link to your newsletter. If you are using direct_mail, you can do that this way::
+
+  Unsubscribe from the newsletter: http://www.domain.com/newsletter/unsubscribe.html?u=###USER_uid###&t=###SYS_TABLE_NAME###&a=###SYS_AUTHCODE###
+
+The 3 values ###USER_uid###, ###SYS_TABLE_NAME### and ###SYS_AUTHCODE### will be replaced by direct_mail.
+Replace the link with the link to your unsubscribe page.
+The extension fp_newsletter will check the parameters and will unsubscribe the given user directly.

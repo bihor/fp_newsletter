@@ -12,3 +12,4 @@
 ==========
 
 Version 0.9.8: erste Version für TER.
+Version 0.9.9: Abmeldelink zur Doku hinzugefügt.

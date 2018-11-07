@@ -33,3 +33,14 @@ ist in englisch verfasst. Es werden automatisch diese Templates verwendet::
   SubscribeVerify<LANGUID>.html and SubscribeVerify<LANGUID>.txt
 
 Nur für die Sprache 0 muss man die Zahl weglassen. SubscribeVerify1.txt ist das Template für die Sprache 1.
+
+Newsletter
+----------
+
+Wenn du einen Newsletter verschickt, soll dain sicherlich auch ein Abmeldelink drin stehen. Das kann man so machen, wenn man direct_mail benutzt::
+
+  Newsletter abbestellen: http://www.domain.de/newsletter/abmelden.html?u=###USER_uid###&t=###SYS_TABLE_NAME###&a=###SYS_AUTHCODE###
+
+Die 3 Werte ###USER_uid###, ###SYS_TABLE_NAME### und ###SYS_AUTHCODE### wird direct_mail ersetzen.
+Du musst nur den Link mit deinem Abmeldelink ersetzen.
+Die Extension fp_newsletter wird die Parameter überprüfen und den angegebenen Benutzer sofort abmelden.
