@@ -36,7 +36,8 @@ Newsletter
 
 When you send a newsletter you want to add an unsubscription link to your newsletter. If you are using direct_mail, you can do that this way::
 
-  Unsubscribe from the newsletter: http://www.domain.com/newsletter/unsubscribe.html?u=###USER_uid###&t=###SYS_TABLE_NAME###&a=###SYS_AUTHCODE###
+  Unsubscribe from the newsletter:
+  http://www.domain.com/newsletter/unsubscribe.html?u=###USER_uid###&t=###SYS_TABLE_NAME###&a=###SYS_AUTHCODE###
 
 The 3 values ###USER_uid###, ###SYS_TABLE_NAME### and ###SYS_AUTHCODE### will be replaced by direct_mail.
 Replace the link with the link to your unsubscribe page.

@@ -9,7 +9,7 @@
 .. _start:
 
 =============================================================
-###PROJECT_NAME### (Deutsch)
+Newsletter-Abonnenten-Management
 =============================================================
 
 .. only:: html
@@ -30,13 +30,13 @@
 		tt_address,direct_mail,newsletter,subscription,unsubscription,dsgvo,gdpr
 
 	:Copyright:
-		###YEAR###
+		2018
 
 	:Autor:
-		###AUTHOR###
+		Kurt Gusbeth
 
 	:E-Mail:
-		author@example.com
+		k.gusbeth@fixpunkt.com
 
 	:Lizenz:
 		Dieses Dokument wird unter der Open Publication License, siehe
@@ -52,13 +52,11 @@
 	**Inhaltsverzeichnis**
 
 .. toctree::
-	:maxdepth: 3
-	:titlesonly:
 
-..	Introduction/Index
-..	User/Index
-..	Administrator/Index
-..	Configuration/Index
-..	KnownProblems/Index
-..	ToDoList/Index
-..	ChangeLog/Index
+  Introduction/Index
+  User/Index
+  Administrator/Index
+  Configuration/Index
+  KnownProblems/Index
+  ToDoList/Index
+  ChangeLog/Index

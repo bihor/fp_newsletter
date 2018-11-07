@@ -24,7 +24,7 @@ So kann man als Admin sehen, wer sich wann an- oder abgemeldet hat. Erst nach ei
 tt_address-Tabelle kopiert. Die Abmeldung findet z.Z. sofort statt, aber eine Double-Opt-Out-Abmeldung ist auch noch in Planung.
 Bei der Double-Opt-In-Anmeldung und bei der Abmeldung muss man den Datenschutzbestimmungen zustimmen.
 
-.. Wichtig::
+.. important::
 
    Dies ist bisher nur eine Beta-Version.
    Die implementierten Features funktionieren natürlich schon, nur fehlen noch einige optionale Features.
@@ -35,7 +35,7 @@ Bei der Double-Opt-In-Anmeldung und bei der Abmeldung muss man den Datenschutzbe
 Screenshots
 -----------
 
-Einfache Ansicht des Anmelde-Formulars:
+Einfache Ansicht des Anmelde-Formulars im FE:
 
 .. figure:: ../../Images/frontend.png
    :width: 814px

@@ -18,7 +18,7 @@ Benutzer werden eher die FlexForms benutzen. Hier ein Beispiel der FlexForm-Eins
    :width: 660px
    :alt: Backend view
 
-   Die Backend-Ansicht
+   Die Backend-Ansicht (BE)
 
 Zahlreiche Links können für die Zielseiten spezifiziert werden.
 

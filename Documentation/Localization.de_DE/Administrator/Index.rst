@@ -39,7 +39,8 @@ Newsletter
 
 Wenn du einen Newsletter verschickt, soll dain sicherlich auch ein Abmeldelink drin stehen. Das kann man so machen, wenn man direct_mail benutzt::
 
-  Newsletter abbestellen: http://www.domain.de/newsletter/abmelden.html?u=###USER_uid###&t=###SYS_TABLE_NAME###&a=###SYS_AUTHCODE###
+  Newsletter abbestellen:
+  http://www.domain.de/newsletter/abmelden.html?u=###USER_uid###&t=###SYS_TABLE_NAME###&a=###SYS_AUTHCODE###
 
 Die 3 Werte ###USER_uid###, ###SYS_TABLE_NAME### und ###SYS_AUTHCODE### wird direct_mail ersetzen.
 Du musst nur den Link mit deinem Abmeldelink ersetzen.
