@@ -42,3 +42,10 @@ Einfache Ansicht des Anmelde-Formulars im FE:
    :alt: Frontend page
 
    Anmelde-Formular.
+
+Danke an ...
+^^^^^^^^^^^^
+
+Diese Extension wurde programmiert von der
+`fixpunkt werbeagentur gmbh, Bonn <https://www.fixpunkt.com/webentwicklung/typo3/typo3-extensions/>`_
+und fixpunkt stellt sie der TYPO3-Community zur Verfügung.
