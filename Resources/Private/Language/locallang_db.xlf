@@ -57,6 +57,9 @@
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status.2">
 				<source>subscribed, verified</source>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.6">
+				<source>already subscribed</source>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status.7">
 				<source>unsubscribed</source>
 			</trans-unit>

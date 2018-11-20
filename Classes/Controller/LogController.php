@@ -96,6 +96,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	}
     	if ($dbuidext > 0) {
     		$error = 6;
+    		$log->setStatus(6);
+    		$this->logRepository->update($log);
+    		$persistenceManager->persistAll();
     	} else {
 	    	$from = trim($log->getFirstname() . ' ' . $log->getLastname());
 	    	if (!$from) $from = 'Subscriber';
