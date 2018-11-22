@@ -367,7 +367,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	//$emailViewHtml->setTemplatePathAndFilename($templatePathAndFilename);
     	$emailViewHtml->setTemplateRootPaths($extbaseFrameworkConfiguration['view']['templateRootPaths']);
     	$emailViewHtml->setLayoutRootPaths($extbaseFrameworkConfiguration['view']['layoutRootPaths']);
-    	$emailViewHtml->setPartialRootPaths($extbaseFrameworkConfiguration['view']['layoutRootPaths']);
+    	$emailViewHtml->setPartialRootPaths($extbaseFrameworkConfiguration['view']['partialRootPaths']);
     	$emailViewHtml->setTemplate('Email/' . $templateName . '.html');
     	$emailViewHtml->setFormat('html');
     	$emailViewHtml->assignMultiple($variables);
@@ -379,7 +379,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	//$emailViewText->setTemplatePathAndFilename($templatePathAndFilename);
     	$emailViewText->setTemplateRootPaths($extbaseFrameworkConfiguration['view']['templateRootPaths']);
     	$emailViewText->setLayoutRootPaths($extbaseFrameworkConfiguration['view']['layoutRootPaths']);
-    	$emailViewText->setPartialRootPaths($extbaseFrameworkConfiguration['view']['layoutRootPaths']);
+    	$emailViewText->setPartialRootPaths($extbaseFrameworkConfiguration['view']['partialRootPaths']);
     	$emailViewText->setTemplate('Email/' . $templateName . '.txt');
     	$emailViewText->setFormat('txt');
     	$emailViewText->assignMultiple($variables);
