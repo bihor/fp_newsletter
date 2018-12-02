@@ -15,6 +15,9 @@
 			<trans-unit id="template.new">
 				<target>Newsletter: Anmeldung (und Abmeldung)</target>
 			</trans-unit>
+			<trans-unit id="template.subscribeExtern">
+				<target>Newsletter: Anmeldung über externe Extension</target>
+			</trans-unit>
 			<trans-unit id="template.subscribeVerify">
 				<target>Newsletter: Anmeldung verifizieren</target>
 			</trans-unit>

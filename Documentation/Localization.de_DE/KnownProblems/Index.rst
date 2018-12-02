@@ -11,6 +11,6 @@
 Bekannte Probleme
 =================
 
-Bisher keine Bugs bekannt. Später wird man noch einen Bug-Tracker finden
-`bug tracker <http://forge.typo3.org/projects/typo3cms-doc-official-extension-template/issues>`_?
-für diese Extension. Jetzt wohl noch nicht.
+Bisher keine Bugs bekannt. Einen Bug-Tracker findet man hier
+`bug tracker <https://github.com/bihor/fp_newsletter/issues>`_?
+für diese Extension.

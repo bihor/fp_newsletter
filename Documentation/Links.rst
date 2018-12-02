@@ -15,7 +15,7 @@ Links
 	https://typo3.org/extensions/repository/view/fp_newsletter
 
 :Bug Tracker:
-	https://forge.typo3.org/projects/extension-fp_newsletter/issues
+	https://github.com/bihor/fp_newsletter/issues
 
 :Git Repository:
 	https://github.com/bihor/fp_newsletter

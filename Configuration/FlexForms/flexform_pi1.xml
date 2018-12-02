@@ -19,18 +19,22 @@
                 <numIndex index="1">Log->new;Log->create</numIndex>
             </numIndex>
             <numIndex index="1">
+                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.subscribeExtern</numIndex>
+                <numIndex index="1">Log->subscribeExt</numIndex>
+            </numIndex>
+            <numIndex index="2">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.subscribeVerify</numIndex>
                 <numIndex index="1">Log->verify</numIndex>
             </numIndex>
-            <numIndex index="2">
+            <numIndex index="5">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribe</numIndex>
                 <numIndex index="1">Log->unsubscribe;Log->delete</numIndex>
             </numIndex>
-            <numIndex index="3">
+            <numIndex index="6">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeDM</numIndex>
                 <numIndex index="1">Log->unsubscribeDM;Log->delete</numIndex>
             </numIndex>
-            <numIndex index="4">
+            <numIndex index="7">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeVerify</numIndex>
                 <numIndex index="1">Log->verifyUnsubscribe</numIndex>
             </numIndex>

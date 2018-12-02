@@ -61,7 +61,7 @@
 				<source>Unsubscribe from the newsletter</source>
 			</trans-unit>
 			<trans-unit id="email_send1">
-				<source>An email has been send to you. Please verify your email-address.</source>
+				<source>An email has been send to you. Please verify your email-address for the newsletter subscription.</source>
 			</trans-unit>
 			<trans-unit id="email_verified">
 				<source>Your email-address is now verfied. You are now subscribed to our newsletter.</source>

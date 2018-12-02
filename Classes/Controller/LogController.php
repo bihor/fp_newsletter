@@ -72,6 +72,32 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
     /**
+     * action subscribeExt
+     *
+     * @return void
+     */
+    public function subscribeExtAction()
+    {
+    	if ($this->settings['parameters']['active'] && $this->settings['parameters']['email']) {
+    		$pactive = explode('|', $this->settings['parameters']['active']);
+    		$active = $_POST[$pactive[0]];
+    		if ($active[$pactive[1]][$pactive[2]]) {
+    			$pemail = explode('|', $this->settings['parameters']['email']);
+    			$email = $_POST[$pemail[0]];
+    			$email = $email[$pemail[1]][$pemail[2]];
+	    		if ($email) {
+	    			$storagePidsArray = $this->logRepository->getStoragePids();
+			    	$pid = intval($storagePidsArray[0]);
+			    	$log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+			    	$log->setPid($pid);
+	    			$log->setEmail($email);
+	    			$this->forward('create', NULL, NULL, ['log' => $log]);
+	    		}
+    		}
+    	}
+    }
+    
+    /**
      * action create
      *
      * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log

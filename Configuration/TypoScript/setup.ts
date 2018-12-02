@@ -1,14 +1,14 @@
-plugin.tx_fpnewsletter_pi1 {
+plugin.tx_fpnewsletter {
   view {
     templateRootPaths.0 = EXT:fp_newsletter/Resources/Private/Templates/
-    templateRootPaths.1 = {$plugin.tx_fpnewsletter_pi1.view.templateRootPath}
+    templateRootPaths.1 = {$plugin.tx_fpnewsletter.view.templateRootPath}
     partialRootPaths.0 = EXT:fp_newsletter/Resources/Private/Partials/
-    partialRootPaths.1 = {$plugin.tx_fpnewsletter_pi1.view.partialRootPath}
+    partialRootPaths.1 = {$plugin.tx_fpnewsletter.view.partialRootPath}
     layoutRootPaths.0 = EXT:fp_newsletter/Resources/Private/Layouts/
-    layoutRootPaths.1 = {$plugin.tx_fpnewsletter_pi1.view.layoutRootPath}
+    layoutRootPaths.1 = {$plugin.tx_fpnewsletter.view.layoutRootPath}
   }
   persistence {
-    storagePid = {$plugin.tx_fpnewsletter_pi1.persistence.storagePid}
+    storagePid = {$plugin.tx_fpnewsletter.persistence.storagePid}
     #recursive = 1
   }
   features {
@@ -41,6 +41,7 @@ plugin.tx_fpnewsletter_pi1 {
 	  mrs = Frau
 	}
 	parameters {
+	  active =
 	  email =
 	}
 	email {

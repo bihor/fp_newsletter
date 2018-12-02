@@ -20,7 +20,7 @@ Newsletter subscriber managment
 		|release|
 
 	:Language:
-		en
+		en, de
 
 	:Description:
 		Plugin for newsletter subscription and unsubscription. Can be used for the table tt_address. A log is written.

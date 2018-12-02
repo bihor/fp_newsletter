@@ -15,6 +15,9 @@
 			<trans-unit id="template.new">
 				<source>Newsletter: subscribe (and unsubscribe)</source>
 			</trans-unit>
+			<trans-unit id="template.subscribeExtern">
+				<source>Newsletter: subscribe via external extension</source>
+			</trans-unit>
 			<trans-unit id="template.subscribeVerify">
 				<source>Newsletter: verify subscription</source>
 			</trans-unit>

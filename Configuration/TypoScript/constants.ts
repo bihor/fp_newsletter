@@ -1,4 +1,4 @@
-plugin.tx_fpnewsletter_pi1 {
+plugin.tx_fpnewsletter {
   view {
     # cat=plugin.tx_fpnewsletter_pi1/file; type=string; label=Path to template root (FE)
     templateRootPath = EXT:fp_newsletter/Resources/Private/Templates/

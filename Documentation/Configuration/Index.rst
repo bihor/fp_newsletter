@@ -57,6 +57,8 @@ Properties for settings
 	gender.please                string      Text for gender selection                                             Bitte auswählen
 	gender.mr                    string      Text for the gender mr                                                Herr
 	gender.mrs                   string      Text for the gender mrs                                               Frau
+	parameters.active            string      Parameter for newsletter subscription in external extension (POST)
+	parameters.email             string      Parameter for the email from external source (GET/POST-parameter)
 	email.senderMail             string      Your email-address                                                    beispiel@test.de
 	email.senderName             string      Your name                                                             Absender-Name
 	email.subscribeVerifySubject string      Subject of the email                                                  Bitte verifizieren ...
@@ -71,3 +73,20 @@ You can overrite the text for other languges like this::
   [globalVar = GP:L = 1]
   plugin.tx_fpnewsletter_pi1.settings.company = Your company
   [end]
+
+
+You can set a default email-address which was submitted before. E.g. you have a form in the footer and the field-name is nlemail, then set the parameter like this::
+
+  plugin.tx_fpnewsletter.settings.parameters.email = nlemail
+
+That parameter will be read and the value of that parameter will be used as default email-address.
+
+
+You can do the subscription via an form in an other extension too. E.g. you have an shop and at the end of the order the user wants to subscribe to the newsletter?
+Then put this extension under the shop extension an select the action "subscribe via external extension".
+Furthermore you must specify the POST-parameter, which are used in the other extension like this::
+
+  plugin.tx_fpnewsletter.settings.parameters.active = tx_myshop_pi1|newOrder|newsletter
+  plugin.tx_fpnewsletter.settings.parameters.email = tx_myshop_pi1|newOrder|email
+
+Only parameters of this format are possible. If they are there, a forward will be made to the action create.

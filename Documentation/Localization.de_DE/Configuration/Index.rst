@@ -51,6 +51,8 @@ Settings-Einstellungen
 	gender.please                string      Text für die Anrede-Auswahl                                           Bitte auswählen
 	gender.mr                    string      Text für Herr                                                         Herr
 	gender.mrs                   string      Text für Frau                                                         Frau
+	parameters.active            string      Parameter für Anmeldung aus externer Extension (POST-Parameter)
+	parameters.email             string      Parameter für die E-Mail externer Herkunft (GET/POST-Parameter)
 	email.senderMail             string      E-Mail-Adresse des Absenders                                          beispiel@test.de
 	email.senderName             string      Absender-Name                                                         Absender-Name
 	email.subscribeVerifySubject string      Betreff der Verifikations-E-Mail                                      Bitte verifizieren ...
@@ -65,3 +67,20 @@ Man kann die Texte für andere Sprachen so überschreiben::
   [globalVar = GP:L = 1]
   plugin.tx_fpnewsletter_pi1.settings.company = Your company
   [end]
+
+
+Man kann auch eine Default-E-Mail-Adresse aus den Parametern auslesen und übernehmen. Wenn man z.B. im Footer ein Formular mit einem E-Mail-Feld hat,
+welches nlemail heißt, kann man den abgesendeten Wert wie folgt auslesen lassen::
+
+  plugin.tx_fpnewsletter.settings.parameters.email = nlemail
+
+
+Man kann die Anmeldung auch über ein externes Formular durchführen lassen. Wenn man z.B. einen Shop hat, wo man sich zum Schluß
+bei einer Bestellung auch zum Newsletter anmelden können soll, dann muss man diese Extension unter die Shop-Extension einfügen und das Template
+"Anmeldung über externe Extension" auswählen. Zudem muss man die POST-Parameter angeben, die ausgewertet werden sollen::
+
+  plugin.tx_fpnewsletter.settings.parameters.active = tx_myshop_pi1|newBestellung|newsletter
+  plugin.tx_fpnewsletter.settings.parameters.email = tx_myshop_pi1|newBestellung|email
+
+Es können an dieser Stelle nur Parameter von anderen Extensions mit dem selben Format ausgewertet werden.
+Wenn beide Parameter gesetzt sind, wird zur Action create weitergeleitet.

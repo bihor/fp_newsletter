@@ -11,6 +11,8 @@
 Known Problems
 ==============
 
-Currently no known problem. Later there will be a
-`bug tracker <http://forge.typo3.org/projects/typo3cms-doc-official-extension-template/issues>`_?
-available for this project.
+Currently no known problem.
+
+A
+`bug tracker <https://github.com/bihor/fp_newsletter/issues>`_?
+is available for this project.
