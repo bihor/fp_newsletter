@@ -1,7 +1,7 @@
 Guten Tag,
 
 um sich zu unserem Newsletter anzumelden, müssen Sie Ihre E-Mailadresse mit Klick auf diesen Link verifizieren:
-<f:link.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" arguments="{uid: uid, hash: hash}" noCacheHash="true" absolute="true"><f:uri.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" arguments="{uid: uid, hash: hash}" noCacheHash="true" absolute="true" /></f:link.action>
+<f:uri.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" arguments="{uid: uid, hash: hash}" noCache="true" absolute="true" />
 
 Mit freundlichen Grüßen
 {settings.company}

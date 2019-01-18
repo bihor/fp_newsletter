@@ -421,7 +421,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$message->setBody($emailBodyText, 'text/plain');
     
     	// HTML Email
-    	$message->setBody($emailBodyHtml, 'text/html');
+    	$message->addPart($emailBodyHtml, 'text/html');
     
     	$message->send();
     	return $message->isSent();
