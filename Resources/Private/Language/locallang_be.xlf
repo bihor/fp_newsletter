@@ -45,6 +45,9 @@
 			<trans-unit id="unsubscribeVerifyUid">
 				<source>Page to verify email-address for unsubscription</source>
 			</trans-unit>
+			<trans-unit id="gdprUid">
+				<source>Page with the GDPR</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

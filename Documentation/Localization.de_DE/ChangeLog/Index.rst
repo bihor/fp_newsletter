@@ -22,3 +22,6 @@ Neue action: subscribeExt für eine Newsletter-Anmeldung über externe Extension
 
 Version 0.10.2: Links in den E-Mail-Templates verändert (noCache statt noCacheHash).
 Bugfix 2: die Texte-E-Mails wurden bisher überschrieben.
+
+Version 0.10.3: Die Links in den E-Mail-Templates funktionieren nun endlich auch mit TYPO3 8.
+Leere FlexForms werden nun durch die TypoScript-Einstellungen überschrieben.

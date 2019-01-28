@@ -16,11 +16,11 @@
           <items>
             <numIndex index="0">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.new</numIndex>
-                <numIndex index="1">Log->new;Log->create</numIndex>
+                <numIndex index="1">Log->new;Log->create;Log->verify</numIndex>
             </numIndex>
             <numIndex index="1">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.subscribeExtern</numIndex>
-                <numIndex index="1">Log->subscribeExt</numIndex>
+                <numIndex index="1">Log->subscribeExt;Log->create;Log->verify</numIndex>
             </numIndex>
             <numIndex index="2">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.subscribeVerify</numIndex>
@@ -28,11 +28,11 @@
             </numIndex>
             <numIndex index="5">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribe</numIndex>
-                <numIndex index="1">Log->unsubscribe;Log->delete</numIndex>
+                <numIndex index="1">Log->unsubscribe;Log->delete;Log->verifyUnsubscribe</numIndex>
             </numIndex>
             <numIndex index="6">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeDM</numIndex>
-                <numIndex index="1">Log->unsubscribeDM;Log->delete</numIndex>
+                <numIndex index="1">Log->unsubscribeDM;Log->delete;Log->verifyUnsubscribe</numIndex>
             </numIndex>
             <numIndex index="7">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeVerify</numIndex>
@@ -102,6 +102,20 @@
 					</config>
 				</TCEforms>
 			</settings.unsubscribeVerifyUid>
+			<settings.gdprUid>
+				<TCEforms>
+					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:gdprUid</label>
+	                <config>
+						<type>group</type>
+						<internal_type>db</internal_type>
+						<allowed>pages</allowed>
+						<size>1</size>
+						<maxitems>1</maxitems>
+						<minitems>0</minitems>
+						<show_thumbs>0</show_thumbs>
+					</config>
+				</TCEforms>
+			</settings.gdprUid>
         </el>
       </ROOT>
     </sDEF>

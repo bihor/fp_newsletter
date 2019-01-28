@@ -45,6 +45,9 @@
 			<trans-unit id="unsubscribeVerifyUid">
 				<target>Seite für die Verifikation bei der Abmeldung</target>
 			</trans-unit>
+			<trans-unit id="gdprUid">
+				<target>Seite mit den Datenschutzbestimmungen</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

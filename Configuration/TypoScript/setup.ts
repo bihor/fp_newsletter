@@ -13,6 +13,7 @@ plugin.tx_fpnewsletter {
   }
   features {
     skipDefaultArguments = 1
+    requireCHashArgumentForActionArguments = 0
   }
   mvc {
     #callDefaultActionIfActionCantBeResolved = 1
@@ -49,6 +50,7 @@ plugin.tx_fpnewsletter {
 		senderName = Absender-Name
 		subscribeVerifySubject = Bitte verifizieren Sie Ihre E-Mail-Adresse
 	}
+	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,gdprUid
   }
 }
 

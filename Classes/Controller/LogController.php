@@ -1,6 +1,8 @@
 <?php
 namespace Fixpunkt\FpNewsletter\Controller;
 
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /***
  *
  * This file is part of the "Newsletter managment" Extension for TYPO3 CMS.
@@ -25,6 +27,35 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     protected $logRepository = null;
 
+    /**
+     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
+     */
+    protected $configurationManager;
+    
+    /**
+     * Injects the Configuration Manager and is initializing the framework settings: wird doppelt aufgerufen!
+     *
+     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager Instance of the Configuration Manager
+     */
+    public function injectConfigurationManager(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager) {
+    	$this->configurationManager = $configurationManager;
+    	$tsSettings = $this->configurationManager->getConfiguration(
+    			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
+    	);
+    	$tsSettings = $tsSettings['plugin.']['tx_fpnewsletter.']['settings.'];
+    	$originalSettings = $this->configurationManager->getConfiguration(
+    			\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
+    	);
+    	// if flexform setting is empty and value is available in TS
+    	$overrideFlexformFields = GeneralUtility::trimExplode(',', $tsSettings['overrideFlexformSettingsIfEmpty'], true);
+    	foreach ($overrideFlexformFields as $fieldName) {
+   			if (!($originalSettings[$fieldName]) && isset($tsSettings[$fieldName])) {
+   				$originalSettings[$fieldName] = $tsSettings[$fieldName];
+   			}
+    	}
+    	$this->settings = $originalSettings;
+    }
+    
     /**
      * action list
      *
@@ -110,7 +141,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $log->setSecurityhash($hash);
         $log->setStatus(1);
     	$this->logRepository->add($log);
-    	$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+    	$persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
     	$persistenceManager->persistAll();
     	$error = 0;
     	$db_uid = 0;
@@ -194,7 +225,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		$res=$GLOBALS['TYPO3_DB']->exec_SELECTquery('*', $this->settings['table'], 'deleted=0 AND uid=' . $u,'','',1);
     		$user=$GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
     		if($user){
-    			if(preg_match('/^[0-9a-f]{8}$/', $a) && ($a == \TYPO3\CMS\Core\Utility\GeneralUtility::stdAuthCode($user, 'uid'))) {
+    			if(preg_match('/^[0-9a-f]{8}$/', $a) && ($a == GeneralUtility::stdAuthCode($user, 'uid'))) {
    					// unsubscribe user now
     				$this->redirect('delete', NULL, NULL, ['user' => $user]);	
     			} else {
@@ -242,7 +273,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	} else {
     		$log->setStatus(7);
     		$this->logRepository->add($log);
-    		$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+    		$persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
     		$persistenceManager->persistAll();
     		if ($this->settings['deleteMode'] == 2) {
     			if ($this->settings['table'] == 'tt_address') {
@@ -316,7 +347,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     					} else {
 	    					$address->setStatus(2);
 	    					$this->logRepository->update($address);
-	    					$persistenceManager = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+	    					$persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
 	    					$persistenceManager->persistAll();
 	    					$timestamp = time();
 	    					if ($this->settings['table'] == 'tt_address') {

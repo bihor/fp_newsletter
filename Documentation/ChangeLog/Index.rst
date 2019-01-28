@@ -22,3 +22,6 @@ New action: subscribeExt for newsletter subscription via other extensions. Bugfi
 
 Version 0.10.2: Links in the email-templates changed.
 Bugfix: text-email was missing.
+
+Version 0.10.3: Links in the email-templates works now with TYPO3 8 too.
+Empty FlexForms will now be overwritten by TypoScript.
