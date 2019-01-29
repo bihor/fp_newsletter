@@ -89,9 +89,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	}
     	$log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
     	if ($this->settings['parameters']['email']) {
-    		$email = $_GET[$this->settings['parameters']['email']];
+    	    $email = isset($_GET[$this->settings['parameters']['email']]) ? $_GET[$this->settings['parameters']['email']] : '';
     		if (!$email) {
-    			$email = $_POST[$this->settings['parameters']['email']];
+    		    $email = isset($_POST[$this->settings['parameters']['email']]) ? $_POST[$this->settings['parameters']['email']] : '';
     		}
     		if ($email) {
     			$log->setEmail($email);
@@ -111,10 +111,10 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     {
     	if ($this->settings['parameters']['active'] && $this->settings['parameters']['email']) {
     		$pactive = explode('|', $this->settings['parameters']['active']);
-    		$active = $_POST[$pactive[0]];
+    		$active = isset($_POST[$pactive[0]]) ? $_POST[$pactive[0]] : array();
     		if ($active[$pactive[1]][$pactive[2]]) {
     			$pemail = explode('|', $this->settings['parameters']['email']);
-    			$email = $_POST[$pemail[0]];
+    			$email = isset($_POST[$pemail[0]]) ? $_POST[$pemail[0]] : array();
     			$email = $email[$pemail[1]][$pemail[2]];
 	    		if ($email) {
 	    			$storagePidsArray = $this->logRepository->getStoragePids();
@@ -144,7 +144,11 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
     	$persistenceManager->persistAll();
     	$error = 0;
-    	$db_uid = 0;
+    	$subscribeVerifyUid = $this->settings['subscribeVerifyUid'];
+    	if (!$subscribeVerifyUid) {
+    	    // Fallback
+    	    $subscribeVerifyUid = intval($GLOBALS["TSFE"]->id);
+    	}
     	$email = $log->getEmail();
     	$dbuidext = 0;
     	
@@ -163,7 +167,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    	$dataArray['uid'] = $log->getUid();
 	    	$dataArray['email'] = $email;
 	    	$dataArray['hash'] = $hash;
-	    	$dataArray['subscribeVerifyUid'] = $this->settings['subscribeVerifyUid'];
+	    	$dataArray['subscribeVerifyUid'] = $subscribeVerifyUid;
 	    	$dataArray['settings'] = $this->settings;
 	    	$this->sendTemplateEmail(
 	    			array($email => $from),
@@ -277,7 +281,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		$persistenceManager->persistAll();
     		if ($this->settings['deleteMode'] == 2) {
     			if ($this->settings['table'] == 'tt_address') {
-    				$result = $GLOBALS['TYPO3_DB']->exec_DELETEquery(
+    				$GLOBALS['TYPO3_DB']->exec_DELETEquery(
 						'tt_address',
 						'uid=' . $dbuidext
 					);

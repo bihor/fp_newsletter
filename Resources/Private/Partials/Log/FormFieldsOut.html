@@ -2,8 +2,13 @@
 <label for="email"><f:translate key="tx_fpnewsletter_domain_model_log.email" /> <span class="required">*</span></label>
 <f:form.textfield property="email" placeholder="{f:translate(key: 'tx_fpnewsletter_domain_model_log.email')} *" /><br />
 
+<f:if condition="{settings.enableUnsubscribeGdprAsHidden} == 1"><f:then>
+<f:form.hidden name="log[gdpr]" value="1" />
+</f:then><f:else>
 <label for="gdpr"><f:translate key="tx_fpnewsletter_domain_model_log.gdpr" /> <span class="required">*</span></label>
 <f:form.checkbox property="gdpr" value="1" /> &nbsp;
 <f:translate key="tx_fpnewsletter_domain_model_log.gdpr_desc1" /> <f:link.page pageUid="{settings.gdprUid}"><f:translate key="tx_fpnewsletter_domain_model_log.gdpr_link_text" /></f:link.page><f:translate key="tx_fpnewsletter_domain_model_log.gdpr_desc2" />
+</f:else></f:if>
+
 <br /><br />
 </html>

@@ -35,6 +35,7 @@ Settings-Einstellungen
 	optionalFields                   string      gender,title,firstname,lastname sind die optionalen Werte             gender,firstname,lastname
 	doubleOptOut                     boolean     Bisher nur 0 möglich!!!                                               0
 	enableUnsubscribeForm            boolean     Abmeldeformular auf der Anmeldeseite mit ausgeben?                    0
+	enableUnsubscribeGdprAsHidden    boolean     DSGVO-Checkbox beim Abmeldeformular verbergen?                        0
 	subscribeUid                     integer     Seite für die Anmeldung                                               1
 	subscribeMessageUid              integer     Optionale Seite für einen Redirect nach der Anmeldung
 	subscribeVerifyUid               integer     Seite für die Anmelde-Verifikation

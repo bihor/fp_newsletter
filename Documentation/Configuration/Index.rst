@@ -41,6 +41,7 @@ Properties for settings
 	optionalFields                   string      gender,title,firstname,lastname are supported                         gender,firstname,lastname
 	doubleOptOut                     boolean     Today only 0 supported!!!                                             0
 	enableUnsubscribeForm            boolean     Enable unsubscribe form at the subscribe page?                        0
+	enableUnsubscribeGdprAsHidden    boolean     Do not show the gdpr-checkbox at unsubscribe form?                    0
 	subscribeUid                     integer     Page for the subscription                                             1
 	subscribeMessageUid              integer     Optional page for the redirect after subscription
 	subscribeVerifyUid               integer     Page for the subscription-verification

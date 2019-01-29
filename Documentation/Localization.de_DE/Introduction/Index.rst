@@ -23,12 +23,7 @@ Sämtliche Aktionen werden in einer Log-Tabelle festgehalten, damit alle Aktione
 Allerdings werden manche Einträge auch geändert und nicht immer neu angelegt.
 So kann man als Admin sehen, wer sich wann an- oder abgemeldet hat. Erst nach einer erfolgreichen Anmeldung werden die Daten in die
 tt_address-Tabelle kopiert. Die Abmeldung findet z.Z. sofort statt, aber eine Double-Opt-Out-Abmeldung ist auch noch in Planung.
-Bei der Double-Opt-In-Anmeldung und bei der Abmeldung muss man den Datenschutzbestimmungen zustimmen.
-
-.. important::
-
-   Dies ist bisher nur eine Beta-Version.
-   Die implementierten Features funktionieren natürlich schon, nur fehlen noch einige optionale Features.
+Bei der Double-Opt-In-Anmeldung und ggf. auch bei der Abmeldung muss man den Datenschutzbestimmungen zustimmen.
 
 
 .. _screenshots:
