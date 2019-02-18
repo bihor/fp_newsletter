@@ -48,6 +48,27 @@
 			<trans-unit id="gdprUid">
 				<source>Page with the GDPR</source>
 			</trans-unit>
+			<trans-unit id="enables">
+				<source>Enable/disable</source>
+			</trans-unit>
+			<trans-unit id="settings.no">
+				<source>no</source>
+			</trans-unit>
+			<trans-unit id="settings.yes">
+				<source>yes</source>
+			</trans-unit>
+			<trans-unit id="settings.doubleOptOut">
+				<source>Enable double opt out unsubscription?</source>
+			</trans-unit>
+			<trans-unit id="settings.enableUnsubscribeForm">
+				<source>Enable unsubscription form under the subscription form too?</source>
+			</trans-unit>
+			<trans-unit id="settings.enableUnsubscribeGdprAsHidden">
+				<source>Set the GDPR-checkbox to hidden on the unsubscription form?</source>
+			</trans-unit>
+			<trans-unit id="settings.module_sys_dmail_html">
+				<source>Subscribe to a HTML-newsletter?</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
