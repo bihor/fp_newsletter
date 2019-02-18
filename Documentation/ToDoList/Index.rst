@@ -13,4 +13,4 @@ To-Do list
 
 - It should be possible to use the fe_users table too.
 
-- There should be a double opt out method. Currently there is no verfiy email for the unsubscription.
+- There should be a email to a admin possible.

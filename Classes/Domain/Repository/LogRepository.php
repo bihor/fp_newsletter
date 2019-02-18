@@ -41,6 +41,19 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		return $dbuid;
 	}
 	
+	/**
+	 * deleteInTTAddress: delete user
+	 * @param	integer	$uid
+	 * @param	integer	$mode
+	 */
+	function deleteInTtAddress($uid, $mode) {
+	    if ($mode == 2) {
+	        $GLOBALS['TYPO3_DB']->exec_DELETEquery('tt_address', 'uid=' . $uid);
+	    } else {
+	        $update = array('deleted' => 1, 'tstamp' => time());
+	        $GLOBALS['TYPO3_DB']->exec_UPDATEquery('tt_address', 'uid=' . $uid, $update);
+	    }
+	}
 
 	/**
 	 * Get the PIDs

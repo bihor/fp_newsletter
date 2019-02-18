@@ -10,7 +10,14 @@
 	</f:if>
 </f:then>
 <f:else>
-	<p>{f:translate(key: 'email_removed', default: 'email removed')}</p>
+	<f:if condition="{settings.doubleOptOut} == 1">
+	<f:then>
+		<p>{f:translate(key: 'email_send2', default: 'email sent to you')}</p>
+	</f:then>
+	<f:else>
+		<p>{f:translate(key: 'email_removed', default: 'email removed')}</p>
+	</f:else>
+	</f:if>
 </f:else>
 </f:if>
 </f:section>

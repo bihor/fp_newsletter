@@ -139,6 +139,8 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         //$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $hash = md5(uniqid($log->getEmail(), true));
         $log->setSecurityhash($hash);
+        // Das hier sollte eigentlich automatisch passieren, tut es wohl aber nicht. Dennoch: zu umständlich.
+        //$log->set_languageUid(intval($GLOBALS['TSFE']->config['config']['sys_language_uid']));
         $log->setStatus(1);
     	$this->logRepository->add($log);
     	$persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
@@ -153,7 +155,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$dbuidext = 0;
     	
     	if ($this->settings['table'] == 'tt_address') {
-    		$dbuidext = $this->logRepository->getFromTTAddress($email, $log->getPid());
+    		$dbuidext = $this->logRepository->getFromTtAddress($email, $log->getPid());
+    	} else {
+    	    // TODO
     	}
     	if ($dbuidext > 0) {
     		$error = 6;
@@ -254,6 +258,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function deleteAction(\Fixpunkt\FpNewsletter\Domain\Model\Log $log = NULL, $user = [])
     {
     	$error = 0;
+    	$messageUid = 0;
     	if (!$log) {
     		$log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
     		$log->setEmail($user['email']);
@@ -265,39 +270,62 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		$storagePidsArray = $this->logRepository->getStoragePids();
     		$pid = intval($storagePidsArray[0]);
     	}
+    	$hash = md5(uniqid($log->getEmail(), true));
+    	$log->setSecurityhash($hash);
     	$dbuidext = 0;
 
     	if ($this->settings['table'] == 'tt_address') {
-    		$dbuidext = intval($this->logRepository->getFromTTAddress($email, $pid));
+    		$dbuidext = intval($this->logRepository->getFromTtAddress($email, $pid));
     	} else {
     		// TODO
     	}
     	if ($dbuidext == 0) {
     		$error = 7;
     	} else {
-    		$log->setStatus(7);
-    		$this->logRepository->add($log);
-    		$persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
-    		$persistenceManager->persistAll();
-    		if ($this->settings['deleteMode'] == 2) {
-    			if ($this->settings['table'] == 'tt_address') {
-    				$GLOBALS['TYPO3_DB']->exec_DELETEquery(
-						'tt_address',
-						'uid=' . $dbuidext
-					);
-    			}
-    		} else {
-    			if ($this->settings['table'] == 'tt_address') {
-    				$update = array('deleted' => 1, 'tstamp' => time());
-					$GLOBALS['TYPO3_DB']->exec_UPDATEquery('tt_address', 'uid=' . $dbuidext, $update);
-    			}
-    		}
+    	    if ($this->settings['doubleOptOut']) {
+    	        $log->setStatus(3);
+    	        $this->logRepository->add($log);
+    	        $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+    	        $persistenceManager->persistAll();
+    	        
+    	        $unsubscribeVerifyUid = $this->settings['unsubscribeVerifyUid'];
+    	        if (!$unsubscribeVerifyUid) {
+    	            // Fallback
+    	            $unsubscribeVerifyUid = intval($GLOBALS["TSFE"]->id);
+    	        }
+    	        $from = trim($log->getFirstname() . ' ' . $log->getLastname());
+    	        if (!$from) $from = 'Unsubscriber';
+    	        $dataArray = array();
+    	        $dataArray['uid'] = $log->getUid();
+    	        $dataArray['email'] = $email;
+    	        $dataArray['hash'] = $hash;
+    	        $dataArray['unsubscribeVerifyUid'] = $unsubscribeVerifyUid;
+    	        $dataArray['settings'] = $this->settings;
+    	        $this->sendTemplateEmail(
+    	            array($email => $from),
+    	            array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+    	            $this->settings['email']['unsubscribeVerifySubject'],
+    	            'UnsubscribeVerify',
+    	            $dataArray
+    	        );
+    	        $messageUid = $this->settings['unsubscribeMessageUid'];
+    	    } else {
+        		$log->setStatus(7);
+        		$this->logRepository->add($log);
+        		$persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+        		$persistenceManager->persistAll();
+        		
+        		if ($this->settings['table'] == 'tt_address') {
+        		    $this->logRepository->deleteInTtAddress($dbuidext, $this->settings['deleteMode']);
+        		} else {
+        		    // TODO
+        		}
+        		$messageUid = $this->settings['unsubscribeVerifyMessageUid'];
+    	    }
     	}
     	
-	    if (($error == 0) && ($this->settings['unsubscribeVerifyMessageUid'])) {
-	   		$uri = $this->uriBuilder->reset()
-	   			->setTargetPageUid($this->settings['unsubscribeVerifyMessageUid'])
-	   			->build();
+    	if (($error == 0) && ($messageUid)) {
+	   		$uri = $this->uriBuilder->reset()->setTargetPageUid($messageUid)->build();
 	   		$this->redirectToURI($uri);
 	   		//$this->forward($this->settings['subscribeMessageUid']);
 	   	} else {
@@ -324,7 +352,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		$this->view->assign('error', 1);
     	} else {
     		$address = $this->logRepository->findOneByUid($uid);
-    		$dbuid = $address->getUid();
+    		if ($address) {
+    		  $dbuid = $address->getUid();
+    		}
     		if (!$dbuid) {
     			$error = 2;
     		} elseif ($address->getStatus() == 2) { 
@@ -344,7 +374,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     				} else {
     					$dbuidext = 0;
     					if ($this->settings['table'] == 'tt_address') {
-	    					$dbuidext = $this->logRepository->getFromTTAddress($dbemail, $address->getPid());
+	    					$dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
+    					} else {
+    					    // TODO
     					}
     					if ($dbuidext > 0) {
     						$error = 6;
@@ -397,6 +429,76 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	}
     }
     
+    
+    /**
+     * action verifyUnsubscribe
+     *
+     * @return void
+     */
+    public function verifyUnsubscribeAction()
+    {
+        $error = 0;
+        $dbuid = 0;
+        $uid = intval($this->request->hasArgument('uid')) ? $this->request->getArgument('uid') : 0;
+        $hash = ($this->request->hasArgument('hash')) ? $this->request->getArgument('hash') : '';
+        if (!$uid || !$hash) {
+            $this->view->assign('error', 1);
+        } else {
+            $address = $this->logRepository->findOneByUid($uid);
+            if ($address) {
+                $dbuid = $address->getUid();
+            }
+            if (!$dbuid) {
+                $error = 2;
+            } elseif ($address->getStatus() == 4) {
+                $error = 5;
+            } else {
+                $dbhash = $address->getSecurityhash();
+                if ($hash != $dbhash) {
+                    $error = 3;
+                } else {
+                    $dbemail = $address->getEmail();
+                    $now = new \DateTime();
+                    $diff = $now->diff($address->getTstamp())->days;
+                    if ($diff > $this->settings['daysExpire']) {
+                        $error = 4;
+                    } else {
+                        $dbuidext = 0;
+                        if ($this->settings['table'] == 'tt_address') {
+                            $dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
+                        } else {
+                            // TODO
+                        }
+                        if (!$dbuidext) {
+                            $error = 6;
+                        } else {
+                            $address->setStatus(4);
+                            $this->logRepository->update($address);
+                            $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+                            $persistenceManager->persistAll();
+                            
+                            if ($this->settings['table'] == 'tt_address') {
+                                $this->logRepository->deleteInTtAddress($dbuidext, $this->settings['deleteMode']);
+                            } elseif ($this->settings['table'] == 'fe_users') {
+                                // TODO
+                            }
+                        }
+                    }
+                }
+            }
+            
+            if (($error == 0) && ($this->settings['unsubscribeVerifyMessageUid'])) {
+                $uri = $this->uriBuilder->reset()
+                ->setTargetPageUid($this->settings['unsubscribeVerifyMessageUid'])
+                ->build();
+                $this->redirectToURI($uri);
+                //$this->forward($this->settings['unsubscribeMessageUid']);
+            } else {
+                $this->view->assign('error', $error);
+            }
+        }
+    }
+    
 
     /**
      * @param array $recipient recipient of the email in the format array('recipient@domain.tld' => 'Recipient Name')
@@ -445,7 +547,8 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$emailViewText->setFormat('txt');
     	$emailViewText->assignMultiple($variables);
     	$emailBodyText = $emailViewText->render();
-    
+        //echo $emailBodyText;
+        
     	/** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
     	$message = $this->objectManager->get('TYPO3\\CMS\\Core\\Mail\\MailMessage');
     	$message->setTo($recipient);

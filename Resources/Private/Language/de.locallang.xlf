@@ -63,6 +63,9 @@
 			<trans-unit id="email_send1">
 				<target>Eine E-Mail mit einem Link zur Verifizierung Ihrer E-Mailadresse wurde Ihnen zugesandt. Erst nach Klick auf den Link in der E-Mail sind Sie zu unserem Newsletter angemeldet!</target>
 			</trans-unit>
+			<trans-unit id="email_send2">
+				<target>Eine E-Mail mit einem Link zur Verifizierung Ihrer E-Mailadresse wurde Ihnen zugesandt. Erst nach Klick auf den Link in der E-Mail sind Sie von unserem Newsletter abgemeldet!</target>
+			</trans-unit>
 			<trans-unit id="email_verified">
 				<target>Ihre E-Mail-Adresse ist nun verifiziert. Sie sind nun zu unserem Newsletter angemeldet!</target>
 			</trans-unit>

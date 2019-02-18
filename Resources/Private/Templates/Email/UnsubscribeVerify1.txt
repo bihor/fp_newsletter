@@ -1,0 +1,7 @@
+Hello,
+
+you need to click at the verify link to verify your unsubscription:
+<f:uri.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" noCache="true" absolute="true" />
+
+Best regards
+{settings.company}

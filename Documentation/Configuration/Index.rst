@@ -39,7 +39,7 @@ Properties for settings
 	================================ =========== ===================================================================== ==========================
 	table                            string      Today only tt_address suported                                        tt_address
 	optionalFields                   string      gender,title,firstname,lastname are supported                         gender,firstname,lastname
-	doubleOptOut                     boolean     Today only 0 supported!!!                                             0
+	doubleOptOut                     boolean     Enable double out out unsubscription?                                 0
 	enableUnsubscribeForm            boolean     Enable unsubscribe form at the subscribe page?                        0
 	enableUnsubscribeGdprAsHidden    boolean     Do not show the gdpr-checkbox at unsubscribe form?                    0
 	subscribeUid                     integer     Page for the subscription                                             1
@@ -49,7 +49,7 @@ Properties for settings
 	unsubscribeUid                   integer     Page for the unsubscription                                           1
 	unsubscribeMessageUid            integer     Optional page for the redirect after unsubscription
 	unsubscribeVerifyUid             integer     Page for the unsubscription-verification
-	unsubscribeVerifyMessageUid      integer     Optional page for the redirect after unsubscription-verification
+	unsubscribeVerifyMessageUid      integer     Optional page for the redirect after unsubscription-verification*
 	gdprUid                          integer     Page with the GDPR text                                               1
 	daysExpire                       intger      The link expires after X days                                         2
 	deleteMode                       integer     1: set deletion flag; 2: delete entry                                 1
@@ -62,9 +62,12 @@ Properties for settings
 	parameters.email                 string      Parameter for the email from external source (GET/POST-parameter)
 	email.senderMail                 string      Your email-address                                                    beispiel@test.de
 	email.senderName                 string      Your name                                                             Absender-Name
-	email.subscribeVerifySubject     string      Subject of the email                                                  Bitte verifizieren ...
+	email.subscribeVerifySubject     string      Subject of the verify email (subscription)                            Bitte verifizieren ...
+	email.unsubscribeVerifySubject   string      Subject of the verify email (unsubscription)                          Bitte verifizieren ...
 	overrideFlexformSettingsIfEmpty  string      Empty flexforms should be overwritten by FlexForms                    all uids...
 	================================ =========== ===================================================================== ==========================
+
+Note*: this page is used too if doubleOptOut=0. unsubscribeMessageUid is not used if doubleOptOut=0.
 
 
 Property details
