@@ -26,4 +26,4 @@ Bugfix 2: die Texte-E-Mails wurden bisher überschrieben.
 Version 0.11.0: Die Links in den E-Mail-Templates funktionieren nun endlich auch mit TYPO3 8.
 Leere FlexForms werden nun durch die TypoScript-Einstellungen überschrieben.
 
-Version 0.12.0: double opt out wird jetzt auch unterstüzt.
+Version 0.12.0: double opt out wird jetzt auch unterstüzt. Mehr FlexForms.

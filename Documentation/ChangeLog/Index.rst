@@ -26,4 +26,4 @@ Bugfix: text-email was missing.
 Version 0.11.0: Links in the email-templates works now with TYPO3 8 too.
 Empty FlexForms will now be overwritten by TypoScript.
 
-Version 0.12.0: now double opt out possible.
+Version 0.12.0: now double opt out possible. More FlexForms.
