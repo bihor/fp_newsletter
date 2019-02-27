@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="it" datatype="plaintext" original="messages" date="2019-02-21T11:31:30Z" product-name="fp_newsletter">
+		<header/>
+		<body>
+			<trans-unit id="title">
+				<source>Newsletter-subscriber-settings</source>
+				<target>Settings per la newsletter</target>
+			</trans-unit>
+			<trans-unit id="template">
+				<source>HTML-template:</source>
+				<target>HTML-template:</target>
+			</trans-unit>
+			<trans-unit id="template.not_configured">
+				<source>no template layout selected!</source>
+				<target>nessun template di layout selezionato!</target>
+			</trans-unit>
+			<trans-unit id="template.new">
+				<source>Newsletter: subscribe (and unsubscribe)</source>
+				<target>Newsletter: iscrizione (e revoca)</target>
+			</trans-unit>
+			<trans-unit id="template.subscribeExtern">
+				<source>Newsletter: subscribe via external extension</source>
+				<target>Newsletter: iscrizione via estensione esterna</target>
+			</trans-unit>
+			<trans-unit id="template.subscribeVerify">
+				<source>Newsletter: verify subscription</source>
+				<target>Newsletter: verifica l'iscrizione</target>
+			</trans-unit>
+			<trans-unit id="template.unsubscribe">
+				<source>Newsletter: unsubscribe via form</source>
+				<target>Newsletter: revoca della iscrizione via form</target>
+			</trans-unit>
+			<trans-unit id="template.unsubscribeDM">
+				<source>Newsletter: unsubscribe via link</source>
+				<target>Newsletter: revoca della iscrizione via link</target>
+			</trans-unit>
+			<trans-unit id="template.unsubscribeVerify">
+				<source>Newsletter: verify unsubscription</source>
+				<target>Newsletter: verifica la revoca della iscrizione</target>
+			</trans-unit>
+			<trans-unit id="template.list">
+				<source>List view: all actions</source>
+				<target>Vista modalità Lista: tutte le azioni</target>
+			</trans-unit>
+			<trans-unit id="subscribeUid">
+				<source>Page for the subscribtion</source>
+				<target>Pagina per la iscrizione</target>
+			</trans-unit>
+			<trans-unit id="subscribeVerifyUid">
+				<source>Page to verify email-address for subscription</source>
+				<target>Pagina per verificare l'email usato in fase di iscrizione</target>
+			</trans-unit>
+			<trans-unit id="unsubscribeUid">
+				<source>Page for the unsubscribtion</source>
+				<target>Pagina per la revoca della iscrizione</target>
+			</trans-unit>
+			<trans-unit id="unsubscribeVerifyUid">
+				<source>Page to verify email-address for unsubscription</source>
+				<target>Pagina per verificare l'indirizzo email in fase di revoca</target>
+			</trans-unit>
+			<trans-unit id="gdprUid">
+				<source>Page with the GDPR</source>
+				<target>Pagina con il GDPR</target>
+			</trans-unit>
+			<trans-unit id="enables">
+				<source>Enable/disable</source>
+				<target>Abilita/Disabilita</target>
+			</trans-unit>
+			<trans-unit id="settings.no">
+				<source>no</source>
+				<target>no</target>
+			</trans-unit>
+			<trans-unit id="settings.yes">
+				<source>yes</source>
+				<target>si</target>
+			</trans-unit>
+			<trans-unit id="settings.doubleOptOut">
+				<source>Enable double opt out unsubscription?</source>
+				<target>Abilitare nella revoca il double opt out?</target>
+			</trans-unit>
+			<trans-unit id="settings.enableUnsubscribeForm">
+				<source>Enable unsubscription form under the subscription form too?</source>
+				<target>Abilitare la revoca della iscrizione anche con un form?</target>
+			</trans-unit>
+			<trans-unit id="settings.enableUnsubscribeGdprAsHidden">
+				<source>Set the GDPR-checkbox to hidden on the unsubscription form?</source>
+				<target>Configura il checkbox GDPR per nascondere il form di revoca stampato sotto il modulo?</target>
+			</trans-unit>
+			<trans-unit id="settings.module_sys_dmail_html">
+				<source>Subscribe to a HTML-newsletter?</source>
+				<target>Iscrizione alla newsletter in formato HTML?</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

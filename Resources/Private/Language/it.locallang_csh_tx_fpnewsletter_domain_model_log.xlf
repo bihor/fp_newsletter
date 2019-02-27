@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="it" datatype="plaintext" original="messages" date="2019-02-21T11:27:22Z" product-name="fp_newsletter">
+		<header/>
+		<body>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
+				<source>Newsletter subscriber managment</source>
+				<target>Gestione della newsletter</target>
+			</trans-unit>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
+				<source>Plugin for newsletter subscribtion and unsubscribtion.</source>
+				<target>plugin per gestire l'iscrizione e revoca alla newsletter</target>
+			</trans-unit>
+			<trans-unit id="gender.description">
+				<source>Gender</source>
+				<target>Sesso</target>
+			</trans-unit>
+			<trans-unit id="title.description">
+				<source>Title</source>
+				<target>Titolo</target>
+			</trans-unit>
+			<trans-unit id="firstname.description">
+				<source>Firstname</source>
+				<target>Nome</target>
+			</trans-unit>
+			<trans-unit id="lastname.description">
+				<source>Lastname</source>
+				<target>Cognome</target>
+			</trans-unit>
+			<trans-unit id="email.description">
+				<source>E-Mail</source>
+				<target>E-mail</target>
+			</trans-unit>
+			<trans-unit id="status.description">
+				<source>Status</source>
+				<target>Status</target>
+			</trans-unit>
+			<trans-unit id="securityhash.description">
+				<source>Security-Hash</source>
+				<target>Hash</target>
+			</trans-unit>
+			<trans-unit id="gdpr.description">
+				<source>GDPR checkbox</source>
+				<target>checkbox GDPR</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

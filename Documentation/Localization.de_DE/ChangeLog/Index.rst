@@ -27,3 +27,5 @@ Version 0.11.0: Die Links in den E-Mail-Templates funktionieren nun endlich auch
 Leere FlexForms werden nun durch die TypoScript-Einstellungen überschrieben.
 
 Version 0.12.0: double opt out wird jetzt auch unterstüzt. Mehr FlexForms.
+
+Version 0.12.3: italienische Übersetzung hinzugefügt. Erste alpha-Version für TYPO3 9.

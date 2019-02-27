@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="it" datatype="plaintext" original="messages" date="2019-02-21T11:17:29Z" product-name="fp_newsletter">
+		<header/>
+		<body>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
+				<source>Newsletter managment</source>
+				<target>Gestione Newsletter</target>
+			</trans-unit>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
+				<source>Plugin for newsletter subscribtion and unsubscribtion</source>
+				<target>Pagina per l'iscrizione e la revoca</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log">
+				<source>Log</source>
+				<target>Log</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender">
+				<source>Gender</source>
+				<target>Sesso</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.title">
+				<source>Title</source>
+				<target>Titolo</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.firstname">
+				<source>Firstname</source>
+				<target>Nome</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.lastname">
+				<source>Lastname</source>
+				<target>Cognome</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.email">
+				<source>E-Mail</source>
+				<target>E-mail</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status">
+				<source>Status</source>
+				<target>Status</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.securityhash">
+				<source>Security-hash</source>
+				<target>Security-hash</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
+				<source>GDPR</source>
+				<target>GDPR</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc1">
+				<source>SI I agree that the operator and publisher may inform me about selected topics. My data is used exclusively for this purpose. In particular, no disclosure to unauthorized third parties. I am aware that I can revoke my consent at any time with effect for the future. The</source>
+				<target>Sono a conoscenza che l'operatore e il pubblicatore mi devono informare circa i dati trasmessi. I miei dati saranno utilizzati esclusivamente per il servizio al quale sono iscritto. In particolare non possono essere ceduti o usati da terze parti. Sono a conoscenza del fatto che io pesso revocare il consenso all'uso dei dati in qualsiasi momento con effetto immediato nel futuro. La</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_link_text">
+				<source> Privacy Policy </source>
+				<target>Privacy Policy </target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc2">
+				<source>applies, which also includes other information about how to correct, delete and block my data.</source>
+				<target>   sarà applicata; prevede anche le informazioni per la gestione dei dati: modifica, cancellazione e blocco dei miei dati.</target>
+			</trans-unit>
+			<trans-unit id="subscribe">
+				<source>Subscribe</source>
+				<target>Iscrizione</target>
+			</trans-unit>
+			<trans-unit id="unsubscribe">
+				<source>Unsubscribe</source>
+				<target>Revoca</target>
+			</trans-unit>
+			<trans-unit id="unsubscribe_head">
+				<source>Unsubscribe from the newsletter</source>
+				<target>Revoca dell'iscrizione dalla newsletter</target>
+			</trans-unit>
+			<trans-unit id="email_send1">
+				<source>An email has been send to you. Please verify your email-address for the newsletter subscription.</source>
+				<target>Entro qualche minuto riceverai un email. Controlla il tuo indirizzo email per verificare l'iscrizione.</target>
+			</trans-unit>
+			<trans-unit id="email_send2">
+				<source>An email has been send to you. Please verify your email-address for the newsletter unsubscription.</source>
+				<target>Ti è stato inviato un email. Controlla il tuo indirizzo email per verificare l'avvenuta revoca.</target>
+			</trans-unit>
+			<trans-unit id="email_verified">
+				<source>Your email-address is now verfied. You are now subscribed to our newsletter.</source>
+				<target>Il tuo indirizzo email è stato ora verificato. Sei iscritto alla newsletter</target>
+			</trans-unit>
+			<trans-unit id="email_removed">
+				<source>You have unsubscribed our newsletter successfully.</source>
+				<target>La tua iscrizione alla newsletter è stata revocata con successo.</target>
+			</trans-unit>
+			<trans-unit id="wrong_parameters">
+				<source>Error: wrong parameters in the link.</source>
+				<target>Errore: link con parametri sbagliati.</target>
+			</trans-unit>
+			<trans-unit id="wrong_uid">
+				<source>Error: no entry for the given uid found.</source>
+				<target>Errore: nessuna entry esiste per la uid trovata</target>
+			</trans-unit>
+			<trans-unit id="wrong_hash">
+				<source>Error: the given hash in the link is wrong.</source>
+				<target>Errore: l'hash del link è sbagliato</target>
+			</trans-unit>
+			<trans-unit id="wrong_expired">
+				<source>Error: the link is expired!</source>
+				<target>Errore: il link è scaduto!</target>
+			</trans-unit>
+			<trans-unit id="wrong_verified">
+				<source>Error: you have verified this email-address already!</source>
+				<target>Errore: il tuo indirizzo email è stato già verificato!</target>
+			</trans-unit>
+			<trans-unit id="wrong_subscribed">
+				<source>Error: you are already subscribed to our newsletter!</source>
+				<target>Errore: sei già iscritto alla newsletter!</target>
+			</trans-unit>
+			<trans-unit id="wrong_unsubscribed">
+				<source>Error: you are not subscribed, so you can not be unsubscribed!</source>
+				<target>Errore: non sei iscritto, così non puoi revocare l'iscrizione!</target>
+			</trans-unit>
+			<trans-unit id="wrong_unsubscribed_parameters">
+				<source>Error: missing or wrong parameters for unsubcription!</source>
+				<target>Errore: parametri mancanti o sbagliati per la revoca!</target>
+			</trans-unit>
+			<trans-unit id="wrong_user">
+				<source>Error: user not found! Maybe you are already unsubscribed.</source>
+				<target>Errore: utente non trovato. Forse hai già revocato l'iscrizione</target>
+			</trans-unit>
+			<trans-unit id="wrong_email">
+				<source>Error: the given email-address is not valid!</source>
+				<target>Errore: l'indirizzo email fornito non è valido!</target>
+			</trans-unit>
+			<trans-unit id="wrong_insert">
+				<source>Error: sql insert error!</source>
+				<target>Errore di inserimento nel database!</target>
+			</trans-unit>
+			<trans-unit id="required">
+				<source>required.</source>
+				<target>obbligatorio</target>
+			</trans-unit>
+			<trans-unit id="errors">
+				<source>Error: please note this messages:</source>
+				<target>Errore: nota questi messaggi:</target>
+			</trans-unit>
+			<trans-unit id="error_email">
+				<source>- you need to enter an valid email-address!</source>
+				<target>- devi inserire un email valido</target>
+			</trans-unit>
+			<trans-unit id="error_gdpr">
+				<source>- you need to accept the GDPR!</source>
+				<target>- devi accettare le condizioni GDPR</target>
+			</trans-unit>
+			<trans-unit id="error_not_here">
+				<source>Error: this point should not be reached!</source>
+				<target>Errore generico</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

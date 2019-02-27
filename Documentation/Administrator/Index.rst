@@ -18,6 +18,9 @@ Users can subscribe to your newsletter, if you uses addresses from tt_address. f
 
    If you are using TYPO3 9, then you will need currently the extension typo3db_legacy too!
 
+
+.. _admin-templates:
+
 Templates
 ---------
 
@@ -35,6 +38,8 @@ The default template is in german. SubscribeVerify1.html contains the english te
 Only for the language 0 you must remove the number. For the language 1 SubscribeVerify1.html is used automatically.
 
 
+.. _admin-newsletter:
+
 Newsletter
 ----------
 
@@ -46,3 +51,13 @@ When you send a newsletter you want to add an unsubscription link to your newsle
 The 3 values ###USER_uid###, ###SYS_TABLE_NAME### and ###SYS_AUTHCODE### will be replaced by direct_mail.
 Replace the link with the link to your unsubscribe page.
 The extension fp_newsletter will check the parameters and will unsubscribe the given user directly.
+
+
+.. _admin-faq:
+
+FAQ
+---
+
+- It does not work correct. What can I do?
+
+  Maybe you need to set the storage PID twice: via plugin and via TypoScript.

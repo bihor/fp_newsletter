@@ -19,6 +19,9 @@ Die Tabelle fe_users sollte auch noch benutzt werden können, aber das geht noch
 
    Wenn man TYPO3 9 benutzt, braucht man z.Z. auch die Extension typo3db_legacy ebenfalls!
 
+
+.. _admin-templates:
+
 Templates
 ---------
 
@@ -38,6 +41,9 @@ ist in englisch verfasst. Es werden automatisch diese Templates verwendet::
 
 Nur für die Sprache 0 muss man die Zahl weglassen. SubscribeVerify1.txt ist das Template für die Sprache 1.
 
+
+.. _admin-newsletter:
+
 Newsletter
 ----------
 
@@ -49,3 +55,13 @@ Wenn du einen Newsletter verschickt, soll dain sicherlich auch ein Abmeldelink d
 Die 3 Werte ###USER_uid###, ###SYS_TABLE_NAME### und ###SYS_AUTHCODE### wird direct_mail ersetzen.
 Du musst nur den Link mit deinem Abmeldelink ersetzen.
 Die Extension fp_newsletter wird die Parameter überprüfen und den angegebenen Benutzer sofort abmelden.
+
+
+.. _admin-faq:
+
+FAQ
+---
+
+- Es läuft nicht richtig. Was kann ich tun?
+
+  Möglicherweise muss man die storagePID doppelt angeben: via Plugin und via TypoScript.
