@@ -7,7 +7,7 @@
 				<target>Newsletter-Abonnenten-Managment</target>
 			</trans-unit>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
-				<target>Plugin für Newsletter An- und Abmeldung. Tabelle: tt_address. Ein Log wird erstellt.</target>
+				<target>Datenschutzkonformes Plugin für direct_mail An- und Abmeldungen via tt_address.</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log">
 				<target>Log</target>
@@ -44,12 +44,6 @@
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc2">
 				<target>, die auch weitere Informationen über Möglichkeiten zur Berichtigung, Löschung und Sperrung meiner Daten beinhaltet.</target>
-			</trans-unit>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
-				<target>Newsletter-Abonnenten-Managment</target>
-			</trans-unit>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
-				<target>Datenschutzkonformes Plugin für direct_mail An- und Abmeldungen.</target>
 			</trans-unit>
 			<trans-unit id="subscribe">
 				<target>Anmelden</target>
@@ -98,6 +92,9 @@
 			</trans-unit>
 			<trans-unit id="wrong_user">
 				<target>Fehler - E-Mail nicht vorhanden. Die Abmeldung ist fehlgeschlagen.</target>
+			</trans-unit>
+			<trans-unit id="wrong_email">
+				<target>Fehler - Die E-Mailadresse ist nicht valide!</target>
 			</trans-unit>
 			<trans-unit id="wrong_insert">
 				<target>Fehler - Der Datensatz konnte nicht eingefügt werden.</target>

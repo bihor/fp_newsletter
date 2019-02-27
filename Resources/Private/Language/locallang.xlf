@@ -45,12 +45,6 @@
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc2">
 				<source>applies, which also includes other information about how to correct, delete and block my data.</source>
 			</trans-unit>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
-				<source>Newsletter managment</source>
-			</trans-unit>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
-				<source>Plugin for newsletter subscribtion and unsubscribtion</source>
-			</trans-unit>
 			<trans-unit id="subscribe">
 				<source>Subscribe</source>
 			</trans-unit>
@@ -98,6 +92,9 @@
 			</trans-unit>
 			<trans-unit id="wrong_user">
 				<source>Error: user not found! Maybe you are already unsubscribed.</source>
+			</trans-unit>
+			<trans-unit id="wrong_email">
+				<source>Error: the given email-address is not valid!</source>
 			</trans-unit>
 			<trans-unit id="wrong_insert">
 				<source>Error: sql insert error!</source>

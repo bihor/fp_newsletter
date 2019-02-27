@@ -13,7 +13,7 @@ return [
 		'enablecolumns' => [
             'disabled' => 'hidden',
         ],
-		'searchFields' => 'gender,title,firstname,lastname,email,status,securityhash,gdpr',
+		'searchFields' => 'gender,title,firstname,lastname,email,status,securityhash',
         'iconfile' => 'EXT:fp_newsletter/Resources/Public/Icons/tx_fpnewsletter_domain_model_log.gif'
     ],
     'interface' => [
@@ -73,18 +73,20 @@ return [
         ],
     	'tstamp' => [
     			'exclude' => true,
-    			'l10n_mode' => 'mergeIfNotBlank',
     			'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.tstamp',
     			'config' => [
     					'type' => 'input',
+    					'renderType' => 'inputDateTime',
     					'size' => 13,
-    					'max' => 20,
     					'eval' => 'datetime',
     					'checkbox' => 0,
     					'default' => 0,
     					'range' => [
-    							'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
+    						'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
     					],
+                        'behaviour' => [
+                        	'allowLanguageSynchronization' => true
+                        ]
     			],
     	],
         'gender' => [

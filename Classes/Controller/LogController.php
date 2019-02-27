@@ -154,17 +154,21 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$email = $log->getEmail();
     	$dbuidext = 0;
     	
-    	if ($this->settings['table'] == 'tt_address') {
-    		$dbuidext = $this->logRepository->getFromTtAddress($email, $log->getPid());
+    	if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
+	    	if ($this->settings['table'] == 'tt_address') {
+	    		$dbuidext = $this->logRepository->getFromTtAddress($email, $log->getPid());
+	    	} else {
+	    	    // TODO
+	    	}
     	} else {
-    	    // TODO
+    		$error = 8;
     	}
     	if ($dbuidext > 0) {
     		$error = 6;
     		$log->setStatus(6);
     		$this->logRepository->update($log);
     		$persistenceManager->persistAll();
-    	} else {
+    	} else if (!$error) {
 	    	$from = trim($log->getFirstname() . ' ' . $log->getLastname());
 	    	if (!$from) $from = 'Subscriber';
 	    	$dataArray = array();
@@ -274,14 +278,18 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$log->setSecurityhash($hash);
     	$dbuidext = 0;
 
-    	if ($this->settings['table'] == 'tt_address') {
-    		$dbuidext = intval($this->logRepository->getFromTtAddress($email, $pid));
+    	if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
+	    	if ($this->settings['table'] == 'tt_address') {
+	    		$dbuidext = intval($this->logRepository->getFromTtAddress($email, $pid));
+	    	} else {
+	    		// TODO
+	    	}
     	} else {
-    		// TODO
+    		$error = 8;
     	}
     	if ($dbuidext == 0) {
     		$error = 7;
-    	} else {
+    	} else if (!$error) {
     	    if ($this->settings['doubleOptOut']) {
     	        $log->setStatus(3);
     	        $this->logRepository->add($log);
@@ -373,10 +381,12 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     					$error = 4;
     				} else {
     					$dbuidext = 0;
-    					if ($this->settings['table'] == 'tt_address') {
-	    					$dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
-    					} else {
-    					    // TODO
+    					if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
+	    					if ($this->settings['table'] == 'tt_address') {
+		    					$dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
+	    					} else {
+	    					    // TODO
+	    					}
     					}
     					if ($dbuidext > 0) {
     						$error = 6;
@@ -464,10 +474,12 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                         $error = 4;
                     } else {
                         $dbuidext = 0;
-                        if ($this->settings['table'] == 'tt_address') {
-                            $dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
-                        } else {
-                            // TODO
+                        if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
+	                        if ($this->settings['table'] == 'tt_address') {
+	                            $dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
+	                        } else {
+	                            // TODO
+	                        }
                         }
                         if (!$dbuidext) {
                             $error = 6;

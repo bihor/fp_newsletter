@@ -7,7 +7,7 @@
 				<source>Newsletter subscriber managment</source>
 			</trans-unit>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
-				<source>Plugin for newsletter subscription and unsubscription. For the table: tt_address. A log is written.</source>
+				<source>Privacy Compliant Plugin for newsletter subscription and unsubscription (for direct_mail via tt_address).</source>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log">
 				<source>Log</source>
@@ -35,12 +35,6 @@
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
 				<source>GDPR</source>
-			</trans-unit>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
-				<source>Newsletter subscriber managment</source>
-			</trans-unit>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
-				<source>Privacy Compliant Plugin for newsletter subscribtion and unsubscribtion (for direct_mail).</source>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mrs">
 				<source>Mrs.</source>

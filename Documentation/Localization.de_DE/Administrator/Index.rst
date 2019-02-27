@@ -11,9 +11,13 @@
 Administrator-Handbuch
 ======================
 
-Man braucht die Extension tt_address um diese Extension benutzen zu können.
+Man braucht die Extension tt_address und direct_mail um diese Extension benutzen zu können.
 Benutzer können sich zum Newsletter anmelden, wenn die Tabelle tt_address in der Newsletter-Extension benutzt wird.
 Die Tabelle fe_users sollte auch noch benutzt werden können, aber das geht noch nicht.
+
+.. important::
+
+   Wenn man TYPO3 9 benutzt, braucht man z.Z. auch die Extension typo3db_legacy ebenfalls!
 
 Templates
 ---------

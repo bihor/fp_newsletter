@@ -7,7 +7,7 @@
 				<target>Newsletter-Abonnenten-Managment</target>
 			</trans-unit>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
-				<target>Plugin für Newsletter An- und Abmeldung. Tabelle: tt_address. Ein Log wird erstellt.</target>
+				<target>Datenschutzkonformes Plugin für direct_mail An- und Abmeldungen via tt_address.</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log">
 				<target>Log</target>
@@ -35,12 +35,6 @@
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
 				<target>DSGVO</target>
-			</trans-unit>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
-				<target>Newsletter-Abonnenten-Managment</target>
-			</trans-unit>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
-				<target>Datenschutzkonformes Plugin für direct_mail An- und Abmeldungen.</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mrs">
 				<target>Frau</target>

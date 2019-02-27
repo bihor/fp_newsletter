@@ -33,12 +33,6 @@
 			<trans-unit id="gdpr.description">
 				<source>GDPR checkbox</source>
 			</trans-unit>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
-				<source>Newsletter subscriber managment</source>
-			</trans-unit>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
-				<source>Plugin for newsletter subscribtion and unsubscribtion.</source>
-			</trans-unit>
 		</body>
 	</file>
 </xliff>

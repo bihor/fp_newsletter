@@ -11,8 +11,12 @@
 Administrator Manual
 ====================
 
-You will need the extension tt_address for this extension.
+You will need the extension tt_address and direct_mail for this extension.
 Users can subscribe to your newsletter, if you uses addresses from tt_address. fe_users is not supported today, but it is planed.
+
+.. important::
+
+   If you are using TYPO3 9, then you will need currently the extension typo3db_legacy too!
 
 Templates
 ---------

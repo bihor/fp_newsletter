@@ -34,13 +34,13 @@
 				<source>List view: all actions</source>
 			</trans-unit>
 			<trans-unit id="subscribeUid">
-				<source>Page for the subscribtion</source>
+				<source>Page for the subscription</source>
 			</trans-unit>
 			<trans-unit id="subscribeVerifyUid">
 				<source>Page to verify email-address for subscription</source>
 			</trans-unit>
 			<trans-unit id="unsubscribeUid">
-				<source>Page for the unsubscribtion</source>
+				<source>Page for the unsubscription</source>
 			</trans-unit>
 			<trans-unit id="unsubscribeVerifyUid">
 				<source>Page to verify email-address for unsubscription</source>

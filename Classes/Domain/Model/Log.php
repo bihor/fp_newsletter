@@ -8,8 +8,10 @@ namespace Fixpunkt\FpNewsletter\Domain\Model;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2018 Kurt Gusbeth <k.gusbeth@fixpunkt.com>, fixpunkt werbeagentur gmbh
- *
+ *  (c) 2019 Kurt Gusbeth <k.gusbeth@fixpunkt.com>, fixpunkt werbeagentur gmbh
+ * Erst ab TYPO3 9:
+ * use TYPO3\CMS\Extbase\Annotation as Extbase;
+ * 
  ***/
 
 /**
@@ -55,9 +57,10 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * E-Mail
-     *
-     * @var string
+     * erst ab TYPO3 9: atExtbase\Validate("NotEmpty")
+     * 
      * @validate NotEmpty
+     * @var string
      */
     protected $email = '';
 
@@ -84,12 +87,14 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * GDPR checkbox
-     *
-     * @var bool
+     * erst ab TYPO3 9: atExtbase\Validate("Boolean", options={"is": true})
+     * 
      * @validate Boolean(is=true)
+     * @var bool
      */
     protected $gdpr = false;
 
+    
     /**
      * Returns the tstamp
      *

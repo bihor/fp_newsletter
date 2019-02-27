@@ -20,7 +20,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
 	/**
 	 * getFromTTAddress: find user
-	 * @param	string $email
+	 * @param	string $email: die Email-Adresse wurde schon vorher geprüft!
 	 * @param	integer	$pid
 	 */
 	function getFromTTAddress($email, $pid)
@@ -28,11 +28,9 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		$dbuid = 0;
 		/*$pids = $this->getStoragePids();
 		$pid = intval($pids[0]);*/
-		$where = "email='" . $GLOBALS['TYPO3_DB']->quoteStr($email, 'tt_address') . "' AND pid=" . intval($pid);
+		$where = "email='" . $email . "' AND pid=" . intval($pid);
 		$where .= $GLOBALS['TSFE']->sys_page->enableFields('tt_address');
-		$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid',
-				'tt_address',
-				$where);
+		$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid', 'tt_address', $where);
 		if ($GLOBALS['TYPO3_DB']->sql_num_rows($result) > 0) {
 			$tempData = $GLOBALS['TYPO3_DB']->sql_fetch_assoc($result);
 			$dbuid = $tempData['uid'];
