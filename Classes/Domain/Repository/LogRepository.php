@@ -40,6 +40,34 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	}
 	
 	/**
+	 * insertInTTAddress: insert user
+	 * @param	\Fixpunkt\FpNewsletter\Domain\Model\Log	$address User
+	 * @param	integer	$mode HTML-mode
+	 */
+	function insertInTtAddress($address, $mode) {
+		$timestamp = time();
+		if ($address->getGender() == 1) $gender = 'f';
+		elseif ($address->getGender() == 2) $gender = 'm';
+		else $gender = '';
+		// crdate fehlt in älteren Versionen!
+		$insert = ['pid' => intval($address->getPid()),
+			'tstamp' => $timestamp,
+			'crdate' => $timestamp,
+			'title' => $address->getTitle(),
+			'first_name' => $address->getFirstname(),
+			'last_name' => $address->getLastname(),
+			'name' => trim($address->getFirstname() . ' ' . $address->getLastname()),
+			'email' => $address->getEmail()];
+		if ($mode != -1) {
+			$insert['module_sys_dmail_html'] = $mode;
+		}
+		if ($gender) {
+			$insert['gender'] = $gender;
+		}
+		return $GLOBALS['TYPO3_DB']->exec_INSERTquery('tt_address', $insert);
+	}
+	
+	/**
 	 * deleteInTTAddress: delete user
 	 * @param	integer	$uid
 	 * @param	integer	$mode

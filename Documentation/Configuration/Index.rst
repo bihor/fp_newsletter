@@ -40,7 +40,7 @@ Properties for settings
 	table                            string      Today only tt_address suported                                        tt_address
 	optionalFields                   string      gender,title,firstname,lastname are supported                         gender,firstname,lastname
 	doubleOptOut                     boolean     Enable double out out unsubscription?                                 0
-	enableUnsubscribeForm            boolean     Enable unsubscribe form at the subscribe page?                        0
+	enableUnsubscribeForm            boolean     Enable unsubscribe form at the subscribe page?**                      0
 	enableUnsubscribeGdprAsHidden    boolean     Do not show the gdpr-checkbox at unsubscribe form?                    0
 	subscribeUid                     integer     Page for the subscription                                             1
 	subscribeMessageUid              integer     Optional page for the redirect after subscription
@@ -53,7 +53,7 @@ Properties for settings
 	gdprUid                          integer     Page with the GDPR text                                               1
 	daysExpire                       intger      The link expires after X days                                         2
 	deleteMode                       integer     1: set deletion flag; 2: delete entry                                 1
-	module_sys_dmail_html            boolean     0: only TEXT; 1: TEXT and HTML                                        1
+	module_sys_dmail_html            integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1
 	company                          string      Name of your company                                                  Ihre Firma
 	gender.please                    string      Text for gender selection                                             Bitte auswählen
 	gender.mr                        string      Text for the gender mr                                                Herr
@@ -68,6 +68,8 @@ Properties for settings
 	================================ =========== ===================================================================== ==========================
 
 Note*: this page is used too if doubleOptOut=0. unsubscribeMessageUid is not used if doubleOptOut=0.
+
+Note**: you need an own page for the unsubscription! unsubscribeUid should be defined therefore.
 
 
 Property details

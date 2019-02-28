@@ -274,6 +274,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		$storagePidsArray = $this->logRepository->getStoragePids();
     		$pid = intval($storagePidsArray[0]);
     	}
+    	//var_dump ($storagePidsArray);
     	$hash = md5(uniqid($log->getEmail(), true));
     	$log->setSecurityhash($hash);
     	$dbuidext = 0;
@@ -372,8 +373,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     			if ($hash != $dbhash) {
     				$error = 3;
     			} else {
-    				$dbstatus = $address->getStatus();
-    				$dbname = trim($address->getFirstname() . ' ' . $address->getLastname());
+    				//$dbstatus = $address->getStatus();
     				$dbemail = $address->getEmail();
     				$now = new \DateTime();
     				$diff = $now->diff($address->getTstamp())->days;
@@ -395,32 +395,15 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    					$this->logRepository->update($address);
 	    					$persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
 	    					$persistenceManager->persistAll();
-	    					$timestamp = time();
+	    					$success = 0;
 	    					if ($this->settings['table'] == 'tt_address') {
-	    						if ($address->getGender() == 1) $gender = 'f';
-	    						elseif ($address->getGender() == 2) $gender = 'm';
-	    						else $gender = '';
-	    						// crdate fehlt in älteren Versionen!
-	    						$insert = ['pid' => intval($address->getPid()),
-	    								'tstamp' => $timestamp,
-	    								'crdate' => $timestamp,
-	    								'title' => $address->getTitle(),
-	    								'first_name' => $address->getFirstname(),
-	    								'last_name' => $address->getLastname(),
-	    								'name' => $dbname,
-	    								'email' => $dbemail,
-	    								'module_sys_dmail_html' => $html];
-	    						if ($gender) {
-	    							$insert['gender'] = $gender;
-	    						}
-	    						//var_dump($insert);
-	    						$success = $GLOBALS['TYPO3_DB']->exec_INSERTquery('tt_address', $insert);
-	    						if (!$success) {
-	    							$error = 8;
-	    						}
+	    						$success = $this->logRepository->insertInTtAddress($address, $html);
 	    					} elseif ($this->settings['table'] == 'fe_users') {
 	    						// TODO
 	    						//$GLOBALS['TYPO3_DB']->exec_INSERTquery('fe_users', $insert);
+	    					}
+	    					if (!$success) {
+	    						$error = 8;
 	    					}
     					}
     				}

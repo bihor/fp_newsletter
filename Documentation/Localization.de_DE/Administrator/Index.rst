@@ -65,3 +65,4 @@ FAQ
 - Es läuft nicht richtig. Was kann ich tun?
 
   Möglicherweise muss man die storagePID doppelt angeben: via Plugin und via TypoScript.
+  Beachte, dass man für die Abmeldung eine eigene Seite braucht!

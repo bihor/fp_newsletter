@@ -61,3 +61,4 @@ FAQ
 - It does not work correct. What can I do?
 
   Maybe you need to set the storage PID twice: via plugin and via TypoScript.
+  Note, that you need an own page for the newsletter unsubscription.

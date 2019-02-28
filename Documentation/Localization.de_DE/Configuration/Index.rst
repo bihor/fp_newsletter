@@ -34,7 +34,7 @@ Settings-Einstellungen
 	table                            string      Bisher nur tt_address möglich                                         tt_address
 	optionalFields                   string      gender,title,firstname,lastname sind die optionalen Werte             gender,firstname,lastname
 	doubleOptOut                     boolean     Double opt out Abmeldung einschalten?                                 0
-	enableUnsubscribeForm            boolean     Abmeldeformular auf der Anmeldeseite mit ausgeben?                    0
+	enableUnsubscribeForm            boolean     Abmeldeformular auf der Anmeldeseite mit ausgeben?**                  0
 	enableUnsubscribeGdprAsHidden    boolean     DSGVO-Checkbox beim Abmeldeformular verbergen?                        0
 	subscribeUid                     integer     Seite für die Anmeldung                                               1
 	subscribeMessageUid              integer     Optionale Seite für einen Redirect nach der Anmeldung
@@ -47,7 +47,7 @@ Settings-Einstellungen
 	gdprUid                          integer     Seite mit den DSGVO-Texten                                            1
 	daysExpire                       intger      Der Verifikations-Link wird ungültig nach X Tagen                     2
 	deleteMode                       integer     1: setze delete-Flag; 2: lösche endgültig                             1
-	module_sys_dmail_html            boolean     0: nur TEXT; 1: TEXT und HTML                                         1
+	module_sys_dmail_html            integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1
 	company                          string      Name der Firma                                                        Ihre Firma
 	gender.please                    string      Text für die Anrede-Auswahl                                           Bitte auswählen
 	gender.mr                        string      Text für Herr                                                         Herr
@@ -62,6 +62,8 @@ Settings-Einstellungen
 	================================ =========== ===================================================================== ==========================
 
 Achtung*: diese Seite wird auch dann benutzt, wenn doubleOptOut=0. unsubscribeMessageUid wird dann nicht benutzt.
+
+Achtung**: man braucht eine eigene Seite für die Abmeldung. unsubscribeUid muss also angebenen werden.
 
 
 Beispiele

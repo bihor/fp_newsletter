@@ -1,7 +1,7 @@
 Hello,
 
 you need to click at the verify link to verify your email-address:
-<f:uri.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" arguments="{uid: uid, hash: hash}" noCache="true" absolute="true" />
+<f:uri.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" arguments="{uid: uid, hash: hash}" noCache="1" absolute="1" />
 
 Best regards
 {settings.company}

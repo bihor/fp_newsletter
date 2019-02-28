@@ -1,7 +1,7 @@
 Guten Tag,
 
 um sich von unserem Newsletter abzumelden, müssen Sie Ihre E-Mailadresse mit Klick auf diesen Link verifizieren:
-<f:uri.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" noCache="true" absolute="true" />
+<f:uri.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" noCache="1" absolute="1" />
 
 Mit freundlichen Grüßen
 {settings.company}

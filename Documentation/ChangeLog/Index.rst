@@ -28,4 +28,5 @@ Empty FlexForms will now be overwritten by TypoScript.
 
 Version 0.12.0: now double opt out possible. More FlexForms.
 
-Version 0.12.3: italian translation added. Alpha-version for TYPO3 9.
+Version 0.12.4: italian translation added.
+First version for TYPO3 9 (runs only if typo3db_legacy is installed).
