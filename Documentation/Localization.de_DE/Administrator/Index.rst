@@ -66,3 +66,8 @@ FAQ
 
   Möglicherweise muss man die storagePID doppelt angeben: via Plugin und via TypoScript.
   Beachte, dass man für die Abmeldung eine eigene Seite braucht!
+
+- Die Domain fehlt im Link in der E-Mail. Wieso?
+
+  TYPO3 9 ignoriert anscheinend den Parameter absolute="1"? Oder du hast keine Domain im Backend angegeben?
+  Füge die Domain dann selber hinzu.

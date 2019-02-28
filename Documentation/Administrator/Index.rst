@@ -62,3 +62,8 @@ FAQ
 
   Maybe you need to set the storage PID twice: via plugin and via TypoScript.
   Note, that you need an own page for the newsletter unsubscription.
+
+- The domain is missing in the email. Why?
+
+  TYPO3 9 ignores the parameter absolute="1"? Or you have not added a domain in the backend?
+  Add the domain by your own in that case.

@@ -25,14 +25,16 @@ return [
     'columns' => [
 		'sys_language_uid' => [
 			'exclude' => true,
-			'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
+			#'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
+		    'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.language',
 			'config' => [
 				'type' => 'select',
 				'renderType' => 'selectSingle',
 				'special' => 'languages',
 				'items' => [
 					[
-						'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
+						#'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
+					    'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.allLanguages',
 						-1,
 						'flags-multiple'
 					]
@@ -43,7 +45,8 @@ return [
         'l10n_parent' => [
             'displayCond' => 'FIELD:sys_language_uid:>:0',
             'exclude' => true,
-            'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
+            #'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
+            'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.l18n_parent',
             'config' => [
                 'type' => 'select',
                 'renderType' => 'selectSingle',
@@ -61,19 +64,40 @@ return [
         ],
     	'hidden' => [
     		'exclude' => true,
-    		'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
-    		'config' => [
+    		#'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
+    	    'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.hidden',
+    	    'config' => [
     			'type' => 'check',
-    			'renderType' => 'checkboxToggle',
+    			#'renderType' => 'checkboxToggle',
     			'items' => [
     				[
-    					0 => '',
-    					1 => '',
-    					'invertStateDisplay' => true
+    					#0 => '',
+    					#1 => '',
+    					#'invertStateDisplay' => true
+    				    '0' => 'LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.enabled'
     				]
     			],
     		],
     	],
+        'tstamp' => [
+            'exclude' => true,
+            #'label' => 'LLL:EXT:lang/locallang_general.xlf:LGL.tstamp',
+            'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.tstamp',
+            'config' => [
+                'type' => 'input',
+                'renderType' => 'inputDateTime',
+                'size' => 13,
+                'eval' => 'datetime',
+                'checkbox' => 0,
+                'default' => 0,
+                'range' => [
+                    'lower' => mktime(0, 0, 0, date('m'), date('d'), date('Y'))
+                ],
+                'behaviour' => [
+                    'allowLanguageSynchronization' => true
+                ]
+            ],
+        ],
         'gender' => [
 	        'exclude' => true,
 	        'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.gender',

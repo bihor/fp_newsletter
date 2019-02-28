@@ -15,6 +15,26 @@
 				<source>Log</source>
 				<target>Log</target>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.language">
+				<source>Language</source>
+				<target>linguaggio</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.allLanguages">
+				<source>all languages</source>
+				<target>tutte le lingue</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.l18n_parent">
+				<source>Parent</source>
+				<target>Genitore</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.hidden">
+				<source>Hidden?</source>
+				<target>Nascosta?</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.tstamp">
+				<source>Time stamp</source>
+				<target>Data e ora</target>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gender">
 				<source>Gender</source>
 				<target>Sesso</target>

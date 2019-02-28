@@ -12,6 +12,21 @@
 			<trans-unit id="tx_fpnewsletter_domain_model_log">
 				<target>Log</target>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.language">
+				<target>Sprache</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.allLanguages">
+				<target>alle Sprachen</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.l18n_parent">
+				<target>Ursprung</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.hidden">
+				<target>Verbergen?</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.tstamp">
+				<target>Datum und Zeit</target>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gender">
 				<target>Anrede</target>
 			</trans-unit>
