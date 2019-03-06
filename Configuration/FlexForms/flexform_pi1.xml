@@ -194,6 +194,10 @@
 								<numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.yes</numIndex>
 								<numIndex index="1">1</numIndex>
 							</numIndex>
+							<numIndex index="2" type="array">
+								<numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.ignore</numIndex>
+								<numIndex index="1">-1</numIndex>
+							</numIndex>
 						</items>
 					</config>
 				</TCEforms>

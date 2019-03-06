@@ -57,6 +57,9 @@
 			<trans-unit id="settings.yes">
 				<target>ja</target>
 			</trans-unit>
+			<trans-unit id="settings.ignore">
+				<target>ignoriere dieses Feld</target>
+			</trans-unit>
 			<trans-unit id="settings.doubleOptOut">
 				<target>Double-opt-out-Abmeldung einschalten?</target>
 			</trans-unit>

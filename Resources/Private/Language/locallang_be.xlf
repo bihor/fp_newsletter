@@ -57,6 +57,9 @@
 			<trans-unit id="settings.yes">
 				<source>yes</source>
 			</trans-unit>
+			<trans-unit id="settings.ignore">
+				<source>ignore this field</source>
+			</trans-unit>
 			<trans-unit id="settings.doubleOptOut">
 				<source>Enable double opt out unsubscription?</source>
 			</trans-unit>

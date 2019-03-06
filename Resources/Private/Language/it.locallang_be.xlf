@@ -75,6 +75,10 @@
 				<source>yes</source>
 				<target>si</target>
 			</trans-unit>
+			<trans-unit id="settings.ignore">
+				<source>ignore this field</source>
+				<target>ignora questo campo</target>
+			</trans-unit>
 			<trans-unit id="settings.doubleOptOut">
 				<source>Enable double opt out unsubscription?</source>
 				<target>Abilitare nella revoca il double opt out?</target>

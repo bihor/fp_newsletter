@@ -1,0 +1,36 @@
+{
+	"name" : "fixpunkt/fp-newsletter",
+	"type" : "typo3-cms-extension",
+	"description" : "Plugin for newsletter subscription and unsubscription (for direct_mail). Used table: tt_address. A log is written.",
+	"authors" : [{
+			"name" : "Kurt Gusbeth",
+			"role" : "Developer"
+		}
+	],
+	"version" : "0.13.1",
+	"require" : {
+		"typo3/cms-core" : "^8.7 || ^9.5"
+	},
+	"autoload" : {
+		"psr-4" : {
+			"Fixpunkt\\FpNewsletter\\" : "Classes"
+		}
+	},
+	"autoload-dev" : {
+		"psr-4" : {
+			"Fixpunkt\\FpNewsletter\\Tests\\" : "Tests"
+		}
+	},
+	"replace" : {
+		"fp_newsletter" : "self.version",
+		"typo3-ter/fp-newsletter" : "self.version"
+	},
+	"homepage" : "https://www.fixpunkt.com/webentwicklung/typo3/typo3-extensions/",
+	"support" : {
+		"email" : "info@quizpalme.de"
+	},
+	"license" : "GPL-3.0+",
+	"keywords" : [
+		"newsletter subscription dsgvo gdpr"
+	]
+}
