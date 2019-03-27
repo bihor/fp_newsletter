@@ -1,0 +1,8 @@
+Hello,
+
+this user wants to sub- or unsubscribe from the newsletter:
+Name: {gender} {title} {firstname} {lastname}
+E-Mail: {email}
+
+Best regards
+{settings.company}

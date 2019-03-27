@@ -11,14 +11,7 @@
 Configuration Reference
 =======================
 
-Technical information: Installation, Reference of TypoScript options,
-configuration options on system level, how to extend it, the technical
-details, how to debug it and so on.
-
-Language should be technical, assuming developer knowledge of TYPO3.
-Small examples/visuals are always encouraged.
-
-Target group: **Developers**
+Here you find all configuration possibilities.
 
 
 .. _configuration-typoscript:
@@ -64,10 +57,14 @@ Properties for settings
 	email.senderName                 string      Your name                                                             Absender-Name
 	email.subscribeVerifySubject     string      Subject of the verify email (subscription)                            Bitte verifizieren ...
 	email.unsubscribeVerifySubject   string      Subject of the verify email (unsubscription)                          Bitte verifizieren ...
-	overrideFlexformSettingsIfEmpty  string      Empty flexforms should be overwritten by FlexForms                    all uids...
+	email.adminMail                  string      Admin email-address - if not empty: an email goes to an admin too
+	email.adminName                  string      Admin name                                                            Admin
+	email.adminSubscribeSubject      string      Subject of the admin email (subscription)                             Neue Newsletter-Anmeldung
+	email.adminUnsubscribeSubject    string      Subject of the admin email (unsubscription)                           Neue Newsletter-Abmeldung
+	overrideFlexformSettingsIfEmpty  string      Empty FlexForms should be overwritten by TypoScript                   all uids...
 	================================ =========== ===================================================================== ==========================
 
-Note*: this page is used too if doubleOptOut=0. unsubscribeMessageUid is not used if doubleOptOut=0.
+Note*: this page is used too, if doubleOptOut=0. unsubscribeMessageUid is not used if doubleOptOut=0.
 
 Note**: you need an own page for the unsubscription! unsubscribeUid should be defined therefore.
 

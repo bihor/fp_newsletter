@@ -153,6 +153,11 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	}
     	$email = $log->getEmail();
     	$dbuidext = 0;
+    	$genders = [
+    		"0" => $this->settings['gender']['please'],
+    		"1" => $this->settings['gender']['mrs'],
+    		"2" => $this->settings['gender']['mr']
+    	];
     	
     	if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
 	    	if ($this->settings['table'] == 'tt_address') {
@@ -173,6 +178,10 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    	if (!$from) $from = 'Subscriber';
 	    	$dataArray = array();
 	    	$dataArray['uid'] = $log->getUid();
+	    	$dataArray['gender'] = $genders[$log->getGender()];
+	    	$dataArray['title'] = $log->getTitle();
+	    	$dataArray['firstname'] = $log->getFirstname();
+	    	$dataArray['lastname'] = $log->getLastname();
 	    	$dataArray['email'] = $email;
 	    	$dataArray['hash'] = $hash;
 	    	$dataArray['subscribeVerifyUid'] = $subscribeVerifyUid;
@@ -184,6 +193,15 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    			'SubscribeVerify',
 	    			$dataArray
 			);
+	    	if ($this->settings['email']['adminMail']) {
+	    		$this->sendTemplateEmail(
+	    			array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
+	    			array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+	    			$this->settings['email']['adminSubscribeSubject'],
+	    			'UserToAdmin',
+	    			$dataArray
+	    		);
+	    	}
     	}
 
     	if (($error == 0) && ($this->settings['subscribeMessageUid'])) {
@@ -297,6 +315,11 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	        $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
     	        $persistenceManager->persistAll();
     	        
+    	        $genders = [
+    	        	"0" => $this->settings['gender']['please'],
+    	        	"1" => $this->settings['gender']['mrs'],
+    	        	"2" => $this->settings['gender']['mr']
+    	        ];
     	        $unsubscribeVerifyUid = $this->settings['unsubscribeVerifyUid'];
     	        if (!$unsubscribeVerifyUid) {
     	            // Fallback
@@ -306,6 +329,10 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	        if (!$from) $from = 'Unsubscriber';
     	        $dataArray = array();
     	        $dataArray['uid'] = $log->getUid();
+    	        $dataArray['gender'] = $genders[$log->getGender()];
+    	        $dataArray['title'] = $log->getTitle();
+    	        $dataArray['firstname'] = $log->getFirstname();
+    	        $dataArray['lastname'] = $log->getLastname();
     	        $dataArray['email'] = $email;
     	        $dataArray['hash'] = $hash;
     	        $dataArray['unsubscribeVerifyUid'] = $unsubscribeVerifyUid;
@@ -317,6 +344,15 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	            'UnsubscribeVerify',
     	            $dataArray
     	        );
+    	        if ($this->settings['email']['adminMail']) {
+    	        	$this->sendTemplateEmail(
+    	        		array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
+    	        		array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+    	        		$this->settings['email']['adminUnsubscribeSubject'],
+    	        		'UserToAdmin',
+    	        		$dataArray
+    	        	);
+    	        }
     	        $messageUid = $this->settings['unsubscribeMessageUid'];
     	    } else {
         		$log->setStatus(7);
@@ -381,7 +417,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     					$error = 4;
     				} else {
     					$dbuidext = 0;
-    					if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
+    					if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($dbemail)) {
 	    					if ($this->settings['table'] == 'tt_address') {
 		    					$dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
 	    					} else {
@@ -457,7 +493,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                         $error = 4;
                     } else {
                         $dbuidext = 0;
-                        if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
+                        if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($dbemail)) {
 	                        if ($this->settings['table'] == 'tt_address') {
 	                            $dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
 	                        } else {

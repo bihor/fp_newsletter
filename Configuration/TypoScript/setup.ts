@@ -51,6 +51,10 @@ plugin.tx_fpnewsletter {
 		senderName = Absender-Name
 		subscribeVerifySubject = Bitte verifizieren Sie Ihre E-Mail-Adresse
 		unsubscribeVerifySubject = Bitte verifizieren Sie Ihre E-Mail-Adresse
+		adminMail =
+		adminName = Admin
+		adminSubscribeSubject = Neue Newsletter-Anmeldung
+		adminUnsubscribeSubject = Neue Newsletter-Abmeldung
 	}
 	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,gdprUid
   }
@@ -65,4 +69,6 @@ plugin.tx_fpnewsletter_pi1.settings.email.senderMail = example@test.com
 plugin.tx_fpnewsletter_pi1.settings.email.senderName = Sender-name
 plugin.tx_fpnewsletter_pi1.settings.email.subscribeVerifySubject = Please verify your email
 plugin.tx_fpnewsletter_pi1.settings.email.unsubscribeVerifySubject = Please verify your email
+plugin.tx_fpnewsletter_pi1.settings.email.adminSubscribeSubject = New newsletter-subscription
+plugin.tx_fpnewsletter_pi1.settings.email.adminUnsubscribeSubject = New newsletter-unsubscription
 [end]

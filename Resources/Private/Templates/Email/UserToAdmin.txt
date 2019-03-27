@@ -1,0 +1,8 @@
+Guten Tag,
+
+dieser User möchte sich gerne An- oder Abmelden:
+Name: {gender} {title} {firstname} {lastname}
+E-Mail: {email}
+
+Mit freundlichen Grüßen
+{settings.company}

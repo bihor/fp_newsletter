@@ -28,5 +28,9 @@ Leere FlexForms werden nun durch die TypoScript-Einstellungen überschrieben.
 
 Version 0.12.0: double opt out wird jetzt auch unterstüzt. Mehr FlexForms.
 
-Version 0.12.4: italienische Übersetzung hinzugefügt.
+Version 0.13.0: italienische Übersetzung hinzugefügt.
 Erste Version für TYPO3 9 (läuft nur, wenn auch typo3db_legacy installiert ist).
+
+Version 0.14.0: composer-Datei hinzugefügt.
+E-Mail an einen Admin nun möglich.
+Einen Bug gefixt: email-check.

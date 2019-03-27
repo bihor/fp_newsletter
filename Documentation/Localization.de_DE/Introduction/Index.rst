@@ -22,7 +22,9 @@ Bisher wird dazu nur die Tabelle tt_address benutzt. Die kann z.B. von der Exten
 Sämtliche Aktionen werden in einer Log-Tabelle festgehalten, damit alle Aktionen der Benutzer überprüft werden können.
 Allerdings werden manche Einträge auch geändert und nicht immer neu angelegt.
 So kann man als Admin sehen, wer sich wann an- oder abgemeldet hat. Erst nach einer erfolgreichen Anmeldung werden die Daten in die
-tt_address-Tabelle kopiert. Die Abmeldung findet z.Z. sofort statt, aber eine Double-Opt-Out-Abmeldung ist auch noch in Planung.
+tt_address-Tabelle kopiert. Die Extension kann allerdings auch ohne tt_address benutzt werden.
+Es ist einstellbar, dass ein Admin den Anmeldewunsch per E-Mail bekommt. Dann könnte der Admin die E-Mail-Adresse händisch in
+einen externen Newsletter eintragen.
 Bei der Double-Opt-In-Anmeldung und ggf. auch bei der Abmeldung muss man den Datenschutzbestimmungen zustimmen.
 
 
