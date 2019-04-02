@@ -57,6 +57,9 @@
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mr">
 				<target>Herr</target>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.divers">
+				<target>Divers</target>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status.0">
 				<target>unbekannt</target>
 			</trans-unit>

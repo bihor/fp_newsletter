@@ -75,9 +75,10 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     public function newAction()
     {
     	$genders = [
-    			"0" => $this->settings['gender']['please'],
-    			"1" => $this->settings['gender']['mrs'],
-    			"2" => $this->settings['gender']['mr']
+    		"0" => $this->settings['gender']['please'],
+    		"1" => $this->settings['gender']['mrs'],
+    	    "2" => $this->settings['gender']['mr'],
+    	    "3" => $this->settings['gender']['divers']
     	];
     	$optional = [];
     	$optionalFields = $this->settings['optionalFields'];
@@ -156,7 +157,8 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$genders = [
     		"0" => $this->settings['gender']['please'],
     		"1" => $this->settings['gender']['mrs'],
-    		"2" => $this->settings['gender']['mr']
+    	    "2" => $this->settings['gender']['mr'],
+    	    "3" => $this->settings['gender']['divers']
     	];
     	
     	if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
@@ -318,7 +320,8 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	        $genders = [
     	        	"0" => $this->settings['gender']['please'],
     	        	"1" => $this->settings['gender']['mrs'],
-    	        	"2" => $this->settings['gender']['mr']
+    	            "2" => $this->settings['gender']['mr'],
+    	            "3" => $this->settings['gender']['divers']
     	        ];
     	        $unsubscribeVerifyUid = $this->settings['unsubscribeVerifyUid'];
     	        if (!$unsubscribeVerifyUid) {

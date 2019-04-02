@@ -41,6 +41,7 @@ plugin.tx_fpnewsletter {
 	  please = Bitte auswählen
 	  mr = Herr
 	  mrs = Frau
+	  divers = Divers
 	}
 	parameters {
 	  active =

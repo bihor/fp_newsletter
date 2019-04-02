@@ -34,3 +34,5 @@ First version for TYPO3 9 (runs only if typo3db_legacy is installed).
 Version 0.14.0: composer-file added.
 Email to an admin now possible.
 One bug fixed: email-check.
+
+Version 0.14.1: gender divers added.
