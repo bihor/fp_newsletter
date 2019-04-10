@@ -1,6 +1,10 @@
 <?php
 namespace Fixpunkt\FpNewsletter\Domain\Repository;
 
+use TYPO3\CMS\Core\Database\ConnectionPool;
+use TYPO3\CMS\Core\Database\Query\QueryBuilder;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+
 /***
  *
  * This file is part of the "Newsletter managment" Extension for TYPO3 CMS.
@@ -8,7 +12,7 @@ namespace Fixpunkt\FpNewsletter\Domain\Repository;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2018 Kurt Gusbeth <k.gusbeth@fixpunkt.com>, fixpunkt werbeagentur gmbh
+ *  (c) 2019 Kurt Gusbeth <k.gusbeth@fixpunkt.com>, fixpunkt werbeagentur gmbh
  *
  ***/
 
@@ -27,7 +31,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	{
 		$dbuid = 0;
 		/*$pids = $this->getStoragePids();
-		$pid = intval($pids[0]);*/
+		$pid = intval($pids[0]);
 		$where = "email='" . $email . "' AND pid=" . intval($pid);
 		$where .= $GLOBALS['TSFE']->sys_page->enableFields('tt_address');
 		$result = $GLOBALS['TYPO3_DB']->exec_SELECTquery('uid', 'tt_address', $where);
@@ -36,6 +40,21 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 			$dbuid = $tempData['uid'];
 		}
 		$GLOBALS['TYPO3_DB']->sql_free_result($result);
+		*/
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
+		$statement = $queryBuilder
+					->select('uid')
+					->from('tt_address')
+					->where(
+						$queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT))
+					)
+					->andWhere(
+						$queryBuilder->expr()->eq('email', $queryBuilder->createNamedParameter($email))
+					)
+					->execute();
+		while ($row = $statement->fetch()) {
+			$dbuid = $row['uid'];
+		}		
 		return $dbuid;
 	}
 	
@@ -50,21 +69,26 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		elseif ($address->getGender() == 2) $gender = 'm';
 		else $gender = '';
 		// crdate fehlt in älteren Versionen!
-		$insert = ['pid' => intval($address->getPid()),
-			'tstamp' => $timestamp,
-			'crdate' => $timestamp,
-			'title' => $address->getTitle(),
-			'first_name' => $address->getFirstname(),
-			'last_name' => $address->getLastname(),
-			'name' => trim($address->getFirstname() . ' ' . $address->getLastname()),
-			'email' => $address->getEmail()];
+		$insert =  ['pid' => intval($address->getPid()),
+					'tstamp' => $timestamp,
+					'crdate' => $timestamp,
+					'title' => $address->getTitle(),
+					'first_name' => $address->getFirstname(),
+					'last_name' => $address->getLastname(),
+					'name' => trim($address->getFirstname() . ' ' . $address->getLastname()),
+					'email' => $address->getEmail()];
 		if ($mode != -1) {
 			$insert['module_sys_dmail_html'] = $mode;
 		}
 		if ($gender) {
 			$insert['gender'] = $gender;
 		}
-		return $GLOBALS['TYPO3_DB']->exec_INSERTquery('tt_address', $insert);
+		//return $GLOBALS['TYPO3_DB']->exec_INSERTquery('tt_address', $insert);
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
+		return $queryBuilder
+				->insert('tt_address')
+				->values($insert)
+				->execute();
 	}
 	
 	/**
@@ -73,11 +97,26 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * @param	integer	$mode
 	 */
 	function deleteInTtAddress($uid, $mode) {
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
 	    if ($mode == 2) {
-	        $GLOBALS['TYPO3_DB']->exec_DELETEquery('tt_address', 'uid=' . $uid);
+	        //$GLOBALS['TYPO3_DB']->exec_DELETEquery('tt_address', 'uid=' . $uid);
+        	$queryBuilder
+        		->delete('tt_address')
+	        	->where(
+	        		$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+        		)
+	       		->execute();
 	    } else {
-	        $update = array('deleted' => 1, 'tstamp' => time());
-	        $GLOBALS['TYPO3_DB']->exec_UPDATEquery('tt_address', 'uid=' . $uid, $update);
+	        //$update = array('deleted' => 1, 'tstamp' => time());
+	        //$GLOBALS['TYPO3_DB']->exec_UPDATEquery('tt_address', 'uid=' . $uid, $update);
+	        $queryBuilder
+	       		->update('tt_address')
+	       		->where(
+	        		$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+	        	)
+	        	->set('deleted', '1')
+	        	->set('tstamp', time())
+	        	->execute();
 	    }
 	}
 

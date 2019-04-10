@@ -35,4 +35,5 @@ Version 0.14.0: composer-file added.
 Email to an admin now possible.
 One bug fixed: email-check.
 
-Version 0.14.1: gender divers added.
+Version 0.14.2: gender divers added.
+Switch to the QueryBuilder.
