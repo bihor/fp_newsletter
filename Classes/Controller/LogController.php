@@ -325,7 +325,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	} else {
     		$error = 8;
     	}
-    	if ($dbuidext == 0) {
+    	if ($this->settings['table'] && ($dbuidext == 0)) {
     		$error = 7;
     	}
     	if ($this->settings['reCAPTCHA_site_key'] && $this->settings['reCAPTCHA_secret_key']) {
@@ -475,7 +475,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    						// TODO
 	    						//$GLOBALS['TYPO3_DB']->exec_INSERTquery('fe_users', $insert);
 	    					}
-	    					if (!$success) {
+	    					if ($this->settings['table'] && !$success) {
 	    						$error = 8;
 	    					}
     					}
@@ -537,7 +537,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	                            // TODO
 	                        }
                         }
-                        if (!$dbuidext) {
+                        if ($this->settings['table'] && !$dbuidext) {
                             $error = 6;
                         } else {
                             $address->setStatus(4);
