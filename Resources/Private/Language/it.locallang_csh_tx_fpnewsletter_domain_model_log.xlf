@@ -39,6 +39,10 @@
 				<source>Security-Hash</source>
 				<target>Hash</target>
 			</trans-unit>
+			<trans-unit id="retoken.description">
+				<source>reCaptcha-token</source>
+				<target>reCaptcha-token</target>
+			</trans-unit>
 			<trans-unit id="gdpr.description">
 				<source>GDPR checkbox</source>
 				<target>checkbox GDPR</target>

@@ -13,4 +13,4 @@ To-Do list
 
 - It should be possible to use the fe_users table too.
 
-- ReCaptcha2 possible.
+- More emails.

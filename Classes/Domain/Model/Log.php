@@ -40,7 +40,14 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var int
      */
     protected $gender = 0;
-
+    
+    /**
+     * Title
+     *
+     * @var string
+     */
+    protected $title = '';
+    
     /**
      * Vorname
      *
@@ -77,14 +84,14 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $securityhash = '';
-
+    
     /**
-     * Title
+     * reCaptcha token
      *
      * @var string
      */
-    protected $title = '';
-
+    protected $retoken = '';
+    
     /**
      * GDPR checkbox
      * erst ab TYPO3 9: atExtbase\Validate("Boolean", options={"is": true})
@@ -158,7 +165,28 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->gender = $gender;
     }
-
+    
+    /**
+     * Returns the title
+     *
+     * @return string $title
+     */
+    public function getTitle()
+    {
+    	return $this->title;
+    }
+    
+    /**
+     * Sets the title
+     *
+     * @param string $title
+     * @return void
+     */
+    public function setTitle($title)
+    {
+    	$this->title = $title;
+    }
+    
     /**
      * Returns the firstname
      *
@@ -263,28 +291,28 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->securityhash = $securityhash;
     }
-
+    
     /**
-     * Returns the title
+     * Returns the retoken
      *
-     * @return string $title
+     * @return string $retoken
      */
-    public function getTitle()
+    public function getRetoken()
     {
-        return $this->title;
+    	return $this->retoken;
     }
-
+    
     /**
-     * Sets the title
+     * Sets the retoken
      *
-     * @param string $title
+     * @param string $retoken
      * @return void
      */
-    public function setTitle($title)
+    public function setRetoken($retoken)
     {
-        $this->title = $title;
+    	$this->retoken = $retoken;
     }
-
+    
     /**
      * Returns the gdpr
      *

@@ -5,6 +5,9 @@
 <f:flashMessages />
 </div>
 <f:render partial="FormErrors" arguments="{object:Log}" />
+<f:if condition="{settings.reCAPTCHA_site_key}">
+  <script src="https://www.google.com/recaptcha/api.js?render={settings.reCAPTCHA_site_key}"></script>
+</f:if>
 
 <f:form action="create"  name="log" object="{log}">
 	<f:render partial="Log/FormFields" arguments="{_all}" />

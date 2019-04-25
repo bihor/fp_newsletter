@@ -36,6 +36,8 @@ plugin.tx_fpnewsletter {
 	daysExpire = 2
 	deleteMode = 1
 	module_sys_dmail_html = 1
+	reCAPTCHA_site_key =
+	reCAPTCHA_secret_key =
 	company = Ihre Firma
 	gender {
 	  please = Bitte auswählen

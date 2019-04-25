@@ -35,5 +35,6 @@ Version 0.14.0: composer-Datei hinzugefügt.
 E-Mail an einen Admin nun möglich.
 Einen Bug gefixt: email-check.
 
-Version 0.14.2: Geschlecht Divers hinzugefügt.
+Version 0.15.0: Geschlecht Divers hinzugefügt.
 Switch zum QueryBuilder (statt $GLOBALS['TYPO3_DB']).
+reCaptcha v3 eingebaut (optional).

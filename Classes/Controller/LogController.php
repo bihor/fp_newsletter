@@ -170,12 +170,29 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	} else {
     		$error = 8;
     	}
+    	if ($this->settings['reCAPTCHA_site_key'] && $this->settings['reCAPTCHA_secret_key']) {
+    		// Captcha checken
+    		$ch = curl_init();
+    		curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+    		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    		curl_setopt($ch, CURLOPT_POST, true);
+    		curl_setopt($ch, CURLOPT_POSTFIELDS, [
+    			'secret' => $this->settings['reCAPTCHA_secret_key'],
+    			'response' => $log->getRetoken()
+    		]);
+    		$output = json_decode(curl_exec($ch), true);
+    		curl_close($ch);
+    		if(!$output["success"]) {
+    			$error = 9;
+    		}
+    	}
     	if ($dbuidext > 0) {
     		$error = 6;
     		$log->setStatus(6);
     		$this->logRepository->update($log);
     		$persistenceManager->persistAll();
-    	} else if (!$error) {
+    	}
+    	if (!$error) {
 	    	$from = trim($log->getFirstname() . ' ' . $log->getLastname());
 	    	if (!$from) $from = 'Subscriber';
 	    	$dataArray = array();
@@ -205,7 +222,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    		);
 	    	}
     	}
-
+    	
     	if (($error == 0) && ($this->settings['subscribeMessageUid'])) {
     		$uri = $this->uriBuilder->reset()
     			->setTargetPageUid($this->settings['subscribeMessageUid'])
@@ -310,7 +327,24 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	}
     	if ($dbuidext == 0) {
     		$error = 7;
-    	} else if (!$error) {
+    	}
+    	if ($this->settings['reCAPTCHA_site_key'] && $this->settings['reCAPTCHA_secret_key']) {
+    		// Captcha checken
+    		$ch = curl_init();
+    		curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+    		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+    		curl_setopt($ch, CURLOPT_POST, true);
+    		curl_setopt($ch, CURLOPT_POSTFIELDS, [
+    			'secret' => $this->settings['reCAPTCHA_secret_key'],
+    			'response' => $log->getRetoken()
+    		]);
+    		$output = json_decode(curl_exec($ch), true);
+    		curl_close($ch);
+    		if(!$output["success"]) {
+    			$error = 9;
+    		}
+    	}
+    	if (!$error) {
     	    if ($this->settings['doubleOptOut']) {
     	        $log->setStatus(3);
     	        $this->logRepository->add($log);

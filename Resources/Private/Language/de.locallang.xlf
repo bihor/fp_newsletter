@@ -33,6 +33,9 @@
 			<trans-unit id="tx_fpnewsletter_domain_model_log.securityhash">
 				<target>Security-Hash</target>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.retoken">
+				<target>reCaptcha-token</target>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
 				<target>Datenschutz</target>
 			</trans-unit>
@@ -98,6 +101,9 @@
 			</trans-unit>
 			<trans-unit id="wrong_email">
 				<target>Fehler - Die E-Mailadresse ist nicht valide!</target>
+			</trans-unit>
+			<trans-unit id="wrong_captcha">
+				<target>Fehler - Die Captcha-Prüfung verlief nicht erfolgreich!</target>
 			</trans-unit>
 			<trans-unit id="wrong_insert">
 				<target>Fehler - Der Datensatz konnte nicht eingefügt werden.</target>

@@ -11,4 +11,15 @@
 </f:else></f:if>
 
 <br /><br />
+<f:if condition="{settings.reCAPTCHA_site_key}">
+  <f:form.hidden property="retoken" id="recaptcha3keyU" />
+  <script>
+  var recaptcha3keyU = '{settings.reCAPTCHA_site_key}';
+  grecaptcha.ready(function() {
+      grecaptcha.execute(recaptcha3keyU, {action: 'homepage'}).then(function(token) {
+         $('#recaptcha3keyU').val(token);
+      });
+  });
+  </script>
+</f:if>
 </html>

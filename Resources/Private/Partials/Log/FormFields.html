@@ -25,4 +25,15 @@ you could use prependOptionLabel="-" prependOptionValue="0" for a select too.
 	<f:form.checkbox property="gdpr" value="1" /> &nbsp;
 	<f:translate key="tx_fpnewsletter_domain_model_log.gdpr_desc1" /> <f:link.page pageUid="{settings.gdprUid}"><f:translate key="tx_fpnewsletter_domain_model_log.gdpr_link_text" /></f:link.page><f:translate key="tx_fpnewsletter_domain_model_log.gdpr_desc2" />
 <br /><br />
+<f:if condition="{settings.reCAPTCHA_site_key}">
+  <f:form.hidden property="retoken" id="recaptcha3keyS" />
+  <script>
+  var recaptcha3keyS = '{settings.reCAPTCHA_site_key}';
+  grecaptcha.ready(function() {
+      grecaptcha.execute(recaptcha3keyS, {action: 'homepage'}).then(function(token) {
+         $('#recaptcha3keyS').val(token);
+      });
+  });
+  </script>
+</f:if>
 </html>

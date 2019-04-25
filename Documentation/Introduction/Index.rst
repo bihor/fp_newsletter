@@ -22,6 +22,7 @@ by the extension direct_mail. Furthermore it is designed to be compatible with t
 Note: there are more TypoScript-settings than FlexForm-settings.
 But the extension can be used without tt_address too. Therefore an admin-email-address can be specified.
 The admin will then get an email with the subscription data.
+Google reCaptcha v3 can be enabled too.
 Available languages: english, german/deutsch and italian/italiano.
 
 

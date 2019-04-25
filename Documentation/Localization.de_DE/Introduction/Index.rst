@@ -26,7 +26,7 @@ tt_address-Tabelle kopiert. Die Extension kann allerdings auch ohne tt_address b
 Es ist einstellbar, dass ein Admin den Anmeldewunsch per E-Mail bekommt. Dann könnte der Admin die E-Mail-Adresse händisch in
 einen externen Newsletter eintragen.
 Bei der Double-Opt-In-Anmeldung und ggf. auch bei der Abmeldung muss man den Datenschutzbestimmungen zustimmen.
-
+Google reCaptcha v3 kann ggf. auch eingebunden werden.
 
 .. _screenshots:
 

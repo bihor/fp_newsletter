@@ -48,6 +48,8 @@ Settings-Einstellungen
 	daysExpire                       intger      Der Verifikations-Link wird ungültig nach X Tagen                     2
 	deleteMode                       integer     1: setze delete-Flag; 2: lösche endgültig                             1
 	module_sys_dmail_html            integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1
+	reCAPTCHA_site_key               string      Websiteschlüssel für Google reCaptcha v3
+	reCAPTCHA_secret_key             string      Geheimer Schlüssel für Google reCaptcha v3
 	company                          string      Name der Firma                                                        Ihre Firma
 	gender.please                    string      Text für die Anrede-Auswahl                                           Bitte auswählen
 	gender.mr                        string      Text für Herr                                                         Herr

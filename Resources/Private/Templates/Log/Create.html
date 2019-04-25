@@ -26,6 +26,9 @@
 	<f:if condition="{error} == 8">
 		<p class="alert alert-danger">{f:translate(key: 'wrong_email', default: 'ivalid email')}</p>
 	</f:if>
+	<f:if condition="{error} == 9">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_captcha', default: 'ivalid captcha')}</p>
+	</f:if>
 </f:then>
 <f:else>
 	<p>{f:translate(key: 'email_send1', default: 'email send to you')}</p>

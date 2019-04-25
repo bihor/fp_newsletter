@@ -30,6 +30,9 @@
 			<trans-unit id="securityhash.description">
 				<source>Security-Hash</source>
 			</trans-unit>
+			<trans-unit id="retoken.description">
+				<source>reCaptcha-token</source>
+			</trans-unit>
 			<trans-unit id="gdpr.description">
 				<source>GDPR checkbox</source>
 			</trans-unit>

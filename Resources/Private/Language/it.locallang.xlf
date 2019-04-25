@@ -43,6 +43,10 @@
 				<source>Security-hash</source>
 				<target>Security-hash</target>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.retoken">
+				<source>reCaptcha-token</source>
+				<target>reCaptcha-token</target>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
 				<source>GDPR</source>
 				<target>GDPR</target>
@@ -126,6 +130,10 @@
 			<trans-unit id="wrong_email">
 				<source>Error: the given email-address is not valid!</source>
 				<target>Errore: l'indirizzo email fornito non è valido!</target>
+			</trans-unit>
+			<trans-unit id="wrong_captcha">
+				<source>Error: the given captcha is not valid!</source>
+				<target>Errore: l'indirizzo captcha non è valido!</target>
 			</trans-unit>
 			<trans-unit id="wrong_insert">
 				<source>Error: sql insert error!</source>

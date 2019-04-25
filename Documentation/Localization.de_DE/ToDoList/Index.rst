@@ -13,4 +13,4 @@ To-Do-Liste
 
 - Man sollte auch die Tabelle fe_users benutzen können.
 
-- ReCaptcha2 einbauen.
+- An- und Abmeldebestätigung per E-Mail.

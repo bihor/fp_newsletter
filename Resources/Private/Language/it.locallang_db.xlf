@@ -63,6 +63,10 @@
 				<source>Security-hash</source>
 				<target>Hash</target>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.retoken">
+				<source>reCaptcha-token</source>
+				<target>reCaptcha-token</target>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
 				<source>GDPR</source>
 				<target>GDPR</target>
@@ -74,6 +78,9 @@
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mr">
 				<source>Mr.</source>
 				<target>Sig.</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.divers">
+				<target>Vario</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status.0">
 				<source>unknown</source>

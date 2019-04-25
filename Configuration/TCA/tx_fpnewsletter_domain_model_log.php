@@ -17,10 +17,10 @@ return [
         'iconfile' => 'EXT:fp_newsletter/Resources/Public/Icons/tx_fpnewsletter_domain_model_log.gif'
     ],
     'interface' => [
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, firstname, lastname, email, status, securityhash, gdpr',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, firstname, lastname, email, status, securityhash, retoken, gdpr',
     ],
     'types' => [
-		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, firstname, lastname, email, status, securityhash, gdpr'],
+		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, firstname, lastname, email, status, securityhash, retoken, gdpr'],
     ],
     'columns' => [
 		'sys_language_uid' => [
@@ -180,6 +180,16 @@ return [
 			    'eval' => 'trim'
 			],
 	    ],
+    	'retoken' => [
+    		'exclude' => true,
+    		'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.retoken',
+    		'config' => [
+    			'type' => 'text',
+    			'cols' => 40,
+    			'rows' => 5,
+    			'eval' => 'trim'
+    		]
+    	],
 	    'gdpr' => [
 	        'exclude' => true,
 	        'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.gdpr',

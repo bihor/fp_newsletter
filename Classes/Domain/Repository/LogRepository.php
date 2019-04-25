@@ -67,6 +67,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		$timestamp = time();
 		if ($address->getGender() == 1) $gender = 'f';
 		elseif ($address->getGender() == 2) $gender = 'm';
+		elseif ($address->getGender() == 3) $gender = 'v';
 		else $gender = '';
 		// crdate fehlt in älteren Versionen!
 		$insert =  ['pid' => intval($address->getPid()),
