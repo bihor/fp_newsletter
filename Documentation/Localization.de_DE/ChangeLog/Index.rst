@@ -38,3 +38,5 @@ Einen Bug gefixt: email-check.
 Version 0.15.0: Geschlecht Divers hinzugefügt.
 Switch zum QueryBuilder (statt $GLOBALS['TYPO3_DB']).
 reCaptcha v3 eingebaut (optional).
+
+Version 0.15.1: f:format.raw zu Text-Links hinzugefügt.

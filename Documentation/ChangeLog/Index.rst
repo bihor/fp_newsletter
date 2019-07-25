@@ -38,3 +38,5 @@ One bug fixed: email-check.
 Version 0.15.0: gender divers added.
 Switch to the QueryBuilder.
 reCaptcha v3 implemented (optional).
+
+Version 0.15.1: f:format.raw added to text-links.
