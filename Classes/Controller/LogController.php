@@ -398,7 +398,12 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         		$persistenceManager->persistAll();
         		
         		if ($this->settings['table'] == 'tt_address') {
-        		    $this->logRepository->deleteInTtAddress($dbuidext, $this->settings['deleteMode']);
+        			if ($this->settings['module_sys_dmail_category']) {
+        				$dmCatArr = explode(',', $this->settings['module_sys_dmail_category']);
+        			} else {
+        				$dmCatArr = [];
+        			}
+        			$this->logRepository->deleteInTtAddress($dbuidext, $this->settings['deleteMode'], $dmCatArr);
         		} else {
         		    // TODO
         		}
@@ -428,6 +433,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$error = 0;
     	$dbuid = 0;
     	$html = intval($this->settings['module_sys_dmail_html']);
+    	$dmCat = $this->settings['module_sys_dmail_category'];
     	$uid = intval($this->request->hasArgument('uid')) ? $this->request->getArgument('uid') : 0;
     	$hash = ($this->request->hasArgument('hash')) ? $this->request->getArgument('hash') : '';
     	if (!$uid || !$hash) {
@@ -470,12 +476,17 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    					$persistenceManager->persistAll();
 	    					$success = 0;
 	    					if ($this->settings['table'] == 'tt_address') {
-	    						$success = $this->logRepository->insertInTtAddress($address, $html);
+	    						if ($dmCat) {
+	    							$dmCatArr = explode(',', $dmCat);
+	    						} else {
+	    							$dmCatArr = [];
+	    						}
+	    						$success = $this->logRepository->insertInTtAddress($address, $html, $dmCatArr);
 	    					} elseif ($this->settings['table'] == 'fe_users') {
 	    						// TODO
 	    						//$GLOBALS['TYPO3_DB']->exec_INSERTquery('fe_users', $insert);
 	    					}
-	    					if ($this->settings['table'] && !$success) {
+	    					if ($this->settings['table'] && $success<1) {
 	    						$error = 8;
 	    					}
     					}
@@ -546,7 +557,12 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                             $persistenceManager->persistAll();
                             
                             if ($this->settings['table'] == 'tt_address') {
-                                $this->logRepository->deleteInTtAddress($dbuidext, $this->settings['deleteMode']);
+                            	if ($this->settings['module_sys_dmail_category']) {
+                            		$dmCatArr = explode(',', $this->settings['module_sys_dmail_category']);
+                            	} else {
+                            		$dmCatArr = [];
+                            	}
+                            	$this->logRepository->deleteInTtAddress($dbuidext, $this->settings['deleteMode'], $dmCatArr);
                             } elseif ($this->settings['table'] == 'fe_users') {
                                 // TODO
                             }

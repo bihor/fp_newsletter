@@ -47,6 +47,7 @@ Properties for settings
 	daysExpire                       intger      The link expires after X days                                         2
 	deleteMode                       integer     1: set deletion flag; 2: delete entry                                 1
 	module_sys_dmail_html            integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1
+	module_sys_dmail_category        string      Comma separated list of categories (uid) from sys_dmail_category
 	reCAPTCHA_site_key               string      Website-key for Google reCaptcha v3
 	reCAPTCHA_secret_key             string      Secret key for Google reCaptcha v3
 	company                          string      Name of your company                                                  Ihre Firma

@@ -40,3 +40,4 @@ Switch to the QueryBuilder.
 reCaptcha v3 implemented (optional).
 
 Version 0.15.1: f:format.raw added to text-links.
+Setting module_sys_dmail_category added.

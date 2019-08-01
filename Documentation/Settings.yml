@@ -10,8 +10,8 @@
 conf.py:
   copyright: 2019
   project: Newsletter subscriber managment
-  version: 0.15.1
-  release: 0.15.1
+  version: 0.15.2
+  release: 0.15.2
   intersphinx_mapping:
     t3tsref:
     - http://docs.typo3.org/typo3cms/TyposcriptReference/
