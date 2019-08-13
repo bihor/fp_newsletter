@@ -39,5 +39,6 @@ Version 0.15.0: gender divers added.
 Switch to the QueryBuilder.
 reCaptcha v3 implemented (optional).
 
-Version 0.15.1: f:format.raw added to text-links.
+Version 0.15.3: f:format.raw added to text-links.
 Setting module_sys_dmail_category added.
+Address-object in email-template now available.

@@ -64,10 +64,10 @@
 				<target>Eine E-Mail mit einem Link zur Verifizierung Ihrer E-Mailadresse wurde Ihnen zugesandt. Erst nach Klick auf den Link in der E-Mail sind Sie von unserem Newsletter abgemeldet!</target>
 			</trans-unit>
 			<trans-unit id="email_verified">
-				<target>Ihre E-Mail-Adresse ist nun verifiziert. Sie sind nun zu unserem Newsletter angemeldet!</target>
+				<target>Ihre E-Mail-Adresse ist nun verifiziert. Sie sind nun zu unserem Newsletter angemeldet mit:</target>
 			</trans-unit>
 			<trans-unit id="email_verified2">
-				<target>Ihre E-Mail-Adresse ist nun verifiziert. Sie sind nun von unserem Newsletter abgemeldet!</target>
+				<target>Ihre E-Mail-Adresse ist nun verifiziert. Sie sind nun von unserem Newsletter abgemeldet mit:</target>
 			</trans-unit>
 			<trans-unit id="email_removed">
 				<target>Sie haben sich erfolgreich aus unserem Newsletter ausgetragen.</target>

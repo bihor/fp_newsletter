@@ -64,10 +64,10 @@
 				<source>An email has been send to you. Please verify your email-address for the newsletter unsubscription.</source>
 			</trans-unit>
 			<trans-unit id="email_verified">
-				<source>Your email-address is now verfied. You are now subscribed to our newsletter.</source>
+				<source>Your email-address is now verfied. You are now subscribed to our newsletter with:</source>
 			</trans-unit>
 			<trans-unit id="email_verified2">
-				<source>Your email-address is now verfied. You are now unsubscribed from our newsletter.</source>
+				<source>Your email-address is now verfied. You are now unsubscribed from our newsletter with:</source>
 			</trans-unit>
 			<trans-unit id="email_removed">
 				<source>You have unsubscribed our newsletter successfully.</source>

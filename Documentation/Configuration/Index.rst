@@ -97,3 +97,13 @@ Furthermore you must specify the POST-parameter, which are used in the other ext
   plugin.tx_fpnewsletter.settings.parameters.email = tx_myshop_pi1|newOrder|email
 
 Only parameters of this format are possible. If they are there, a forward will be made to the action create.
+
+Changing the labels
+^^^^^^^^^^^^^^^^^^^
+
+Like in every extension, you can change the labels via TypoScript. Here 2 examples::
+
+  plugin.tx_fpnewsletter._LOCAL_LANG.de.tx_fpnewsletter_domain_model_log.email = Email
+  plugin.tx_fpnewsletter._LOCAL_LANG.de.tx_fpnewsletter_domain_model_log.gdpr_desc2 = Ich bin damit einverstanden, dass die von mir angegebenen Daten elektronisch erhoben und gespeichert werden.
+
+You find the designations in the templates used in f:translate key.

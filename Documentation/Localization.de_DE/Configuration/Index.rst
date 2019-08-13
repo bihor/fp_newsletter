@@ -98,3 +98,13 @@ bei einer Bestellung auch zum Newsletter anmelden können soll, dann muss man di
 
 Es können an dieser Stelle nur Parameter von anderen Extensions mit dem selben Format ausgewertet werden.
 Wenn beide Parameter gesetzt sind, wird zur Action create weitergeleitet.
+
+Ändern der Labels
+^^^^^^^^^^^^^^^^^
+
+Wie in jeder Extension auch, kann man die Labels via TypoScript ändern. Hier 2 Beispiele::
+
+  plugin.tx_fpnewsletter._LOCAL_LANG.de.tx_fpnewsletter_domain_model_log.email = Email
+  plugin.tx_fpnewsletter._LOCAL_LANG.de.tx_fpnewsletter_domain_model_log.gdpr_desc2 = Ich bin damit einverstanden, dass die von mir angegebenen Daten elektronisch erhoben und gespeichert werden.
+
+Man findet die Bezeichnungen in den Templates bei f:translate key.

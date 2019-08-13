@@ -85,11 +85,11 @@
 			</trans-unit>
 			<trans-unit id="email_verified">
 				<source>Your email-address is now verfied. You are now subscribed to our newsletter.</source>
-				<target>Il tuo indirizzo email è stato ora verificato. Sei iscritto alla newsletter</target>
+				<target>Il tuo indirizzo email è stato ora verificato. Sei iscritto alla newsletter con:</target>
 			</trans-unit>
 			<trans-unit id="email_removed">
 				<source>You have unsubscribed our newsletter successfully.</source>
-				<target>La tua iscrizione alla newsletter è stata revocata con successo.</target>
+				<target>La tua iscrizione alla newsletter è stata revocata con successo:</target>
 			</trans-unit>
 			<trans-unit id="wrong_parameters">
 				<source>Error: wrong parameters in the link.</source>

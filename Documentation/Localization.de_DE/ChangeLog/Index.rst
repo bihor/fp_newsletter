@@ -39,5 +39,6 @@ Version 0.15.0: Geschlecht Divers hinzugefügt.
 Switch zum QueryBuilder (statt $GLOBALS['TYPO3_DB']).
 reCaptcha v3 eingebaut (optional).
 
-Version 0.15.2: f:format.raw zu Text-Links hinzugefügt.
+Version 0.15.3: f:format.raw zu Text-Links hinzugefügt.
 Option module_sys_dmail_category hinzugefügt.
+Adress-Objekt in E-Mail-Templates jetzt verfügbar.

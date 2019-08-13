@@ -442,6 +442,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		$address = $this->logRepository->findOneByUid($uid);
     		if ($address) {
     		  $dbuid = $address->getUid();
+    		  $this->view->assign('address', $address);
     		}
     		if (!$dbuid) {
     			$error = 2;
@@ -524,6 +525,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $address = $this->logRepository->findOneByUid($uid);
             if ($address) {
                 $dbuid = $address->getUid();
+                $this->view->assign('address', $address);
             }
             if (!$dbuid) {
                 $error = 2;
