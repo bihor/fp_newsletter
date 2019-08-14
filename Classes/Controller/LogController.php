@@ -81,11 +81,20 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	    "3" => $this->settings['gender']['divers']
     	];
     	$optional = [];
+    	$required = [];
     	$optionalFields = $this->settings['optionalFields'];
+    	$requiredFields = $this->settings['optionalFieldsRequired'];
     	if ($optionalFields) {
     		$tmp = explode( ',', $optionalFields );
     		foreach ($tmp as $field) {
     			$optional[trim($field)] = 1;
+    			$required[trim($field)] = 0;
+    		}
+    	}
+    	if ($requiredFields) {
+    		$tmp = explode( ',', $requiredFields );
+    		foreach ($tmp as $field) {
+    			$required[trim($field)] = 1;
     		}
     	}
     	$log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
@@ -100,6 +109,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	}
     	$this->view->assign('genders', $genders);
     	$this->view->assign('optional', $optional);
+    	$this->view->assign('required', $required);
     	$this->view->assign('log', $log);
     }
 

@@ -42,3 +42,4 @@ reCaptcha v3 implemented (optional).
 Version 0.15.3: f:format.raw added to text-links.
 Setting module_sys_dmail_category added.
 Address-object in verify-actions now available.
+TS optionalFieldsRequired added. required-attribute added.

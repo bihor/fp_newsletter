@@ -31,7 +31,8 @@ Properties for settings
 	Property                         Data type   Description                                                           Default
 	================================ =========== ===================================================================== ==========================
 	table                            string      Today only tt_address suported                                        tt_address
-	optionalFields                   string      gender,title,firstname,lastname are supported                         gender,firstname,lastname
+	optionalFields                   string      gender,title,firstname,lastname are supported as optional fields      gender,firstname,lastname
+	optionalFieldsRequired           string      gender,title,firstname,lastname are supported as opt. req. fields*
 	doubleOptOut                     boolean     Enable double out out unsubscription?                                 0
 	enableUnsubscribeForm            boolean     Enable unsubscribe form at the subscribe page?**                      0
 	enableUnsubscribeGdprAsHidden    boolean     Do not show the gdpr-checkbox at unsubscribe form?                    0
@@ -42,7 +43,7 @@ Properties for settings
 	unsubscribeUid                   integer     Page for the unsubscription                                           1
 	unsubscribeMessageUid            integer     Optional page for the redirect after unsubscription
 	unsubscribeVerifyUid             integer     Page for the unsubscription-verification
-	unsubscribeVerifyMessageUid      integer     Optional page for the redirect after unsubscription-verification*
+	unsubscribeVerifyMessageUid      integer     Optional page for the redirect after unsubscription-verification***
 	gdprUid                          integer     Page with the GDPR text                                               1
 	daysExpire                       intger      The link expires after X days                                         2
 	deleteMode                       integer     1: set deletion flag; 2: delete entry                                 1
@@ -67,9 +68,11 @@ Properties for settings
 	overrideFlexformSettingsIfEmpty  string      Empty FlexForms should be overwritten by TypoScript                   all uids...
 	================================ =========== ===================================================================== ==========================
 
-Note*: this page is used too, if doubleOptOut=0. unsubscribeMessageUid is not used if doubleOptOut=0.
+Note*: only a check via browser is made for the optional required fields.
 
 Note**: you need an own page for the unsubscription! unsubscribeUid should be defined therefore.
+
+Note***: this page is used too, if doubleOptOut=0. unsubscribeMessageUid is not used if doubleOptOut=0.
 
 
 Property details

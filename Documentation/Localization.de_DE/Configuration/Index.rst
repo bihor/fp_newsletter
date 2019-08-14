@@ -33,6 +33,7 @@ Settings-Einstellungen
 	================================ =========== ===================================================================== ==========================
 	table                            string      Bisher nur tt_address möglich                                         tt_address
 	optionalFields                   string      gender,title,firstname,lastname sind die optionalen Werte             gender,firstname,lastname
+	optionalFieldsRequired           string      gender,title,firstname,lastname könnten erforderliche Werte sein*
 	doubleOptOut                     boolean     Double opt out Abmeldung einschalten?                                 0
 	enableUnsubscribeForm            boolean     Abmeldeformular auf der Anmeldeseite mit ausgeben?**                  0
 	enableUnsubscribeGdprAsHidden    boolean     DSGVO-Checkbox beim Abmeldeformular verbergen?                        0
@@ -43,7 +44,7 @@ Settings-Einstellungen
 	unsubscribeUid                   integer     Seite für die Abmeldung                                               1
 	unsubscribeMessageUid            integer     Optionale Seite für den Redirect nach der Abmeldung
 	unsubscribeVerifyUid             integer     Seite für die Abmelde-Verifikation (demnächst)
-	unsubscribeVerifyMessageUid      integer     Optionale Seite für den Redirect nach der Abmelde-Verifikation*
+	unsubscribeVerifyMessageUid      integer     Optionale Seite für den Redirect nach der Abmelde-Verifikation***
 	gdprUid                          integer     Seite mit den DSGVO-Texten                                            1
 	daysExpire                       intger      Der Verifikations-Link wird ungültig nach X Tagen                     2
 	deleteMode                       integer     1: setze delete-Flag; 2: lösche endgültig                             1
@@ -68,9 +69,11 @@ Settings-Einstellungen
 	overrideFlexformSettingsIfEmpty  string      Leere Flexforms sollen durch TypoScript überschrieben werden          alle uids...
 	================================ =========== ===================================================================== ==========================
 
-Achtung*: diese Seite wird auch dann benutzt, wenn doubleOptOut=0. unsubscribeMessageUid wird dann nicht benutzt.
+Achtung*: die optional erforderlichen Werte werden nur per Browser geprüft.
 
 Achtung**: man braucht eine eigene Seite für die Abmeldung. unsubscribeUid muss also angebenen werden.
+
+Achtung***: diese Seite wird auch dann benutzt, wenn doubleOptOut=0. unsubscribeMessageUid wird dann nicht benutzt.
 
 
 Beispiele

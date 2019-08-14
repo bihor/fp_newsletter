@@ -21,6 +21,7 @@ plugin.tx_fpnewsletter {
   settings {
 	table = tt_address
 	optionalFields = gender,firstname,lastname
+	optionalFieldsRequired =
 	doubleOptOut = 0
 	enableUnsubscribeForm = 0
 	enableUnsubscribeGdprAsHidden = 0
