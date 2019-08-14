@@ -41,4 +41,4 @@ reCaptcha v3 eingebaut (optional).
 
 Version 0.15.3: f:format.raw zu Text-Links hinzugefügt.
 Option module_sys_dmail_category hinzugefügt.
-Adress-Objekt in E-Mail-Templates jetzt verfügbar.
+Adress-Objekt in Verify-Templates jetzt verfügbar.

@@ -43,7 +43,7 @@ Nur für die Sprache 0 muss man die Zahl weglassen. SubscribeVerify1.txt ist das
 Newsletter
 ----------
 
-Wenn du einen Newsletter verschickt, soll dain sicherlich auch ein Abmeldelink drin stehen. Das kann man so machen, wenn man direct_mail benutzt::
+Wenn du einen Newsletter verschickt, soll darin sicherlich auch ein Abmeldelink drin stehen. Das kann man so machen, wenn man direct_mail benutzt::
 
   Newsletter abbestellen:
   http://www.domain.de/newsletter/abmelden.html?u=###USER_uid###&t=###SYS_TABLE_NAME###&a=###SYS_AUTHCODE###
@@ -51,6 +51,7 @@ Wenn du einen Newsletter verschickt, soll dain sicherlich auch ein Abmeldelink d
 Die 3 Werte ###USER_uid###, ###SYS_TABLE_NAME### und ###SYS_AUTHCODE### wird direct_mail ersetzen.
 Du musst nur den Link mit deinem Abmeldelink ersetzen.
 Die Extension fp_newsletter wird die Parameter überprüfen und den angegebenen Benutzer sofort abmelden.
+Achtung: bei der Zielseite muss dabei das Template "Newsletter: Abmeldung via Link" ausgewählt sein.
 
 
 .. _admin-faq:

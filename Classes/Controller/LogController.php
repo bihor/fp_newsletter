@@ -270,7 +270,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$u = intval($_GET['u']);
     	$a = $_GET['a'];
     	if($t && $t==$this->settings['table'] && $u && $a){
-    
+    		# TODO: ersetzen!
     		$res=$GLOBALS['TYPO3_DB']->exec_SELECTquery('*', $this->settings['table'], 'deleted=0 AND uid=' . $u,'','',1);
     		$user=$GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
     		if($user){

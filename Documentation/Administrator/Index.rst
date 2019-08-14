@@ -47,6 +47,7 @@ When you send a newsletter you want to add an unsubscription link to your newsle
 The 3 values ###USER_uid###, ###SYS_TABLE_NAME### and ###SYS_AUTHCODE### will be replaced by direct_mail.
 Replace the link with the link to your unsubscribe page.
 The extension fp_newsletter will check the parameters and will unsubscribe the given user directly.
+Note: at the target page you need to set the template "Newsletter: unsubscribe via link" in this extension.
 
 
 .. _admin-faq:
