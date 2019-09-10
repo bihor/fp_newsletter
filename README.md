@@ -8,8 +8,8 @@ Supports Google reCaptcha v3.
 Available languages: english, german/deutsch and italian/italiano.
 
 You find the documentation the the folder "Documentation" / at typo3.org:
-https://docs.typo3.org/typo3cms/extensions/fp_newsletter/ 
+https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/en-us/
 
-Es gibt auch eine deutsche Anleitung/Dokumentation zu dieser Erweiterung.
+Es gibt auch eine deutsche Anleitung/Dokumentation zu dieser Erweiterung (Link z.Z. defekt).
 
 Last feature: link to documentation.
