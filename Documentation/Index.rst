@@ -45,7 +45,7 @@ Newsletter subscriber managment
 		|today|
 
     :Documentation:
-        `english Version <http://docs.typo3.org/typo3cms/extensions/fp_newsletter/>`_, `deutsche Version <http://docs.typo3.org/typo3cms/extensions/fp_newsletter/de-de/>`_
+        `english Version <https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/en-us/>`_, `deutsche Version <https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/de-de/>`_
 
 	The content of this document is related to TYPO3,
 	a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_.
