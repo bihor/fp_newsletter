@@ -27,46 +27,47 @@ Properties for settings
 
 .. container:: ts-properties
 
-	================================ =========== ===================================================================== ==========================
-	Property                         Data type   Description                                                           Default
-	================================ =========== ===================================================================== ==========================
-	table                            string      Today only tt_address suported                                        tt_address
-	optionalFields                   string      gender,title,firstname,lastname are supported as optional fields      gender,firstname,lastname
-	optionalFieldsRequired           string      gender,title,firstname,lastname are supported as opt. req. fields*
-	doubleOptOut                     boolean     Enable double out out unsubscription?                                 0
-	enableUnsubscribeForm            boolean     Enable unsubscribe form at the subscribe page?**                      0
-	enableUnsubscribeGdprAsHidden    boolean     Do not show the gdpr-checkbox at unsubscribe form?                    0
-	subscribeUid                     integer     Page for the subscription                                             1
-	subscribeMessageUid              integer     Optional page for the redirect after subscription
-	subscribeVerifyUid               integer     Page for the subscription-verification
-	subscribeVerifyMessageUid        integer     Optional page for the redirect after subscription-verification
-	unsubscribeUid                   integer     Page for the unsubscription                                           1
-	unsubscribeMessageUid            integer     Optional page for the redirect after unsubscription
-	unsubscribeVerifyUid             integer     Page for the unsubscription-verification
-	unsubscribeVerifyMessageUid      integer     Optional page for the redirect after unsubscription-verification***
-	gdprUid                          integer     Page with the GDPR text                                               1
-	daysExpire                       intger      The link expires after X days                                         2
-	deleteMode                       integer     1: set deletion flag; 2: delete entry                                 1
-	module_sys_dmail_html            integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1
-	module_sys_dmail_category        string      Comma separated list of categories (uid) from sys_dmail_category
-	reCAPTCHA_site_key               string      Website-key for Google reCaptcha v3
-	reCAPTCHA_secret_key             string      Secret key for Google reCaptcha v3
-	company                          string      Name of your company                                                  Ihre Firma
-	gender.please                    string      Text for gender selection                                             Bitte auswählen
-	gender.mr                        string      Text for the gender mr                                                Herr
-	gender.mrs                       string      Text for the gender mrs                                               Frau
-	parameters.active                string      Parameter for newsletter subscription in external extension (POST)
-	parameters.email                 string      Parameter for the email from external source (GET/POST-parameter)
-	email.senderMail                 string      Your email-address                                                    beispiel@test.de
-	email.senderName                 string      Your name                                                             Absender-Name
-	email.subscribeVerifySubject     string      Subject of the verify email (subscription)                            Bitte verifizieren ...
-	email.unsubscribeVerifySubject   string      Subject of the verify email (unsubscription)                          Bitte verifizieren ...
-	email.adminMail                  string      Admin email-address - if not empty: an email goes to an admin too
-	email.adminName                  string      Admin name                                                            Admin
-	email.adminSubscribeSubject      string      Subject of the admin email (subscription)                             Neue Newsletter-Anmeldung
-	email.adminUnsubscribeSubject    string      Subject of the admin email (unsubscription)                           Neue Newsletter-Abmeldung
-	overrideFlexformSettingsIfEmpty  string      Empty FlexForms should be overwritten by TypoScript                   all uids...
-	================================ =========== ===================================================================== ==========================
+	================================= =========== ===================================================================== ==========================
+	Property                          Data type   Description                                                           Default
+	================================= =========== ===================================================================== ==========================
+	table                             string      Today only tt_address suported                                        tt_address
+	optionalFields                    string      gender,title,firstname,lastname are supported as optional fields      gender,firstname,lastname
+	optionalFieldsRequired            string      gender,title,firstname,lastname are supported as opt. req. fields*
+	doubleOptOut                      boolean     Enable double out out unsubscription?                                 0
+	enableUnsubscribeForm             boolean     Enable unsubscribe form at the subscribe page?**                      0
+	enableUnsubscribeGdprAsHidden     boolean     Do not show the gdpr-checkbox at unsubscribe form?                    0
+	subscribeUid                      integer     Page for the subscription                                             1
+	subscribeMessageUid               integer     Optional page for the redirect after subscription
+	subscribeVerifyUid                integer     Page for the subscription-verification
+	subscribeVerifyMessageUid         integer     Optional page for the redirect after subscription-verification
+	unsubscribeUid                    integer     Page for the unsubscription                                           1
+	unsubscribeMessageUid             integer     Optional page for the redirect after unsubscription
+	unsubscribeVerifyUid              integer     Page for the unsubscription-verification
+	unsubscribeVerifyMessageUid       integer     Optional page for the redirect after unsubscription-verification***
+	gdprUid                           integer     Page with the GDPR text                                               1
+	daysExpire                        intger      The link expires after X days                                         2
+	deleteMode                        integer     1: set deletion flag; 2: delete entry                                 1
+	module_sys_dmail_html             integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1
+	module_sys_dmail_category         string      Comma separated list of categories (uid) from sys_dmail_category
+	reCAPTCHA_site_key                string      Website-key for Google reCaptcha v3
+	reCAPTCHA_secret_key              string      Secret key for Google reCaptcha v3
+	company                           string      Name of your company                                                  Ihre Firma
+	gender.please                     string      Text for gender selection                                             Bitte auswählen
+	gender.mr                         string      Text for the gender mr                                                Herr
+	gender.mrs                        string      Text for the gender mrs                                               Frau
+	parameters.active                 string      Parameter for newsletter subscription in external extension (POST)
+	parameters.email                  string      Parameter for the email from external source (GET/POST-parameter)
+	email.senderMail                  string      Your email-address                                                    beispiel@test.de
+	email.senderName                  string      Your name                                                             Absender-Name
+	email.subscribeVerifySubject      string      Subject of the verify email (subscription)                            Bitte verifizieren ...
+	email.unsubscribeVerifySubject    string      Subject of the verify email (unsubscription)                          Bitte verifizieren ...
+	email.adminMail                   string      Admin email-address - if not empty: an email goes to an admin too
+	email.adminName                   string      Admin name                                                            Admin
+	email.adminSubscribeSubject       string      Subject of the admin email (subscription)                             Neue Newsletter-Anmeldung
+	email.adminUnsubscribeSubject     string      Subject of the admin email (unsubscription)                           Neue Newsletter-Abmeldung
+	email.adminMailBeforeVerification boolean     0: send email to admin after verification; 1: before verification     0
+	overrideFlexformSettingsIfEmpty   string      Empty FlexForms should be overwritten by TypoScript                   all uids...
+	================================= =========== ===================================================================== ==========================
 
 Note*: only a check via browser is made for the optional required fields.
 

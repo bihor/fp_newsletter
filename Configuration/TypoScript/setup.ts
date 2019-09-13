@@ -60,6 +60,7 @@ plugin.tx_fpnewsletter {
 		adminName = Admin
 		adminSubscribeSubject = Neue Newsletter-Anmeldung
 		adminUnsubscribeSubject = Neue Newsletter-Abmeldung
+		adminMailBeforeVerification = 0
 	}
 	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,gdprUid
   }

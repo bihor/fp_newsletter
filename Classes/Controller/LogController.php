@@ -165,7 +165,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$email = $log->getEmail();
     	$dbuidext = 0;
     	$genders = [
-    		"0" => $this->settings['gender']['please'],
+    		"0" => '',
     		"1" => $this->settings['gender']['mrs'],
     	    "2" => $this->settings['gender']['mr'],
     	    "3" => $this->settings['gender']['divers']
@@ -216,19 +216,21 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    	$dataArray['subscribeVerifyUid'] = $subscribeVerifyUid;
 	    	$dataArray['settings'] = $this->settings;
 	    	$this->sendTemplateEmail(
-	    			array($email => $from),
-	    			array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
-	    			$this->settings['email']['subscribeVerifySubject'],
-	    			'SubscribeVerify',
-	    			$dataArray
+	    		array($email => $from),
+	    		array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+	    		$this->settings['email']['subscribeVerifySubject'],
+	    		'SubscribeVerify',
+	    		$dataArray,
+	    		FALSE
 			);
-	    	if ($this->settings['email']['adminMail']) {
+	    	if ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']) {
 	    		$this->sendTemplateEmail(
 	    			array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
 	    			array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
 	    			$this->settings['email']['adminSubscribeSubject'],
 	    			'UserToAdmin',
-	    			$dataArray
+	    			$dataArray,
+	    			TRUE
 	    		);
 	    	}
     	}
@@ -354,6 +356,12 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     			$error = 9;
     		}
     	}
+    	$genders = [
+    		"0" => '',
+    		"1" => $this->settings['gender']['mrs'],
+    		"2" => $this->settings['gender']['mr'],
+    		"3" => $this->settings['gender']['divers']
+    	];
     	if (!$error) {
     	    if ($this->settings['doubleOptOut']) {
     	        $log->setStatus(3);
@@ -361,12 +369,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	        $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
     	        $persistenceManager->persistAll();
     	        
-    	        $genders = [
-    	        	"0" => $this->settings['gender']['please'],
-    	        	"1" => $this->settings['gender']['mrs'],
-    	            "2" => $this->settings['gender']['mr'],
-    	            "3" => $this->settings['gender']['divers']
-    	        ];
     	        $unsubscribeVerifyUid = $this->settings['unsubscribeVerifyUid'];
     	        if (!$unsubscribeVerifyUid) {
     	            // Fallback
@@ -374,7 +376,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	        }
     	        $from = trim($log->getFirstname() . ' ' . $log->getLastname());
     	        if (!$from) $from = 'Unsubscriber';
-    	        $dataArray = array();
+    	        $dataArray = [];
     	        $dataArray['uid'] = $log->getUid();
     	        $dataArray['gender'] = $genders[$log->getGender()];
     	        $dataArray['title'] = $log->getTitle();
@@ -389,15 +391,17 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	            array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
     	            $this->settings['email']['unsubscribeVerifySubject'],
     	            'UnsubscribeVerify',
-    	            $dataArray
+    	            $dataArray,
+    	        	FALSE
     	        );
-    	        if ($this->settings['email']['adminMail']) {
+    	        if ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']) {
     	        	$this->sendTemplateEmail(
     	        		array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
     	        		array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
     	        		$this->settings['email']['adminUnsubscribeSubject'],
     	        		'UserToAdmin',
-    	        		$dataArray
+    	        		$dataArray,
+    	        		TRUE
     	        	);
     	        }
     	        $messageUid = $this->settings['unsubscribeMessageUid'];
@@ -418,6 +422,27 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         		    // TODO
         		}
         		$messageUid = $this->settings['unsubscribeVerifyMessageUid'];
+        		if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
+        			$dataArray = [];
+        			$dataArray['uid'] = $log->getUid();
+        			$dataArray['gender'] = $genders[$log->getGender()];
+        			$dataArray['title'] = $log->getTitle();
+        			$dataArray['firstname'] = $log->getFirstname();
+        			$dataArray['lastname'] = $log->getLastname();
+        			$dataArray['email'] = $email;
+        			$dataArray['hash'] = $hash;
+        			$dataArray['settings'] = $this->settings;
+        			if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
+        				$this->sendTemplateEmail(
+        					array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
+        					array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+        					$this->settings['email']['adminUnsubscribeSubject'],
+        					'UnsubscribeToAdmin',
+        					$dataArray,
+        					TRUE
+        				);
+        			}
+        		}
     	    }
     	}
     	
@@ -442,6 +467,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     {
     	$error = 0;
     	$dbuid = 0;
+    	$email = '';
     	$html = intval($this->settings['module_sys_dmail_html']);
     	$dmCat = $this->settings['module_sys_dmail_category'];
     	$uid = intval($this->request->hasArgument('uid')) ? $this->request->getArgument('uid') : 0;
@@ -452,6 +478,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		$address = $this->logRepository->findOneByUid($uid);
     		if ($address) {
     		  $dbuid = $address->getUid();
+    		  $email = $address->getEmail();
     		  $this->view->assign('address', $address);
     		}
     		if (!$dbuid) {
@@ -471,7 +498,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     					$error = 4;
     				} else {
     					$dbuidext = 0;
-    					if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($dbemail)) {
+    					if (GeneralUtility::validEmail($dbemail)) {
 	    					if ($this->settings['table'] == 'tt_address') {
 		    					$dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
 	    					} else {
@@ -499,6 +526,32 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    					}
 	    					if ($this->settings['table'] && $success<1) {
 	    						$error = 8;
+	    					} elseif ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
+	    						$genders = [
+	    							"0" => '',
+	    							"1" => $this->settings['gender']['mrs'],
+	    							"2" => $this->settings['gender']['mr'],
+	    							"3" => $this->settings['gender']['divers']
+	    						];
+	    						$dataArray = [];
+	    						$dataArray['uid'] = $address->getUid();
+	    						$dataArray['gender'] = $genders[$address->getGender()];
+	    						$dataArray['title'] = $address->getTitle();
+	    						$dataArray['firstname'] = $address->getFirstname();
+	    						$dataArray['lastname'] = $address->getLastname();
+	    						$dataArray['email'] = $email;
+	    						$dataArray['hash'] = $hash;
+	    						$dataArray['settings'] = $this->settings;
+	    						if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
+	    							$this->sendTemplateEmail(
+	    								array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
+	    								array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+	    								$this->settings['email']['adminSubscribeSubject'],
+	    								'SubscribeToAdmin',
+	    								$dataArray,
+	    								TRUE
+    								);
+	    						}
 	    					}
     					}
     				}
@@ -535,6 +588,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $address = $this->logRepository->findOneByUid($uid);
             if ($address) {
                 $dbuid = $address->getUid();
+                $email = $address->getEmail();
                 $this->view->assign('address', $address);
             }
             if (!$dbuid) {
@@ -578,6 +632,33 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                             } elseif ($this->settings['table'] == 'fe_users') {
                                 // TODO
                             }
+                            if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
+                            	$genders = [
+                            		"0" => '',
+                            		"1" => $this->settings['gender']['mrs'],
+                            		"2" => $this->settings['gender']['mr'],
+                            		"3" => $this->settings['gender']['divers']
+                            	];
+                            	$dataArray = [];
+                            	$dataArray['uid'] = $address->getUid();
+                            	$dataArray['gender'] = $genders[$address->getGender()];
+                            	$dataArray['title'] = $address->getTitle();
+                            	$dataArray['firstname'] = $address->getFirstname();
+                            	$dataArray['lastname'] = $address->getLastname();
+                            	$dataArray['email'] = $email;
+                            	$dataArray['hash'] = $hash;
+                            	$dataArray['settings'] = $this->settings;
+                            	if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
+                            		$this->sendTemplateEmail(
+                            			array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
+                            			array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+                            			$this->settings['email']['adminUnsubscribeSubject'],
+                            			'UnsubscribeToAdmin',
+                            			$dataArray,
+                            			TRUE
+                            		);
+                            	}
+                            }
                         }
                     }
                 }
@@ -597,14 +678,17 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     
 
     /**
+     * Send an email
+     * 
      * @param array $recipient recipient of the email in the format array('recipient@domain.tld' => 'Recipient Name')
      * @param array $sender sender of the email in the format array('sender@domain.tld' => 'Sender Name')
      * @param string $subject subject of the email
      * @param string $templateName template name (UpperCamelCase)
      * @param array $variables variables to be passed to the Fluid view
+     * @param boolean $toAdmin email to the admin?
      * @return boolean TRUE on success, otherwise false
      */
-    protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array()) {
+    protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array(), $toAdmin = FALSE) {
     	// Alternative: http://lbrmedia.net/codebase/Eintrag/extbase-60-standalone-template-renderer/
     	// Das hier ist von hier: http://wiki.typo3.org/How_to_use_the_Fluid_Standalone_view_to_render_template_based_emails
     	// und https://wiki.typo3.org/How_to_use_the_Fluid_Standalone_view_to_render_template_based_emails
@@ -616,7 +700,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		}
     	} */
     	$lang = intval($GLOBALS['TSFE']->sys_language_uid);
-    	if ($lang > 0) {
+    	if (($lang > 0) && !$toAdmin) {
     		$templateName .= $lang;
     	}
     	
