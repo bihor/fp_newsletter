@@ -23,9 +23,10 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
 	/**
-	 * getFromTTAddress: find user
+	 * getFromTTAddress: find user ID
 	 * @param	string $email: die Email-Adresse wurde schon vorher geprüft!
 	 * @param	integer	$pid
+	 * @return integer
 	 */
 	function getFromTTAddress($email, $pid)
 	{
@@ -45,6 +46,25 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 			$dbuid = $row['uid'];
 		}		
 		return $dbuid;
+	}
+	
+	/**
+	 * getUserFromTTAddress: find user array
+	 * @param	integer $uid: UID des User
+	 * @return	array
+	 */
+	function getUserFromTTAddress($uid)
+	{
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
+		$statement = $queryBuilder
+		->select('*')
+		->from('tt_address')
+		->where(
+			$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+		)
+		->execute();
+		//echo $queryBuilder->getSQL();
+		return $statement->fetch();
 	}
 	
 	/**

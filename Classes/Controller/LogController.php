@@ -282,9 +282,10 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$u = intval($_GET['u']);
     	$a = $_GET['a'];
     	if($t && $t==$this->settings['table'] && $u && $a){
-    		# TODO: ersetzen!
-    		$res=$GLOBALS['TYPO3_DB']->exec_SELECTquery('*', $this->settings['table'], 'deleted=0 AND uid=' . $u,'','',1);
-    		$user=$GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
+    		$user = $this->logRepository->getUserFromTtAddress($u);
+    		//$res=$GLOBALS['TYPO3_DB']->exec_SELECTquery('*', $this->settings['table'], 'deleted=0 AND uid=' . $u,'','',1);
+    		//$user=$GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
+    		//echo GeneralUtility::stdAuthCode($user, 'uid');
     		if($user){
     			if(preg_match('/^[0-9a-f]{8}$/', $a) && ($a == GeneralUtility::stdAuthCode($user, 'uid'))) {
    					// unsubscribe user now
@@ -413,7 +414,8 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         		
         		if ($this->settings['table'] == 'tt_address') {
         			if ($this->settings['module_sys_dmail_category']) {
-        				$dmCatArr = explode(',', $this->settings['module_sys_dmail_category']);
+        				$dmail_cats = str_replace(' ', '', $this->settings['module_sys_dmail_category']);
+        				$dmCatArr = explode(',', $dmail_cats);
         			} else {
         				$dmCatArr = [];
         			}
@@ -469,7 +471,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$dbuid = 0;
     	$email = '';
     	$html = intval($this->settings['module_sys_dmail_html']);
-    	$dmCat = $this->settings['module_sys_dmail_category'];
+    	$dmCat = str_replace(' ', '', $this->settings['module_sys_dmail_category']);
     	$uid = intval($this->request->hasArgument('uid')) ? $this->request->getArgument('uid') : 0;
     	$hash = ($this->request->hasArgument('hash')) ? $this->request->getArgument('hash') : '';
     	if (!$uid || !$hash) {
@@ -624,7 +626,8 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                             
                             if ($this->settings['table'] == 'tt_address') {
                             	if ($this->settings['module_sys_dmail_category']) {
-                            		$dmCatArr = explode(',', $this->settings['module_sys_dmail_category']);
+                            		$dmail_cats = str_replace(' ', '', $this->settings['module_sys_dmail_category']);
+                            		$dmCatArr = explode(',', $dmail_cats);
                             	} else {
                             		$dmCatArr = [];
                             	}

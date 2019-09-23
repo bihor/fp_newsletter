@@ -102,6 +102,17 @@ Furthermore you must specify the POST-parameter, which are used in the other ext
 
 Only parameters of this format are possible. If they are there, a forward will be made to the action create.
 
+Using of categories
+^^^^^^^^^^^^^^^^^^^
+
+module_sys_dmail_category contains categories for direct_mail. This extension uses that categories instaed of the categories from sys_category.
+If you use them like this::
+
+  plugin.tx_fpnewsletter_pi1.settings.module_sys_dmail_category = 1,3
+
+Then this extension will do the same like the direct_mail_subscription. It will make two entires into sys_dmail_ttaddress_category_mm
+and it will set module_sys_dmail_html in tt_address. Do you expect something else?
+
 Changing the labels
 ^^^^^^^^^^^^^^^^^^^
 
