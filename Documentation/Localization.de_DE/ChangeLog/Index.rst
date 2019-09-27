@@ -44,6 +44,7 @@ Option module_sys_dmail_category hinzugefügt.
 Adress-Objekt in Verify-Templates jetzt verfügbar.
 TS optionalFieldsRequired hinzugefügt. required-Attribut hinzugefügt.
 
-Version 0.16.2: neue TypoScript-Einstellung: email.adminMailBeforeVerification
+Version 0.17.0: neue TypoScript-Einstellung: email.adminMailBeforeVerification
 E-Mail an den Admin nun vor oder nach der Verifizierung. Standardverhalten geändert!
 E-Mail an den Admin nun nur noch in einer Sprache.
+Noch ein letztes $GLOBALS['TYPO3_DB'] ersetzt.
