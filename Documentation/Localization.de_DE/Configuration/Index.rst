@@ -111,7 +111,9 @@ module_sys_dmail_category enthält Kategorien für direct_mail. Diese Extension 
   plugin.tx_fpnewsletter_pi1.settings.module_sys_dmail_category = 1,3
 
 dann tut diese Extension das selbe wie auch direct_mail_subscription. Sie wird 2 Einträge in sys_dmail_ttaddress_category_mm machen
-und sie wird module_sys_dmail_html in tt_address setzen. Gibt es diesbezüglich etwa andere Erwartungen?
+und sie wird module_sys_dmail_html in tt_address setzen (nach der Verifikation). Gibt es diesbezüglich etwa andere Erwartungen?
+
+Die Kategorien können z.Z. nicht in den Templates benutzt werden, da sie nicht in den Log-Einträgen gespeichert werden (können).
 
 Ändern der Labels
 ^^^^^^^^^^^^^^^^^
