@@ -36,6 +36,9 @@
 			<trans-unit id="tx_fpnewsletter_domain_model_log.retoken">
 				<source>reCaptcha-token</source>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.mathcaptcha">
+				<source>Mathematical captcha</source>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
 				<source>GDPR</source>
 			</trans-unit>

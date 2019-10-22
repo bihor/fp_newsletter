@@ -107,6 +107,11 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     			$log->setEmail($email);
     		}
     	}
+    	if ($this->settings['mathCAPTCHA']) {
+    		$no1 = ($this->settings['mathCAPTCHA'] == 2) ? mt_rand(10, 19) : mt_rand(4, 9);
+    		$log->setMathcaptcha1(  $no1);
+    		$log->setMathcaptcha2(6);
+    	}
     	$this->view->assign('genders', $genders);
     	$this->view->assign('optional', $optional);
     	$this->view->assign('required', $required);

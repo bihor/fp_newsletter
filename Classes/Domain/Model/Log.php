@@ -93,6 +93,27 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $retoken = '';
     
     /**
+     * Math. captcha
+     *
+     * @var int
+     */
+    protected $mathcaptcha = 0;
+    
+    /**
+     * Math. captcha no. 1
+     *
+     * @var int
+     */
+    protected $mathcaptcha1 = 0;
+    
+    /**
+     * Math. captcha no. 2
+     *
+     * @var int
+     */
+    protected $mathcaptcha2 = 0;
+    
+    /**
      * GDPR checkbox
      * erst ab TYPO3 9: atExtbase\Validate("Boolean", options={"is": true})
      * 
@@ -311,6 +332,69 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setRetoken($retoken)
     {
     	$this->retoken = $retoken;
+    }
+    
+    /**
+     * Returns the mathcaptcha
+     *
+     * @return int $mathcaptcha
+     */
+    public function getMathcaptcha()
+    {
+    	return $this->mathcaptcha;
+    }
+    
+    /**
+     * Sets the mathcaptcha
+     *
+     * @param int $mathcaptcha
+     * @return void
+     */
+    public function setMathcaptcha($mathcaptcha)
+    {
+    	$this->mathcaptcha = $mathcaptcha;
+    }
+    
+    /**
+     * Returns the mathcaptcha1
+     *
+     * @return int $mathcaptcha1
+     */
+    public function getMathcaptcha1()
+    {
+    	return $this->mathcaptcha1;
+    }
+    
+    /**
+     * Sets the mathcaptcha1
+     *
+     * @param int $mathcaptcha1
+     * @return void
+     */
+    public function setMathcaptcha1($mathcaptcha1)
+    {
+    	$this->mathcaptcha1 = $mathcaptcha1;
+    }
+    
+    /**
+     * Returns the mathcaptcha2
+     *
+     * @return int $mathcaptcha2
+     */
+    public function getMathcaptcha2()
+    {
+    	return $this->mathcaptcha2;
+    }
+    
+    /**
+     * Sets the mathcaptcha2
+     *
+     * @param int $mathcaptcha2
+     * @return void
+     */
+    public function setMathcaptcha2($mathcaptcha2)
+    {
+    	$this->mathcaptcha2 = $mathcaptcha2;
     }
     
     /**

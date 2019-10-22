@@ -40,6 +40,7 @@ plugin.tx_fpnewsletter {
 	module_sys_dmail_category =
 	reCAPTCHA_site_key =
 	reCAPTCHA_secret_key =
+	mathCAPTCHA = 0
 	company = Ihre Firma
 	gender {
 	  please = Bitte auswählen

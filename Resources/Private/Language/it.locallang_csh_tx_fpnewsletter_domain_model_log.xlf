@@ -43,6 +43,10 @@
 				<source>reCaptcha-token</source>
 				<target>reCaptcha-token</target>
 			</trans-unit>
+			<trans-unit id="mathcaptcha.description">
+				<source>Mathematical captcha</source>
+				<target>Captcha matematico</target>
+			</trans-unit>
 			<trans-unit id="gdpr.description">
 				<source>GDPR checkbox</source>
 				<target>checkbox GDPR</target>

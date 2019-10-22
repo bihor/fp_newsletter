@@ -47,6 +47,10 @@
 				<source>reCaptcha-token</source>
 				<target>reCaptcha-token</target>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.mathcaptcha">
+				<source>Mathematical captcha</source>
+				<target>Captcha matematico</target>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
 				<source>GDPR</source>
 				<target>GDPR</target>

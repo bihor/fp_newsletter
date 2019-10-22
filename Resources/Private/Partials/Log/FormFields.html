@@ -25,6 +25,10 @@ you could use prependOptionLabel="-" prependOptionValue="0" for a select too.
 </f:if>
 	<label for="email"><f:translate key="tx_fpnewsletter_domain_model_log.email" /> <span class="required">*</span></label>
 	<f:form.textfield property="email" placeholder="{f:translate(key: 'tx_fpnewsletter_domain_model_log.email')}" additionalAttributes="{required : 'required'}" /><br />
+<f:if condition="{settings.mathCAPTCHA} > 0">
+	<label for="mathcaptcha"><f:translate key="tx_fpnewsletter_domain_model_log.mathcaptcha" /> <span class="required">*</span></label>
+	<f:form.textfield property="mathcaptcha" additionalAttributes="{required : 'required'}" /> ({log.mathcaptcha1} - {log.mathcaptcha2} = x)<br />
+</f:if>
 	<label for="gdpr"><f:translate key="tx_fpnewsletter_domain_model_log.gdpr" /> <span class="required">*</span></label>
 	<f:form.checkbox property="gdpr" value="1" additionalAttributes="{required : 'required'}" /> &nbsp;
 	<f:format.raw><f:translate key="tx_fpnewsletter_domain_model_log.gdpr_desc1" /></f:format.raw>

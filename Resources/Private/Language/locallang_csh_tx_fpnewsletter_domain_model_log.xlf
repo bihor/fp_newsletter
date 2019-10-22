@@ -33,6 +33,9 @@
 			<trans-unit id="retoken.description">
 				<source>reCaptcha-token</source>
 			</trans-unit>
+			<trans-unit id="mathcaptcha.description">
+				<source>Mathematical captcha</source>
+			</trans-unit>
 			<trans-unit id="gdpr.description">
 				<source>GDPR checkbox</source>
 			</trans-unit>

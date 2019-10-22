@@ -9,7 +9,7 @@
   <script src="https://www.google.com/recaptcha/api.js?render={settings.reCAPTCHA_site_key}"></script>
 </f:if>
 
-<f:form action="create"  name="log" object="{log}">
+<f:form action="create" name="log" object="{log}">
 	<f:render partial="Log/FormFields" arguments="{_all}" />
 	<f:form.submit value="{f:translate(key: 'subscribe', default: 'subscribe')}" class="btn btn-sm" />
 </f:form>
@@ -18,7 +18,7 @@
 <f:then>
 <br>
 <h3>{f:translate(key: 'unsubscribe_head', default: 'subscribe')}</h3>
-<f:form pageUid="{settings.unsubscribeUid}" action="delete"  name="log" object="{log}">
+<f:form pageUid="{settings.unsubscribeUid}" action="delete" name="log" object="{log}">
 	<f:render partial="Log/FormFieldsOut" arguments="{_all}" />
 	<f:form.submit value="{f:translate(key: 'unsubscribe', default: 'unsubscribe')}" class="btn btn-sm btn-primary" />
 </f:form>
