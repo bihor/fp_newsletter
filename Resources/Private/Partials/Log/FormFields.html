@@ -6,32 +6,32 @@ you could use prependOptionLabel="-" prependOptionValue="0" for a select too.
 <f:if condition="{optional.gender} == 1">
 	<label for="gender"><f:translate key="tx_fpnewsletter_domain_model_log.gender" /> <f:if condition="{required.gender} == 1"><span class="required">*</span></f:if></label>
 	<f:if condition="{required.gender} == 1"><f:then><f:form.select property="gender" options="{genders}" additionalAttributes="{required : 'required'}" /></f:then>
-		<f:else><f:form.select property="gender" options="{genders}" /></f:else></f:if><br />
+		<f:else><f:form.select property="gender" id="gender" options="{genders}" /></f:else></f:if><br />
 </f:if>
 <f:if condition="{optional.title} == 1">
 	<label for="title"><f:translate key="tx_fpnewsletter_domain_model_log.title" /> <f:if condition="{required.title} == 1"><span class="required">*</span></f:if></label>
 	<f:if condition="{required.title} == 1"><f:then><f:form.textfield property="title" additionalAttributes="{required : 'required'}" /></f:then>
-		<f:else><f:form.textfield property="title" /></f:else></f:if><br />
+		<f:else><f:form.textfield id="title" property="title" /></f:else></f:if><br />
 </f:if>
 <f:if condition="{optional.firstname} == 1">
 	<label for="firstname"><f:translate key="tx_fpnewsletter_domain_model_log.firstname" /> <f:if condition="{required.firstname} == 1"><span class="required">*</span></f:if></label>
 	<f:if condition="{required.firstname} == 1"><f:then><f:form.textfield property="firstname" additionalAttributes="{required : 'required'}" /></f:then>
-		<f:else><f:form.textfield property="firstname" /></f:else></f:if><br />
+		<f:else><f:form.textfield id="firstname" property="firstname" /></f:else></f:if><br />
 </f:if>
 <f:if condition="{optional.lastname} == 1">
 	<label for="lastname"><f:translate key="tx_fpnewsletter_domain_model_log.lastname" /> <f:if condition="{required.lastname} == 1"><span class="required">*</span></f:if></label>
 	<f:if condition="{required.lastname} == 1"><f:then><f:form.textfield property="lastname" additionalAttributes="{required : 'required'}" /></f:then>
-		<f:else><f:form.textfield property="lastname" /></f:else></f:if><br />
+		<f:else><f:form.textfield id="lastname" property="lastname" /></f:else></f:if><br />
 </f:if>
 	<label for="email"><f:translate key="tx_fpnewsletter_domain_model_log.email" /> <span class="required">*</span></label>
-	<f:form.textfield property="email" placeholder="{f:translate(key: 'tx_fpnewsletter_domain_model_log.email')}" additionalAttributes="{required : 'required'}" /><br />
+	<f:form.textfield type="email" property="email" id="email" placeholder="{f:translate(key: 'tx_fpnewsletter_domain_model_log.email')}" additionalAttributes="{required : 'required'}" /><br />
 <f:if condition="{settings.mathCAPTCHA} > 0">
 	<label for="mathcaptcha"><f:translate key="tx_fpnewsletter_domain_model_log.mathcaptcha" /> <span class="required">*</span></label>
-	<f:form.textfield property="mathcaptcha" additionalAttributes="{required : 'required'}" size="5" />
+	<f:form.textfield property="mathcaptcha" id="mathcaptcha" additionalAttributes="{required : 'required'}" size="5" />
 	(x = {log.mathcaptcha1} - {log.mathcaptcha2}; <f:translate key="tx_fpnewsletter_domain_model_log.xcaptcha" />)<br />
 </f:if>
 	<label for="gdpr"><f:translate key="tx_fpnewsletter_domain_model_log.gdpr" /> <span class="required">*</span></label>
-	<f:form.checkbox property="gdpr" value="1" additionalAttributes="{required : 'required'}" /> &nbsp;
+	<f:form.checkbox property="gdpr" id="gdpr" value="1" additionalAttributes="{required : 'required'}" /> &nbsp;
 	<f:format.raw><f:translate key="tx_fpnewsletter_domain_model_log.gdpr_desc1" /></f:format.raw>
 	<f:link.page pageUid="{settings.gdprUid}"><f:translate key="tx_fpnewsletter_domain_model_log.gdpr_link_text" /></f:link.page><f:format.raw><f:translate key="tx_fpnewsletter_domain_model_log.gdpr_desc2" /></f:format.raw>
 <br /><br />
