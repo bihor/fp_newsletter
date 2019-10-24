@@ -52,6 +52,7 @@ Settings-Einstellungen
 	module_sys_dmail_category         string      Komma separierte Liste von Kategorien (uid) aus sys_dmail_category
 	reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3
 	reCAPTCHA_secret_key              string      Geheimer Schlüssel für Google reCaptcha v3
+	mathCAPTCHA                       integer     Zeige ein mathematisches Captcha? 0: nein; 1, 2: ja, mit 1-2 Ziffern  0
 	company                           string      Name der Firma                                                        Ihre Firma
 	gender.please                     string      Text für die Anrede-Auswahl                                           Bitte auswählen
 	gender.mr                         string      Text für Herr                                                         Herr
@@ -102,6 +103,9 @@ bei einer Bestellung auch zum Newsletter anmelden können soll, dann muss man di
 
 Es können an dieser Stelle nur Parameter von anderen Extensions mit dem selben Format ausgewertet werden.
 Wenn beide Parameter gesetzt sind, wird zur Action create weitergeleitet.
+
+Man kann 2 verschiedene Captchas benutzen. Wenn man das Google reCaptcha v3 benutzen will, muss man nur den website key und den secret key angeben.
+Wenn man stattdessen ein mathematisches Captcha benutzen will, kann man 1 oder 2 Ziffern verwenden. Der maximale Wert bei 2 Ziffern ist 19.
 
 Benutzung von Kategorien
 ^^^^^^^^^^^^^^^^^^^^^^^^

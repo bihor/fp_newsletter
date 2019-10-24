@@ -95,9 +95,9 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Math. captcha
      *
-     * @var int
+     * @var string
      */
-    protected $mathcaptcha = 0;
+    protected $mathcaptcha = '';
     
     /**
      * Math. captcha no. 1
@@ -337,7 +337,7 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the mathcaptcha
      *
-     * @return int $mathcaptcha
+     * @return string $mathcaptcha
      */
     public function getMathcaptcha()
     {
@@ -347,7 +347,7 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the mathcaptcha
      *
-     * @param int $mathcaptcha
+     * @param string $mathcaptcha
      * @return void
      */
     public function setMathcaptcha($mathcaptcha)

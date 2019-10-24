@@ -195,7 +195,7 @@ return [
     		'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.mathcaptcha',
     		'config' => [
     			'type' => 'input',
-    			'size' => 10,
+    			'size' => 5,
     			'eval' => 'trim'
     		],
     	],

@@ -51,6 +51,10 @@
 				<source>Mathematical captcha</source>
 				<target>Captcha matematico</target>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.xcaptcha">
+				<source>Enter the result of x</source>
+				<target>inserisci il risultato del calcolo di x</target>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
 				<source>GDPR</source>
 				<target>GDPR</target>
@@ -78,6 +82,10 @@
 			<trans-unit id="unsubscribe_head">
 				<source>Unsubscribe from the newsletter</source>
 				<target>Revoca dell'iscrizione dalla newsletter</target>
+			</trans-unit>
+			<trans-unit id="go_back">
+				<source>go back</source>
+				<target>torna indietro</target>
 			</trans-unit>
 			<trans-unit id="email_send1">
 				<source>An email has been send to you. Please verify your email-address for the newsletter subscription.</source>

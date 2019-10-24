@@ -57,6 +57,12 @@
 			<trans-unit id="settings.yes">
 				<target>ja</target>
 			</trans-unit>
+			<trans-unit id="settings.yes1">
+				<target>ja, mit einer Ziffer</target>
+			</trans-unit>
+			<trans-unit id="settings.yes2">
+				<target>ja, mit 1-2 Ziffern</target>
+			</trans-unit>
 			<trans-unit id="settings.ignore">
 				<target>ignoriere dieses Feld</target>
 			</trans-unit>
@@ -68,6 +74,9 @@
 			</trans-unit>
 			<trans-unit id="settings.enableUnsubscribeGdprAsHidden">
 				<target>Die DSGVO-Checkbox auf der Abmeldeseite verbergen?</target>
+			</trans-unit>
+			<trans-unit id="settings.mathCAPTCHA">
+				<target>Zeige ein mathematisches Captcha?</target>
 			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html">
 				<target>Newsletter im HTML-Format abonnieren?</target>

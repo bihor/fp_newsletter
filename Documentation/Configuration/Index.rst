@@ -51,6 +51,7 @@ Properties for settings
 	module_sys_dmail_category         string      Comma separated list of categories (uid) from sys_dmail_category
 	reCAPTCHA_site_key                string      Website-key for Google reCaptcha v3
 	reCAPTCHA_secret_key              string      Secret key for Google reCaptcha v3
+	mathCAPTCHA                       integer     Show a mathematical captcha? 0: no; 1: with 1 digit; 2: with 2 digits 0
 	company                           string      Name of your company                                                  Ihre Firma
 	gender.please                     string      Text for gender selection                                             Bitte auswählen
 	gender.mr                         string      Text for the gender mr                                                Herr
@@ -101,6 +102,9 @@ Furthermore you must specify the POST-parameter, which are used in the other ext
   plugin.tx_fpnewsletter.settings.parameters.email = tx_myshop_pi1|newOrder|email
 
 Only parameters of this format are possible. If they are there, a forward will be made to the action create.
+
+You can use 2 different captchas. If you want to use the Google reCaptcha v3 you need to provide the website key and the secret key.
+If you want to use a mathematical captcha, you can use 1 or 2 digits. The maximum value for 2 digits is 19.
 
 Using of categories
 ^^^^^^^^^^^^^^^^^^^

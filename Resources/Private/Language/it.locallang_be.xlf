@@ -75,6 +75,14 @@
 				<source>yes</source>
 				<target>si</target>
 			</trans-unit>
+			<trans-unit id="settings.yes1">
+				<source>yes 1</source>
+				<target>si, con 1 cifra</target>
+			</trans-unit>
+			<trans-unit id="settings.yes2">
+				<source>yes 2</source>
+				<target>si, con 1-2 cifre</target>
+			</trans-unit>
 			<trans-unit id="settings.ignore">
 				<source>ignore this field</source>
 				<target>ignora questo campo</target>
@@ -90,6 +98,10 @@
 			<trans-unit id="settings.enableUnsubscribeGdprAsHidden">
 				<source>Set the GDPR-checkbox to hidden on the unsubscription form?</source>
 				<target>Configura il checkbox GDPR per nascondere il form di revoca stampato sotto il modulo?</target>
+			</trans-unit>
+			<trans-unit id="settings.mathCAPTCHA">
+				<source>Show a mathematical captcha?</source>
+				<target>Mostra un captcha matematico?</target>
 			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>

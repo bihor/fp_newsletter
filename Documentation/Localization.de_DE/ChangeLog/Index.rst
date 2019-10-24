@@ -48,3 +48,5 @@ Version 0.17.0: neue TypoScript-Einstellung: email.adminMailBeforeVerification
 E-Mail an den Admin nun vor oder nach der Verifizierung. Standardverhalten geändert!
 E-Mail an den Admin nun nur noch in einer Sprache.
 Noch ein letztes $GLOBALS['TYPO3_DB'] ersetzt.
+
+Version 0.17.2: optionales mathematisches Captcha hinzugefügt.

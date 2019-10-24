@@ -57,6 +57,12 @@
 			<trans-unit id="settings.yes">
 				<source>yes</source>
 			</trans-unit>
+			<trans-unit id="settings.yes1">
+				<source>yes, with 1 digit</source>
+			</trans-unit>
+			<trans-unit id="settings.yes2">
+				<source>yes, with 1-2 digits</source>
+			</trans-unit>
 			<trans-unit id="settings.ignore">
 				<source>ignore this field</source>
 			</trans-unit>
@@ -68,6 +74,9 @@
 			</trans-unit>
 			<trans-unit id="settings.enableUnsubscribeGdprAsHidden">
 				<source>Set the GDPR-checkbox to hidden on the unsubscription form?</source>
+			</trans-unit>
+			<trans-unit id="settings.mathCAPTCHA">
+				<source>Show a mathematical captcha?</source>
 			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>

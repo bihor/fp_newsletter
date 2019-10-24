@@ -109,8 +109,12 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	}
     	if ($this->settings['mathCAPTCHA']) {
     		$no1 = ($this->settings['mathCAPTCHA'] == 2) ? mt_rand(10, 19) : mt_rand(4, 9);
-    		$log->setMathcaptcha1(  $no1);
-    		$log->setMathcaptcha2(6);
+    		$no2 = mt_rand(1, $no1-1);
+    		$log->setMathcaptcha1( $no1);
+    		$log->setMathcaptcha2( $no2 );
+    		$GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha1', $no1);
+    		$GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha2', $no2);
+    		$GLOBALS['TSFE']->fe_user->storeSessionData();
     	}
     	$this->view->assign('genders', $genders);
     	$this->view->assign('optional', $optional);
@@ -200,6 +204,13 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		if(!$output["success"]) {
     			$error = 9;
     		}
+    	} else if ($this->settings['mathCAPTCHA']) {
+    		$result = intval($log->getMathcaptcha());
+    		$no1 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1'));
+    		$no2 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2'));
+    		if ($result != ($no1 - $no2)) {
+    			$error = 9;
+    		}
     	}
     	if ($dbuidext > 0) {
     		$error = 6;
@@ -270,6 +281,15 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		if ($email) {
     			$log->setEmail($email);
     		}
+    	}
+    	if ($this->settings['mathCAPTCHA']) {
+    		$no1 = ($this->settings['mathCAPTCHA'] == 2) ? mt_rand(10, 19) : mt_rand(4, 9);
+    		$no2 = mt_rand(1, $no1-1);
+    		$log->setMathcaptcha1( $no1);
+    		$log->setMathcaptcha2( $no2 );
+    		$GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha1', $no1);
+    		$GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha2', $no2);
+    		$GLOBALS['TSFE']->fe_user->storeSessionData();
     	}
     	$this->view->assign('log', $log);
     }
@@ -359,6 +379,13 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		$output = json_decode(curl_exec($ch), true);
     		curl_close($ch);
     		if(!$output["success"]) {
+    			$error = 9;
+    		}
+    	} else if ($this->settings['mathCAPTCHA']) {
+    		$result = intval($log->getMathcaptcha());
+    		$no1 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1'));
+    		$no2 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2'));
+    		if ($result != ($no1 - $no2)) {
     			$error = 9;
     		}
     	}

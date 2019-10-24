@@ -39,6 +39,9 @@
 			<trans-unit id="tx_fpnewsletter_domain_model_log.mathcaptcha">
 				<target>Math. Captcha</target>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.xcaptcha">
+				<target>geben Sie bitte das Rechenergebnis von x ein</target>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
 				<target>Datenschutz</target>
 			</trans-unit>
@@ -59,6 +62,9 @@
 			</trans-unit>
 			<trans-unit id="unsubscribe_head">
 				<target>Vom Newsletter abmelden</target>
+			</trans-unit>
+			<trans-unit id="go_back">
+				<target>Zurück</target>
 			</trans-unit>
 			<trans-unit id="email_send1">
 				<target>Eine E-Mail mit einem Link zur Verifizierung Ihrer E-Mailadresse wurde Ihnen zugesandt. Erst nach Klick auf den Link in der E-Mail sind Sie zu unserem Newsletter angemeldet!</target>

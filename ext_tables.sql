@@ -14,7 +14,7 @@ CREATE TABLE tx_fpnewsletter_domain_model_log (
 	status int(11) DEFAULT '0' NOT NULL,
 	securityhash varchar(255) DEFAULT '' NOT NULL,
 	retoken tinytext,
-	mathcaptcha tinyint(2) unsigned DEFAULT '0' NOT NULL,
+	mathcaptcha varchar(5) DEFAULT '' NOT NULL,
 	gdpr tinyint(1) unsigned DEFAULT '0' NOT NULL,
 
 	tstamp int(11) unsigned DEFAULT '0' NOT NULL,
