@@ -21,7 +21,6 @@
 		}
 	},
 	"replace" : {
-		"fp_newsletter" : "self.version",
 		"typo3-ter/fp-newsletter" : "self.version"
 	},
 	"homepage" : "https://www.fixpunkt.com/webentwicklung/typo3/typo3-extensions/",
@@ -30,6 +29,8 @@
 	},
 	"license" : "GPL-3.0-or-later",
 	"keywords" : [
-		"newsletter subscription dsgvo gdpr"
+		"newsletter subscription",
+		"dsgvo",
+		"gdpr"
 	]
 }
