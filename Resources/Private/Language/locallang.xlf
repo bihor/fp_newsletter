@@ -37,7 +37,7 @@
 				<source>reCaptcha-token</source>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.mathcaptcha">
-				<source>Mathematical captcha</source>
+				<source>Spam protection</source>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.xcaptcha">
 				<source>enter the result of x</source>

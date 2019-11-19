@@ -114,6 +114,13 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $mathcaptcha2 = 0;
     
     /**
+     * Math. captcha operator
+     *
+     * @var bool
+     */
+    protected $mathcaptchaop = false;
+    
+    /**
      * GDPR checkbox
      * erst ab TYPO3 9: atExtbase\Validate("Boolean", options={"is": true})
      * 
@@ -395,6 +402,37 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function setMathcaptcha2($mathcaptcha2)
     {
     	$this->mathcaptcha2 = $mathcaptcha2;
+    }
+    
+    /**
+     * Returns the math. captcha operator
+     *
+     * @return bool $mathcaptchaop
+     */
+    public function getMathcaptchaop()
+    {
+    	return $this->mathcaptchaop;
+    }
+    
+    /**
+     * Sets the math. captcha operator
+     *
+     * @param bool $mathcaptchaop
+     * @return void
+     */
+    public function setMathcaptchaop($mathcaptchaop)
+    {
+    	$this->mathcaptchaop = $mathcaptchaop;
+    }
+    
+    /**
+     * Returns the boolean state of math. captcha operator
+     *
+     * @return bool
+     */
+    public function isMathcaptchaop()
+    {
+    	return $this->mathcaptchaop;
     }
     
     /**

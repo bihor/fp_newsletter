@@ -110,10 +110,13 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	if ($this->settings['mathCAPTCHA']) {
     		$no1 = ($this->settings['mathCAPTCHA'] == 2) ? mt_rand(10, 19) : mt_rand(4, 9);
     		$no2 = mt_rand(1, $no1-1);
+    		$operator = mt_rand(0, 1);
     		$log->setMathcaptcha1( $no1);
     		$log->setMathcaptcha2( $no2 );
+    		$log->setMathcaptchaop( (($operator == 1) ? TRUE : FALSE) );
     		$GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha1', $no1);
     		$GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha2', $no2);
+    		$GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptchaop', $operator);
     		$GLOBALS['TSFE']->fe_user->storeSessionData();
     	}
     	$this->view->assign('genders', $genders);
@@ -208,7 +211,13 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		$result = intval($log->getMathcaptcha());
     		$no1 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1'));
     		$no2 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2'));
-    		if ($result != ($no1 - $no2)) {
+    		$operator = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptchaop'));
+    		if ($operator == 1) {
+    			$real_result = $no1 + $no2;
+    		} else {
+    			$real_result = $no1 - $no2;
+    		}
+    		if ($result != $real_result) {
     			$error = 9;
     		}
     	}
@@ -285,10 +294,13 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	if ($this->settings['mathCAPTCHA']) {
     		$no1 = ($this->settings['mathCAPTCHA'] == 2) ? mt_rand(10, 19) : mt_rand(4, 9);
     		$no2 = mt_rand(1, $no1-1);
+    		$operator = mt_rand(0, 1);
     		$log->setMathcaptcha1( $no1);
     		$log->setMathcaptcha2( $no2 );
+    		$log->setMathcaptchaop( (($operator == 1) ? TRUE : FALSE) );
     		$GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha1', $no1);
     		$GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha2', $no2);
+    		$GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptchaop', $operator);
     		$GLOBALS['TSFE']->fe_user->storeSessionData();
     	}
     	$this->view->assign('log', $log);
@@ -385,7 +397,13 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		$result = intval($log->getMathcaptcha());
     		$no1 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1'));
     		$no2 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2'));
-    		if ($result != ($no1 - $no2)) {
+    		$operator = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptchaop'));
+    		if ($operator == 1) {
+    			$real_result = $no1 + $no2;
+    		} else {
+    			$real_result = $no1 - $no2;
+    		}
+    		if ($result != $real_result) {
     			$error = 9;
     		}
     	}
