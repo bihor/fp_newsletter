@@ -26,8 +26,12 @@ Wenn ein Benutzer solch ein Formular absendet, landen die Daten in der Tabelle t
 Erst nachdem ein Benutzer seine E-Mail-Adresse verifiziert hat, werden die Daten in die Tabelle tt_address kopiert.
 
 Im Email-Ordner findet man die Templates, die per E-Mail verschickt werden.
-Im Moment gibt es nur Email-Templates für die Anmeldung. Das Double-Opt-Out-Verfahren ist noch nicht implementiert!
-Das Email-Templates ist für die Verifizierung der E-Mail-Adresse da.
+Es gibt Email-Templates für die Verifizierung der E-Mail-Adresse und für den Admin.
+UserToAdmin wird vor der Verifikation benutzt und SubscribeToAdmin nach der Verifikation der E-Mail-Adresse.
+Zum ändern der Templates muss man sie z.B. nach fileadmin kopieren und den Link dazu angeben::
+
+  plugin.tx_fpnewsletter.view.templateRootPaths.1 = fileadmin/bsdist/theme/tmpl/fp_newsletter/Templates/
+
 Es gibt eine Text- und eine HTML-Version. Und es gibt beide Templates in deutsch und in englisch.
 Der Übersetzungs-Viewhelper funktioniert bei diesen Templates nicht, weshalb man die Texte dort direkt eintragen muss.
 Man muss deshalb für jede Sprache neue Templates anlegen. Das Default-Template ist in deutsch und SubscribeVerify1.html

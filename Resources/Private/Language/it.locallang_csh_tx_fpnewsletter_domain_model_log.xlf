@@ -31,6 +31,42 @@
 				<source>E-Mail</source>
 				<target>E-mail</target>
 			</trans-unit>
+			<trans-unit id="address.description">
+				<target>Adresse</target>
+			</trans-unit>
+			<trans-unit id="zip.description">
+				<target>PLZ</target>
+			</trans-unit>
+			<trans-unit id="city.description">
+				<target>Ort</target>
+			</trans-unit>
+			<trans-unit id="region.description">
+				<target>Region</target>
+			</trans-unit>
+			<trans-unit id="country.description">
+				<target>Land</target>
+			</trans-unit>
+			<trans-unit id="phone.description">
+				<target>Telefon</target>
+			</trans-unit>
+			<trans-unit id="mobile.description">
+				<target>Mobil-Telefon</target>
+			</trans-unit>
+			<trans-unit id="fax.description">
+				<target>Telefax</target>
+			</trans-unit>
+			<trans-unit id="www.description">
+				<target>WWW</target>
+			</trans-unit>
+			<trans-unit id="position.description">
+				<target>Position</target>
+			</trans-unit>
+			<trans-unit id="company.description">
+				<target>Institution/Organisation</target>
+			</trans-unit>
+			<trans-unit id="categories.description">
+				<target>Kategorien (Kommagetrennt)</target>
+			</trans-unit>
 			<trans-unit id="status.description">
 				<source>Status</source>
 				<target>Status</target>

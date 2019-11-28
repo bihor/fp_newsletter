@@ -32,8 +32,8 @@ Settings-Einstellungen
 	Feld                              Typ         Beschreibung                                                          Standard-Wert
 	================================= =========== ===================================================================== ==========================
 	table                             string      Bisher nur tt_address möglich                                         tt_address
-	optionalFields                    string      gender,title,firstname,lastname sind die optionalen Werte             gender,firstname,lastname
-	optionalFieldsRequired            string      gender,title,firstname,lastname könnten erforderliche Werte sein*
+	optionalFields                    string      Optionale Werte: siehe weiter unten                                   gender,firstname,lastname
+	optionalFieldsRequired            string      Optionale erforderliche* Werte: siehe weiter unten
 	doubleOptOut                      boolean     Double opt out Abmeldung einschalten?                                 0
 	enableUnsubscribeForm             boolean     Abmeldeformular auf der Anmeldeseite mit ausgeben?**                  0
 	enableUnsubscribeGdprAsHidden     boolean     DSGVO-Checkbox beim Abmeldeformular verbergen?                        0
@@ -106,6 +106,17 @@ Wenn beide Parameter gesetzt sind, wird zur Action create weitergeleitet.
 
 Man kann 2 verschiedene Captchas benutzen. Wenn man das Google reCaptcha v3 benutzen will, muss man nur den website key und den secret key angeben.
 Wenn man stattdessen ein mathematisches Captcha benutzen will, kann man 1 oder 2 Ziffern verwenden. Der maximale Wert bei 2 Ziffern ist 19.
+
+Optionale und erforderliche Felder
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Nur email und gdpr sind erforderliche Felder im Modell. Wenn man mehr erforderliche Felder haben will, kann man sie nur via TypoScript und Templates als
+erforderlich markieren. Folgende optionalen Felder sind möglich/stehen zur Verfügung:
+gender, title, firstname, lastname, address, zip, city, region, country, phone, mobile, fax, www, position, company.
+Man kann alle diese Felder auch als erforderlich markieren. Hier ein Beispiel für das Anmeldeformular via TypoScript Setup::
+
+  plugin.tx_fpnewsletter_pi1.settings.optionalFields = gender,title,firstname,lastname,www,position,company
+  plugin.tx_fpnewsletter_pi1.settings.optionalFieldsRequired = firstname,lastname,company
 
 Benutzung von Kategorien
 ^^^^^^^^^^^^^^^^^^^^^^^^

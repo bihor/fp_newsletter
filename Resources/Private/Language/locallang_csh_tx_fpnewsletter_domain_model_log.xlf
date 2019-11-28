@@ -24,6 +24,42 @@
 			<trans-unit id="email.description">
 				<source>E-Mail</source>
 			</trans-unit>
+			<trans-unit id="address.description">
+				<source>Addess</source>
+			</trans-unit>
+			<trans-unit id="zip.description">
+				<source>Zip</source>
+			</trans-unit>
+			<trans-unit id="city.description">
+				<source>City</source>
+			</trans-unit>
+			<trans-unit id="region.description">
+				<source>Region</source>
+			</trans-unit>
+			<trans-unit id="country.description">
+				<source>Country</source>
+			</trans-unit>
+			<trans-unit id="phone.description">
+				<source>Phone</source>
+			</trans-unit>
+			<trans-unit id="mobile.description">
+				<source>Mobile</source>
+			</trans-unit>
+			<trans-unit id="fax.description">
+				<source>Telefax</source>
+			</trans-unit>
+			<trans-unit id="www.description">
+				<source>WWW</source>
+			</trans-unit>
+			<trans-unit id="position.description">
+				<source>Position</source>
+			</trans-unit>
+			<trans-unit id="company.description">
+				<source>Company</source>
+			</trans-unit>
+			<trans-unit id="categories.description">
+				<source>Categories (comma separated)</source>
+			</trans-unit>
 			<trans-unit id="status.description">
 				<source>Status</source>
 			</trans-unit>

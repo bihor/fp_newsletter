@@ -31,8 +31,8 @@ Properties for settings
 	Property                          Data type   Description                                                           Default
 	================================= =========== ===================================================================== ==========================
 	table                             string      Today only tt_address suported                                        tt_address
-	optionalFields                    string      gender,title,firstname,lastname are supported as optional fields      gender,firstname,lastname
-	optionalFieldsRequired            string      gender,title,firstname,lastname are supported as opt. req. fields*
+	optionalFields                    string      Optional fields: see below                                            gender,firstname,lastname
+	optionalFieldsRequired            string      Optional required* fields: see below
 	doubleOptOut                      boolean     Enable double out out unsubscription?                                 0
 	enableUnsubscribeForm             boolean     Enable unsubscribe form at the subscribe page?**                      0
 	enableUnsubscribeGdprAsHidden     boolean     Do not show the gdpr-checkbox at unsubscribe form?                    0
@@ -106,6 +106,16 @@ Only parameters of this format are possible. If they are there, a forward will b
 You can use 2 different captchas. If you want to use the Google reCaptcha v3 you need to provide the website key and the secret key.
 If you want to use a mathematical captcha, you can use 1 or 2 digits. The maximum value for 2 digits is 19.
 
+Optional and requiered fields
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Only email and gdpr are mandatory fields in the model. If you need more mandatory fields, you can make them only via TypoScript and the templates required.
+There are the following optional fields awailable: gender, title, firstname, lastname, address, zip, city, region, country, phone, mobile, fax, www, position, company.
+You can make all this fields required. Here an example to enable some of this fields in the subscription form via TypoScript setup::
+
+  plugin.tx_fpnewsletter_pi1.settings.optionalFields = gender,title,firstname,lastname,www,position,company
+  plugin.tx_fpnewsletter_pi1.settings.optionalFieldsRequired = firstname,lastname,company
+  
 Using of categories
 ^^^^^^^^^^^^^^^^^^^
 

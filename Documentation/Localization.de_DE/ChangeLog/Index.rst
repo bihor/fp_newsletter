@@ -50,3 +50,4 @@ E-Mail an den Admin nun nur noch in einer Sprache.
 Noch ein letztes $GLOBALS['TYPO3_DB'] ersetzt.
 
 Version 0.17.2: optionales mathematisches Captcha hinzugefügt.
+Mehr optionale Felder: address, zip, city, region, country, phone, mobile, fax, www, position, company.

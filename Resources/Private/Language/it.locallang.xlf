@@ -35,6 +35,42 @@
 				<source>E-Mail</source>
 				<target>E-mail</target>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.address">
+				<target>Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.zip">
+				<target>PLZ</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.city">
+				<target>Ort</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.region">
+				<target>Region</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.country">
+				<target>Land</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.phone">
+				<target>Telefon</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.mobile">
+				<target>Mobil</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.fax">
+				<target>Fax</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.www">
+				<target>WWW</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.position">
+				<target>Position</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.company">
+				<target>Institution/Organisation</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.categories">
+				<target>Kategorien (Kommagetrennt)</target>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status">
 				<source>Status</source>
 				<target>Status</target>

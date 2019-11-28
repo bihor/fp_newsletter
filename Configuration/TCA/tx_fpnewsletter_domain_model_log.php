@@ -17,10 +17,10 @@ return [
         'iconfile' => 'EXT:fp_newsletter/Resources/Public/Icons/tx_fpnewsletter_domain_model_log.gif'
     ],
     'interface' => [
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, firstname, lastname, email, status, securityhash, retoken, mathcaptcha, gdpr',
+		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, firstname, lastname, email, address, zip, city, region, country, phone, mobile, fax, www, position, company, categories, status, securityhash, retoken, mathcaptcha, gdpr',
     ],
     'types' => [
-		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, firstname, lastname, email, status, securityhash, retoken, mathcaptcha, gdpr'],
+		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, firstname, lastname, email, address, zip, city, region, country, phone, mobile, fax, www, birthday, position, company, categories, status, securityhash, retoken, mathcaptcha, gdpr'],
     ],
     'columns' => [
 		'sys_language_uid' => [
@@ -151,6 +151,114 @@ return [
 			    'eval' => 'trim,required'
 			],
 	    ],
+    	'address' => [
+    		'exclude' => true,
+    		'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.address',
+    		'config' => [
+    			'type' => 'input',
+    			'size' => 30,
+    			'eval' => 'trim'
+    		],
+    	],
+    	'zip' => [
+    		'exclude' => true,
+    		'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.zip',
+    		'config' => [
+    			'type' => 'input',
+    			'size' => 30,
+    			'eval' => 'trim'
+    		],
+    	],
+    	'city' => [
+    		'exclude' => true,
+    		'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.city',
+    		'config' => [
+    			'type' => 'input',
+    			'size' => 30,
+    			'eval' => 'trim'
+    		],
+    	],
+    	'region' => [
+    		'exclude' => true,
+    		'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.region',
+    		'config' => [
+    			'type' => 'input',
+    			'size' => 30,
+    			'eval' => 'trim'
+    		],
+    	],
+    	'country' => [
+    		'exclude' => true,
+    		'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.country',
+    		'config' => [
+    			'type' => 'input',
+    			'size' => 30,
+    			'eval' => 'trim'
+    		],
+    	],
+    	'phone' => [
+    		'exclude' => true,
+    		'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.phone',
+    		'config' => [
+    			'type' => 'input',
+    			'size' => 30,
+    			'eval' => 'trim'
+    		],
+    	],
+    	'mobile' => [
+    		'exclude' => true,
+    		'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.mobile',
+    		'config' => [
+    			'type' => 'input',
+    			'size' => 30,
+    			'eval' => 'trim'
+    		],
+    	],
+    	'fax' => [
+    		'exclude' => true,
+    		'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.fax',
+    		'config' => [
+    			'type' => 'input',
+    			'size' => 30,
+    			'eval' => 'trim'
+    		],
+    	],
+    	'www' => [
+    		'exclude' => true,
+    		'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.www',
+    		'config' => [
+    			'type' => 'input',
+    			'size' => 30,
+    			'eval' => 'trim'
+    		],
+    	],
+    	'position' => [
+    		'exclude' => true,
+    		'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.position',
+    		'config' => [
+    			'type' => 'input',
+    			'size' => 30,
+    			'eval' => 'trim'
+    		],
+    	],
+    	'company' => [
+    		'exclude' => true,
+    		'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.company',
+    		'config' => [
+    			'type' => 'input',
+    			'size' => 30,
+    			'eval' => 'trim'
+    		],
+    	],
+    	'categories' => [
+    		'exclude' => true,
+    		'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.categories',
+    		'config' => [
+    			'type' => 'input',
+    			'size' => 30,
+    			'eval' => 'trim'
+    		],
+    	],
 	    'status' => [
 	        'exclude' => true,
 	        'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.status',

@@ -49,4 +49,5 @@ Email to admin now before or after verification. Default status changed!
 Email to admin only in one language.
 Very last $GLOBALS['TYPO3_DB'] replaced.
 
-Version 0.17.2: optional mathematical captcha added.
+Version 0.18.0: optional mathematical captcha added.
+More optional fields: address, zip, city, region, country, phone, mobile, fax, www, position, company.

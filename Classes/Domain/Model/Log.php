@@ -70,7 +70,91 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var string
      */
     protected $email = '';
-
+    
+    /**
+     * Adresse
+     *
+     * @var string
+     */
+    protected $address = '';
+    
+    /**
+     * PLZ
+     *
+     * @var string
+     */
+    protected $zip = '';
+    
+    /**
+     * Ort
+     *
+     * @var string
+     */
+    protected $city = '';
+    
+    /**
+     * Region
+     *
+     * @var string
+     */
+    protected $region = '';
+    
+    /**
+     * Land
+     *
+     * @var string
+     */
+    protected $country = '';
+    
+    /**
+     * Telefon
+     *
+     * @var string
+     */
+    protected $phone = '';
+    
+    /**
+     * Mobil-Telefon
+     *
+     * @var string
+     */
+    protected $mobile = '';
+    
+    /**
+     * Telefax
+     *
+     * @var string
+     */
+    protected $fax = '';
+    
+    /**
+     * WWW
+     *
+     * @var string
+     */
+    protected $www = '';
+    
+    /**
+     * Position
+     *
+     * @var string
+     */
+    protected $position = '';
+    
+    /**
+     * Firma
+     *
+     * @var string
+     */
+    protected $company = '';
+    
+    /**
+     * Kategorien
+     *
+     * @var string
+     */
+    protected $categories = '';
+    
     /**
      * Status
      *
@@ -278,6 +362,258 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
         $this->email = $email;
     }
 
+    /**
+     * Returns the address
+     *
+     * @return string $address
+     */
+    public function getAddress()
+    {
+    	return $this->address;
+    }
+    
+    /**
+     * Sets the address
+     *
+     * @param string $address
+     * @return void
+     */
+    public function setAddress($address)
+    {
+    	$this->address = $address;
+    }
+    
+    /**
+     * Returns the zip
+     *
+     * @return string $zip
+     */
+    public function getZip()
+    {
+    	return $this->zip;
+    }
+    
+    /**
+     * Sets the zip
+     *
+     * @param string $zip
+     * @return void
+     */
+    public function setZip($zip)
+    {
+    	$this->zip = $zip;
+    }
+    
+    /**
+     * Returns the city
+     *
+     * @return string $city
+     */
+    public function getCity()
+    {
+    	return $this->city;
+    }
+    
+    /**
+     * Sets the city
+     *
+     * @param string $city
+     * @return void
+     */
+    public function setCity($city)
+    {
+    	$this->city = $city;
+    }
+    
+    /**
+     * Returns the region
+     *
+     * @return string $region
+     */
+    public function getRegion()
+    {
+    	return $this->region;
+    }
+    
+    /**
+     * Sets the region
+     *
+     * @param string $region
+     * @return void
+     */
+    public function setRegion($region)
+    {
+    	$this->region = $region;
+    }
+    
+    /**
+     * Returns the country
+     *
+     * @return string $country
+     */
+    public function getCountry()
+    {
+    	return $this->country;
+    }
+    
+    /**
+     * Sets the country
+     *
+     * @param string $country
+     * @return void
+     */
+    public function setCountry($country)
+    {
+    	$this->country = $country;
+    }
+    
+    /**
+     * Returns the phone
+     *
+     * @return string $phone
+     */
+    public function getPhone()
+    {
+    	return $this->phone;
+    }
+    
+    /**
+     * Sets the phone
+     *
+     * @param string $phone
+     * @return void
+     */
+    public function setPhone($phone)
+    {
+    	$this->phone = $phone;
+    }
+    
+    /**
+     * Returns the mobile
+     *
+     * @return string $mobile
+     */
+    public function getMobile()
+    {
+    	return $this->mobile;
+    }
+    
+    /**
+     * Sets the mobile
+     *
+     * @param string $mobile
+     * @return void
+     */
+    public function setMobile($mobile)
+    {
+    	$this->mobile = $mobile;
+    }
+    
+    /**
+     * Returns the fax
+     *
+     * @return string $fax
+     */
+    public function getFax()
+    {
+    	return $this->fax;
+    }
+    
+    /**
+     * Sets the fax
+     *
+     * @param string $fax
+     * @return void
+     */
+    public function setFax($fax)
+    {
+    	$this->fax = $fax;
+    }
+    
+    /**
+     * Returns the www
+     *
+     * @return string $www
+     */
+    public function getWww()
+    {
+    	return $this->www;
+    }
+    
+    /**
+     * Sets the www
+     *
+     * @param string $www
+     * @return void
+     */
+    public function setWww($www)
+    {
+    	$this->www = $www;
+    }
+    
+    /**
+     * Returns the position
+     *
+     * @return string $position
+     */
+    public function getPosition()
+    {
+    	return $this->position;
+    }
+    
+    /**
+     * Sets the position
+     *
+     * @param string $position
+     * @return void
+     */
+    public function setPosition($position)
+    {
+    	$this->position = $position;
+    }
+    
+    /**
+     * Returns the company
+     *
+     * @return string $company
+     */
+    public function getCompany()
+    {
+    	return $this->company;
+    }
+    
+    /**
+     * Sets the company
+     *
+     * @param string $company
+     * @return void
+     */
+    public function setCompany($company)
+    {
+    	$this->company = $company;
+    }
+    
+    /**
+     * Returns the categories
+     *
+     * @return string $categories
+     */
+    public function getCategories()
+    {
+    	return $this->categories;
+    }
+    
+    /**
+     * Sets the categories
+     *
+     * @param string $categories
+     * @return void
+     */
+    public function setCategories($categories)
+    {
+    	$this->categories = $categories;
+    }
+    
     /**
      * Returns the status
      *

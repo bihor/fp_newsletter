@@ -25,6 +25,11 @@ If a user submits the form, the entries lands in the table tx_fpnewsletter_domai
 Only if a user verifies his email-address, his entry will be copied to the table tt_address.
 
 In the Email-folder you find the templates for the email to use user. Its the email for verifing the email-address.
+And there are email-templates for the admin: UserToAdmin is sent before verification and SubscribeToAdmin is sent after the email verification.
+If you want to change the text of the email, copy the templates e.g. to fileadmin and set the new path via TypoScript setup::
+
+  plugin.tx_fpnewsletter.view.templateRootPaths.1 = fileadmin/bsdist/theme/tmpl/fp_newsletter/Templates/
+
 There is a text and a HTML version. And there is an english and a german version of this template.
 The translate-ViewHelper can not be used in this templates thats why you need to create a template for every used language.
 The default template is in german. SubscribeVerify1.html contains the english text. You can use this email-templates like this::

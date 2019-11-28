@@ -81,13 +81,23 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		else $gender = '';
 		// crdate fehlt in älteren Versionen!
 		$insert =  ['pid' => intval($address->getPid()),
-					'tstamp' => $timestamp,
-					'crdate' => $timestamp,
-					'title' => $address->getTitle(),
-					'first_name' => $address->getFirstname(),
-					'last_name' => $address->getLastname(),
-					'name' => trim($address->getFirstname() . ' ' . $address->getLastname()),
-					'email' => $address->getEmail()];
+			'tstamp' => $timestamp,
+			'crdate' => $timestamp,
+			'title' => $address->getTitle(),
+			'first_name' => $address->getFirstname(),
+			'last_name' => $address->getLastname(),
+			'name' => trim($address->getFirstname() . ' ' . $address->getLastname()),
+			'address' => $address->getAddress(),
+			'zip' => $address->getZip(),
+			'city' => $address->getCity(),
+			'region' => $address->getRegion(),
+			'country' => $address->getCountry(),
+			'phone' => $address->getPhone(),
+			'mobile' => $address->getMobile(),
+			'fax' => $address->getFax(),
+			'position' => $address->getPosition(),
+			'company' => $address->getCompany(),
+			'email' => $address->getEmail()];
 		if ($mode != -1) {
 			$insert['module_sys_dmail_html'] = $mode;
 		}
