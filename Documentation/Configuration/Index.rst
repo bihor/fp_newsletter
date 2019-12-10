@@ -119,15 +119,15 @@ You can make all this fields required. Here an example to enable some of this fi
 Using of categories
 ^^^^^^^^^^^^^^^^^^^
 
-module_sys_dmail_category contains categories for direct_mail. This extension uses that categories instaed of the categories from sys_category.
+The table module_sys_dmail_category contains categories for direct_mail. This extension uses that categories instaed of the categories from sys_category.
 If you use them like this::
 
   plugin.tx_fpnewsletter_pi1.settings.module_sys_dmail_category = 1,3
 
-Then this extension will do the same like the direct_mail_subscription. It will make two entires into sys_dmail_ttaddress_category_mm
-and it will set module_sys_dmail_html in tt_address (after the verification). Do you expect something else?
+Then this extension will do the same like the direct_mail_subscription extension. It will make two entires into sys_dmail_ttaddress_category_mm
+and it will set module_sys_dmail_category in tt_address (after the verification). Do you expect something else?
 
-Currently it is not possible to use this categories in the templates, because they are not stored in the log-entries.
+The categories are as hidden-field in the template. You could add checkboxes and copy the checked values by jQuery to the hidden-field if you need a more flexible solution.
 
 Changing the labels
 ^^^^^^^^^^^^^^^^^^^

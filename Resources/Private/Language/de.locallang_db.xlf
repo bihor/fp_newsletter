@@ -76,7 +76,7 @@
 				<target>Institution/Organisation</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.categories">
-				<source>Kategorien (Kommagetrennt)</source>
+				<target>Kategorien (Kommagetrennt)</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status">
 				<target>Status</target>

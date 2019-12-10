@@ -101,6 +101,10 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		if ($mode != -1) {
 			$insert['module_sys_dmail_html'] = $mode;
 		}
+		if ($address->getCategories()) {
+			// Priorität haben die Kategorien aus dem Formular/Log-Eintrag
+			$dmCatArr = explode(',', $address->getCategories());	
+		}
 		if (is_array($dmCatArr) && count($dmCatArr)>0) {
 			$insert['module_sys_dmail_category'] = count($dmCatArr);
 		}

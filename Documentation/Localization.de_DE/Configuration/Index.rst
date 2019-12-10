@@ -121,14 +121,16 @@ Man kann alle diese Felder auch als erforderlich markieren. Hier ein Beispiel f�
 Benutzung von Kategorien
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-module_sys_dmail_category enthält Kategorien für direct_mail. Diese Extension benutzt diese Kategorien und nicht die von sys_category. Wenn man sie so benutzt::
+Die Tabelle module_sys_dmail_category enthält Kategorien für direct_mail. Diese Extension benutzt diese Kategorien und nicht die von sys_category.
+Wenn man sie so benutzt::
 
   plugin.tx_fpnewsletter_pi1.settings.module_sys_dmail_category = 1,3
 
 dann tut diese Extension das selbe wie auch direct_mail_subscription. Sie wird 2 Einträge in sys_dmail_ttaddress_category_mm machen
-und sie wird module_sys_dmail_html in tt_address setzen (nach der Verifikation). Gibt es diesbezüglich etwa andere Erwartungen?
+und sie wird module_sys_dmail_category in tt_address setzen (nach der Verifikation). Gibt es diesbezüglich etwa andere Erwartungen?
 
-Die Kategorien können z.Z. nicht in den Templates benutzt werden, da sie nicht in den Log-Einträgen gespeichert werden (können).
+Die Kategorien werden als hidden-Feld ins Template eingefügt. Wenn man eine flexiblere Lösung will, könnte man z.B. Checkboxes per jQuery auswerten und
+die angeklicken Kategorien ins hidden-Feld kopieren.
 
 Ändern der Labels
 ^^^^^^^^^^^^^^^^^
