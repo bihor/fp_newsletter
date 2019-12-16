@@ -50,5 +50,6 @@ Email to admin only in one language.
 Very last $GLOBALS['TYPO3_DB'] replaced.
 
 Version 0.18.0: optional mathematical captcha added.
+Set sys_language_uid=-1 if l>0.
 The categories are stored now in the log-entry too.
 More optional fields: address, zip, city, region, country, phone, mobile, fax, www, position, company.

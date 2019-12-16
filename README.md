@@ -1,6 +1,6 @@
 # fp_newsletter
 
-version 0.17.6
+version 0.17.7
 
 The TYPO3 extension fp_newsletter is designed to provide a newsletter subscription and unsubscription service for the table tt_address which can be used
 by the extension direct_mail. Furthermore it is designed to be compatible with the GDPR. A log is written about every action in a separate table.
@@ -13,4 +13,4 @@ https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/en-us/
 Es gibt auch eine deutsche Anleitung/Dokumentation zu dieser Erweiterung (Link z.Z. defekt):
 https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/de-de/
 
-Last feature: categories are stored now in the Log-entry too.
+Last feature: setting of sys_language_uid.

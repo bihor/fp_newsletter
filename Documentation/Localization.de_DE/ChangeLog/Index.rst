@@ -49,6 +49,7 @@ E-Mail an den Admin nun vor oder nach der Verifizierung. Standardverhalten geän
 E-Mail an den Admin nun nur noch in einer Sprache.
 Noch ein letztes $GLOBALS['TYPO3_DB'] ersetzt.
 
-Version 0.17.2: optionales mathematisches Captcha hinzugefügt.
+Version 0.18.0: optionales mathematisches Captcha hinzugefügt.
+Setze sys_language_uid=-1 wenn l>0.
 Die Kategorien werden nun auch im Log-Eintrag gespeichert.
 Mehr optionale Felder: address, zip, city, region, country, phone, mobile, fax, www, position, company.

@@ -162,8 +162,12 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         //$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $hash = md5(uniqid($log->getEmail(), true));
         $log->setSecurityhash($hash);
-        // Das hier sollte eigentlich automatisch passieren, tut es wohl aber nicht. Dennoch: zu umständlich.
-        //$log->set_languageUid(intval($GLOBALS['TSFE']->config['config']['sys_language_uid']));
+        // Sprachsetzung sollte eigentlich automatisch passieren, tut es wohl aber nicht. Dennoch: zu umständlich.
+        $lang = intval($GLOBALS['TSFE']->config['config']['sys_language_uid']);
+        if ($lang > 0) {
+        	// TODO: erstmal -1 setzen. Später mal die richtige Sprache benutzen
+        	$log->set_languageUid(-1);
+        }
         $log->setStatus(1);
     	$this->logRepository->add($log);
     	$persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');

@@ -29,10 +29,9 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Language
      *
-     * var int
-     *
+     * @var int
+     */
     protected $_languageUid = 0;
-    */
     
     /**
      * Anrede
@@ -238,24 +237,23 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the sys_language_uid
      *
-     * return int $sys_language_uid
-     *
+     * @return int $sys_language_uid
+     */
     public function get_languageUid()
     {
         return $this->_languageUid;
     }
     
-    **
+    /**
      * Sets the sys_language_uid
      *
-     * param int $sys_language_uid
-     * return void
-     *
+     * @param int $sys_language_uid
+     * @return void
+     */
     public function set_languageUid($sys_language_uid)
     {
         $this->_languageUid = $sys_language_uid;
     }
-    */
     
     /**
      * Returns the gender
