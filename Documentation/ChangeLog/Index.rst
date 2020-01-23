@@ -53,3 +53,5 @@ Version 0.18.0: optional mathematical captcha added.
 Set sys_language_uid=-1 if l>0.
 The categories are stored now in the log-entry too.
 More optional fields: address, zip, city, region, country, phone, mobile, fax, www, position, company.
+
+Version: 0.19.0: possibility added, to delete old log-entries via a task.

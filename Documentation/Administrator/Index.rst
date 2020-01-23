@@ -69,3 +69,9 @@ FAQ
 
   TYPO3 9 ignores the parameter absolute="1"? Or you have not added a domain in the backend?
   Add the domain by your own in that case.
+
+- I don´t want/need a log entry. Can I avoid that?
+
+  Not at all. You can add a task to your scheduler: select the task Scheduler / Table garbage collection.
+  Select there the table tx_fpnewsletter_domain_model_log and set the days after the entries should be deleted.
+  If the CronJob is running, the task will delete all old log entries. 
