@@ -804,13 +804,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	// Alternative: http://lbrmedia.net/codebase/Eintrag/extbase-60-standalone-template-renderer/
     	// Das hier ist von hier: http://wiki.typo3.org/How_to_use_the_Fluid_Standalone_view_to_render_template_based_emails
     	// und https://wiki.typo3.org/How_to_use_the_Fluid_Standalone_view_to_render_template_based_emails
-    	$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-    	/* for ($i=10; $i>=0; $i--) {
-    		$templateRootPath = \TYPO3\CMS\Core\Utility\GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPaths'][$i]);
-    		if (is_file($templateRootPath . 'Email/' . $templateName . '.html')) {
-    			break;
-    		}
-    	} */
+    	$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(
+    		\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK
+    	);
     	$lang = intval($GLOBALS['TSFE']->sys_language_uid);
     	if (($lang > 0) && !$toAdmin) {
     		$templateName .= $lang;
@@ -818,6 +814,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	
     	/** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailView */
     	$emailViewHtml = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
+    	//$templateRootPath = GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
     	//$templatePathAndFilename = $templateRootPath . 'Email/' . $templateName . '.html';
     	//$emailViewHtml->setTemplatePathAndFilename($templatePathAndFilename);
     	$emailViewHtml->setTemplateRootPaths($extbaseFrameworkConfiguration['view']['templateRootPaths']);
