@@ -55,3 +55,4 @@ Die Kategorien werden nun auch im Log-Eintrag gespeichert.
 Mehr optionale Felder: address, zip, city, region, country, phone, mobile, fax, www, position, company.
 
 Version 0.19.0: Möglichkeit hinzugefügt, alte Log-Einträge automatisch via Task zu löschen.
+Bugfix: man kann jetzt reCAPTCHA und mathCAPTCHA zusammen benutzen.

@@ -211,7 +211,8 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		if(!$output["success"]) {
     			$error = 9;
     		}
-    	} else if ($this->settings['mathCAPTCHA']) {
+    	}
+    	if ($this->settings['mathCAPTCHA']) {
     		$result = intval($log->getMathcaptcha());
     		$no1 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1'));
     		$no2 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2'));
