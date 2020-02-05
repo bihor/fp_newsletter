@@ -20,7 +20,7 @@ Newsletter subscriber managment
 		|release|
 
 	:Language:
-		en, de
+		en, de, it
 
 	:Description:
 		Plugin for newsletter subscription and unsubscription. Can be used for the table tt_address. A log is written.
@@ -29,7 +29,7 @@ Newsletter subscriber managment
 		newsletter,subscription,unsubscription,verify,gdpr
 
 	:Copyright:
-		2018
+		2020
 
 	:Author:
 		Kurt Gusbeth
@@ -46,6 +46,7 @@ Newsletter subscriber managment
 
     :Documentation:
         `english Version <https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/en-us/>`_, `deutsche Version <https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/de-de/>`_
+        Achtung: solange die Admins von docs.typo3.org den Bug mit übersetzten Dokus nicht fixen, ist die deutsche Anleitung nur bei GitHub zu sehen!
 
 	The content of this document is related to TYPO3,
 	a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_.

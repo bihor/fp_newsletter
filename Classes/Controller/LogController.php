@@ -70,9 +70,11 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * action new
      *
+     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log Log-Entry
+     * @param int $error	Error-Code
      * @return void
      */
-    public function newAction()
+    public function newAction(\Fixpunkt\FpNewsletter\Domain\Model\Log $log = NULL, $error = 0)
     {
     	$genders = [
     		"0" => $this->settings['gender']['please'],
@@ -97,7 +99,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     			$required[trim($field)] = 1;
     		}
     	}
-    	$log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+    	if (!$log) {
+	    	$log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+    	}
     	if ($this->settings['parameters']['email']) {
     	    $email = isset($_GET[$this->settings['parameters']['email']]) ? $_GET[$this->settings['parameters']['email']] : '';
     		if (!$email) {
@@ -122,6 +126,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$this->view->assign('genders', $genders);
     	$this->view->assign('optional', $optional);
     	$this->view->assign('required', $required);
+    	$this->view->assign('error', $error);
     	$this->view->assign('log', $log);
     }
 
@@ -168,10 +173,15 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         	// TODO: erstmal -1 setzen. Später mal die richtige Sprache benutzen
         	$log->set_languageUid(-1);
         }
-        $log->setStatus(1);
-    	$this->logRepository->add($log);
+        $log->setStatus(0);
+        if ($log->getUid() > 0) {
+        	$this->logRepository->update($log);
+        } else {
+    		$this->logRepository->add($log);
+        }
     	$persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
     	$persistenceManager->persistAll();
+    	
     	$error = 0;
     	$subscribeVerifyUid = $this->settings['subscribeVerifyUid'];
     	if (!$subscribeVerifyUid) {
@@ -274,6 +284,11 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    			TRUE
 	    		);
 	    	}
+	    	$log->setStatus(1);
+	    	$this->logRepository->update($log);
+	    	$persistenceManager->persistAll();
+    	} else if ($error >= 8) {
+    		$this->redirect('new', NULL, NULL, ['log' => $log, 'error' => $error]);
     	}
     	
     	if (($error == 0) && ($this->settings['subscribeMessageUid'])) {
@@ -290,14 +305,18 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * action unsubscribe with form
      *
+     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log Log-Entry
+     * @param int $error	Error-Code
      * @return void
      */
-    public function unsubscribeAction()
+    public function unsubscribeAction(\Fixpunkt\FpNewsletter\Domain\Model\Log $log = NULL, $error = 0)
     {
     	$storagePidsArray = $this->logRepository->getStoragePids();
     	$pid = intval($storagePidsArray[0]);
-    	$log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
-    	$log->setPid($pid);
+    	if (!$log) {
+    		$log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+    		$log->setPid($pid);
+    	}
     	if ($this->settings['parameters']['email']) {
     		$email = $_GET[$this->settings['parameters']['email']];
     		if (!$email) {
@@ -320,6 +339,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		$GLOBALS['TSFE']->fe_user->storeSessionData();
     	}
     	$this->view->assign('log', $log);
+    	$this->view->assign('error', $error);
     }
 
     /**
@@ -336,8 +356,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$a = $_GET['a'];
     	if($t && $t==$this->settings['table'] && $u && $a){
     		$user = $this->logRepository->getUserFromTtAddress($u);
-    		//$res=$GLOBALS['TYPO3_DB']->exec_SELECTquery('*', $this->settings['table'], 'deleted=0 AND uid=' . $u,'','',1);
-    		//$user=$GLOBALS['TYPO3_DB']->sql_fetch_assoc($res);
     		//echo GeneralUtility::stdAuthCode($user, 'uid');
     		if($user){
     			if(preg_match('/^[0-9a-f]{8}$/', $a) && ($a == GeneralUtility::stdAuthCode($user, 'uid'))) {
@@ -429,13 +447,18 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		"2" => $this->settings['gender']['mr'],
     		"3" => $this->settings['gender']['divers']
     	];
+    	
+    	$log->setStatus(0);
+    	if ($log->getUid() > 0) {
+    		$this->logRepository->update($log);
+    	} else {
+    		$this->logRepository->add($log);
+    	}
+    	$persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+    	$persistenceManager->persistAll();
+    	
     	if (!$error) {
     	    if ($this->settings['doubleOptOut']) {
-    	        $log->setStatus(3);
-    	        $this->logRepository->add($log);
-    	        $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
-    	        $persistenceManager->persistAll();
-    	        
     	        $unsubscribeVerifyUid = $this->settings['unsubscribeVerifyUid'];
     	        if (!$unsubscribeVerifyUid) {
     	            // Fallback
@@ -483,12 +506,10 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	        	);
     	        }
     	        $messageUid = $this->settings['unsubscribeMessageUid'];
+    	        $log->setStatus(3);
+    	        $this->logRepository->update($log);
+    	        $persistenceManager->persistAll();
     	    } else {
-        		$log->setStatus(7);
-        		$this->logRepository->add($log);
-        		$persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
-        		$persistenceManager->persistAll();
-        		
         		if ($this->settings['table'] == 'tt_address') {
         			if ($this->settings['module_sys_dmail_category']) {
         				$dmail_cats = str_replace(' ', '', $this->settings['module_sys_dmail_category']);
@@ -533,7 +554,12 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         				);
         			}
         		}
+        		$log->setStatus(7);
+        		$this->logRepository->update($log);
+        		$persistenceManager->persistAll();
     	    }
+    	} else if ($error >= 8) {
+    		$this->redirect('unsubscribe', NULL, NULL, ['log' => $log, 'error' => $error]);
     	}
     	
     	if (($error == 0) && ($messageUid)) {

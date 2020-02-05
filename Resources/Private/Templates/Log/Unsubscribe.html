@@ -4,6 +4,15 @@
 <div style="display:none;">
 <f:flashMessages />
 </div>
+<f:if condition="{error} > 0">
+	<f:if condition="{error} == 8">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_email', default: 'ivalid email')}</p>
+	</f:if>
+	<f:if condition="{error} == 9">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_captcha', default: 'ivalid captcha')}</p>
+	</f:if>
+</f:if>
+
 <f:render partial="FormErrors" arguments="{object:Log}" />
 <f:if condition="{settings.reCAPTCHA_site_key}">
   <script src="https://www.google.com/recaptcha/api.js?render={settings.reCAPTCHA_site_key}"></script>
