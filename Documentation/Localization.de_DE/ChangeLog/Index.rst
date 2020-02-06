@@ -55,5 +55,5 @@ Die Kategorien werden nun auch im Log-Eintrag gespeichert.
 Mehr optionale Felder: address, zip, city, region, country, phone, mobile, fax, www, position, company.
 
 Version 1.0.0: Möglichkeit hinzugefügt, alte Log-Einträge automatisch via Task zu löschen.
-Wichtige Änderung: bei Email- oder Captcha-Fehler wird zurück zur new- oder unsubscribe-Action geleitet.
+Wichtige Änderung: bei Email-Format- oder Captcha-Fehlern wird zurück zur new- oder unsubscribe-Action geleitet.
 Bugfix: man kann jetzt reCAPTCHA und mathCAPTCHA zusammen benutzen.
