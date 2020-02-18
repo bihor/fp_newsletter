@@ -10,7 +10,9 @@ Available languages: english, german/deutsch and italian/italiano.
 You find the documentation the the folder "Documentation" / at typo3.org:
 https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/en-us/
 
-Es gibt auch eine deutsche Anleitung/Dokumentation zu dieser Erweiterung (Link z.Z. defekt):
+Es gibt auch eine deutsche Anleitung/Dokumentation zu dieser Erweiterung (Link defekt, da die Admins von docs.typo3.org das Problem nicht fixen können):
 https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/de-de/
+Es empfiehlt sich deshalb, die deutsche Doku hier bei GitHub zu betrachten:
+https://github.com/bihor/fp_newsletter/tree/master/Documentation/Localization.de_DE
 
 Last feature: documentation.
