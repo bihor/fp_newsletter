@@ -22,5 +22,14 @@ Benutzer werden eher die FlexForms benutzen. Hier ein Beispiel der FlexForm-Eins
 
 Zahlreiche Links können für die Zielseiten spezifiziert werden.
 
+Der Abmeldelink muss per TypoScript oder via FlexForms angegeben werden und es muss eine Extra-Seite für die Abmeldung geben.
+Hier eine Beispiel-Konfiguration:
+
+.. figure:: ../../Images/UserManual/SampleConfiguration.png
+   :width: 674px
+   :alt: Beispiel-Konfiguration
+
+   Beispiel-Konfiguration des Plugins
+   
 Beachte: in den Formularen sind die Felder E-Mail und DSGVO obligatorisch. Andere Felder sind optional: siehe
 im Kapitel Konfiguration.
