@@ -79,7 +79,10 @@ Achtung***: diese Seite wird auch dann benutzt, wenn doubleOptOut=0. unsubscribe
 
 
 Beispiele
-^^^^^^^^^
+---------
+
+Sprachen
+^^^^^^^^
 
 Man kann die Texte für andere Sprachen so überschreiben::
 
@@ -87,6 +90,8 @@ Man kann die Texte für andere Sprachen so überschreiben::
   plugin.tx_fpnewsletter_pi1.settings.company = Your company
   [end]
 
+Externe Felder
+^^^^^^^^^^^^^^
 
 Man kann auch eine Default-E-Mail-Adresse aus den Parametern auslesen und übernehmen. Wenn man z.B. im Footer ein Formular mit einem E-Mail-Feld hat,
 welches nlemail heißt, kann man den abgesendeten Wert wie folgt auslesen lassen::
@@ -104,8 +109,13 @@ bei einer Bestellung auch zum Newsletter anmelden können soll, dann muss man di
 Es können an dieser Stelle nur Parameter von anderen Extensions mit dem selben Format ausgewertet werden.
 Wenn beide Parameter gesetzt sind, wird zur Action create weitergeleitet.
 
+Captchas
+^^^^^^^^
+
 Man kann 2 verschiedene Captchas benutzen. Wenn man das Google reCaptcha v3 benutzen will, muss man nur den website key und den secret key angeben.
-Wenn man stattdessen ein mathematisches Captcha benutzen will, kann man 1 oder 2 Ziffern verwenden. Der maximale Wert bei 2 Ziffern ist 19.
+Wenn man stattdessen ein mathematisches Captcha benutzen will, kann man 1 oder 2 Ziffern verwenden. Der maximale Wert bei 2 Ziffern ist 19. Beispiel::
+
+  plugin.tx_fpnewsletter.settings.mathCAPTCHA = 2
 
 Optionale und erforderliche Felder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

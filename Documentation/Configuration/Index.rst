@@ -77,8 +77,12 @@ Note**: you need an own page for the unsubscription! unsubscribeUid should be de
 Note***: this page is used too, if doubleOptOut=0. unsubscribeMessageUid is not used if doubleOptOut=0.
 
 
-Property details
-^^^^^^^^^^^^^^^^
+
+Property details / examples
+---------------------------
+
+Languages
+^^^^^^^^^
 
 You can overrite the text for other languges like this::
 
@@ -86,6 +90,8 @@ You can overrite the text for other languges like this::
   plugin.tx_fpnewsletter_pi1.settings.company = Your company
   [end]
 
+External fields
+^^^^^^^^^^^^^^^
 
 You can set a default email-address which was submitted before. E.g. you have a form in the footer and the field-name is nlemail, then set the parameter like this::
 
@@ -103,8 +109,13 @@ Furthermore you must specify the POST-parameter, which are used in the other ext
 
 Only parameters of this format are possible. If they are there, a forward will be made to the action create.
 
+Captchas
+^^^^^^^^
+
 You can use 2 different captchas. If you want to use the Google reCaptcha v3 you need to provide the website key and the secret key.
-If you want to use a mathematical captcha, you can use 1 or 2 digits. The maximum value for 2 digits is 19.
+If you want to use a mathematical captcha, you can use 1 or 2 digits. The maximum value for 2 digits is 19. Example::
+
+  plugin.tx_fpnewsletter.settings.mathCAPTCHA = 2
 
 Optional and requiered fields
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

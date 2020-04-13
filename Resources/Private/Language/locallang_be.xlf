@@ -81,6 +81,15 @@
 			<trans-unit id="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>
 			</trans-unit>
+			<trans-unit id="parameters">
+				<source>External parameters</source>
+			</trans-unit>
+			<trans-unit id="settings.parameters.active">
+				<source>Checkbox name for the newsletter-subscription (e.g. tx_myshop_pi1|newBestellung|newsletter)</source>
+			</trans-unit>
+			<trans-unit id="settings.parameters.email">
+				<source>Input-field name for the email-address (e.g. tx_myshop_pi1|newBestellung|email)</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

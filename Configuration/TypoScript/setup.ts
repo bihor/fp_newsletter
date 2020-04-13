@@ -63,7 +63,7 @@ plugin.tx_fpnewsletter {
 		adminUnsubscribeSubject = Neue Newsletter-Abmeldung
 		adminMailBeforeVerification = 0
 	}
-	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,gdprUid
+	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,gdprUid,parameters.active,parameters.email
   }
 }
 

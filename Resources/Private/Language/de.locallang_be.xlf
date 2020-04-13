@@ -81,6 +81,15 @@
 			<trans-unit id="settings.module_sys_dmail_html">
 				<target>Newsletter im HTML-Format abonnieren?</target>
 			</trans-unit>
+			<trans-unit id="parameters">
+				<target>Externe Parameter</target>
+			</trans-unit>
+			<trans-unit id="settings.parameters.active">
+				<target>Checkbox-Name für NL-Wunsch (z.B. tx_myshop_pi1|newBestellung|newsletter)</target>
+			</trans-unit>
+			<trans-unit id="settings.parameters.email">
+				<target>Feld-Name für die E-Mail-Adresse (z.B. tx_myshop_pi1|newBestellung|email)</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

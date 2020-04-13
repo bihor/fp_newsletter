@@ -107,6 +107,15 @@
 				<source>Subscribe to a HTML-newsletter?</source>
 				<target>Iscrizione alla newsletter in formato HTML?</target>
 			</trans-unit>
+			<trans-unit id="parameters">
+				<target>Parametri esterni</target>
+			</trans-unit>
+			<trans-unit id="settings.parameters.active">
+				<target>Nome della casella di controllo per l'iscrizione alla newsletter (p.e. tx_myshop_pi1|newBestellung|newsletter)</target>
+			</trans-unit>
+			<trans-unit id="settings.parameters.email">
+				<target>Nome del campo di input per l'indirizzo e-mail (p.e. tx_myshop_pi1|newBestellung|email)</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

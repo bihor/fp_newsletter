@@ -227,5 +227,38 @@
         </el>
       </ROOT>
     </sENABLE>
+    <sPARAM>
+      <ROOT>
+    	<TCEforms>
+          <sheetTitle>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:parameters</sheetTitle>
+		  <displayCond><![CDATA[FIELD:sDEF.switchableControllerActions:=:Log->subscribeExt;Log->create;Log->verify]]></displayCond>
+        </TCEforms>
+        <type>array</type>
+    	  <el>
+			<settings.parameters.active>
+				<TCEforms>
+					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.parameters.active</label>
+	                <config>
+                      <type>input</type>
+                      <size>25</size>
+                      <max>255</max>
+                      <eval>trim</eval>
+	                </config>
+	            </TCEforms>
+			</settings.parameters.active>
+			<settings.parameters.email>
+				<TCEforms>
+					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.parameters.email</label>
+	                <config>
+                      <type>input</type>
+                      <size>25</size>
+                      <max>255</max>
+                      <eval>trim</eval>
+	                </config>
+	            </TCEforms>
+			</settings.parameters.email>
+        </el>
+      </ROOT>
+    </sPARAM>
   </sheets>
 </T3DataStructure>

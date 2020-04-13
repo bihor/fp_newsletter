@@ -133,7 +133,7 @@
 				<target>Fehler - Der Eintrag wurde bereits verifiziert.</target>
 			</trans-unit>
 			<trans-unit id="wrong_subscribed">
-				<target>Fehler - Die E-Mailadresse ist bereits registriert.</target>
+				<target>Fehler - Die E-Mailadresse ist bereits für den Newsletter registriert.</target>
 			</trans-unit>
 			<trans-unit id="wrong_unsubscribed">
 				<target>Fehler - Die E-Mailadresse ist nicht vorhanden.</target>

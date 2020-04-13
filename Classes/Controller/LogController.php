@@ -49,9 +49,16 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	// if flexform setting is empty and value is available in TS
     	$overrideFlexformFields = GeneralUtility::trimExplode(',', $tsSettings['overrideFlexformSettingsIfEmpty'], true);
     	foreach ($overrideFlexformFields as $fieldName) {
-   			if (!($originalSettings[$fieldName]) && isset($tsSettings[$fieldName])) {
-   				$originalSettings[$fieldName] = $tsSettings[$fieldName];
-   			}
+    		if (strpos($fieldName, '.') > 0) {
+    			$fieldArray = GeneralUtility::trimExplode('.', $fieldName, true);
+    			if (!($originalSettings[$fieldArray[0]][$fieldArray[1]]) && isset($tsSettings[$fieldArray[0].'.'][$fieldArray[1]])) {
+    				$originalSettings[$fieldArray[0]][$fieldArray[1]] = $tsSettings[$fieldArray[0].'.'][$fieldArray[1]];
+    			}
+    		} else {
+	   			if (!($originalSettings[$fieldName]) && isset($tsSettings[$fieldName])) {
+	   				$originalSettings[$fieldName] = $tsSettings[$fieldName];
+	   			}
+    		}
     	}
     	$this->settings = $originalSettings;
     }
