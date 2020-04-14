@@ -177,7 +177,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // Sprachsetzung sollte eigentlich automatisch passieren, tut es wohl aber nicht. Dennoch: zu umständlich.
         $lang = intval($GLOBALS['TSFE']->config['config']['sys_language_uid']);
         if ($lang > 0) {
-        	// TODO: erstmal -1 setzen. Später mal die richtige Sprache benutzen
+        	// TODO: erstmal -1 setzen. Spaeter mal die richtige Sprache benutzen
         	$log->set_languageUid(-1);
         }
         $log->setStatus(0);
@@ -207,8 +207,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
 	    	if ($this->settings['table'] == 'tt_address') {
 	    		$dbuidext = $this->logRepository->getFromTtAddress($email, $log->getPid());
-	    	} else {
-	    	    // TODO
 	    	}
     	} else {
     		$error = 8;
@@ -410,8 +408,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
 	    	if ($this->settings['table'] == 'tt_address') {
 	    		$dbuidext = intval($this->logRepository->getFromTtAddress($email, $pid));
-	    	} else {
-	    		// TODO
 	    	}
     	} else {
     		$error = 8;
@@ -525,8 +521,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         				$dmCatArr = [];
         			}
         			$this->logRepository->deleteInTtAddress($dbuidext, $this->settings['deleteMode'], $dmCatArr);
-        		} else {
-        		    // TODO
         		}
         		$messageUid = $this->settings['unsubscribeVerifyMessageUid'];
         		if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
@@ -550,16 +544,14 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         			$dataArray['company'] = $log->getCompany();
         			$dataArray['hash'] = $hash;
         			$dataArray['settings'] = $this->settings;
-        			if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
-        				$this->sendTemplateEmail(
-        					array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
-        					array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
-        					$this->settings['email']['adminUnsubscribeSubject'],
-        					'UnsubscribeToAdmin',
-        					$dataArray,
-        					TRUE
-        				);
-        			}
+    				$this->sendTemplateEmail(
+    					array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
+    					array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+    					$this->settings['email']['adminUnsubscribeSubject'],
+    					'UnsubscribeToAdmin',
+    					$dataArray,
+    					TRUE
+    				);
         		}
         		$log->setStatus(7);
         		$this->logRepository->update($log);
@@ -624,8 +616,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     					if (GeneralUtility::validEmail($dbemail)) {
 	    					if ($this->settings['table'] == 'tt_address') {
 		    					$dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
-	    					} else {
-	    					    // TODO
 	    					}
     					}
     					if ($dbuidext > 0) {
@@ -643,9 +633,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    							$dmCatArr = [];
 	    						}
 	    						$success = $this->logRepository->insertInTtAddress($address, $html, $dmCatArr);
-	    					} elseif ($this->settings['table'] == 'fe_users') {
-	    						// TODO
-	    						//$GLOBALS['TYPO3_DB']->exec_INSERTquery('fe_users', $insert);
 	    					}
 	    					if ($this->settings['table'] && $success<1) {
 	    						$error = 8;
@@ -676,16 +663,14 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    						$dataArray['company'] = $address->getCompany();
 	    						$dataArray['hash'] = $hash;
 	    						$dataArray['settings'] = $this->settings;
-	    						if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
-	    							$this->sendTemplateEmail(
-	    								array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
-	    								array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
-	    								$this->settings['email']['adminSubscribeSubject'],
-	    								'SubscribeToAdmin',
-	    								$dataArray,
-	    								TRUE
-    								);
-	    						}
+    							$this->sendTemplateEmail(
+    								array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
+    								array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+    								$this->settings['email']['adminSubscribeSubject'],
+    								'SubscribeToAdmin',
+    								$dataArray,
+    								TRUE
+								);
 	    					}
     					}
     				}
@@ -744,8 +729,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                         if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($dbemail)) {
 	                        if ($this->settings['table'] == 'tt_address') {
 	                            $dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
-	                        } else {
-	                            // TODO
 	                        }
                         }
                         if ($this->settings['table'] && !$dbuidext) {
@@ -764,8 +747,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                             		$dmCatArr = [];
                             	}
                             	$this->logRepository->deleteInTtAddress($dbuidext, $this->settings['deleteMode'], $dmCatArr);
-                            } elseif ($this->settings['table'] == 'fe_users') {
-                                // TODO
                             }
                             if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
                             	$genders = [
@@ -794,16 +775,14 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                             	$dataArray['company'] = $address->getCompany();
                             	$dataArray['hash'] = $hash;
                             	$dataArray['settings'] = $this->settings;
-                            	if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
-                            		$this->sendTemplateEmail(
-                            			array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
-                            			array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
-                            			$this->settings['email']['adminUnsubscribeSubject'],
-                            			'UnsubscribeToAdmin',
-                            			$dataArray,
-                            			TRUE
-                            		);
-                            	}
+                        		$this->sendTemplateEmail(
+                        			array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
+                        			array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+                        			$this->settings['email']['adminUnsubscribeSubject'],
+                        			'UnsubscribeToAdmin',
+                        			$dataArray,
+                        			TRUE
+                        		);
                             }
                         }
                     }
