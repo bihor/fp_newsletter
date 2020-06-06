@@ -157,6 +157,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 			    	$log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
 			    	$log->setPid($pid);
 	    			$log->setEmail($email);
+	    			$log->setGdpr(TRUE);
 	    			$this->forward('create', NULL, NULL, ['log' => $log]);
 	    		}
     		}
