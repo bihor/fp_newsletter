@@ -363,18 +363,20 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	if($t && $t==$this->settings['table'] && $u && $a){
     		$user = $this->logRepository->getUserFromTtAddress($u);
     		//echo GeneralUtility::stdAuthCode($user, 'uid');
-    		if($user){
-    			if(preg_match('/^[0-9a-f]{8}$/', $a) && ($a == GeneralUtility::stdAuthCode($user, 'uid'))) {
+    		if ($user){
+    			if (preg_match('/^[0-9a-f]{8}$/', $a) && ($a == GeneralUtility::stdAuthCode($user, 'uid'))) {
    					// unsubscribe user now
-    				$this->redirect('delete', NULL, NULL, ['user' => $user]);	
+    			    $GLOBALS['TSFE']->fe_user->setKey('ses', 'authDM', $a);
+    			    $GLOBALS['TSFE']->fe_user->storeSessionData();
+    			    $this->redirect('delete', NULL, NULL, ['user' => $user]);	
     			} else {
-    				$error = 10;
+    			    $error = 10;
     			}
     		} else {
     			$error = 11;
     		}
     	} else {
-    		$error = 10;
+    	    $error = 10;
     	}
     	$this->view->assign('error', $error);
     }
@@ -390,6 +392,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     {
     	$error = 0;
     	$messageUid = 0;
+    	$skipCaptchaTest = FALSE;
     	if (!$log) {
     		$log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
     		$log->setEmail($user['email']);
@@ -416,34 +419,45 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	if ($this->settings['table'] && ($dbuidext == 0)) {
     		$error = 7;
     	}
-    	if ($this->settings['reCAPTCHA_site_key'] && $this->settings['reCAPTCHA_secret_key']) {
-    		// Captcha checken
-    		$ch = curl_init();
-    		curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
-    		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-    		curl_setopt($ch, CURLOPT_POST, true);
-    		curl_setopt($ch, CURLOPT_POSTFIELDS, [
-    			'secret' => $this->settings['reCAPTCHA_secret_key'],
-    			'response' => $log->getRetoken()
-    		]);
-    		$output = json_decode(curl_exec($ch), true);
-    		curl_close($ch);
-    		if(!$output["success"]) {
-    			$error = 9;
-    		}
-    	} else if ($this->settings['mathCAPTCHA']) {
-    		$result = intval($log->getMathcaptcha());
-    		$no1 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1'));
-    		$no2 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2'));
-    		$operator = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptchaop'));
-    		if ($operator == 1) {
-    			$real_result = $no1 + $no2;
-    		} else {
-    			$real_result = $no1 - $no2;
-    		}
-    		if ($result != $real_result) {
-    			$error = 9;
-    		}
+    	$a = $GLOBALS['TSFE']->fe_user->getKey('ses', 'authDM');
+    	if ($a) {
+    	    // authCode von unsubscribeDM ist vorhanden!
+    	    $GLOBALS['TSFE']->fe_user->setKey('ses', 'authDM', '');
+    	    $GLOBALS['TSFE']->fe_user->storeSessionData();
+    	    if (preg_match('/^[0-9a-f]{8}$/', $a) && ($a == GeneralUtility::stdAuthCode($user, 'uid'))) {
+    	        $skipCaptchaTest = TRUE;
+    	    }
+    	}
+    	if (!$skipCaptchaTest) {
+        	if ($this->settings['reCAPTCHA_site_key'] && $this->settings['reCAPTCHA_secret_key']) {
+        		// Captcha checken
+        		$ch = curl_init();
+        		curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
+        		curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        		curl_setopt($ch, CURLOPT_POST, true);
+        		curl_setopt($ch, CURLOPT_POSTFIELDS, [
+        			'secret' => $this->settings['reCAPTCHA_secret_key'],
+        			'response' => $log->getRetoken()
+        		]);
+        		$output = json_decode(curl_exec($ch), true);
+        		curl_close($ch);
+        		if(!$output["success"]) {
+        			$error = 9;
+        		}
+        	} else if ($this->settings['mathCAPTCHA']) {
+        		$result = intval($log->getMathcaptcha());
+        		$no1 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1'));
+        		$no2 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2'));
+        		$operator = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptchaop'));
+        		if ($operator == 1) {
+        			$real_result = $no1 + $no2;
+        		} else {
+        			$real_result = $no1 - $no2;
+        		}
+        		if ($result != $real_result) {
+        			$error = 9;
+        		}
+        	}
     	}
     	$genders = [
     		"0" => '',
