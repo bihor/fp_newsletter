@@ -54,6 +54,10 @@ Set sys_language_uid=-1 if l>0.
 The categories are stored now in the log-entry too.
 More optional fields: address, zip, city, region, country, phone, mobile, fax, www, position, company.
 
-Version: 1.0.0: possibility added, to delete old log-entries via a task.
+Version 1.0.0: possibility added, to delete old log-entries via a task.
 Important change: redirect to the new- or unsubscribe-action on email-format- or captcha-errors.
 Bugfix: you can use now reCAPTCHA und mathCAPTCHA together.
+
+Version 1.1.0: possibility added, to activate a honeypot.
+Bugfix: prevent error on unsubscribe and captcha is enabled.
+Bugfix: subscription via external form.

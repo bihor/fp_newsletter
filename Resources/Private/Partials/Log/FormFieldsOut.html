@@ -8,6 +8,12 @@
 	(x = {log.mathcaptcha1} {f:if(condition: '{log.mathcaptchaop}', then: '+', else: '-')} {log.mathcaptcha2}; <f:translate key="tx_fpnewsletter_domain_model_log.xcaptcha" />)<br />
 </f:if>
 
+<f:if condition="{settings.honeypot} > 0">
+	<style>
+	input#fp_extras {display:none !important;}
+	</style>
+	<f:form.textfield property="extras" id="fp_extras" />
+</f:if>
 <f:if condition="{settings.enableUnsubscribeGdprAsHidden} == 1"><f:then>
 	<f:form.hidden name="log[gdpr]" value="1" />
 </f:then><f:else>

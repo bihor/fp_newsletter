@@ -52,6 +52,7 @@ Properties for settings
 	reCAPTCHA_site_key                string      Website-key for Google reCaptcha v3
 	reCAPTCHA_secret_key              string      Secret key for Google reCaptcha v3
 	mathCAPTCHA                       integer     Show a mathematical captcha? 0: no; 1: with 1 digit; 2: with 2 digits 0
+	honeypot                          boolean     Enable a honeypot against spam?                                       0
 	company                           string      Name of your company                                                  Ihre Firma
 	gender.please                     string      Text for gender selection                                             Bitte auswählen
 	gender.mr                         string      Text for the gender mr                                                Herr

@@ -53,6 +53,7 @@ Settings-Einstellungen
 	reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3
 	reCAPTCHA_secret_key              string      Geheimer Schlüssel für Google reCaptcha v3
 	mathCAPTCHA                       integer     Zeige ein mathematisches Captcha? 0: nein; 1, 2: ja, mit 1-2 Ziffern  0
+	honeypot                          boolean     Einen Honigtopf (honeypot) gegen Spam einschalten?                    0
 	company                           string      Name der Firma                                                        Ihre Firma
 	gender.please                     string      Text für die Anrede-Auswahl                                           Bitte auswählen
 	gender.mr                         string      Text für Herr                                                         Herr

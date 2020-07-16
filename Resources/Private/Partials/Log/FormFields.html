@@ -110,6 +110,12 @@ you could use prependOptionLabel="-" prependOptionValue="0" for a select too.
   </f:if>
 </f:if>
 
+<f:if condition="{settings.honeypot} > 0">
+	<style>
+	input#fp_extras {display:none !important;}
+	</style>
+	<f:form.textfield property="extras" id="fp_extras" />
+</f:if>
 <f:if condition="{settings.mathCAPTCHA} > 0">
 	<label for="fp_mathcaptcha"><f:translate key="tx_fpnewsletter_domain_model_log.mathcaptcha" /> <span class="required">*</span></label>
 	<f:form.textfield property="mathcaptcha" id="fp_mathcaptcha" additionalAttributes="{required : 'required'}" size="5" />

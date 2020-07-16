@@ -78,6 +78,9 @@
 			<trans-unit id="settings.mathCAPTCHA">
 				<source>Show a mathematical captcha?</source>
 			</trans-unit>
+			<trans-unit id="settings.honeypot">
+				<source>Enable a honeypot?</source>
+			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>
 			</trans-unit>

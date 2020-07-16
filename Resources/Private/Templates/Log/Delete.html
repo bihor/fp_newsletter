@@ -14,6 +14,9 @@
 	<f:if condition="{error} == 9">
 		<p class="alert alert-danger">{f:translate(key: 'wrong_captcha', default: 'ivalid captcha')}</p>
 	</f:if>
+	<f:if condition="{error} == 10">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_honeypot', default: 'spam detected')}</p>
+	</f:if>
 	<p><a href="javascript:history.back();">{f:translate(key: 'go_back')}</a></p>
 </f:then>
 <f:else>

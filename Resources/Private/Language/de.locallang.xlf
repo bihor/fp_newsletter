@@ -150,6 +150,9 @@
 			<trans-unit id="wrong_captcha">
 				<target>Fehler - Die Captcha-Prüfung verlief nicht erfolgreich!</target>
 			</trans-unit>
+			<trans-unit id="wrong_honeypot">
+				<target>Fehler - Spam erkannt (Honeypot)!</target>
+			</trans-unit>
 			<trans-unit id="wrong_insert">
 				<target>Fehler - Der Datensatz konnte nicht eingefügt werden.</target>
 			</trans-unit>

@@ -103,6 +103,10 @@
 				<source>Show a mathematical captcha?</source>
 				<target>Mostra un captcha matematico?</target>
 			</trans-unit>
+			<trans-unit id="settings.honeypot">
+				<source>Enable a honeypot?</source>
+				<target>Mostra un honeypot?</target>
+			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>
 				<target>Iscrizione alla newsletter in formato HTML?</target>

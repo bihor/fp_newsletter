@@ -11,6 +11,9 @@
 	<f:if condition="{error} == 9">
 		<p class="alert alert-danger">{f:translate(key: 'wrong_captcha', default: 'ivalid captcha')}</p>
 	</f:if>
+	<f:if condition="{error} == 10">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_honeypot', default: 'spam detected')}</p>
+	</f:if>
 </f:if>
 
 <f:render partial="FormErrors" arguments="{object:Log}" />

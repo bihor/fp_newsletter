@@ -183,6 +183,10 @@
 				<source>Error: the given captcha is not valid!</source>
 				<target>Errore: l'indirizzo captcha non è valido!</target>
 			</trans-unit>
+			<trans-unit id="wrong_honeypot">
+				<source>Error: spam detected (honeypot)!</source>
+				<target>Errore: spam detected (honeypot)!</target>
+			</trans-unit>
 			<trans-unit id="wrong_insert">
 				<source>Error: sql insert error!</source>
 				<target>Errore di inserimento nel database!</target>

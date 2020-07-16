@@ -204,6 +204,13 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     protected $mathcaptchaop = false;
     
     /**
+     * Extras: Honeypot
+     *
+     * @var string
+     */
+    protected $extras = '';
+    
+    /**
      * GDPR checkbox
      * erst ab TYPO3 9: atExtbase\Validate("Boolean", options={"is": true})
      * 
@@ -767,6 +774,27 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     public function isMathcaptchaop()
     {
     	return $this->mathcaptchaop;
+    }
+    
+    /**
+     * Returns the extras
+     *
+     * @return string $extras
+     */
+    public function getExtras()
+    {
+    	return $this->extras;
+    }
+    
+    /**
+     * Sets the extras
+     *
+     * @param string $extras
+     * @return void
+     */
+    public function setExtras($extras)
+    {
+    	$this->extras = $extras;
     }
     
     /**

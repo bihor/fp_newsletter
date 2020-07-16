@@ -150,6 +150,9 @@
 			<trans-unit id="wrong_captcha">
 				<source>Error: the captcha is not valid!</source>
 			</trans-unit>
+			<trans-unit id="wrong_honeypot">
+				<source>Error: spam detected (honeypot)!</source>
+			</trans-unit>
 			<trans-unit id="wrong_insert">
 				<source>Error: sql insert error!</source>
 			</trans-unit>

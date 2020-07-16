@@ -78,6 +78,9 @@
 			<trans-unit id="settings.mathCAPTCHA">
 				<target>Zeige ein mathematisches Captcha?</target>
 			</trans-unit>
+			<trans-unit id="settings.honeypot">
+				<target>Einen Honigtopf (honeypot) gegen Spam einschalten?</target>
+			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html">
 				<target>Newsletter im HTML-Format abonnieren?</target>
 			</trans-unit>
