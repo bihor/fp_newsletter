@@ -58,6 +58,7 @@ Version 1.0.0: Möglichkeit hinzugefügt, alte Log-Einträge automatisch via Tas
 Wichtige Änderung: bei Email-Format- oder Captcha-Fehlern wird zurück zur new- oder unsubscribe-Action geleitet.
 Bugfix: man kann jetzt reCAPTCHA und mathCAPTCHA zusammen benutzen.
 
+Version 1.0.4: Bugfix: Anmeldung via externem Formular.
+
 Version 1.1.0: honeypot hinzugefügt.
 Bugfix: Fehlermeldung verhindern beim abmelden, wenn ein Captcha aktiviert ist.
-Bugfix: Anmeldung via externem Formular.
