@@ -16,3 +16,5 @@ To-Do list
 - Fix the problems with other languages.
 
 - More emails.
+
+- Add a resend confirmation link.

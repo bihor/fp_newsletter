@@ -119,9 +119,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		}
     	}
     	if ($this->settings['mathCAPTCHA']) {
-    		$no1 = ($this->settings['mathCAPTCHA'] == 2) ? mt_rand(10, 19) : mt_rand(4, 9);
-    		$no2 = mt_rand(1, $no1-1);
-    		$operator = mt_rand(0, 1);
+    	    $no1 = ($this->settings['mathCAPTCHA'] == 2) ? random_int(10, 19) : random_int(4, 9);
+    	    $no2 = random_int(1, $no1-1);
+    	    $operator = random_int(0, 1);
     		$log->setMathcaptcha1( $no1);
     		$log->setMathcaptcha2( $no2 );
     		$log->setMathcaptchaop( (($operator == 1) ? TRUE : FALSE) );
@@ -337,9 +337,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		}
     	}
     	if ($this->settings['mathCAPTCHA']) {
-    		$no1 = ($this->settings['mathCAPTCHA'] == 2) ? mt_rand(10, 19) : mt_rand(4, 9);
-    		$no2 = mt_rand(1, $no1-1);
-    		$operator = mt_rand(0, 1);
+    	    $no1 = ($this->settings['mathCAPTCHA'] == 2) ? random_int(10, 19) : random_int(4, 9);
+    	    $no2 = random_int(1, $no1-1);
+    	    $operator = random_int(0, 1);
     		$log->setMathcaptcha1( $no1);
     		$log->setMathcaptcha2( $no2 );
     		$log->setMathcaptchaop( (($operator == 1) ? TRUE : FALSE) );

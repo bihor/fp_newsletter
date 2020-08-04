@@ -16,3 +16,5 @@ To-Do-Liste
 - Probleme mit weiteren Sprachen beheben.
 
 - An- und Abmeldebestätigung per E-Mail.
+
+- "resend confirmation link".
