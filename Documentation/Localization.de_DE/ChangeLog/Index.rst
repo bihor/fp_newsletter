@@ -62,3 +62,5 @@ Version 1.0.4: Bugfix: Anmeldung via externem Formular.
 
 Version 1.1.0: honeypot hinzugefügt.
 Bugfix: Fehlermeldung verhindern beim abmelden, wenn ein Captcha aktiviert ist.
+
+Version 1.2.0: veralterte Methoden ersetzt.

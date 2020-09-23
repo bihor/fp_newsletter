@@ -1,6 +1,8 @@
 <?php
 namespace Fixpunkt\FpNewsletter\Domain\Model;
 
+use TYPO3\CMS\Extbase\Annotation as Extbase;
+
 /***
  *
  * This file is part of the "Newsletter managment" Extension for TYPO3 CMS.
@@ -63,9 +65,8 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
 
     /**
      * E-Mail
-     * erst ab TYPO3 9: atExtbase\Validate("NotEmpty")
      * 
-     * @validate NotEmpty
+     * @Extbase\Validate("NotEmpty")
      * @var string
      */
     protected $email = '';
@@ -212,9 +213,8 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     
     /**
      * GDPR checkbox
-     * erst ab TYPO3 9: atExtbase\Validate("Boolean", options={"is": true})
      * 
-     * @validate Boolean(is=true)
+     * @Extbase\Validate("Boolean", options={"is": true})
      * @var bool
      */
     protected $gdpr = false;

@@ -62,3 +62,5 @@ Version 1.0.4: Bugfix: subscription via external form.
 
 Version 1.1.0: possibility added, to activate a honeypot.
 Bugfix: prevent error on unsubscribe when a captcha is enabled.
+
+Version 1.2.0: deprecated methods replaced.

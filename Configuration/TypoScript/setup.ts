@@ -68,7 +68,7 @@ plugin.tx_fpnewsletter {
   }
 }
 
-[globalVar = GP:L = 1]
+[siteLanguage("languageId") == "1"]
 plugin.tx_fpnewsletter_pi1.settings.company = Your company
 plugin.tx_fpnewsletter_pi1.settings.gender.please = Please select your gender
 plugin.tx_fpnewsletter_pi1.settings.gender.mr = Mr.
@@ -79,4 +79,4 @@ plugin.tx_fpnewsletter_pi1.settings.email.subscribeVerifySubject = Please verify
 plugin.tx_fpnewsletter_pi1.settings.email.unsubscribeVerifySubject = Please verify your email
 plugin.tx_fpnewsletter_pi1.settings.email.adminSubscribeSubject = New newsletter-subscription
 plugin.tx_fpnewsletter_pi1.settings.email.adminUnsubscribeSubject = New newsletter-unsubscription
-[end]
+[END]

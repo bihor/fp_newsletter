@@ -23,58 +23,53 @@ return [
 		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, firstname, lastname, email, address, zip, city, region, country, phone, mobile, fax, www, birthday, position, company, categories, status, securityhash, retoken, mathcaptcha, gdpr'],
     ],
     'columns' => [
-		'sys_language_uid' => [
-			'exclude' => true,
-			#'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
-		    'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.language',
-			'config' => [
-				'type' => 'select',
-				'renderType' => 'selectSingle',
-				'special' => 'languages',
-				'items' => [
-					[
-						#'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
-					    'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.allLanguages',
-						-1,
-						'flags-multiple'
-					]
-				],
-				'default' => 0,
-			],
-        ],
-        'l10n_parent' => [
-            'displayCond' => 'FIELD:sys_language_uid:>:0',
-            'exclude' => true,
-            #'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
-            'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.l18n_parent',
-            'config' => [
-                'type' => 'select',
-                'renderType' => 'selectSingle',
-                'items' => [
-                    ['', 0],
-                ],
-                'foreign_table' => 'tx_fpnewsletter_domain_model_log',
-                'foreign_table_where' => 'AND tx_fpnewsletter_domain_model_log.pid=###CURRENT_PID### AND tx_fpnewsletter_domain_model_log.sys_language_uid IN (-1,0)',
-            ],
-        ],
-        'l10n_diffsource' => [
-            'config' => [
-                'type' => 'passthrough',
-            ],
-        ],
-    	'hidden' => [
+    	'sys_language_uid' => [
     		'exclude' => true,
-    		#'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
-    	    'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.hidden',
-    	    'config' => [
-    			'type' => 'check',
-    			#'renderType' => 'checkboxToggle',
+    		'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.language',
+    		'config' => [
+    			'type' => 'select',
+    			'renderType' => 'selectSingle',
+    			'special' => 'languages',
     			'items' => [
     				[
-    					#0 => '',
-    					#1 => '',
-    					#'invertStateDisplay' => true
-    				    '0' => 'LLL:EXT:lang/Resources/Private/Language/locallang_core.xlf:labels.enabled'
+    					'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.allLanguages',
+    					-1,
+    					'flags-multiple'
+    				]
+    			],
+    			'default' => 0,
+    		],
+    	],
+    	'l10n_parent' => [
+    		'displayCond' => 'FIELD:sys_language_uid:>:0',
+    		'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.l18n_parent',
+    		'config' => [
+    			'type' => 'select',
+    			'renderType' => 'selectSingle',
+    			'default' => 0,
+    			'items' => [
+    				['', 0],
+    			],
+    			'foreign_table' => 'tx_fpnewsletter_domain_model_log',
+    			'foreign_table_where' => 'AND {#tx_fpnewsletter_domain_model_log}.{#pid}=###CURRENT_PID### AND {#tx_fpnewsletter_domain_model_log}.{#sys_language_uid} IN (-1,0)',
+    		],
+    	],
+    	'l10n_diffsource' => [
+    		'config' => [
+    			'type' => 'passthrough',
+    		],
+    	],
+    	'hidden' => [
+    		'exclude' => true,
+    		'label' => 'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.visible',
+    		'config' => [
+    			'type' => 'check',
+    			'renderType' => 'checkboxToggle',
+    			'items' => [
+    				[
+    					0 => '',
+    					1 => '',
+    					'invertStateDisplay' => true
     				]
     			],
     		],

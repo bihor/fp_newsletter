@@ -2,6 +2,7 @@
 namespace Fixpunkt\FpNewsletter\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
+use \TYPO3\CMS\Core\Context\Context;
 
 /***
  *
@@ -23,7 +24,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * logRepository
      *
      * @var \Fixpunkt\FpNewsletter\Domain\Repository\LogRepository
-     * @inject
+     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $logRepository = null;
 
@@ -176,8 +177,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $hash = md5(uniqid($log->getEmail(), true));
         $log->setSecurityhash($hash);
         // Sprachsetzung sollte eigentlich automatisch passieren, tut es wohl aber nicht. Dennoch: zu umständlich.
-        $lang = intval($GLOBALS['TSFE']->config['config']['sys_language_uid']);
-        if ($lang > 0) {
+        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+        $sys_language_uid = intval($languageAspect->getId());
+        if ($sys_language_uid > 0) {
         	// TODO: erstmal -1 setzen. Spaeter mal die richtige Sprache benutzen
         	$log->set_languageUid(-1);
         }
@@ -844,9 +846,10 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(
     		\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK
     	);
-    	$lang = intval($GLOBALS['TSFE']->sys_language_uid);
-    	if (($lang > 0) && !$toAdmin) {
-    		$templateName .= $lang;
+    	$languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+    	$sys_language_uid = intval($languageAspect->getId());
+    	if (($sys_language_uid > 0) && !$toAdmin) {
+    		$templateName .= $sys_language_uid;
     	}
     	
     	/** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailView */
