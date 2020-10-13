@@ -13,6 +13,7 @@
           <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template</label>
           <config>
           <type>select</type>
+          <renderType>selectSingle</renderType>
           <items>
             <numIndex index="0">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.new</numIndex>
