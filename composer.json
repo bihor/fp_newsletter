@@ -8,7 +8,7 @@
 		}
 	],
 	"require" : {
-		"typo3/cms-core" : "^9.5 || ^10.4"
+		"typo3/cms-core" : "~9.5.20 || ~10.4.6"
 	},
 	"autoload" : {
 		"psr-4" : {
@@ -23,7 +23,7 @@
 	"replace" : {
 		"typo3-ter/fp-newsletter" : "self.version"
 	},
-	"homepage" : "https://www.fixpunkt.com/webentwicklung/typo3/typo3-extensions/",
+	"homepage" : "https://www.fixpunkt.com/webentwicklung/typo3/typo3-programmierung",
 	"support" : {
 		"email" : "info@quizpalme.de"
 	},

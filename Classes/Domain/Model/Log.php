@@ -10,9 +10,7 @@ use TYPO3\CMS\Extbase\Annotation as Extbase;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2019 Kurt Gusbeth <k.gusbeth@fixpunkt.com>, fixpunkt werbeagentur gmbh
- * Erst ab TYPO3 9:
- * use TYPO3\CMS\Extbase\Annotation as Extbase;
+ *  (c) 2020 Kurt Gusbeth <k.gusbeth@fixpunkt.com>, fixpunkt werbeagentur gmbh
  * 
  ***/
 

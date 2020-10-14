@@ -19,6 +19,7 @@ What does it do?
 
 The extension fp_newsletter is designed to provide a newsletter subscription and unsubscription service for the table tt_address which can be used
 by the extension direct_mail. Furthermore it is designed to be compatible with the GDPR. A log is written about (every) action in a separate table.
+Old log entries can be deleted by a scheduler task.
 Note: there are more TypoScript-settings than FlexForm-settings.
 But the extension can be used without tt_address too. Therefore an admin-email-address can be specified.
 The admin will then get an email with the subscription data.
@@ -43,7 +44,7 @@ Thanks to ...
 ^^^^^^^^^^^^^
 
 Thanks to the
-`fixpunkt werbeagentur gmbh, Bonn <https://www.fixpunkt.com/webentwicklung/typo3/>`_
+`fixpunkt werbeagentur gmbh, Bonn <https://www.fixpunkt.com/webentwicklung/typo3>`_
 for giving me the possibility to realize
-`this extension <https://www.fixpunkt.com/webentwicklung/typo3/typo3-extensions/>`_
+`this extension <https://www.fixpunkt.com/webentwicklung/typo3/typo3-programmierung>`_
 and share it with the TYPO3 community.

@@ -11,7 +11,7 @@ use \TYPO3\CMS\Core\Context\Context;
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- *  (c) 2018 Kurt Gusbeth <k.gusbeth@fixpunkt.com>, fixpunkt werbeagentur gmbh
+ *  (c) 2020 Kurt Gusbeth <k.gusbeth@fixpunkt.com>, fixpunkt werbeagentur gmbh
  *
  ***/
 
@@ -173,7 +173,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      */
     public function createAction(\Fixpunkt\FpNewsletter\Domain\Model\Log $log)
     {
-        //$this->addFlashMessage('The object was created. Please be aware that this action is publicly accessible unless you implement an access check. See https://docs.typo3.org/typo3cms/extensions/extension_builder/User/Index.html', '', \TYPO3\CMS\Core\Messaging\AbstractMessage::WARNING);
         $hash = md5(uniqid($log->getEmail(), true));
         $log->setSecurityhash($hash);
         // Sprachsetzung sollte eigentlich automatisch passieren, tut es wohl aber nicht. Dennoch: zu umständlich.
@@ -307,8 +306,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		$uri = $this->uriBuilder->reset()
     			->setTargetPageUid($this->settings['subscribeMessageUid'])
     			->build();
-    		$this->redirectToURI($uri);
-    		//$this->forward($this->settings['subscribeMessageUid']);
+    		$this->redirectToURI($uri);    		// oder: $this->forward($this->settings['subscribeMessageUid']);
     	} else {
 	    	$this->view->assign('error', $error);
     	}
@@ -368,7 +366,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$a = $_GET['a'];
     	if($t && $t==$this->settings['table'] && $u && $a){
     		$user = $this->logRepository->getUserFromTtAddress($u);
-    		//echo GeneralUtility::stdAuthCode($user, 'uid');
+    		// zum testen: echo GeneralUtility::stdAuthCode($user, 'uid');
     		if ($user){
     			if (preg_match('/^[0-9a-f]{8}$/', $a) && ($a == GeneralUtility::stdAuthCode($user, 'uid'))) {
    					// unsubscribe user now
@@ -410,7 +408,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		$storagePidsArray = $this->logRepository->getStoragePids();
     		$pid = intval($storagePidsArray[0]);
     	}
-    	//var_dump ($storagePidsArray);
+    	// zum testen: var_dump ($storagePidsArray);
     	$hash = md5(uniqid($log->getEmail(), true));
     	$log->setSecurityhash($hash);
     	$dbuidext = 0;
@@ -589,8 +587,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	
     	if (($error == 0) && ($messageUid)) {
 	   		$uri = $this->uriBuilder->reset()->setTargetPageUid($messageUid)->build();
-	   		$this->redirectToURI($uri);
-	   		//$this->forward($this->settings['subscribeMessageUid']);
+	   		$this->redirectToURI($uri);	   		//oder: $this->forward($this->settings['subscribeMessageUid']);
 	   	} else {
 	    	$this->view->assign('error', $error);
 	   	}
@@ -705,10 +702,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     		
 	    	if (($error == 0) && ($this->settings['subscribeVerifyMessageUid'])) {
 	    		$uri = $this->uriBuilder->reset()
-	    		->setTargetPageUid($this->settings['subscribeVerifyMessageUid'])
-	    		->build();
-	    		$this->redirectToURI($uri);
-	    		//$this->forward($this->settings['subscribeMessageUid']);
+	    			->setTargetPageUid($this->settings['subscribeVerifyMessageUid'])
+	    			->build();
+	    		$this->redirectToURI($uri);	    		// oder: $this->forward($this->settings['subscribeMessageUid']);
 	    	} else {
 		    	$this->view->assign('error', $error);
 	    	}
@@ -817,10 +813,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             
             if (($error == 0) && ($this->settings['unsubscribeVerifyMessageUid'])) {
                 $uri = $this->uriBuilder->reset()
-                ->setTargetPageUid($this->settings['unsubscribeVerifyMessageUid'])
-                ->build();
-                $this->redirectToURI($uri);
-                //$this->forward($this->settings['unsubscribeMessageUid']);
+            		->setTargetPageUid($this->settings['unsubscribeVerifyMessageUid'])
+              		->build();
+                $this->redirectToURI($uri);                // oder: $this->forward($this->settings['unsubscribeMessageUid']);
             } else {
                 $this->view->assign('error', $error);
             }

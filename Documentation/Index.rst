@@ -46,7 +46,6 @@ Newsletter subscriber managment
 
     :Documentation:
         `english Version <https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/en-us/>`_, `deutsche Version <https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/de-de/>`_
-        Achtung: solange die Admins von docs.typo3.org den Bug mit übersetzten Dokus nicht fixen, ist die deutsche Anleitung nur bei GitHub zu sehen!
 
 	The content of this document is related to TYPO3,
 	a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_.
