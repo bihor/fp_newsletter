@@ -47,6 +47,7 @@ Properties for settings
 	gdprUid                           integer     Page with the GDPR text                                               1
 	daysExpire                        intger      The link expires after X days                                         2
 	deleteMode                        integer     1: set deletion flag; 2: delete entry                                 1
+	languageMode                      integer     0: uses -1 if l>0; 1: uses the real language uid                      0
 	module_sys_dmail_html             integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1
 	module_sys_dmail_category         string      Comma separated list of categories (uid) from sys_dmail_category
 	reCAPTCHA_site_key                string      Website-key for Google reCaptcha v3

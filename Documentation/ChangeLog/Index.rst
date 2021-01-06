@@ -64,3 +64,5 @@ Version 1.1.0: possibility added, to activate a honeypot.
 Bugfix: prevent error on unsubscribe when a captcha is enabled.
 
 Version 1.2.0: deprecated methods replaced.
+
+Version 1.2.1: settings.languageMode added.

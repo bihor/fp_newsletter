@@ -36,6 +36,7 @@ plugin.tx_fpnewsletter {
 	gdprUid = 1
 	daysExpire = 2
 	deleteMode = 1
+	languageMode = 0
 	module_sys_dmail_html = 1
 	module_sys_dmail_category =
 	reCAPTCHA_site_key =

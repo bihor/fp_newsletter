@@ -178,9 +178,11 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         // Sprachsetzung sollte eigentlich automatisch passieren, tut es wohl aber nicht. Dennoch: zu umständlich.
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
         $sys_language_uid = intval($languageAspect->getId());
-        if ($sys_language_uid > 0) {
+        if ($sys_language_uid > 0 && !$this->settings['languageMode']) {
         	// TODO: erstmal -1 setzen. Spaeter mal die richtige Sprache benutzen
         	$log->set_languageUid(-1);
+        } else {
+            $log->set_languageUid($sys_language_uid);
         }
         $log->setStatus(0);
         if ($log->getUid() > 0) {
@@ -610,10 +612,16 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$dmCat = str_replace(' ', '', $this->settings['module_sys_dmail_category']);
     	$uid = intval($this->request->hasArgument('uid')) ? $this->request->getArgument('uid') : 0;
     	$hash = ($this->request->hasArgument('hash')) ? $this->request->getArgument('hash') : '';
+    	$languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+    	$sys_language_uid = intval($languageAspect->getId());
     	if (!$uid || !$hash) {
     		$this->view->assign('error', 1);
     	} else {
-    		$address = $this->logRepository->findOneByUid($uid);
+    	    if ($sys_language_uid > 0 && $this->settings['languageMode']) {
+    	        $address = $this->logRepository->findAnotherByUid($uid, $sys_language_uid);
+    	    } else {
+    	        $address = $this->logRepository->findOneByUid($uid);
+    	    }
     		if ($address) {
     		  $dbuid = $address->getUid();
     		  $email = $address->getEmail();

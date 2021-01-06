@@ -176,7 +176,26 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	    		->execute();
 	    }
 	}
-
+	
+	/**
+	 * Find an entry with sys_language_uid > 0
+	 * https://forge.typo3.org/issues/86405
+	 * 
+	 * @param	integer	$uid
+	 * @param	integer	$sys_language_uid
+	 * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+	 */
+	public function findAnotherByUid($uid, $sys_language_uid) {
+	    $query = $this->createQuery();
+	    $query->getQuerySettings()->setRespectSysLanguage(FALSE);
+	    //$query->getQuerySettings()->setSysLanguageUid($sys_language_uid);
+	    $query->matching($query->logicalAnd(
+	        $query->equals('uid', intval($uid)),
+	        $query->equals("sys_language_uid", intval($sys_language_uid))
+	    ));
+	    return $query->execute()->getFirst();
+	}
+	
 	/**
 	 * Get the PIDs
 	 *
