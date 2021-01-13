@@ -65,4 +65,5 @@ Bugfix: prevent error on unsubscribe when a captcha is enabled.
 
 Version 1.2.0: deprecated methods replaced.
 
-Version 1.2.1: settings.languageMode added.
+Version 2.0.0: with the new setting languageMode you can define the language of the entries.
+There is now a new behavior when L>0.

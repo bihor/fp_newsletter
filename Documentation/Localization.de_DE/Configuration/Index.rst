@@ -48,6 +48,7 @@ Settings-Einstellungen
 	gdprUid                           integer     Seite mit den DSGVO-Texten                                            1
 	daysExpire                        intger      Der Verifikations-Link wird ungültig nach X Tagen                     2
 	deleteMode                        integer     1: setze delete-Flag; 2: lösche endgültig                             1
+	languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
 	module_sys_dmail_html             integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1
 	module_sys_dmail_category         string      Komma separierte Liste von Kategorien (uid) aus sys_dmail_category
 	reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3

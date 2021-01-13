@@ -64,3 +64,6 @@ Version 1.1.0: honeypot hinzugefügt.
 Bugfix: Fehlermeldung verhindern beim abmelden, wenn ein Captcha aktiviert ist.
 
 Version 1.2.0: veralterte Methoden ersetzt.
+
+Version 2.0.0: über die Einstellung languageMode kann man nun die Sprache der Einträge bestimmen.
+Das Verhalten bei Sprachen>0 ist nun anders.

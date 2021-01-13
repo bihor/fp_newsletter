@@ -175,11 +175,10 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     {
         $hash = md5(uniqid($log->getEmail(), true));
         $log->setSecurityhash($hash);
-        // Sprachsetzung sollte eigentlich automatisch passieren, tut es wohl aber nicht. Dennoch: zu umständlich.
+        // Sprachsetzung sollte eigentlich automatisch passieren, tut es wohl aber nicht.
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
         $sys_language_uid = intval($languageAspect->getId());
         if ($sys_language_uid > 0 && !$this->settings['languageMode']) {
-        	// TODO: erstmal -1 setzen. Spaeter mal die richtige Sprache benutzen
         	$log->set_languageUid(-1);
         } else {
             $log->set_languageUid($sys_language_uid);
@@ -260,6 +259,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    	if (!$from) $from = 'Subscriber';
 	    	$dataArray = array();
 	    	$dataArray['uid'] = $log->getUid();
+	    	$dataArray['sys_language_uid'] = $log->get_languageUid();
 	    	$dataArray['gender'] = $genders[$log->getGender()];
 	    	$dataArray['title'] = $log->getTitle();
 	    	$dataArray['firstname'] = $log->getFirstname();
@@ -414,10 +414,18 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$hash = md5(uniqid($log->getEmail(), true));
     	$log->setSecurityhash($hash);
     	$dbuidext = 0;
-
+    	$languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+    	$sys_language_uid = intval($languageAspect->getId());
+    	if ($sys_language_uid > 0 && !$this->settings['languageMode']) {
+    	    $log->set_languageUid(-1);
+    	} else {
+    	    $log->set_languageUid($sys_language_uid);
+    	}
+    	
     	if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
 	    	if ($this->settings['table'] == 'tt_address') {
 	    		$dbuidext = intval($this->logRepository->getFromTtAddress($email, $pid));
+	    		//zum testen: echo "uid $dbuidext mit $email, $pid";
 	    	}
     	} else {
     		$error = 8;
@@ -497,6 +505,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	        if (!$from) $from = 'Unsubscriber';
     	        $dataArray = [];
     	        $dataArray['uid'] = $log->getUid();
+    	        $dataArray['sys_language_uid'] = $log->get_languageUid();
     	        $dataArray['gender'] = $genders[$log->getGender()];
     	        $dataArray['title'] = $log->getTitle();
     	        $dataArray['firstname'] = $log->getFirstname();
@@ -552,6 +561,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         		if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
         			$dataArray = [];
         			$dataArray['uid'] = $log->getUid();
+        			$dataArray['sys_language_uid'] = $log->get_languageUid();
         			$dataArray['gender'] = $genders[$log->getGender()];
         			$dataArray['title'] = $log->getTitle();
         			$dataArray['firstname'] = $log->getFirstname();
@@ -599,7 +609,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
     /**
-     * action verify
+     * action verify Anmeldung
      *
      * @return void
      */
@@ -676,6 +686,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    						];
 	    						$dataArray = [];
 	    						$dataArray['uid'] = $address->getUid();
+	    						$dataArray['sys_language_uid'] = $address->get_languageUid();
 	    						$dataArray['gender'] = $genders[$address->getGender()];
 	    						$dataArray['title'] = $address->getTitle();
 	    						$dataArray['firstname'] = $address->getFirstname();
@@ -721,7 +732,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     
     
     /**
-     * action verifyUnsubscribe
+     * action verifyUnsubscribe Abmeldung
      *
      * @return void
      */
@@ -731,10 +742,16 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $dbuid = 0;
         $uid = intval($this->request->hasArgument('uid')) ? $this->request->getArgument('uid') : 0;
         $hash = ($this->request->hasArgument('hash')) ? $this->request->getArgument('hash') : '';
+        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+        $sys_language_uid = intval($languageAspect->getId());
         if (!$uid || !$hash) {
             $this->view->assign('error', 1);
         } else {
-            $address = $this->logRepository->findOneByUid($uid);
+            if ($sys_language_uid > 0 && $this->settings['languageMode']) {
+                $address = $this->logRepository->findAnotherByUid($uid, $sys_language_uid);
+            } else {
+                $address = $this->logRepository->findOneByUid($uid);
+            }
             if ($address) {
                 $dbuid = $address->getUid();
                 $email = $address->getEmail();
@@ -787,6 +804,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                             	];
                             	$dataArray = [];
                             	$dataArray['uid'] = $address->getUid();
+                            	$dataArray['sys_language_uid'] = $address->get_languageUid();
                             	$dataArray['gender'] = $genders[$address->getGender()];
                             	$dataArray['title'] = $address->getTitle();
                             	$dataArray['firstname'] = $address->getFirstname();
