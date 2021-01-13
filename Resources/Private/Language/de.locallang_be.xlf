@@ -81,6 +81,27 @@
 			<trans-unit id="settings.honeypot">
 				<target>Einen Honigtopf (honeypot) gegen Spam einschalten?</target>
 			</trans-unit>
+			<trans-unit id="settings.deleteMode">
+				<target>Löschmodus</target>
+			</trans-unit>
+			<trans-unit id="settings.deleteMode.1">
+				<target>setze das delete-Flag</target>
+			</trans-unit>
+			<trans-unit id="settings.deleteMode.2">
+				<target>lösche den Eintrag endgültig</target>
+			</trans-unit>
+			<trans-unit id="settings.languageMode">
+				<target>Sprachmodus</target>
+			</trans-unit>
+			<trans-unit id="settings.languageMode.0">
+				<target>setzt sys_language_uid auf -1 wenn L>0</target>
+			</trans-unit>
+			<trans-unit id="settings.languageMode.1">
+				<target>benutze den Wert von sys_language_uid</target>
+			</trans-unit>
+			<trans-unit id="settings.enableConfirmationMails">
+				<target>Bestätigungs-E-Mails einschalten?</target>
+			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html">
 				<target>Newsletter im HTML-Format abonnieren?</target>
 			</trans-unit>

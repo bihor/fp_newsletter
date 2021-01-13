@@ -81,6 +81,27 @@
 			<trans-unit id="settings.honeypot">
 				<source>Enable a honeypot?</source>
 			</trans-unit>
+			<trans-unit id="settings.deleteMode">
+				<source>Hard or soft delete mode?</source>
+			</trans-unit>
+			<trans-unit id="settings.deleteMode.1">
+				<source>set deletion flag</source>
+			</trans-unit>
+			<trans-unit id="settings.deleteMode.2">
+				<source>delete entry</source>
+			</trans-unit>
+			<trans-unit id="settings.languageMode">
+				<source>Language mode</source>
+			</trans-unit>
+			<trans-unit id="settings.languageMode.0">
+				<source>set sys_language_uid to -1 if L>0</source>
+			</trans-unit>
+			<trans-unit id="settings.languageMode.1">
+				<source>use the value of sys_language_uid</source>
+			</trans-unit>
+			<trans-unit id="settings.enableConfirmationMails">
+				<source>Abilitare le email di conferma all'utente?</source>
+			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>
 			</trans-unit>

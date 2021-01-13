@@ -677,7 +677,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    					}
 	    					if ($this->settings['table'] && $success<1) {
 	    						$error = 8;
-	    					} elseif ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
+	    					} elseif (($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) || $this->settings['email']['enableConfirmationMails']) {
 	    						$genders = [
 	    							"0" => '',
 	    							"1" => $this->settings['gender']['mrs'],
@@ -705,14 +705,28 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    						$dataArray['company'] = $address->getCompany();
 	    						$dataArray['hash'] = $hash;
 	    						$dataArray['settings'] = $this->settings;
-    							$this->sendTemplateEmail(
-    								array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
-    								array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
-    								$this->settings['email']['adminSubscribeSubject'],
-    								'SubscribeToAdmin',
-    								$dataArray,
-    								TRUE
-								);
+	    						if ($this->settings['email']['adminMail']) {
+        							$this->sendTemplateEmail(
+        								array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
+        								array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+        								$this->settings['email']['adminSubscribeSubject'],
+        								'SubscribeToAdmin',
+        								$dataArray,
+        								TRUE
+    								);
+	    						}
+    							if ($this->settings['email']['enableConfirmationMails']) {
+    							    $from = trim($address->getFirstname() . ' ' . $address->getLastname());
+    							    if (!$from) $from = 'Subscriber';
+    							    $this->sendTemplateEmail(
+    							        array($email => $from),
+    							        array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+    							        $this->settings['email']['subscribedSubject'],
+    							        'Subscribed',
+    							        $dataArray,
+    							        FALSE
+    							    );
+    							}
 	    					}
     					}
     				}

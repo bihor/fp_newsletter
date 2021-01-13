@@ -28,9 +28,9 @@ Settings-Einstellungen
 
 .. container:: ts-properties
 
-	================================= =========== ===================================================================== ==========================
+	================================= =========== ===================================================================== ================================
 	Feld                              Typ         Beschreibung                                                          Standard-Wert
-	================================= =========== ===================================================================== ==========================
+	================================= =========== ===================================================================== ================================
 	table                             string      Bisher nur tt_address möglich                                         tt_address
 	optionalFields                    string      Optionale Werte: siehe weiter unten                                   gender,firstname,lastname
 	optionalFieldsRequired            string      Optionale erforderliche* Werte: siehe weiter unten
@@ -70,8 +70,11 @@ Settings-Einstellungen
 	email.adminSubscribeSubject       string      Betreff der Admin-E-Mail (Anmeldung)                                  Neue Newsletter-Anmeldung
 	email.adminUnsubscribeSubject     string      Betreff der Admin-E-Mail (Abmeldung)                                  Neue Newsletter-Abmeldung
 	email.adminMailBeforeVerification boolean     0: sende die E-Mail nach der Verifikation; 1: vor der Verifikation    0
+	email.subscribedSubject           string      Betreff der Bestätigungsmail (Anmeldung)                              Bestätigung Newsletter-Anmeldung
+	email.unsubscribedSubject         string      Betreff der Bestätigungsmail (Abmeldung)                              Bestätigung Newsletter-Abmeldung
+	email.enableConfirmationMails     boolean     Sende eine Bestätigungs-E-Mail an den Benutzer? 0: nein; 1: ja        0
 	overrideFlexformSettingsIfEmpty   string      Leere Flexforms sollen durch TypoScript überschrieben werden          alle uids...
-	================================= =========== ===================================================================== ==========================
+	================================= =========== ===================================================================== ================================
 
 Achtung*: die optional erforderlichen Werte werden nur per Browser geprüft.
 

@@ -4,7 +4,7 @@
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
-				<source>Newsletter subscriber managment</source>
+				<source>Newsletter subscriber management</source>
 				<target>Gestione della newsletter</target>
 			</trans-unit>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">

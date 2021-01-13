@@ -1,0 +1,7 @@
+Guten Tag,
+
+Sie haben sich soeben erfolgreich zu unserem Newsletter angemeldet.
+Verwendete E-Mail-Adresse: {email}
+
+Mit freundlichen Grüßen
+{settings.company}

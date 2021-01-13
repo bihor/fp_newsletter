@@ -8,7 +8,7 @@
 .. _start:
 
 =============================================================
-Newsletter subscriber managment
+Newsletter subscriber management
 =============================================================
 
 .. only:: html
@@ -29,7 +29,7 @@ Newsletter subscriber managment
 		newsletter,subscription,unsubscription,verify,gdpr
 
 	:Copyright:
-		2020
+		2021
 
 	:Author:
 		Kurt Gusbeth

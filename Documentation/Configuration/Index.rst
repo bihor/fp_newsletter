@@ -27,9 +27,9 @@ Properties for settings
 
 .. container:: ts-properties
 
-	================================= =========== ===================================================================== ==========================
+	================================= =========== ===================================================================== =================================
 	Property                          Data type   Description                                                           Default
-	================================= =========== ===================================================================== ==========================
+	================================= =========== ===================================================================== =================================
 	table                             string      Today only tt_address suported                                        tt_address
 	optionalFields                    string      Optional fields: see below                                            gender,firstname,lastname
 	optionalFieldsRequired            string      Optional required* fields: see below
@@ -69,8 +69,11 @@ Properties for settings
 	email.adminSubscribeSubject       string      Subject of the admin email (subscription)                             Neue Newsletter-Anmeldung
 	email.adminUnsubscribeSubject     string      Subject of the admin email (unsubscription)                           Neue Newsletter-Abmeldung
 	email.adminMailBeforeVerification boolean     0: send email to admin after verification; 1: before verification     0
+	email.subscribedSubject           string      Subject of the confirmation email (subscription)                      Bestätigung Newsletter-Anmeldung
+	email.unsubscribedSubject         string      Subject of the confirmation email (unsubscription)                    Bestätigung Newsletter-Abmeldung
+	email.enableConfirmationMails     boolean     Send confirmation email to the user after verification? 0: no; 1: yes 0
 	overrideFlexformSettingsIfEmpty   string      Empty FlexForms should be overwritten by TypoScript                   all uids...
-	================================= =========== ===================================================================== ==========================
+	================================= =========== ===================================================================== =================================
 
 Note*: only a check via browser is made for the optional required fields.
 

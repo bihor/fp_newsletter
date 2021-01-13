@@ -64,6 +64,9 @@ plugin.tx_fpnewsletter {
 		adminSubscribeSubject = Neue Newsletter-Anmeldung
 		adminUnsubscribeSubject = Neue Newsletter-Abmeldung
 		adminMailBeforeVerification = 0
+		subscribedSubject = Bestätigung Newsletter-Anmeldung
+		unsubscribedSubject = Bestätigung Newsletter-Abmeldung
+		enableConfirmationMails = 0
 	}
 	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,gdprUid,parameters.active,parameters.email
   }
@@ -80,4 +83,6 @@ plugin.tx_fpnewsletter_pi1.settings.email.subscribeVerifySubject = Please verify
 plugin.tx_fpnewsletter_pi1.settings.email.unsubscribeVerifySubject = Please verify your email
 plugin.tx_fpnewsletter_pi1.settings.email.adminSubscribeSubject = New newsletter-subscription
 plugin.tx_fpnewsletter_pi1.settings.email.adminUnsubscribeSubject = New newsletter-unsubscription
+plugin.tx_fpnewsletter_pi1.settings.email.subscribedSubject = Newsletter-subscription confirmation
+plugin.tx_fpnewsletter_pi1.settings.email.unsubscribedSubject = Newsletter-unsubscription confirmation
 [END]

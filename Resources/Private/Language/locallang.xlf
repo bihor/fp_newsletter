@@ -4,7 +4,7 @@
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
-				<source>Newsletter subscriber managment</source>
+				<source>Newsletter subscriber management</source>
 			</trans-unit>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
 				<source>Plugin for newsletter subscription and unsubscription. Used table: tt_address. A log is written.</source>

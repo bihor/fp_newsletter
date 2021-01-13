@@ -1,0 +1,7 @@
+Hello,
+
+You have just successfully registered for our newsletter.
+Used E-Mail-address: {email}
+
+Best regards
+{settings.company}

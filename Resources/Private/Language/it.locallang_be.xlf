@@ -107,6 +107,26 @@
 				<source>Enable a honeypot?</source>
 				<target>Mostra un honeypot?</target>
 			</trans-unit>
+			<trans-unit id="settings.deleteMode">
+				<source>Deletion mode</source>
+				<target>Modalità di eliminazione</target>
+			</trans-unit>
+			<trans-unit id="settings.deleteMode.1">
+				<target>imposta il flag di cancellazione</target>
+			</trans-unit>
+			<trans-unit id="settings.deleteMode.2">
+				<target>eliminare la voce</target>
+			</trans-unit>
+			<trans-unit id="settings.languageMode">
+				<source>Language mode</source>
+				<target>Modalità lingua</target>
+			</trans-unit>
+			<trans-unit id="settings.languageMode.0">
+				<target>imposta sys_language_uid a -1 se L> 0</target>
+			</trans-unit>
+			<trans-unit id="settings.languageMode.1">
+				<target>usa il valore di sys_language_uid</target>
+			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>
 				<target>Iscrizione alla newsletter in formato HTML?</target>

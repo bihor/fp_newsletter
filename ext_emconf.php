@@ -11,7 +11,7 @@
  ***************************************************************/
 
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'Newsletter subscriber managment',
+    'title' => 'Newsletter subscriber management',
     'description' => 'Plugin for newsletter subscription and unsubscription with double opt in (and double opt out). Used table: tt_address. A log is written.',
     'category' => 'plugin',
     'author' => 'Kurt Gusbeth',
@@ -22,7 +22,7 @@ $EM_CONF[$_EXTKEY] = [
     'uploadfolder' => '0',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '1.2.2',
+    'version' => '1.2.3',
     'constraints' => [
         'depends' => [
         	'typo3' => '9.5.20-10.4.99'
