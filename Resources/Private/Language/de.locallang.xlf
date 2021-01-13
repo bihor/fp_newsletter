@@ -4,7 +4,7 @@
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
-				<target>Newsletter-Abonnenten-Managment</target>
+				<target>Newsletter-Abonnenten-Management</target>
 			</trans-unit>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
 				<target>Datenschutzkonformes Plugin für direct_mail An- und Abmeldungen via tt_address.</target>
