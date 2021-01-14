@@ -558,7 +558,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         			$this->logRepository->deleteInTtAddress($dbuidext, $this->settings['deleteMode'], $dmCatArr);
         		}
         		$messageUid = $this->settings['unsubscribeVerifyMessageUid'];
-        		if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
+        		if (($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
         			$dataArray = [];
         			$dataArray['uid'] = $log->getUid();
         			$dataArray['sys_language_uid'] = $log->get_languageUid();
@@ -580,14 +580,28 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         			$dataArray['company'] = $log->getCompany();
         			$dataArray['hash'] = $hash;
         			$dataArray['settings'] = $this->settings;
-    				$this->sendTemplateEmail(
-    					array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
-    					array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
-    					$this->settings['email']['adminUnsubscribeSubject'],
-    					'UnsubscribeToAdmin',
-    					$dataArray,
-    					TRUE
-    				);
+        			if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
+        				$this->sendTemplateEmail(
+        					array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
+        					array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+        					$this->settings['email']['adminUnsubscribeSubject'],
+        					'UnsubscribeToAdmin',
+        					$dataArray,
+        					TRUE
+        				);
+        			}
+    				if ($this->settings['email']['enableConfirmationMails']) {
+    				    $from = trim($log->getFirstname() . ' ' . $log->getLastname());
+    				    if (!$from) $from = 'Subscriber';
+    				    $this->sendTemplateEmail(
+    				        array($email => $from),
+    				        array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+    				        $this->settings['email']['unsubscribedSubject'],
+    				        'Unsubscribed',
+    				        $dataArray,
+    				        FALSE
+    				    );
+    				}
         		}
         		$log->setStatus(7);
         		$this->logRepository->update($log);
@@ -705,7 +719,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 	    						$dataArray['company'] = $address->getCompany();
 	    						$dataArray['hash'] = $hash;
 	    						$dataArray['settings'] = $this->settings;
-	    						if ($this->settings['email']['adminMail']) {
+	    						if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
         							$this->sendTemplateEmail(
         								array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
         								array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
@@ -809,7 +823,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                             	}
                             	$this->logRepository->deleteInTtAddress($dbuidext, $this->settings['deleteMode'], $dmCatArr);
                             }
-                            if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
+                            if (($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                             	$genders = [
                             		"0" => '',
                             		"1" => $this->settings['gender']['mrs'],
@@ -837,14 +851,28 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                             	$dataArray['company'] = $address->getCompany();
                             	$dataArray['hash'] = $hash;
                             	$dataArray['settings'] = $this->settings;
-                        		$this->sendTemplateEmail(
-                        			array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
-                        			array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
-                        			$this->settings['email']['adminUnsubscribeSubject'],
-                        			'UnsubscribeToAdmin',
-                        			$dataArray,
-                        			TRUE
-                        		);
+                            	if ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']) {
+                            		$this->sendTemplateEmail(
+                            			array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
+                            			array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+                            			$this->settings['email']['adminUnsubscribeSubject'],
+                            			'UnsubscribeToAdmin',
+                            			$dataArray,
+                            			TRUE
+                            		);
+                            	}
+                        		if ($this->settings['email']['enableConfirmationMails']) {
+                        		    $from = trim($address->getFirstname() . ' ' . $address->getLastname());
+                        		    if (!$from) $from = 'Subscriber';
+                        		    $this->sendTemplateEmail(
+                        		        array($email => $from),
+                        		        array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+                        		        $this->settings['email']['unsubscribedSubject'],
+                        		        'Unsubscribed',
+                        		        $dataArray,
+                        		        FALSE
+                        		    );
+                        		}
                             }
                         }
                     }
@@ -883,7 +911,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	);
     	$languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
     	$sys_language_uid = intval($languageAspect->getId());
-    	if (($sys_language_uid > 0) && !$toAdmin) {
+    	if (($sys_language_uid > 0) && !$toAdmin && !$this->settings['email']['dontAppendL']) {
     		$templateName .= $sys_language_uid;
     	}
     	

@@ -31,7 +31,7 @@ Settings-Einstellungen
 	================================= =========== ===================================================================== ================================
 	Feld                              Typ         Beschreibung                                                          Standard-Wert
 	================================= =========== ===================================================================== ================================
-	table                             string      Bisher nur tt_address möglich                                         tt_address
+	table                             string      Bisher nur tt_address oder keine Tabelle (leerer Wert) möglich        tt_address
 	optionalFields                    string      Optionale Werte: siehe weiter unten                                   gender,firstname,lastname
 	optionalFieldsRequired            string      Optionale erforderliche* Werte: siehe weiter unten
 	doubleOptOut                      boolean     Double opt out Abmeldung einschalten?                                 0
@@ -73,7 +73,8 @@ Settings-Einstellungen
 	email.subscribedSubject           string      Betreff der Bestätigungsmail (Anmeldung)                              Bestätigung Newsletter-Anmeldung
 	email.unsubscribedSubject         string      Betreff der Bestätigungsmail (Abmeldung)                              Bestätigung Newsletter-Abmeldung
 	email.enableConfirmationMails     boolean     Sende eine Bestätigungs-E-Mail an den Benutzer? 0: nein; 1: ja        0
-	overrideFlexformSettingsIfEmpty   string      Leere Flexforms sollen durch TypoScript überschrieben werden          alle uids...
+	email.dontAppendL                 boolean     Hänge die Sprach-UID an Templates an, wenn L>0? 0: ja; 1: nein        0
+	overrideFlexformSettingsIfEmpty   string      Leere Flexforms sollen durch TypoScript überschrieben werden          alle uid-Variablen
 	================================= =========== ===================================================================== ================================
 
 Achtung*: die optional erforderlichen Werte werden nur per Browser geprüft.
@@ -91,9 +92,11 @@ Sprachen
 
 Man kann die Texte für andere Sprachen so überschreiben::
 
-  [globalVar = GP:L = 1]
+  [siteLanguage("languageId") == "1"]
   plugin.tx_fpnewsletter_pi1.settings.company = Your company
-  [end]
+  [END]
+
+Achtung: wenn man andere Sprachen in den Emails verwenden will, sollte man das Kapitel "Administrator-Handbuch" lesen.
 
 Externe Felder
 ^^^^^^^^^^^^^^

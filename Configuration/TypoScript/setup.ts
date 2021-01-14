@@ -67,6 +67,7 @@ plugin.tx_fpnewsletter {
 		subscribedSubject = Bestätigung Newsletter-Anmeldung
 		unsubscribedSubject = Bestätigung Newsletter-Abmeldung
 		enableConfirmationMails = 0
+		dontAppendL = 0
 	}
 	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,gdprUid,parameters.active,parameters.email
   }

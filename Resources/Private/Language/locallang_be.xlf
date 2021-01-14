@@ -100,7 +100,10 @@
 				<source>use the value of sys_language_uid</source>
 			</trans-unit>
 			<trans-unit id="settings.enableConfirmationMails">
-				<source>Abilitare le email di conferma all'utente?</source>
+				<source>Enable confirmation emails to the user?</source>
+			</trans-unit>
+			<trans-unit id="settings.dontAppendL">
+				<source>Aggiungere l'UID della lingua ai modelli di posta elettronica?</source>
 			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>

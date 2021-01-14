@@ -8,7 +8,7 @@
 
 .. _admin-manual:
 
-Administrator Manual
+Administrator manual
 ====================
 
 You will need the extension tt_address and direct_mail for this extension.
@@ -30,13 +30,17 @@ If you want to change the text of the email, copy the templates e.g. to fileadmi
 
   plugin.tx_fpnewsletter.view.templateRootPaths.1 = fileadmin/bsdist/theme/tmpl/fp_newsletter/Templates/
 
-There is a text and a HTML version. And there is an english and a german version of this template.
+There is a text and a HTML version. And there is an english and a german version of this template (but not for the admin-templates).
 The translate-ViewHelper can not be used in this templates thats why you need to create a template for every used language.
 The default template is in german. SubscribeVerify1.html contains the english text. You can use this email-templates like this::
 
   SubscribeVerify<LANGUID>.html and SubscribeVerify<LANGUID>.txt
 
 Only for the language 0 you must remove the number. For the language 1 SubscribeVerify1.html is used automatically.
+
+You can switch off this behavior with the setting email.dontAppendL = 1!
+In this case you should use the variable {sys_language_uid} in the email templates.
+You could use <f:if condition="{sys_language_uid} == 1"> to use more than one language in one template.
 
 
 .. _admin-newsletter:

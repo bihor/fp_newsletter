@@ -66,4 +66,6 @@ Bugfix: Fehlermeldung verhindern beim abmelden, wenn ein Captcha aktiviert ist.
 Version 1.2.0: veralterte Methoden ersetzt.
 
 Version 2.0.0: über die Einstellung languageMode kann man nun die Sprache der Einträge bestimmen.
-Das Verhalten bei Sprachen>0 ist nun anders.
+Das Verhalten bei Sprachen>0 ist nun anders. Zudem ist die Einstellung email.dontAppendL neu.
+Bestätigungsmails können nun gesendet werden, wenn man sie per settings.email.enableConfirmationMails aktiviert.
+Mehr FlexForms.

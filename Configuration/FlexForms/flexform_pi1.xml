@@ -239,6 +239,24 @@
 					</config>
 				</TCEforms>
 			</settings.email.enableConfirmationMails>
+			<settings.email.dontAppendL>
+				<TCEforms>
+					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.dontAppendL</label>
+	                <config>
+						<type>radio</type>
+						<items type="array">
+							<numIndex index="0" type="array">
+								<numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.yes</numIndex>
+								<numIndex index="1">0</numIndex>
+							</numIndex>
+							<numIndex index="1" type="array">
+								<numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.no</numIndex>
+								<numIndex index="1">1</numIndex>
+							</numIndex>
+						</items>
+					</config>
+				</TCEforms>
+			</settings.email.dontAppendL>
 			<settings.module_sys_dmail_html>
 				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.module_sys_dmail_html</label>

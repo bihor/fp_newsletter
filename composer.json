@@ -4,7 +4,8 @@
 	"description" : "Plugin for newsletter subscription and unsubscription (for direct_mail). Used table: tt_address. A log is written.",
 	"authors" : [{
 			"name" : "Kurt Gusbeth",
-			"role" : "Developer"
+			"role" : "Developer",
+			"homepage": "http://www.quizpalme.de"
 		}
 	],
 	"require" : {

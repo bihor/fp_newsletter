@@ -1,0 +1,7 @@
+Hello,
+
+you are now unsubscribed from our newsletter.
+Used email-address: {email}
+
+Best regards
+{settings.company}

@@ -32,7 +32,7 @@ Zum ändern der Templates muss man sie z.B. nach fileadmin kopieren und den Link
 
   plugin.tx_fpnewsletter.view.templateRootPaths.1 = fileadmin/bsdist/theme/tmpl/fp_newsletter/Templates/
 
-Es gibt eine Text- und eine HTML-Version. Und es gibt beide Templates in deutsch und in englisch.
+Es gibt eine Text- und eine HTML-Version. Und es gibt beide Templates in deutsch und in englisch (außer die für den Admin).
 Der Übersetzungs-Viewhelper funktioniert bei diesen Templates nicht, weshalb man die Texte dort direkt eintragen muss.
 Man muss deshalb für jede Sprache neue Templates anlegen. Das Default-Template ist in deutsch und SubscribeVerify1.html
 ist in englisch verfasst. Es werden automatisch diese Templates verwendet::
@@ -40,6 +40,10 @@ ist in englisch verfasst. Es werden automatisch diese Templates verwendet::
   SubscribeVerify<LANGUID>.html and SubscribeVerify<LANGUID>.txt
 
 Nur für die Sprache 0 muss man die Zahl weglassen. SubscribeVerify1.txt ist das Template für die Sprache 1.
+
+Man kann dieses Verhalten jedoch mit der Einstellung email.dontAppendL=1 abschalten!
+In dem Fall sollte man die Variable {sys_language_uid} in den E-Mail-Templates verwenden.
+Man kann also mit Hilfe von <f:if condition="{sys_language_uid} == 1"> mehrere Sprachen in einem Template verwenden.
 
 
 .. _admin-newsletter:

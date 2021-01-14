@@ -30,7 +30,7 @@ Properties for settings
 	================================= =========== ===================================================================== =================================
 	Property                          Data type   Description                                                           Default
 	================================= =========== ===================================================================== =================================
-	table                             string      Today only tt_address suported                                        tt_address
+	table                             string      Today only tt_address or none (empty value) suported                  tt_address
 	optionalFields                    string      Optional fields: see below                                            gender,firstname,lastname
 	optionalFieldsRequired            string      Optional required* fields: see below
 	doubleOptOut                      boolean     Enable double out out unsubscription?                                 0
@@ -72,7 +72,8 @@ Properties for settings
 	email.subscribedSubject           string      Subject of the confirmation email (subscription)                      Bestätigung Newsletter-Anmeldung
 	email.unsubscribedSubject         string      Subject of the confirmation email (unsubscription)                    Bestätigung Newsletter-Abmeldung
 	email.enableConfirmationMails     boolean     Send confirmation email to the user after verification? 0: no; 1: yes 0
-	overrideFlexformSettingsIfEmpty   string      Empty FlexForms should be overwritten by TypoScript                   all uids...
+	email.dontAppendL                 boolean     Append the language UID to a template when L>0? 0: yes; 1: no         0
+	overrideFlexformSettingsIfEmpty   string      Empty FlexForms should be overwritten by TypoScript                   all uid settings
 	================================= =========== ===================================================================== =================================
 
 Note*: only a check via browser is made for the optional required fields.
@@ -91,9 +92,12 @@ Languages
 
 You can overrite the text for other languges like this::
 
-  [globalVar = GP:L = 1]
+  [siteLanguage("languageId") == "1"]
   plugin.tx_fpnewsletter_pi1.settings.company = Your company
-  [end]
+  [END]
+
+Note: the default language of the email-templates is german! You find the english version in the files that end with 1.html.
+You should copy the files and modify the path to the templates via TypoScript. See chapter "Administrator manual".
 
 External fields
 ^^^^^^^^^^^^^^^

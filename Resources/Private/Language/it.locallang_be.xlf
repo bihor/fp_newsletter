@@ -127,6 +127,12 @@
 			<trans-unit id="settings.languageMode.1">
 				<target>usa il valore di sys_language_uid</target>
 			</trans-unit>
+			<trans-unit id="settings.dontAppendL">
+				<target>Abilitare le email di conferma all'utente?</target>
+			</trans-unit>
+			<trans-unit id="settings.enableConfirmationMails">
+				<target>Abilitare le email di conferma all'utente?</target>
+			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>
 				<target>Iscrizione alla newsletter in formato HTML?</target>
