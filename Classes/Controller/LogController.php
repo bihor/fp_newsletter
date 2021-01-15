@@ -858,6 +858,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         //$templateRootPath = GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
         //$templatePathAndFilename = $templateRootPath . 'Email/' . $templateName . '.html';
         //$emailViewHtml->setTemplatePathAndFilename($templatePathAndFilename);
+        $emailViewHtml->getRequest()->setControllerExtensionName($this->extensionName); // make sure f:translate() knows where to find the LLL file
         $emailViewHtml->setTemplateRootPaths($extbaseFrameworkConfiguration['view']['templateRootPaths']);
         $emailViewHtml->setLayoutRootPaths($extbaseFrameworkConfiguration['view']['layoutRootPaths']);
         $emailViewHtml->setPartialRootPaths($extbaseFrameworkConfiguration['view']['partialRootPaths']);
@@ -870,6 +871,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $emailViewText = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
         //$templatePathAndFilename = $templateRootPath . 'Email/' . $templateName . '.txt';
         //$emailViewText->setTemplatePathAndFilename($templatePathAndFilename);
+        $emailViewText->getRequest()->setControllerExtensionName($this->extensionName); // make sure f:translate() knows where to find the LLL file
         $emailViewText->setTemplateRootPaths($extbaseFrameworkConfiguration['view']['templateRootPaths']);
         $emailViewText->setLayoutRootPaths($extbaseFrameworkConfiguration['view']['layoutRootPaths']);
         $emailViewText->setPartialRootPaths($extbaseFrameworkConfiguration['view']['partialRootPaths']);
