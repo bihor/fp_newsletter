@@ -171,6 +171,15 @@
 			<trans-unit id="error_not_here">
 				<target>Fehler: unbekannt!</target>
 			</trans-unit>
+			<trans-unit id="email.dear-gender-first-and-last-name">
+				<target>Guten Tag %s %s %s,</target>
+			</trans-unit>
+			<trans-unit id="email.dear-first-and-last-name">
+				<target>Guten Tag %s %s,</target>
+			</trans-unit>
+			<trans-unit id="email.dear">
+				<target>Guten Tag,</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

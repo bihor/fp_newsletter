@@ -5,7 +5,18 @@
 <title>Newsletter-Anmeldung</title>
 </head>
 <body>
-<h3>Guten Tag,</h3>
+<h3>
+    <f:if condition="{gender}">
+        <f:then>
+            <f:translate key="email.dear-gender-first-and-last-name"
+                         arguments="{0: gender, 1: firstname, 2: lastname}" />
+        </f:then>
+        <f:else>
+            <f:translate key="email.dear-first-and-last-name"
+                         arguments="{1: firstname, 2: lastname}" />
+        </f:else>
+    </f:if>
+</h3>
 <p>um sich zu unserem Newsletter anzumelden, müssen Sie Ihre E-Mailadresse mit Klick auf diesen Link verifizieren:</p>
 <p><f:link.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" arguments="{uid: uid, hash: hash}" noCache="1" absolute="1"><f:format.raw><f:uri.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" arguments="{uid: uid, hash: hash}" noCache="1" absolute="1" /></f:format.raw></f:link.action></p>
 <p>Mit freundlichen Grüßen<br>

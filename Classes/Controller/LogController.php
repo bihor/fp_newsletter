@@ -890,6 +890,78 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
     }
     
+    
+    /**
+     * Prepare Array for emails and trigger sending of emails
+     *
+     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log &$log Entry
+     * @param boolean $isSubscribe Subscription or unsubscription?
+     * @param boolean $toUser email to user?
+     * @param boolean $toAdmin email to admin?
+     * @param string $hash hash
+     * @param integer $verifyUid UID of the verification page
+     */
+    protected function prepareEmail(\Fixpunkt\FpNewsletter\Domain\Model\Log &$log, $isSubscribe = true, $toUser = false, $toAdmin = false, $hash = '', $verifyUid = 0) {
+        $genders = [
+            "0" => '',
+            "1" => $this->settings['gender']['mrs'],
+            "2" => $this->settings['gender']['mr'],
+            "3" => $this->settings['gender']['divers']
+        ];
+        $email = $log->getEmail();
+        $from = trim($log->getFirstname() . ' ' . $log->getLastname());
+        if (!$from) $from = 'Subscriber';
+        $dataArray = [];
+        $dataArray['uid'] = $log->getUid();
+        $dataArray['sys_language_uid'] = $log->get_languageUid();
+        $dataArray['gender'] = $genders[$log->getGender()];
+        $dataArray['title'] = $log->getTitle();
+        $dataArray['firstname'] = $log->getFirstname();
+        $dataArray['lastname'] = $log->getLastname();
+        $dataArray['email'] = $email;
+        $dataArray['address'] = $log->getAddress();
+        $dataArray['zip'] = $log->getZip();
+        $dataArray['city'] = $log->getCity();
+        $dataArray['region'] = $log->getRegion();
+        $dataArray['country'] = $log->getCountry();
+        $dataArray['phone'] = $log->getPhone();
+        $dataArray['mobile'] = $log->getMobile();
+        $dataArray['fax'] = $log->getFax();
+        $dataArray['www'] = $log->getWww();
+        $dataArray['position'] = $log->getPosition();
+        $dataArray['company'] = $log->getCompany();
+        if ($hash) {
+            $dataArray['hash'] = $hash;
+        }
+        if ($verifyUid) {
+            if ($isSubscribe) {
+                $dataArray['subscribeVerifyUid'] = $verifyUid;
+            } else {
+                $dataArray['unsubscribeVerifyUid'] = $verifyUid;
+            }
+        }
+        $dataArray['settings'] = $this->settings;
+        if ($toUser) {
+            $this->sendTemplateEmail(
+                array($email => $from),
+                array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+                $this->settings['email']['unsubscribeVerifySubject'],
+                'UnsubscribeVerify',
+                $dataArray,
+                FALSE
+            );
+        }
+        if ($toAdmin) {
+            $this->sendTemplateEmail(
+                array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
+                array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
+                $this->settings['email']['adminUnsubscribeSubject'],
+                'UserToAdmin',
+                $dataArray,
+                TRUE
+            );
+        }
+    }
 
     /**
      * Send an email
@@ -920,6 +992,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	//$templateRootPath = GeneralUtility::getFileAbsFileName($extbaseFrameworkConfiguration['view']['templateRootPath']);
     	//$templatePathAndFilename = $templateRootPath . 'Email/' . $templateName . '.html';
     	//$emailViewHtml->setTemplatePathAndFilename($templatePathAndFilename);
+    	$emailViewHtml->getRequest()->setControllerExtensionName($this->extensionName); // make sure f:translate() knows where to find the LLL file
     	$emailViewHtml->setTemplateRootPaths($extbaseFrameworkConfiguration['view']['templateRootPaths']);
     	$emailViewHtml->setLayoutRootPaths($extbaseFrameworkConfiguration['view']['layoutRootPaths']);
     	$emailViewHtml->setPartialRootPaths($extbaseFrameworkConfiguration['view']['partialRootPaths']);
@@ -932,6 +1005,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     	$emailViewText = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
     	//$templatePathAndFilename = $templateRootPath . 'Email/' . $templateName . '.txt';
     	//$emailViewText->setTemplatePathAndFilename($templatePathAndFilename);
+    	$emailViewText->getRequest()->setControllerExtensionName($this->extensionName); // make sure f:translate() knows where to find the LLL file
     	$emailViewText->setTemplateRootPaths($extbaseFrameworkConfiguration['view']['templateRootPaths']);
     	$emailViewText->setLayoutRootPaths($extbaseFrameworkConfiguration['view']['layoutRootPaths']);
     	$emailViewText->setPartialRootPaths($extbaseFrameworkConfiguration['view']['partialRootPaths']);
