@@ -178,7 +178,7 @@
 				<source>Dear %s %s,</source>
 			</trans-unit>
 			<trans-unit id="email.dear">
-				<source>Dear,</source>
+				<source>Hello,</source>
 			</trans-unit>
 		</body>
 	</file>

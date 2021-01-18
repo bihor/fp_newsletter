@@ -50,7 +50,7 @@ Properties for settings
 	languageMode                      integer     0: uses -1 if L>0; 1: uses the sys_language_uid from pages            0
 	module_sys_dmail_html             integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1
 	module_sys_dmail_category         string      Comma separated list of categories (uid) from sys_dmail_category
-	reCAPTCHA_site_key                string      Website-key for Google reCaptcha v3
+	reCAPTCHA_site_key                string      Website-key for Google reCaptcha v3. curl needed!
 	reCAPTCHA_secret_key              string      Secret key for Google reCaptcha v3
 	mathCAPTCHA                       integer     Show a mathematical captcha? 0: no; 1: with 1 digit; 2: with 2 digits 0
 	honeypot                          boolean     Enable a honeypot against spam?                                       0

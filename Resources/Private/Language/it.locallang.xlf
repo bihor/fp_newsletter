@@ -211,6 +211,15 @@
 				<source>Error: this point should not be reached!</source>
 				<target>Errore generico</target>
 			</trans-unit>
+			<trans-unit id="email.dear-gender-first-and-last-name">
+				<target>Cara %s %s %s,</target>
+			</trans-unit>
+			<trans-unit id="email.dear-first-and-last-name">
+				<target>Cara %s %s,</target>
+			</trans-unit>
+			<trans-unit id="email.dear">
+				<target>Ciao,</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

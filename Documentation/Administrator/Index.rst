@@ -30,8 +30,7 @@ If you want to change the text of the email, copy the templates e.g. to fileadmi
 
   plugin.tx_fpnewsletter.view.templateRootPaths.1 = fileadmin/bsdist/theme/tmpl/fp_newsletter/Templates/
 
-There is a text and a HTML version. And there is an english and a german version of this template (but not for the admin-templates).
-The translate-ViewHelper can not be used in this templates thats why you need to create a template for every used language.
+There is a text and a HTML version for email-templates. And there is an english and a german version of this template (but not for the admin-templates).
 The default template is in german. SubscribeVerify1.html contains the english text. You can use this email-templates like this::
 
   SubscribeVerify<LANGUID>.html and SubscribeVerify<LANGUID>.txt

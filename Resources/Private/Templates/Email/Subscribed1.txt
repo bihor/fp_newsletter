@@ -1,7 +1,12 @@
-Hello,
-
+<f:if condition="{gender} && {lastname}"><f:then>
+<f:translate key="email.dear-gender-first-and-last-name" arguments="{0: gender, 1: firstname, 2: lastname}" />
+</f:then><f:else if="{lastname}">
+<f:translate key="email.dear-first-and-last-name" arguments="{1: firstname, 2: lastname}" />
+</f:else><f:else>
+<f:translate key="email.dear" />
+</f:else></f:if>
 You have just successfully registered for our newsletter.
-Used E-Mail-address: {email}
+Used email-address: {email}
 
 Best regards
 {settings.company}

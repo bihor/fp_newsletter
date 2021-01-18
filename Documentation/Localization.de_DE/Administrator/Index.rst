@@ -32,9 +32,8 @@ Zum ändern der Templates muss man sie z.B. nach fileadmin kopieren und den Link
 
   plugin.tx_fpnewsletter.view.templateRootPaths.1 = fileadmin/bsdist/theme/tmpl/fp_newsletter/Templates/
 
-Es gibt eine Text- und eine HTML-Version. Und es gibt beide Templates in deutsch und in englisch (außer die für den Admin).
-Der Übersetzungs-Viewhelper funktioniert bei diesen Templates nicht, weshalb man die Texte dort direkt eintragen muss.
-Man muss deshalb für jede Sprache neue Templates anlegen. Das Default-Template ist in deutsch und SubscribeVerify1.html
+Es gibt eine Text- und eine HTML-Version für die E-Mails. Und es gibt beide Templates in deutsch und in englisch (außer die für den Admin).
+Standardmässig muss man für jede Sprache neue Templates anlegen. Das Default-Template ist in deutsch und SubscribeVerify1.html
 ist in englisch verfasst. Es werden automatisch diese Templates verwendet::
 
   SubscribeVerify<LANGUID>.html and SubscribeVerify<LANGUID>.txt

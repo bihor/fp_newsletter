@@ -51,7 +51,7 @@ Settings-Einstellungen
 	languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
 	module_sys_dmail_html             integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1
 	module_sys_dmail_category         string      Komma separierte Liste von Kategorien (uid) aus sys_dmail_category
-	reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3
+	reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3. curl wird benötigt!
 	reCAPTCHA_secret_key              string      Geheimer Schlüssel für Google reCaptcha v3
 	mathCAPTCHA                       integer     Zeige ein mathematisches Captcha? 0: nein; 1, 2: ja, mit 1-2 Ziffern  0
 	honeypot                          boolean     Einen Honigtopf (honeypot) gegen Spam einschalten?                    0

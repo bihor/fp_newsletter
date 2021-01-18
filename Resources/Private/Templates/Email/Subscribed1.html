@@ -5,9 +5,21 @@
 <title>Newsletter-Subscription</title>
 </head>
 <body>
-<h3>Hello,</h3>
+<h3>
+    <f:if condition="{gender} && {lastname}">
+        <f:then>
+            <f:translate key="email.dear-gender-first-and-last-name" arguments="{0: gender, 1: firstname, 2: lastname}" />
+        </f:then>
+        <f:else if="{lastname}">
+            <f:translate key="email.dear-first-and-last-name" arguments="{1: firstname, 2: lastname}" />
+        </f:else>
+        <f:else>
+            <f:translate key="email.dear" />
+        </f:else>
+    </f:if>
+</h3>
 <p>You have just successfully registered for our newsletter.</p>
-<p>Used E-Mail-address: <a href="mailto:{email}">{email}</a></p>
+<p>Used email-address: <a href="mailto:{email}">{email}</a></p>
 <p>Best regards<br>
 {settings.company}</p>
 </body>
