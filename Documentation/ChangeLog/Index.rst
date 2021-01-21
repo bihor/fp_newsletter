@@ -68,4 +68,6 @@ Version 1.2.0: deprecated methods replaced.
 Version 2.0.0: with the new setting languageMode you can define the language of the entries.
 There is now a new behavior when L>0. Furthermore the setting email.dontAppendL is new.
 Confirmation emails can now be send by enabeling them with the setting email.enableConfirmationMails.
+The translate-viewhelper can now be used in the email-templates.
+Name and salutation can be used now in the email-templates.
 More FlexForms.
