@@ -12,7 +12,7 @@ Administrator manual
 ====================
 
 You will need the extension tt_address and direct_mail for this extension.
-Users can subscribe to your newsletter, if you uses addresses from tt_address. fe_users is not supported today, but it is planed.
+Users can subscribe to your newsletter, if you uses addresses from tt_address. fe_users is not supported today.
 
 
 .. _admin-templates:
@@ -41,6 +41,36 @@ You can switch off this behavior with the setting email.dontAppendL = 1!
 In this case you should use the variable {sys_language_uid} in the email templates.
 You could use <f:if condition="{sys_language_uid} == 1"> to use more than one language in one template.
 
+
+.. _admin-fluid-page-template:
+
+Fluid Page Template
+-------------------
+
+You want to insert a newsletter subscription form to your fluid page template? E.g. in the footer of every page?
+Then you have 2 possibilities.
+
+First way: insert a static form in your template. This extension can read this variables if you provide the used form elements.
+Read the chapter "Configuration -> External fields" for more informations about this way.
+
+Second way: you can load the plugin via f:cObject typoscriptObjectPath in your page template like this::
+
+  <f:cObject typoscriptObjectPath="lib.nlsubscriptionContent" />
+
+Therefore you need to define lib.nlsubscriptionContent like this::
+
+  lib.nlsubscriptionContent = CONTENT
+  lib.nlsubscriptionContent {
+    table = tt_content
+    wrap = |
+    select {
+      pidInList = 22
+      where = colPos = 0
+    }
+  }
+
+Replace the 0 and 22 with your used colPos and page-uid at the page with your subscription form.
+ 
 
 .. _admin-newsletter:
 

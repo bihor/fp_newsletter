@@ -45,6 +45,36 @@ In dem Fall sollte man die Variable {sys_language_uid} in den E-Mail-Templates v
 Man kann also mit Hilfe von <f:if condition="{sys_language_uid} == 1"> mehrere Sprachen in einem Template verwenden.
 
 
+.. _admin-fluid-page-template:
+
+Fluid Page Template
+-------------------
+
+Du willst ein Anmeldeformular in dein Seiten-Template einbauen? Z.B. auf jeder Seite in den Footer?
+Da gibt es 2 Möglichkeiten.
+
+1. Möglichkeit: füge ein statisches Formular in dein Footer-Template ein. Diese Extension kann die Parameter aus diesem Formular auslesen.
+Lies das Kapitel "Konfiguration -> Externe Felder" für mehr Details dazu.
+
+2. Möglichkeit: du kannst ein Plugin via f:cObject typoscriptObjectPath in dein Template einbauen. Beispiel::
+
+  <f:cObject typoscriptObjectPath="lib.nlsubscriptionContent" />
+
+Dafür musst du lib.nlsubscriptionContent in deinem TypoScript-Template wie folgt definieren::
+
+  lib.nlsubscriptionContent = CONTENT
+  lib.nlsubscriptionContent {
+    table = tt_content
+    wrap = |
+    select {
+      pidInList = 22
+      where = colPos = 0
+    }
+  }
+
+Ersetze 0 und 22 durch die colPos und page-uid, welche du benutzt hast auf der Seite mit dem Anmelde-Plugin.
+ 
+
 .. _admin-newsletter:
 
 Newsletter
