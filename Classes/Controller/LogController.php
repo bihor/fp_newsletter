@@ -263,6 +263,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 'error' => $error
             ]);
         }
+        if ($this->settings['disableErrorMsg'] && ($error == 5 || $error == 6)) {
+            $error = 0;
+        }
 
         if (($error == 0) && ($this->settings['subscribeMessageUid'])) {
             $uri = $this->uriBuilder->reset()
@@ -492,6 +495,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 'error' => $error
             ]);
         }
+        if ($this->settings['disableErrorMsg'] && ($error == 7)) {
+            $error = 0;
+        }
 
         if (($error == 0) && ($messageUid)) {
             $uri = $this->uriBuilder->reset()
@@ -512,7 +518,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     {
         $error = 0;
         $dbuid = 0;
-        $email = '';
         $html = intval($this->settings['module_sys_dmail_html']);
         $dmCat = str_replace(' ', '', $this->settings['module_sys_dmail_category']);
         $uid = intval($this->request->hasArgument('uid')) ? $this->request->getArgument('uid') : 0;
@@ -529,7 +534,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             }
             if ($address) {
                 $dbuid = $address->getUid();
-                $email = $address->getEmail();
                 $this->view->assign('address', $address);
             }
             if (! $dbuid) {
@@ -580,6 +584,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                     }
                 }
             }
+            if ($this->settings['disableErrorMsg'] && ($error == 5 || $error == 6)) {
+                $error = 0;
+            }
 
             if (($error == 0) && ($this->settings['subscribeVerifyMessageUid'])) {
                 $uri = $this->uriBuilder->reset()
@@ -615,7 +622,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             }
             if ($address) {
                 $dbuid = $address->getUid();
-                $email = $address->getEmail();
                 $this->view->assign('address', $address);
             }
             if (! $dbuid) {
@@ -663,6 +669,9 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                         }
                     }
                 }
+            }
+            if ($this->settings['disableErrorMsg'] && ($error == 5 || $error == 6)) {
+                $error = 0;
             }
 
             if (($error == 0) && ($this->settings['unsubscribeVerifyMessageUid'])) {

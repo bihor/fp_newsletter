@@ -11,12 +11,6 @@
 Änderungen
 ==========
 
-Version 0.9.8: erste Version für TER.
-
-Version 0.9.9: Abmeldelink zur Doku hinzugefügt.
-
-Version 0.9.11: Status 6 hinzugefügt.
-
 Version 0.10.0: Wichtige Änderung: plugin.tx_fpnewsletter_pi1 umbenannt nach plugin.tx_fpnewsletter, weil sonst leere TypoScript-Werte vorhandene FlexForm-Werte überschreiben.
 Neue action: subscribeExt für eine Newsletter-Anmeldung über externe Extensions (z.B. Shops). Bugfix: partial-Pfad.
 
@@ -71,3 +65,5 @@ Bestätigungsmails können nun gesendet werden, wenn man sie per settings.email.
 Der Viewhelper f:translate kann nun auch in den E-Mail-Templates benutzt werden.
 Anrede und Name werden nun ggf. in den E-Mail-Templates benutzt.
 Mehr FlexForms.
+
+Version 2.1.0: Einstellung disableErrorMsg hinzugefügt.

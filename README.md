@@ -1,6 +1,6 @@
 # fp_newsletter
 
-version 2.0.1
+version 2.0.2
 
 The TYPO3 extension fp_newsletter is designed to provide a newsletter subscription and unsubscription service for the table tt_address which can be used
 by the extension direct_mail. Furthermore it is designed to be compatible with the GDPR. A log is written about every action in a separate table.
@@ -21,3 +21,5 @@ Confirmation emails can now be send by enabeling them with the setting email.ena
 The translate-viewhelper can now be used in the email-templates.
 Name and salutation can be used now in the email-templates.
 More FlexForms.
+
+Version 2.0.2: setting disableErrorMsg added.

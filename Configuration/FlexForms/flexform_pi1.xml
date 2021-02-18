@@ -145,6 +145,24 @@
 					</config>
 				</TCEforms>
 			</settings.doubleOptOut>
+			  <settings.disableErrorMsg>
+				  <TCEforms>
+					  <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.disableErrorMsg</label>
+					  <config>
+						  <type>radio</type>
+						  <items type="array">
+							  <numIndex index="0" type="array">
+								  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.no</numIndex>
+								  <numIndex index="1">0</numIndex>
+							  </numIndex>
+							  <numIndex index="1" type="array">
+								  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.yes</numIndex>
+								  <numIndex index="1">1</numIndex>
+							  </numIndex>
+						  </items>
+					  </config>
+				  </TCEforms>
+			  </settings.disableErrorMsg>
 			<settings.enableUnsubscribeForm>
 				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.enableUnsubscribeForm</label>

@@ -35,6 +35,7 @@ Settings-Einstellungen
 	optionalFields                    string      Optionale Werte: siehe weiter unten                                   gender,firstname,lastname
 	optionalFieldsRequired            string      Optionale erforderliche* Werte: siehe weiter unten
 	doubleOptOut                      boolean     Double opt out Abmeldung einschalten?                                 0
+    disableErrorMsg                   boolean     Manche Fehlermeldungen ignorieren (z.B. bereits/nicht angemeldet)?    0
 	enableUnsubscribeForm             boolean     Abmeldeformular auf der Anmeldeseite mit ausgeben?**                  0
 	enableUnsubscribeGdprAsHidden     boolean     DSGVO-Checkbox beim Abmeldeformular verbergen?                        0
 	subscribeUid                      integer     Seite für die Anmeldung                                               1
@@ -46,7 +47,7 @@ Settings-Einstellungen
 	unsubscribeVerifyUid              integer     Seite für die Abmelde-Verifikation (demnächst)
 	unsubscribeVerifyMessageUid       integer     Optionale Seite für den Redirect nach der Abmelde-Verifikation***
 	gdprUid                           integer     Seite mit den DSGVO-Texten                                            1
-	daysExpire                        intger      Der Verifikations-Link wird ungültig nach X Tagen                     2
+	daysExpire                        integer     Der Verifikations-Link wird ungültig nach X Tagen                     2
 	deleteMode                        integer     1: setze delete-Flag; 2: lösche endgültig                             1
 	languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
 	module_sys_dmail_html             integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1

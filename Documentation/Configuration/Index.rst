@@ -30,10 +30,11 @@ Properties for settings
 	================================= =========== ===================================================================== =================================
 	Property                          Data type   Description                                                           Default
 	================================= =========== ===================================================================== =================================
-	table                             string      Today only tt_address or none (empty value) suported                  tt_address
+	table                             string      Today only tt_address or none (empty value) supported                  tt_address
 	optionalFields                    string      Optional fields: see below                                            gender,firstname,lastname
 	optionalFieldsRequired            string      Optional required* fields: see below
 	doubleOptOut                      boolean     Enable double out out unsubscription?                                 0
+    disableErrorMsg                   boolean     Disable some error messages (e.g. already/not subscribed)?            0
 	enableUnsubscribeForm             boolean     Enable unsubscribe form at the subscribe page?**                      0
 	enableUnsubscribeGdprAsHidden     boolean     Do not show the gdpr-checkbox at unsubscribe form?                    0
 	subscribeUid                      integer     Page for the subscription                                             1
@@ -45,7 +46,7 @@ Properties for settings
 	unsubscribeVerifyUid              integer     Page for the unsubscription-verification
 	unsubscribeVerifyMessageUid       integer     Optional page for the redirect after unsubscription-verification***
 	gdprUid                           integer     Page with the GDPR text                                               1
-	daysExpire                        intger      The link expires after X days                                         2
+	daysExpire                        integer     The link expires after X days                                         2
 	deleteMode                        integer     1: set deletion flag; 2: delete entry                                 1
 	languageMode                      integer     0: uses -1 if L>0; 1: uses the sys_language_uid from pages            0
 	module_sys_dmail_html             integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1

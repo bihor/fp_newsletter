@@ -1,149 +1,162 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" target-language="it" datatype="plaintext" original="messages" date="2019-02-21T11:31:30Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="it" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2021-02-18T16:08:27Z" product-name="fp_newsletter">
 		<header/>
 		<body>
-			<trans-unit id="title">
+			<trans-unit id="title" resname="title">
 				<source>Newsletter-subscriber-settings</source>
 				<target>Settings per la newsletter</target>
 			</trans-unit>
-			<trans-unit id="template">
+			<trans-unit id="template" resname="template">
 				<source>HTML-template:</source>
-				<target>HTML-template:</target>
+				<target>Modello HTML:</target>
 			</trans-unit>
-			<trans-unit id="template.not_configured">
+			<trans-unit id="template.not_configured" resname="template.not_configured">
 				<source>no template layout selected!</source>
 				<target>nessun template di layout selezionato!</target>
 			</trans-unit>
-			<trans-unit id="template.new">
+			<trans-unit id="template.new" resname="template.new">
 				<source>Newsletter: subscribe (and unsubscribe)</source>
 				<target>Newsletter: iscrizione (e revoca)</target>
 			</trans-unit>
-			<trans-unit id="template.subscribeExtern">
+			<trans-unit id="template.subscribeExtern" resname="template.subscribeExtern">
 				<source>Newsletter: subscribe via external extension</source>
 				<target>Newsletter: iscrizione via estensione esterna</target>
 			</trans-unit>
-			<trans-unit id="template.subscribeVerify">
+			<trans-unit id="template.subscribeVerify" resname="template.subscribeVerify">
 				<source>Newsletter: verify subscription</source>
 				<target>Newsletter: verifica l'iscrizione</target>
 			</trans-unit>
-			<trans-unit id="template.unsubscribe">
+			<trans-unit id="template.unsubscribe" resname="template.unsubscribe">
 				<source>Newsletter: unsubscribe via form</source>
 				<target>Newsletter: revoca della iscrizione via form</target>
 			</trans-unit>
-			<trans-unit id="template.unsubscribeDM">
+			<trans-unit id="template.unsubscribeDM" resname="template.unsubscribeDM">
 				<source>Newsletter: unsubscribe via link</source>
 				<target>Newsletter: revoca della iscrizione via link</target>
 			</trans-unit>
-			<trans-unit id="template.unsubscribeVerify">
+			<trans-unit id="template.unsubscribeVerify" resname="template.unsubscribeVerify">
 				<source>Newsletter: verify unsubscription</source>
 				<target>Newsletter: verifica la revoca della iscrizione</target>
 			</trans-unit>
-			<trans-unit id="template.list">
+			<trans-unit id="template.list" resname="template.list">
 				<source>List view: all actions</source>
 				<target>Vista modalità Lista: tutte le azioni</target>
 			</trans-unit>
-			<trans-unit id="subscribeUid">
-				<source>Page for the subscribtion</source>
+			<trans-unit id="subscribeUid" resname="subscribeUid">
+				<source>Page for the subscription</source>
 				<target>Pagina per la iscrizione</target>
 			</trans-unit>
-			<trans-unit id="subscribeVerifyUid">
+			<trans-unit id="subscribeVerifyUid" resname="subscribeVerifyUid">
 				<source>Page to verify email-address for subscription</source>
 				<target>Pagina per verificare l'email usato in fase di iscrizione</target>
 			</trans-unit>
-			<trans-unit id="unsubscribeUid">
-				<source>Page for the unsubscribtion</source>
+			<trans-unit id="unsubscribeUid" resname="unsubscribeUid">
+				<source>Page for the unsubscription</source>
 				<target>Pagina per la revoca della iscrizione</target>
 			</trans-unit>
-			<trans-unit id="unsubscribeVerifyUid">
+			<trans-unit id="unsubscribeVerifyUid" resname="unsubscribeVerifyUid">
 				<source>Page to verify email-address for unsubscription</source>
 				<target>Pagina per verificare l'indirizzo email in fase di revoca</target>
 			</trans-unit>
-			<trans-unit id="gdprUid">
+			<trans-unit id="gdprUid" resname="gdprUid">
 				<source>Page with the GDPR</source>
 				<target>Pagina con il GDPR</target>
 			</trans-unit>
-			<trans-unit id="enables">
+			<trans-unit id="enables" resname="enables">
 				<source>Enable/disable</source>
 				<target>Abilita/Disabilita</target>
 			</trans-unit>
-			<trans-unit id="settings.no">
+			<trans-unit id="settings.no" resname="settings.no">
 				<source>no</source>
 				<target>no</target>
 			</trans-unit>
-			<trans-unit id="settings.yes">
+			<trans-unit id="settings.yes" resname="settings.yes">
 				<source>yes</source>
 				<target>si</target>
 			</trans-unit>
-			<trans-unit id="settings.yes1">
-				<source>yes 1</source>
+			<trans-unit id="settings.yes1" resname="settings.yes1">
+				<source>yes, with 1 digit</source>
 				<target>si, con 1 cifra</target>
 			</trans-unit>
-			<trans-unit id="settings.yes2">
-				<source>yes 2</source>
+			<trans-unit id="settings.yes2" resname="settings.yes2">
+				<source>yes, with 1-2 digits</source>
 				<target>si, con 1-2 cifre</target>
 			</trans-unit>
-			<trans-unit id="settings.ignore">
+			<trans-unit id="settings.ignore" resname="settings.ignore">
 				<source>ignore this field</source>
 				<target>ignora questo campo</target>
 			</trans-unit>
-			<trans-unit id="settings.doubleOptOut">
+			<trans-unit id="settings.doubleOptOut" resname="settings.doubleOptOut">
 				<source>Enable double opt out unsubscription?</source>
 				<target>Abilitare nella revoca il double opt out?</target>
 			</trans-unit>
-			<trans-unit id="settings.enableUnsubscribeForm">
+			<trans-unit id="settings.disableErrorMsg" resname="settings.disableErrorMsg">
+				<source>Disable some error messages (e.g. already/not subscribed)?</source>
+				<target>Disabilitare alcuni messaggi di errore (ad es. già / non iscritto)?</target>
+			</trans-unit>
+			<trans-unit id="settings.enableUnsubscribeForm" resname="settings.enableUnsubscribeForm">
 				<source>Enable unsubscription form under the subscription form too?</source>
 				<target>Abilitare la revoca della iscrizione anche con un form?</target>
 			</trans-unit>
-			<trans-unit id="settings.enableUnsubscribeGdprAsHidden">
+			<trans-unit id="settings.enableUnsubscribeGdprAsHidden" resname="settings.enableUnsubscribeGdprAsHidden">
 				<source>Set the GDPR-checkbox to hidden on the unsubscription form?</source>
 				<target>Configura il checkbox GDPR per nascondere il form di revoca stampato sotto il modulo?</target>
 			</trans-unit>
-			<trans-unit id="settings.mathCAPTCHA">
+			<trans-unit id="settings.mathCAPTCHA" resname="settings.mathCAPTCHA">
 				<source>Show a mathematical captcha?</source>
 				<target>Mostra un captcha matematico?</target>
 			</trans-unit>
-			<trans-unit id="settings.honeypot">
+			<trans-unit id="settings.honeypot" resname="settings.honeypot">
 				<source>Enable a honeypot?</source>
 				<target>Mostra un honeypot?</target>
 			</trans-unit>
-			<trans-unit id="settings.deleteMode">
-				<source>Deletion mode</source>
+			<trans-unit id="settings.deleteMode" resname="settings.deleteMode">
+				<source>Hard or soft delete mode?</source>
 				<target>Modalità di eliminazione</target>
 			</trans-unit>
-			<trans-unit id="settings.deleteMode.1">
+			<trans-unit id="settings.deleteMode.1" resname="settings.deleteMode.1">
+				<source>set deletion flag</source>
 				<target>imposta il flag di cancellazione</target>
 			</trans-unit>
-			<trans-unit id="settings.deleteMode.2">
+			<trans-unit id="settings.deleteMode.2" resname="settings.deleteMode.2">
+				<source>delete entry</source>
 				<target>eliminare la voce</target>
 			</trans-unit>
-			<trans-unit id="settings.languageMode">
+			<trans-unit id="settings.languageMode" resname="settings.languageMode">
 				<source>Language mode</source>
 				<target>Modalità lingua</target>
 			</trans-unit>
-			<trans-unit id="settings.languageMode.0">
-				<target>imposta sys_language_uid a -1 se L> 0</target>
+			<trans-unit id="settings.languageMode.0" resname="settings.languageMode.0">
+				<source>set sys_language_uid to -1 if L&gt;0</source>
+				<target>imposta sys_language_uid a -1 se L&gt; 0</target>
 			</trans-unit>
-			<trans-unit id="settings.languageMode.1">
+			<trans-unit id="settings.languageMode.1" resname="settings.languageMode.1">
+				<source>use the value of sys_language_uid</source>
 				<target>usa il valore di sys_language_uid</target>
 			</trans-unit>
-			<trans-unit id="settings.dontAppendL">
+			<trans-unit id="settings.enableConfirmationMails" resname="settings.enableConfirmationMails">
+				<source>Enable confirmation emails to the user?</source>
 				<target>Abilitare le email di conferma all'utente?</target>
 			</trans-unit>
-			<trans-unit id="settings.enableConfirmationMails">
+			<trans-unit id="settings.dontAppendL" resname="settings.dontAppendL">
+				<source>Aggiungere l'UID della lingua ai modelli di posta elettronica?</source>
 				<target>Abilitare le email di conferma all'utente?</target>
 			</trans-unit>
-			<trans-unit id="settings.module_sys_dmail_html">
+			<trans-unit id="settings.module_sys_dmail_html" resname="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>
 				<target>Iscrizione alla newsletter in formato HTML?</target>
 			</trans-unit>
-			<trans-unit id="parameters">
+			<trans-unit id="parameters" resname="parameters">
+				<source>External parameters</source>
 				<target>Parametri esterni</target>
 			</trans-unit>
-			<trans-unit id="settings.parameters.active">
+			<trans-unit id="settings.parameters.active" resname="settings.parameters.active">
+				<source>Checkbox name for the newsletter-subscription (e.g. tx_myshop_pi1|newBestellung|newsletter)</source>
 				<target>Nome della casella di controllo per l'iscrizione alla newsletter (p.e. tx_myshop_pi1|newBestellung|newsletter)</target>
 			</trans-unit>
-			<trans-unit id="settings.parameters.email">
+			<trans-unit id="settings.parameters.email" resname="settings.parameters.email">
+				<source>Input-field name for the email-address (e.g. tx_myshop_pi1|newBestellung|email)</source>
 				<target>Nome del campo di input per l'indirizzo e-mail (p.e. tx_myshop_pi1|newBestellung|email)</target>
 			</trans-unit>
 		</body>

@@ -1,120 +1,123 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes" ?>
 <xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2013-09-12T15:59:31Z" product-name="fp_newsletter">
+	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2021-02-18T16:08:27Z" product-name="fp_newsletter">
 		<header/>
 		<body>
-			<trans-unit id="title">
+			<trans-unit id="title" resname="title">
 				<source>Newsletter-subscriber-settings</source>
 			</trans-unit>
-			<trans-unit id="template">
+			<trans-unit id="template" resname="template">
 				<source>HTML-template:</source>
 			</trans-unit>
-			<trans-unit id="template.not_configured">
+			<trans-unit id="template.not_configured" resname="template.not_configured">
 				<source>no template layout selected!</source>
 			</trans-unit>
-			<trans-unit id="template.new">
+			<trans-unit id="template.new" resname="template.new">
 				<source>Newsletter: subscribe (and unsubscribe)</source>
 			</trans-unit>
-			<trans-unit id="template.subscribeExtern">
+			<trans-unit id="template.subscribeExtern" resname="template.subscribeExtern">
 				<source>Newsletter: subscribe via external extension</source>
 			</trans-unit>
-			<trans-unit id="template.subscribeVerify">
+			<trans-unit id="template.subscribeVerify" resname="template.subscribeVerify">
 				<source>Newsletter: verify subscription</source>
 			</trans-unit>
-			<trans-unit id="template.unsubscribe">
+			<trans-unit id="template.unsubscribe" resname="template.unsubscribe">
 				<source>Newsletter: unsubscribe via form</source>
 			</trans-unit>
-			<trans-unit id="template.unsubscribeDM">
+			<trans-unit id="template.unsubscribeDM" resname="template.unsubscribeDM">
 				<source>Newsletter: unsubscribe via link</source>
 			</trans-unit>
-			<trans-unit id="template.unsubscribeVerify">
+			<trans-unit id="template.unsubscribeVerify" resname="template.unsubscribeVerify">
 				<source>Newsletter: verify unsubscription</source>
 			</trans-unit>
-			<trans-unit id="template.list">
+			<trans-unit id="template.list" resname="template.list">
 				<source>List view: all actions</source>
 			</trans-unit>
-			<trans-unit id="subscribeUid">
+			<trans-unit id="subscribeUid" resname="subscribeUid">
 				<source>Page for the subscription</source>
 			</trans-unit>
-			<trans-unit id="subscribeVerifyUid">
+			<trans-unit id="subscribeVerifyUid" resname="subscribeVerifyUid">
 				<source>Page to verify email-address for subscription</source>
 			</trans-unit>
-			<trans-unit id="unsubscribeUid">
+			<trans-unit id="unsubscribeUid" resname="unsubscribeUid">
 				<source>Page for the unsubscription</source>
 			</trans-unit>
-			<trans-unit id="unsubscribeVerifyUid">
+			<trans-unit id="unsubscribeVerifyUid" resname="unsubscribeVerifyUid">
 				<source>Page to verify email-address for unsubscription</source>
 			</trans-unit>
-			<trans-unit id="gdprUid">
+			<trans-unit id="gdprUid" resname="gdprUid">
 				<source>Page with the GDPR</source>
 			</trans-unit>
-			<trans-unit id="enables">
+			<trans-unit id="enables" resname="enables">
 				<source>Enable/disable</source>
 			</trans-unit>
-			<trans-unit id="settings.no">
+			<trans-unit id="settings.no" resname="settings.no">
 				<source>no</source>
 			</trans-unit>
-			<trans-unit id="settings.yes">
+			<trans-unit id="settings.yes" resname="settings.yes">
 				<source>yes</source>
 			</trans-unit>
-			<trans-unit id="settings.yes1">
+			<trans-unit id="settings.yes1" resname="settings.yes1">
 				<source>yes, with 1 digit</source>
 			</trans-unit>
-			<trans-unit id="settings.yes2">
+			<trans-unit id="settings.yes2" resname="settings.yes2">
 				<source>yes, with 1-2 digits</source>
 			</trans-unit>
-			<trans-unit id="settings.ignore">
+			<trans-unit id="settings.ignore" resname="settings.ignore">
 				<source>ignore this field</source>
 			</trans-unit>
-			<trans-unit id="settings.doubleOptOut">
+			<trans-unit id="settings.doubleOptOut" resname="settings.doubleOptOut">
 				<source>Enable double opt out unsubscription?</source>
 			</trans-unit>
-			<trans-unit id="settings.enableUnsubscribeForm">
+			<trans-unit id="settings.disableErrorMsg" resname="settings.disableErrorMsg">
+				<source>Disable some error messages (e.g. already/not subscribed)?</source>
+			</trans-unit>
+			<trans-unit id="settings.enableUnsubscribeForm" resname="settings.enableUnsubscribeForm">
 				<source>Enable unsubscription form under the subscription form too?</source>
 			</trans-unit>
-			<trans-unit id="settings.enableUnsubscribeGdprAsHidden">
+			<trans-unit id="settings.enableUnsubscribeGdprAsHidden" resname="settings.enableUnsubscribeGdprAsHidden">
 				<source>Set the GDPR-checkbox to hidden on the unsubscription form?</source>
 			</trans-unit>
-			<trans-unit id="settings.mathCAPTCHA">
+			<trans-unit id="settings.mathCAPTCHA" resname="settings.mathCAPTCHA">
 				<source>Show a mathematical captcha?</source>
 			</trans-unit>
-			<trans-unit id="settings.honeypot">
+			<trans-unit id="settings.honeypot" resname="settings.honeypot">
 				<source>Enable a honeypot?</source>
 			</trans-unit>
-			<trans-unit id="settings.deleteMode">
+			<trans-unit id="settings.deleteMode" resname="settings.deleteMode">
 				<source>Hard or soft delete mode?</source>
 			</trans-unit>
-			<trans-unit id="settings.deleteMode.1">
+			<trans-unit id="settings.deleteMode.1" resname="settings.deleteMode.1">
 				<source>set deletion flag</source>
 			</trans-unit>
-			<trans-unit id="settings.deleteMode.2">
+			<trans-unit id="settings.deleteMode.2" resname="settings.deleteMode.2">
 				<source>delete entry</source>
 			</trans-unit>
-			<trans-unit id="settings.languageMode">
+			<trans-unit id="settings.languageMode" resname="settings.languageMode">
 				<source>Language mode</source>
 			</trans-unit>
-			<trans-unit id="settings.languageMode.0">
-				<source>set sys_language_uid to -1 if L>0</source>
+			<trans-unit id="settings.languageMode.0" resname="settings.languageMode.0">
+				<source>set sys_language_uid to -1 if L&gt;0</source>
 			</trans-unit>
-			<trans-unit id="settings.languageMode.1">
+			<trans-unit id="settings.languageMode.1" resname="settings.languageMode.1">
 				<source>use the value of sys_language_uid</source>
 			</trans-unit>
-			<trans-unit id="settings.enableConfirmationMails">
+			<trans-unit id="settings.enableConfirmationMails" resname="settings.enableConfirmationMails">
 				<source>Enable confirmation emails to the user?</source>
 			</trans-unit>
-			<trans-unit id="settings.dontAppendL">
+			<trans-unit id="settings.dontAppendL" resname="settings.dontAppendL">
 				<source>Aggiungere l'UID della lingua ai modelli di posta elettronica?</source>
 			</trans-unit>
-			<trans-unit id="settings.module_sys_dmail_html">
+			<trans-unit id="settings.module_sys_dmail_html" resname="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>
 			</trans-unit>
-			<trans-unit id="parameters">
+			<trans-unit id="parameters" resname="parameters">
 				<source>External parameters</source>
 			</trans-unit>
-			<trans-unit id="settings.parameters.active">
+			<trans-unit id="settings.parameters.active" resname="settings.parameters.active">
 				<source>Checkbox name for the newsletter-subscription (e.g. tx_myshop_pi1|newBestellung|newsletter)</source>
 			</trans-unit>
-			<trans-unit id="settings.parameters.email">
+			<trans-unit id="settings.parameters.email" resname="settings.parameters.email">
 				<source>Input-field name for the email-address (e.g. tx_myshop_pi1|newBestellung|email)</source>
 			</trans-unit>
 		</body>

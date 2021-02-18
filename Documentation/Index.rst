@@ -35,7 +35,7 @@ Newsletter subscriber management
 		Kurt Gusbeth
 
 	:Email:
-		k.gusbeth@fixpunkt.com
+		info@quizpalme.de
 
 	:License:
 		This document is published under the Open Content License

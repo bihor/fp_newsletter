@@ -11,12 +11,6 @@
 ChangeLog
 =========
 
-Version 0.9.8: German documentation added.
-
-Version 0.9.9: Unsubscribe link added to the manual.
-
-Version 0.9.11: Status 6 added.
-
 Version 0.10.0: Important change: plugin.tx_fpnewsletter_pi1 renamed to plugin.tx_fpnewsletter, because otherwise empty TS-values overwrite given FlexForm-values.
 New action: subscribeExt for newsletter subscription via other extensions. Bugfix: partial-path.
 
@@ -71,3 +65,5 @@ Confirmation emails can now be send by enabeling them with the setting email.ena
 The translate-viewhelper can now be used in the email-templates.
 Name and salutation can be used now in the email-templates.
 More FlexForms.
+
+Version 2.1.0: setting disableErrorMsg added.
