@@ -67,3 +67,4 @@ Name and salutation can be used now in the email-templates.
 More FlexForms.
 
 Version 2.1.0: setting disableErrorMsg added.
+extension-key added to composer.json.

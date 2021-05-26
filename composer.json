@@ -33,5 +33,10 @@
 		"newsletter subscription",
 		"dsgvo",
 		"gdpr"
-	]
+	],
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "fp_newsletter"
+		}
+	}
 }

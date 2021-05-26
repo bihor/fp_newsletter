@@ -67,3 +67,4 @@ Anrede und Name werden nun ggf. in den E-Mail-Templates benutzt.
 Mehr FlexForms.
 
 Version 2.1.0: Einstellung disableErrorMsg hinzugefügt.
+extension-key zu composer.json hinzugefügt.
