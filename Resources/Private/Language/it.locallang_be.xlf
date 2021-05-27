@@ -1,6 +1,6 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-	<file source-language="en" target-language="it" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2021-02-18T16:08:27Z" product-name="fp_newsletter">
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" target-language="it" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2021-05-27T09:59:17Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
@@ -110,6 +110,10 @@
 			<trans-unit id="settings.honeypot" resname="settings.honeypot">
 				<source>Enable a honeypot?</source>
 				<target>Mostra un honeypot?</target>
+			</trans-unit>
+			<trans-unit id="settings.searchPidMode" resname="settings.searchPidMode">
+				<source>Search address in tt_address in all specified folders?</source>
+				<target>Cerca indirizzo in tt_address in tutte le cartelle specificate?</target>
 			</trans-unit>
 			<trans-unit id="settings.deleteMode" resname="settings.deleteMode">
 				<source>Hard or soft delete mode?</source>
