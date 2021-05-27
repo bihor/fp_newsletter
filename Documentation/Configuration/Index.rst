@@ -47,6 +47,7 @@ Properties for settings
 	unsubscribeVerifyMessageUid       integer     Optional page for the redirect after unsubscription-verification***
 	gdprUid                           integer     Page with the GDPR text                                               1
 	daysExpire                        integer     The link expires after X days                                         2
+    searchPidMode                     integer     Search in tt_address: 0: only in the 1. folder; 1: in all folders°    0
 	deleteMode                        integer     1: set deletion flag; 2: delete entry                                 1
 	languageMode                      integer     0: uses -1 if L>0; 1: uses the sys_language_uid from pages            0
 	module_sys_dmail_html             integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1
@@ -83,6 +84,7 @@ Note**: you need an own page for the unsubscription! unsubscribeUid should be de
 
 Note***: this page is used too, if doubleOptOut=0. unsubscribeMessageUid is not used if doubleOptOut=0.
 
+Note°: this works only at the unsubscription.
 
 
 Property details / examples

@@ -1,6 +1,7 @@
 <?php
 namespace Fixpunkt\FpNewsletter\Domain\Repository;
 
+use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -43,12 +44,39 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 					)
 					->execute();
 		while ($row = $statement->fetch()) {
-			$dbuid = $row['uid'];
+			$dbuid = intval($row['uid']);
 		}		
 		return $dbuid;
 	}
-	
-	/**
+
+    /**
+     * getFromTTAddress: find user ID
+     * @param	string $email: die Email-Adresse wurde schon vorher geprüft!
+     * @param	array	$pidsArray
+     * @return integer
+     */
+    function getFromTtAddressCheckAllFolders($email, $pidsArray)
+    {
+        $dbuid = 0;
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
+        $statement = $queryBuilder
+            ->select('uid')
+            ->from('tt_address')
+            ->where(
+                $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter($pidsArray, Connection::PARAM_INT_ARRAY))
+            )
+            ->andWhere(
+                $queryBuilder->expr()->eq('email', $queryBuilder->createNamedParameter($email))
+            )
+            ->execute();
+        while ($row = $statement->fetch()) {
+            $dbuid = intval($row['uid']);
+            break;
+        }
+        return $dbuid;
+    }
+
+    /**
 	 * getUserFromTTAddress: find user array
 	 * @param	integer $uid: UID des User
 	 * @return	array

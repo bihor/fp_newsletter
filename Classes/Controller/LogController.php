@@ -369,6 +369,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $error = 0;
         $messageUid = 0;
         $skipCaptchaTest = false;
+        $storagePidsArray = $this->logRepository->getStoragePids();
         if (! $log) {
             $log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
             $log->setEmail($user['email']);
@@ -377,7 +378,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $email = $log->getEmail();
         $pid = $log->getPid();
         if (! $pid) {
-            $storagePidsArray = $this->logRepository->getStoragePids();
             $pid = intval($storagePidsArray[0]);
         }
         // zum testen: var_dump ($storagePidsArray);
@@ -394,7 +394,11 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
         if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
             if ($this->settings['table'] == 'tt_address') {
-                $dbuidext = intval($this->logRepository->getFromTtAddress($email, $pid));
+                if ($this->settings['searchPidMode'] == 1) {
+                    $dbuidext = $this->logRepository->getFromTtAddressCheckAllFolders($email, $storagePidsArray);
+                } else {
+                    $dbuidext = $this->logRepository->getFromTtAddress($email, $pid);
+                }
                 // zum testen: echo "uid $dbuidext mit $email, $pid";
             }
         } else {

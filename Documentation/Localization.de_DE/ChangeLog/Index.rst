@@ -66,5 +66,5 @@ Der Viewhelper f:translate kann nun auch in den E-Mail-Templates benutzt werden.
 Anrede und Name werden nun ggf. in den E-Mail-Templates benutzt.
 Mehr FlexForms.
 
-Version 2.1.0: Einstellung disableErrorMsg hinzugefügt.
+Version 2.1.0: Einstellung searchPidMode und disableErrorMsg hinzugefügt.
 extension-key zu composer.json hinzugefügt.

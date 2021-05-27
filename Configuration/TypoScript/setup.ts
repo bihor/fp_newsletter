@@ -36,6 +36,7 @@ plugin.tx_fpnewsletter {
 	unsubscribeVerifyMessageUid =
 	gdprUid = 1
 	daysExpire = 2
+	searchPidMode = 0
 	deleteMode = 1
 	languageMode = 0
 	module_sys_dmail_html = 1

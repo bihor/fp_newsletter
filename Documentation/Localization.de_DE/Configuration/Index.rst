@@ -48,6 +48,7 @@ Settings-Einstellungen
 	unsubscribeVerifyMessageUid       integer     Optionale Seite für den Redirect nach der Abmelde-Verifikation***
 	gdprUid                           integer     Seite mit den DSGVO-Texten                                            1
 	daysExpire                        integer     Der Verifikations-Link wird ungültig nach X Tagen                     2
+    searchPidMode                     integer     Suche in tt_address: 0: nur im 1. Ordner; 1: in allen Ordners°        0
 	deleteMode                        integer     1: setze delete-Flag; 2: lösche endgültig                             1
 	languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
 	module_sys_dmail_html             integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1
@@ -83,6 +84,8 @@ Achtung*: die optional erforderlichen Werte werden nur per Browser geprüft.
 Achtung**: man braucht eine eigene Seite für die Abmeldung. unsubscribeUid muss also angebenen werden.
 
 Achtung***: diese Seite wird auch dann benutzt, wenn doubleOptOut=0. unsubscribeMessageUid wird dann nicht benutzt.
+
+Achtung°: dies funktioniert nur bei der Abmeldung.
 
 
 Beispiele

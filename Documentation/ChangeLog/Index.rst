@@ -66,5 +66,5 @@ The translate-viewhelper can now be used in the email-templates.
 Name and salutation can be used now in the email-templates.
 More FlexForms.
 
-Version 2.1.0: setting disableErrorMsg added.
+Version 2.1.0: setting searchPidMode and disableErrorMsg added.
 extension-key added to composer.json.
