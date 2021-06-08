@@ -646,7 +646,11 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                         $dbuidext = 0;
                         if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($dbemail)) {
                             if ($this->settings['table'] == 'tt_address') {
-                                $dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
+                                if ($this->settings['searchPidMode'] == 1) {
+                                    $dbuidext = $this->logRepository->getFromTtAddressCheckAllFolders($dbemail, $this->logRepository->getStoragePids());
+                                } else {
+                                    $dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
+                                }
                             }
                         }
                         if ($this->settings['table'] && ! $dbuidext) {
