@@ -50,7 +50,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	}
 
     /**
-     * getFromTTAddress: find user ID
+     * getFromTTAddress: find user ID in more folders an take the first finding
      * @param	string $email: die Email-Adresse wurde schon vorher geprüft!
      * @param	array	$pidsArray
      * @return integer
