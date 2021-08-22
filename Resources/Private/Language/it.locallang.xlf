@@ -217,8 +217,20 @@
 			<trans-unit id="email.dear-first-and-last-name">
 				<target>Cara %s %s,</target>
 			</trans-unit>
+			<trans-unit id="email.dear-first-name">
+				<target>Cara %s,</target>
+			</trans-unit>
 			<trans-unit id="email.dear">
 				<target>Ciao,</target>
+			</trans-unit>
+			<trans-unit id="email.gender-first-and-last-name">
+				<target> %s %s %s</target>
+			</trans-unit>
+			<trans-unit id="email.first-and-last-name">
+				<target> %s %s</target>
+			</trans-unit>
+			<trans-unit id="email.first-name">
+				<target> %s</target>
 			</trans-unit>
 		</body>
 	</file>
