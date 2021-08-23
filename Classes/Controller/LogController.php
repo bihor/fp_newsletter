@@ -25,7 +25,6 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * logRepository
      *
      * @var \Fixpunkt\FpNewsletter\Domain\Repository\LogRepository
-     * @TYPO3\CMS\Extbase\Annotation\Inject
      */
     protected $logRepository = null;
 
@@ -62,6 +61,16 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             }
         }
         $this->settings = $originalSettings;
+    }
+
+    /**
+     * Injects the content-Repository
+     *
+     * @param \Fixpunkt\FpNewsletter\Domain\Repository\LogRepository $logRepository
+     */
+    public function injectLogRepository(\Fixpunkt\FpNewsletter\Domain\Repository\LogRepository $logRepository)
+    {
+        $this->logRepository = $logRepository;
     }
 
     /**
@@ -861,26 +870,19 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
 
         /** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
         $message = $this->objectManager->get('TYPO3\\CMS\\Core\\Mail\\MailMessage');
-        if (TYPO3_branch == '9.5') {
-            $message->setTo($recipient);
-            $message->setFrom($sender)->setSubject($subject);
-            $message->setBody($emailBodyText, 'text/plain');
-            $message->addPart($emailBodyHtml, 'text/html');
-        } else {
-            foreach ($recipient as $key => $value) {
-                $email = $key;
-                $name = $value;
-            }
-            $message->to(new \Symfony\Component\Mime\Address($email, $name));
-            foreach ($sender as $key => $value) {
-                $email = $key;
-                $name = $value;
-            }
-            $message->from(new \Symfony\Component\Mime\Address($email, $name));
-            $message->subject($subject);
-            $message->text($emailBodyText);
-            $message->html($emailBodyHtml);
+        foreach ($recipient as $key => $value) {
+            $email = $key;
+            $name = $value;
         }
+        $message->to(new \Symfony\Component\Mime\Address($email, $name));
+        foreach ($sender as $key => $value) {
+            $email = $key;
+            $name = $value;
+        }
+        $message->from(new \Symfony\Component\Mime\Address($email, $name));
+        $message->subject($subject);
+        $message->text($emailBodyText);
+        $message->html($emailBodyHtml);
         $message->send();
         return $message->isSent();
     }

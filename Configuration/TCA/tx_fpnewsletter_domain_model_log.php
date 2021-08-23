@@ -16,9 +16,6 @@ return [
 		'searchFields' => 'gender,title,firstname,lastname,email,status,securityhash',
         'iconfile' => 'EXT:fp_newsletter/Resources/Public/Icons/tx_fpnewsletter_domain_model_log.gif'
     ],
-    'interface' => [
-		'showRecordFieldList' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, firstname, lastname, email, address, zip, city, region, country, phone, mobile, fax, www, position, company, categories, status, securityhash, retoken, mathcaptcha, gdpr',
-    ],
     'types' => [
 		'1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, firstname, lastname, email, address, zip, city, region, country, phone, mobile, fax, www, birthday, position, company, categories, status, securityhash, retoken, mathcaptcha, gdpr'],
     ],
@@ -105,6 +102,7 @@ return [
 			        ['LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.gender.mr', 2],
 			        ['LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.gender.divers', 3],
 			    ],
+                'default' => 0,
 			    'size' => 1,
 			    'maxitems' => 1,
 			    'eval' => ''
@@ -269,6 +267,7 @@ return [
 			        ['LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.status.6', 6],
 			        ['LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.status.7', 7],
 			    ],
+                'default' => 0,
 			    'size' => 1,
 			    'maxitems' => 1,
 			    'eval' => ''
