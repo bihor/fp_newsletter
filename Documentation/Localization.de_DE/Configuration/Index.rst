@@ -28,56 +28,56 @@ Settings-Einstellungen
 
 .. container:: ts-properties
 
-	================================= =========== ===================================================================== ================================
-	Feld                              Typ         Beschreibung                                                          Standard-Wert
-	================================= =========== ===================================================================== ================================
-	table                             string      Bisher nur tt_address oder keine Tabelle (leerer Wert) möglich        tt_address
-	optionalFields                    string      Optionale Werte: siehe weiter unten                                   gender,firstname,lastname
-	optionalFieldsRequired            string      Optionale erforderliche* Werte: siehe weiter unten
-	doubleOptOut                      boolean     Double opt out Abmeldung einschalten?                                 0
-    disableErrorMsg                   boolean     Manche Fehlermeldungen ignorieren (z.B. bereits/nicht angemeldet)?    0
-	enableUnsubscribeForm             boolean     Abmeldeformular auf der Anmeldeseite mit ausgeben?**                  0
-	enableUnsubscribeGdprAsHidden     boolean     DSGVO-Checkbox beim Abmeldeformular verbergen?                        0
-	subscribeUid                      integer     Seite für die Anmeldung                                               1
-	subscribeMessageUid               integer     Optionale Seite für einen Redirect nach der Anmeldung
-	subscribeVerifyUid                integer     Seite für die Anmelde-Verifikation
-	subscribeVerifyMessageUid         integer     Optionale Seite für den Redirect nach der Anmelde-Verifikation
-	unsubscribeUid                    integer     Seite für die Abmeldung                                               1
-	unsubscribeMessageUid             integer     Optionale Seite für den Redirect nach der Abmeldung
-	unsubscribeVerifyUid              integer     Seite für die Abmelde-Verifikation (demnächst)
-	unsubscribeVerifyMessageUid       integer     Optionale Seite für den Redirect nach der Abmelde-Verifikation***
-	gdprUid                           integer     Seite mit den DSGVO-Texten                                            1
-	daysExpire                        integer     Der Verifikations-Link wird ungültig nach X Tagen                     2
-    searchPidMode                     integer     Suche in tt_address: 0: nur im 1. Ordner; 1: in allen Ordners°        0
-	deleteMode                        integer     1: setze delete-Flag; 2: lösche endgültig                             1
-	languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
-	module_sys_dmail_html             integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1
-	module_sys_dmail_category         string      Komma separierte Liste von Kategorien (uid) aus sys_dmail_category
-	reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3. curl wird benötigt!
-	reCAPTCHA_secret_key              string      Geheimer Schlüssel für Google reCaptcha v3
-	mathCAPTCHA                       integer     Zeige ein mathematisches Captcha? 0: nein; 1, 2: ja, mit 1-2 Ziffern  0
-	honeypot                          boolean     Einen Honigtopf (honeypot) gegen Spam einschalten?                    0
-	company                           string      Name der Firma                                                        Ihre Firma
-	gender.please                     string      Text für die Anrede-Auswahl                                           Bitte auswählen
-	gender.mr                         string      Text für Herr                                                         Herr
-	gender.mrs                        string      Text für Frau                                                         Frau
-	parameters.active                 string      Parameter für Anmeldung aus externer Extension (POST-Parameter)
-	parameters.email                  string      Parameter für die E-Mail externer Herkunft (GET/POST-Parameter)
-	email.senderMail                  string      E-Mail-Adresse des Absenders                                          beispiel@test.de
-	email.senderName                  string      Absender-Name                                                         Absender-Name
-	email.subscribeVerifySubject      string      Betreff der Verifikations-E-Mail (Anmeldung)                          Bitte verifizieren ...
-	email.unsubscribeVerifySubject    string      Betreff der Verifikations-E-Mail (Abmeldung)                          Bitte verifizieren ...
-	email.adminMail                   string      Admin E-Mail-Adresse - wenn nicht leer: der Admin wird informiert
-	email.adminName                   string      Admin-Name                                                            Admin
-	email.adminSubscribeSubject       string      Betreff der Admin-E-Mail (Anmeldung)                                  Neue Newsletter-Anmeldung
-	email.adminUnsubscribeSubject     string      Betreff der Admin-E-Mail (Abmeldung)                                  Neue Newsletter-Abmeldung
-	email.adminMailBeforeVerification boolean     0: sende die E-Mail nach der Verifikation; 1: vor der Verifikation    0
-	email.subscribedSubject           string      Betreff der Bestätigungsmail (Anmeldung)                              Bestätigung Newsletter-Anmeldung
-	email.unsubscribedSubject         string      Betreff der Bestätigungsmail (Abmeldung)                              Bestätigung Newsletter-Abmeldung
-	email.enableConfirmationMails     boolean     Sende eine Bestätigungs-E-Mail an den Benutzer? 0: nein; 1: ja        0
-	email.dontAppendL                 boolean     Hänge die Sprach-UID an Templates an, wenn L>0? 0: ja; 1: nein        0
-	overrideFlexformSettingsIfEmpty   string      Leere Flexforms sollen durch TypoScript überschrieben werden          alle uid-Variablen
-	================================= =========== ===================================================================== ================================
+================================= =========== ===================================================================== ================================
+Feld                              Typ         Beschreibung                                                          Standard-Wert
+================================= =========== ===================================================================== ================================
+table                             string      Bisher nur tt_address oder keine Tabelle (leerer Wert) möglich        tt_address
+optionalFields                    string      Optionale Werte: siehe weiter unten                                   gender,firstname,lastname
+optionalFieldsRequired            string      Optionale erforderliche* Werte: siehe weiter unten
+doubleOptOut                      boolean     Double opt out Abmeldung einschalten?                                 0
+disableErrorMsg                   boolean     Manche Fehlermeldungen ignorieren (z.B. bereits/nicht angemeldet)?    0
+enableUnsubscribeForm             boolean     Abmeldeformular auf der Anmeldeseite mit ausgeben?**                  0
+enableUnsubscribeGdprAsHidden     boolean     DSGVO-Checkbox beim Abmeldeformular verbergen?                        0
+subscribeUid                      integer     Seite für die Anmeldung                                               1
+subscribeMessageUid               integer     Optionale Seite für einen Redirect nach der Anmeldung
+subscribeVerifyUid                integer     Seite für die Anmelde-Verifikation
+subscribeVerifyMessageUid         integer     Optionale Seite für den Redirect nach der Anmelde-Verifikation
+unsubscribeUid                    integer     Seite für die Abmeldung                                               1
+unsubscribeMessageUid             integer     Optionale Seite für den Redirect nach der Abmeldung
+unsubscribeVerifyUid              integer     Seite für die Abmelde-Verifikation (demnächst)
+unsubscribeVerifyMessageUid       integer     Optionale Seite für den Redirect nach der Abmelde-Verifikation***
+gdprUid                           integer     Seite mit den DSGVO-Texten                                            1
+daysExpire                        integer     Der Verifikations-Link wird ungültig nach X Tagen                     2
+searchPidMode                     integer     Suche in tt_address: 0: nur im 1. Ordner; 1: in allen Ordners°        0
+deleteMode                        integer     1: setze delete-Flag; 2: lösche endgültig                             1
+languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
+module_sys_dmail_html             integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1
+module_sys_dmail_category         string      Komma separierte Liste von Kategorien (uid) aus sys_dmail_category
+reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3. curl wird benötigt!
+reCAPTCHA_secret_key              string      Geheimer Schlüssel für Google reCaptcha v3
+mathCAPTCHA                       integer     Zeige ein mathematisches Captcha? 0: nein; 1, 2: ja, mit 1-2 Ziffern  0
+honeypot                          boolean     Einen Honigtopf (honeypot) gegen Spam einschalten?                    0
+company                           string      Name der Firma                                                        Ihre Firma
+gender.please                     string      Text für die Anrede-Auswahl                                           Bitte auswählen
+gender.mr                         string      Text für Herr                                                         Herr
+gender.mrs                        string      Text für Frau                                                         Frau
+parameters.active                 string      Parameter für Anmeldung aus externer Extension (POST-Parameter)
+parameters.email                  string      Parameter für die E-Mail externer Herkunft (GET/POST-Parameter)
+email.senderMail                  string      E-Mail-Adresse des Absenders                                          beispiel@test.de
+email.senderName                  string      Absender-Name                                                         Absender-Name
+email.subscribeVerifySubject      string      Betreff der Verifikations-E-Mail (Anmeldung)                          Bitte verifizieren ...
+email.unsubscribeVerifySubject    string      Betreff der Verifikations-E-Mail (Abmeldung)                          Bitte verifizieren ...
+email.adminMail                   string      Admin E-Mail-Adresse - wenn nicht leer: der Admin wird informiert
+email.adminName                   string      Admin-Name                                                            Admin
+email.adminSubscribeSubject       string      Betreff der Admin-E-Mail (Anmeldung)                                  Neue Newsletter-Anmeldung
+email.adminUnsubscribeSubject     string      Betreff der Admin-E-Mail (Abmeldung)                                  Neue Newsletter-Abmeldung
+email.adminMailBeforeVerification boolean     0: sende die E-Mail nach der Verifikation; 1: vor der Verifikation    0
+email.subscribedSubject           string      Betreff der Bestätigungsmail (Anmeldung)                              Bestätigung Newsletter-Anmeldung
+email.unsubscribedSubject         string      Betreff der Bestätigungsmail (Abmeldung)                              Bestätigung Newsletter-Abmeldung
+email.enableConfirmationMails     boolean     Sende eine Bestätigungs-E-Mail an den Benutzer? 0: nein; 1: ja        0
+email.dontAppendL                 boolean     Hänge die Sprach-UID an Templates an, wenn L>0? 0: ja; 1: nein        0
+overrideFlexformSettingsIfEmpty   string      Leere Flexforms sollen durch TypoScript überschrieben werden          alle uid-Variablen
+================================= =========== ===================================================================== ================================
 
 Achtung*: die optional erforderlichen Werte werden nur per Browser geprüft.
 

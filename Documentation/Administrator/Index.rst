@@ -41,6 +41,10 @@ You can switch off this behavior with the setting email.dontAppendL = 1!
 In this case you should use the variable {sys_language_uid} in the email templates.
 You could use <f:if condition="{sys_language_uid} == 1"> to use more than one language in one template.
 
+You can use this translate keys in the email templates:
+email.dear-gender-first-and-last-name, email.dear-first-and-last-name, email.dear-first-name, email.dear,
+email.gender-first-and-last-name, email.first-and-last-name and email.first-name.
+
 
 .. _admin-fluid-page-template:
 

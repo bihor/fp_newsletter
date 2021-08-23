@@ -50,7 +50,7 @@ More optional fields: address, zip, city, region, country, phone, mobile, fax, w
 
 Version 1.0.0: possibility added, to delete old log-entries via a task.
 Important change: redirect to the new- or unsubscribe-action on email-format- or captcha-errors.
-Bugfix: you can use now reCAPTCHA und mathCAPTCHA together.
+Bugfix: you can use now reCAPTCHA and mathCAPTCHA together.
 
 Version 1.0.4: Bugfix: subscription via external form.
 
@@ -68,3 +68,5 @@ More FlexForms.
 
 Version 2.1.0: setting searchPidMode and disableErrorMsg added.
 extension-key added to composer.json.
+
+Version 2.1.1: more variables/translate keys for emails added. See chapter Administration.
