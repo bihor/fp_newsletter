@@ -177,8 +177,20 @@
 			<trans-unit id="email.dear-first-and-last-name">
 				<source>Dear %s %s,</source>
 			</trans-unit>
+			<trans-unit id="email.dear-first-name">
+				<target>Dear %s,</target>
+			</trans-unit>
 			<trans-unit id="email.dear">
 				<source>Hello,</source>
+			</trans-unit>
+			<trans-unit id="email.gender-first-and-last-name">
+				<target> %s %s %s</target>
+			</trans-unit>
+			<trans-unit id="email.first-and-last-name">
+				<target> %s %s</target>
+			</trans-unit>
+			<trans-unit id="email.first-name">
+				<target> %s</target>
 			</trans-unit>
 		</body>
 	</file>

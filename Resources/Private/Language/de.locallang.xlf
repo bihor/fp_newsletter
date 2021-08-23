@@ -177,8 +177,20 @@
 			<trans-unit id="email.dear-first-and-last-name">
 				<target>Guten Tag %s %s,</target>
 			</trans-unit>
+			<trans-unit id="email.dear-first-name">
+				<target>Guten Tag %s,</target>
+			</trans-unit>
 			<trans-unit id="email.dear">
 				<target>Guten Tag,</target>
+			</trans-unit>
+			<trans-unit id="email.gender-first-and-last-name">
+				<target> %s %s %s</target>
+			</trans-unit>
+			<trans-unit id="email.first-and-last-name">
+				<target> %s %s</target>
+			</trans-unit>
+			<trans-unit id="email.first-name">
+				<target> %s</target>
 			</trans-unit>
 		</body>
 	</file>
