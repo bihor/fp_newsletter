@@ -362,7 +362,7 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     public function setEmail($email)
     {
-        $this->email = $email;
+        $this->email = trim($email);
     }
 
     /**

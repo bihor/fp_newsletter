@@ -69,4 +69,5 @@ Mehr FlexForms.
 Version 2.1.0: Einstellung searchPidMode und disableErrorMsg hinzugefügt.
 extension-key zu composer.json hinzugefügt.
 
-Version 2.1.1: Mehr translate keys für E-Mail-Templates hinzugefügt. Siehe Kapitel Administration.
+Version 2.2.1: Mehr translate keys für E-Mail-Templates hinzugefügt. Siehe Kapitel Administration.
+Jetzt für TYPO3 10 und 11.

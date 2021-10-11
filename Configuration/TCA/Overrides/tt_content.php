@@ -8,5 +8,5 @@ $GLOBALS['TCA']['tt_content']['types']['list']['subtypes_addlist'][$pluginSignat
     'Fixpunkt.FpNewsletter',
     'Pi1',
     'Newsletter management',
-    'EXT:fp_newsletter/ext_icon.gif'
+    'EXT:fp_newsletter/Resources/Public/Icons/fp_newsletter-plugin.png'
 );
