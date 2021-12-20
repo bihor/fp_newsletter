@@ -96,7 +96,7 @@ Languages
 You can overrite the text for other languges like this::
 
   [siteLanguage("languageId") == "1"]
-  plugin.tx_fpnewsletter_pi1.settings.company = Your company
+  plugin.tx_fpnewsletter.settings.company = Your company
   [END]
 
 Note: the default language of the email-templates is german! You find the english version in the files that end with 1.html.
@@ -136,8 +136,8 @@ Only email and gdpr are mandatory fields in the model. If you need more mandator
 There are the following optional fields awailable: gender, title, firstname, lastname, address, zip, city, region, country, phone, mobile, fax, www, position, company.
 You can make all this fields required. Here an example to enable some of this fields in the subscription form via TypoScript setup::
 
-  plugin.tx_fpnewsletter_pi1.settings.optionalFields = gender,title,firstname,lastname,www,position,company
-  plugin.tx_fpnewsletter_pi1.settings.optionalFieldsRequired = firstname,lastname,company
+  plugin.tx_fpnewsletter.settings.optionalFields = gender,title,firstname,lastname,www,position,company
+  plugin.tx_fpnewsletter.settings.optionalFieldsRequired = firstname,lastname,company
   
 Using of categories
 ^^^^^^^^^^^^^^^^^^^
@@ -145,7 +145,7 @@ Using of categories
 The table module_sys_dmail_category contains categories for direct_mail. This extension uses that categories instaed of the categories from sys_category.
 If you use them like this::
 
-  plugin.tx_fpnewsletter_pi1.settings.module_sys_dmail_category = 1,3
+  plugin.tx_fpnewsletter.settings.module_sys_dmail_category = 1,3
 
 Then this extension will do the same like the direct_mail_subscription extension. It will make two entires into sys_dmail_ttaddress_category_mm
 and it will set module_sys_dmail_category in tt_address (after the verification). Do you expect something else?
