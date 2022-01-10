@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2021-05-27T09:58:10Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-01-10T13:18:50Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
@@ -162,6 +162,14 @@
 			<trans-unit id="settings.parameters.email" resname="settings.parameters.email">
 				<source>Input-field name for the email-address (e.g. tx_myshop_pi1|newBestellung|email)</source>
 				<target>Feld-Name für die E-Mail-Adresse (z.B. tx_myshop_pi1|newBestellung|email)</target>
+			</trans-unit>
+			<trans-unit id="dashboard.widget.fixpunktRecentLogEntries.title" resname="dashboard.widget.fixpunktRecentLogEntries.title">
+				<source>fp_newsletter: recent 7 log entries</source>
+				<target>fp_newsletter: die letzten 7 Einträge</target>
+			</trans-unit>
+			<trans-unit id="dashboard.widget.fixpunktRecentLogEntries.description" resname="dashboard.widget.fixpunktRecentLogEntries.description">
+				<source>Shows date, name, email and status of the last entries</source>
+				<target>Zeigt Datum, Name, E-mail und Status der letzten Log-Einträge</target>
 			</trans-unit>
 		</body>
 	</file>

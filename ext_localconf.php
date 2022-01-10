@@ -6,7 +6,7 @@ call_user_func(
 	{
 
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
-            'Fixpunkt.FpNewsletter',
+            'FpNewsletter',
             'Pi1',
             [
                 \Fixpunkt\FpNewsletter\Controller\LogController::class => 'new, create, subscribeExt, unsubscribe, unsubscribeDM, delete, verify, verifyUnsubscribe, list'

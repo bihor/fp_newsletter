@@ -27,6 +27,10 @@ Es ist einstellbar, dass ein Admin den Anmeldewunsch per E-Mail bekommt. Dann k�
 einen externen Newsletter eintragen.
 Bei der Double-Opt-In-Anmeldung und ggf. auch bei der Abmeldung muss man den Datenschutzbestimmungen zustimmen.
 Google reCaptcha v3 oder ein mathematisches Captcha kann ggf. auch eingebunden werden.
+Es gibt auch ein Widget fürs Dashboard und die Extension Dashboard muss in TYPO3 11.5 installiert sein,
+da die Abfrage danach in TYPO3 11 nicht (mehr) funktioniert.
+Verfügbare Sprachen: englisch, deutsch und italienisch.
+
 
 .. _screenshots:
 

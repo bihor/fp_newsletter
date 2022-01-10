@@ -89,3 +89,12 @@ plugin.tx_fpnewsletter_pi1.settings.email.adminUnsubscribeSubject = New newslett
 plugin.tx_fpnewsletter_pi1.settings.email.subscribedSubject = Newsletter-subscription confirmation
 plugin.tx_fpnewsletter_pi1.settings.email.unsubscribedSubject = Newsletter-unsubscription confirmation
 [END]
+
+module.tx_dashboard.view {
+	layoutRootPaths {
+		43 = EXT:fp_newsletter/Resources/Private/Layouts/
+	}
+	templateRootPaths {
+		43 = EXT:fp_newsletter/Resources/Private/Templates/
+	}
+}

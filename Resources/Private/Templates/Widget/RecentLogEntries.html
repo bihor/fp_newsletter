@@ -1,0 +1,45 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:layout name="Widget" />
+<f:section name="title">
+    <div class="widget-content-title-badge"><span>{f:translate(id: configuration.title, default: configuration.title)}</span></div>
+</f:section>
+
+<f:section name="main">
+    <table class="table">
+        <tr>
+            <th>{f:translate(key: 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang.xlf:tx_fpnewsletter_domain_model_log.date')}</th>
+            <th><f:translate key="LLL:EXT:fp_newsletter/Resources/Private/Language/locallang.xlf:tx_fpnewsletter_domain_model_log.name" /></th>
+            <th>{f:translate(key: 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang.xlf:tx_fpnewsletter_domain_model_log.email')}</th>
+            <th>{f:translate(key: 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang.xlf:tx_fpnewsletter_domain_model_log.status')}</th>
+        </tr>
+        <f:for each="{logs}" as="log" iteration="iter">
+            <tr>
+                <td class="{f:if(condition: '{iter.isOdd}', then: 'bg-warning', else: 'bg-success')}">
+                    <f:format.date format="d.m.Y - H:i:s">{log.tstamp}</f:format.date>
+                </td>
+                <td class="{f:if(condition: '{iter.isOdd}', then: 'bg-warning', else: 'bg-success')}">
+                    {log.firstname} {log.lastname}
+                </td>
+                <td class="{f:if(condition: '{iter.isOdd}', then: 'bg-warning', else: 'bg-success')}">
+                    {log.email}
+                </td>
+                <td class="{f:if(condition: '{iter.isOdd}', then: 'bg-warning', else: 'bg-success')}">
+                    <f:switch expression="{log.status}">
+                        <f:case value="0">{f:translate(key: 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.status.0')}</f:case>
+                        <f:case value="1">{f:translate(key: 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.status.1')}</f:case>
+                        <f:case value="2">{f:translate(key: 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.status.2')}</f:case>
+                        <f:case value="3">{f:translate(key: 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.status.3')}</f:case>
+                        <f:case value="4">{f:translate(key: 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.status.4')}</f:case>
+                        <f:case value="5">{f:translate(key: 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.status.5')}</f:case>
+                        <f:case value="6">{f:translate(key: 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.status.6')}</f:case>
+                        <f:defaultCase>{log.status}</f:defaultCase>
+                    </f:switch>
+                </td>
+            </tr>
+        </f:for>
+    </table>
+</f:section>
+
+<f:section name="footer">
+</f:section>
+</html>

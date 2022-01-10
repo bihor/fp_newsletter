@@ -1,235 +1,266 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-	<file source-language="en" target-language="it" datatype="plaintext" original="messages" date="2019-02-21T11:17:29Z" product-name="fp_newsletter">
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" target-language="it" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-01-10T13:22:39Z" product-name="fp_newsletter">
 		<header/>
 		<body>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
-				<source>Newsletter management</source>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
+				<source>Newsletter subscriber management</source>
 				<target>Gestione Newsletter</target>
 			</trans-unit>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
-				<source>Plugin for newsletter subscribtion and unsubscribtion</source>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description" resname="tx_fp_newsletter_domain_model_pi1.description">
+				<source>Plugin for newsletter subscription and unsubscription. Used table: tt_address. A log is written.</source>
 				<target>Pagina per l'iscrizione e la revoca</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log">
+			<trans-unit id="tx_fpnewsletter_domain_model_log" resname="tx_fpnewsletter_domain_model_log">
 				<source>Log</source>
 				<target>Log</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gender">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.date" resname="tx_fpnewsletter_domain_model_log.date">
+				<source>Date</source>
+				<target>Dato</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.name" resname="tx_fpnewsletter_domain_model_log.name">
+				<source>Name</source>
+				<target>Nome</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender" resname="tx_fpnewsletter_domain_model_log.gender">
 				<source>Gender</source>
 				<target>Sesso</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.title">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.title" resname="tx_fpnewsletter_domain_model_log.title">
 				<source>Title</source>
 				<target>Titolo</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.firstname">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.firstname" resname="tx_fpnewsletter_domain_model_log.firstname">
 				<source>Firstname</source>
 				<target>Nome</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.lastname">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.lastname" resname="tx_fpnewsletter_domain_model_log.lastname">
 				<source>Lastname</source>
 				<target>Cognome</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.email">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.email" resname="tx_fpnewsletter_domain_model_log.email">
 				<source>E-Mail</source>
 				<target>E-mail</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.address">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.address" resname="tx_fpnewsletter_domain_model_log.address">
+				<source>Address</source>
 				<target>Adresse</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.zip">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.zip" resname="tx_fpnewsletter_domain_model_log.zip">
+				<source>Zip</source>
 				<target>PLZ</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.city">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.city" resname="tx_fpnewsletter_domain_model_log.city">
+				<source>City</source>
 				<target>Ort</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.region">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.region" resname="tx_fpnewsletter_domain_model_log.region">
+				<source>Region</source>
 				<target>Region</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.country">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.country" resname="tx_fpnewsletter_domain_model_log.country">
+				<source>Country</source>
 				<target>Land</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.phone">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.phone" resname="tx_fpnewsletter_domain_model_log.phone">
+				<source>Phone</source>
 				<target>Telefon</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.mobile">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.mobile" resname="tx_fpnewsletter_domain_model_log.mobile">
+				<source>Mobile</source>
 				<target>Mobil</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.fax">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.fax" resname="tx_fpnewsletter_domain_model_log.fax">
+				<source>Fax</source>
 				<target>Fax</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.www">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.www" resname="tx_fpnewsletter_domain_model_log.www">
+				<source>WWW</source>
 				<target>WWW</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.position">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.position" resname="tx_fpnewsletter_domain_model_log.position">
+				<source>Position</source>
 				<target>Position</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.company">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.company" resname="tx_fpnewsletter_domain_model_log.company">
+				<source>Company</source>
 				<target>Institution/Organisation</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.categories">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.categories" resname="tx_fpnewsletter_domain_model_log.categories">
+				<source>Categories (comma separated)</source>
 				<target>Kategorien (Kommagetrennt)</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.status">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status" resname="tx_fpnewsletter_domain_model_log.status">
 				<source>Status</source>
 				<target>Status</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.securityhash">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.securityhash" resname="tx_fpnewsletter_domain_model_log.securityhash">
 				<source>Security-hash</source>
 				<target>Security-hash</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.retoken">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.retoken" resname="tx_fpnewsletter_domain_model_log.retoken">
 				<source>reCaptcha-token</source>
 				<target>reCaptcha-token</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.mathcaptcha">
-				<source>Mathematical captcha</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.mathcaptcha" resname="tx_fpnewsletter_domain_model_log.mathcaptcha">
+				<source>Spam protection</source>
 				<target>Captcha matematico</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.xcaptcha">
-				<source>Enter the result of x</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.xcaptcha" resname="tx_fpnewsletter_domain_model_log.xcaptcha">
+				<source>enter the result of x</source>
 				<target>inserisci il risultato del calcolo di x</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr" resname="tx_fpnewsletter_domain_model_log.gdpr">
 				<source>GDPR</source>
 				<target>GDPR</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc1">
-				<source>SI I agree that the operator and publisher may inform me about selected topics. My data is used exclusively for this purpose. In particular, no disclosure to unauthorized third parties. I am aware that I can revoke my consent at any time with effect for the future. The</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc1" resname="tx_fpnewsletter_domain_model_log.gdpr_desc1">
+				<source>I agree that the operator and publisher may inform me about selected topics. My data is used exclusively for this purpose. In particular, no disclosure to unauthorized third parties. I am aware that I can revoke my consent at any time with effect for the future. The</source>
 				<target>Sono a conoscenza che l'operatore e il pubblicatore mi devono informare circa i dati trasmessi. I miei dati saranno utilizzati esclusivamente per il servizio al quale sono iscritto. In particolare non possono essere ceduti o usati da terze parti. Sono a conoscenza del fatto che io pesso revocare il consenso all'uso dei dati in qualsiasi momento con effetto immediato nel futuro. La</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_link_text">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_link_text" resname="tx_fpnewsletter_domain_model_log.gdpr_link_text">
 				<source> Privacy Policy </source>
 				<target>Privacy Policy </target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc2">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc2" resname="tx_fpnewsletter_domain_model_log.gdpr_desc2">
 				<source>applies, which also includes other information about how to correct, delete and block my data.</source>
 				<target>   sarà applicata; prevede anche le informazioni per la gestione dei dati: modifica, cancellazione e blocco dei miei dati.</target>
 			</trans-unit>
-			<trans-unit id="subscribe">
+			<trans-unit id="subscribe" resname="subscribe">
 				<source>Subscribe</source>
 				<target>Iscrizione</target>
 			</trans-unit>
-			<trans-unit id="unsubscribe">
+			<trans-unit id="unsubscribe" resname="unsubscribe">
 				<source>Unsubscribe</source>
 				<target>Revoca</target>
 			</trans-unit>
-			<trans-unit id="unsubscribe_head">
+			<trans-unit id="unsubscribe_head" resname="unsubscribe_head">
 				<source>Unsubscribe from the newsletter</source>
 				<target>Revoca dell'iscrizione dalla newsletter</target>
 			</trans-unit>
-			<trans-unit id="go_back">
+			<trans-unit id="go_back" resname="go_back">
 				<source>go back</source>
 				<target>torna indietro</target>
 			</trans-unit>
-			<trans-unit id="email_send1">
+			<trans-unit id="email_send1" resname="email_send1">
 				<source>An email has been send to you. Please verify your email-address for the newsletter subscription.</source>
 				<target>Entro qualche minuto riceverai un email. Controlla il tuo indirizzo email per verificare l'iscrizione.</target>
 			</trans-unit>
-			<trans-unit id="email_send2">
+			<trans-unit id="email_send2" resname="email_send2">
 				<source>An email has been send to you. Please verify your email-address for the newsletter unsubscription.</source>
 				<target>Ti è stato inviato un email. Controlla il tuo indirizzo email per verificare l'avvenuta revoca.</target>
 			</trans-unit>
-			<trans-unit id="email_verified">
-				<source>Your email-address is now verfied. You are now subscribed to our newsletter.</source>
+			<trans-unit id="email_verified" resname="email_verified">
+				<source>Your email-address is now verfied. You are now subscribed to our newsletter with:</source>
 				<target>Il tuo indirizzo email è stato ora verificato. Sei iscritto alla newsletter con:</target>
 			</trans-unit>
-			<trans-unit id="email_removed">
+			<trans-unit id="email_verified2" resname="email_verified2">
+				<source>Your email-address is now verfied. You are now unsubscribed from our newsletter with:</source>
+				<target>Il tuo indirizzo email è ora verificato. Ora sei cancellato dalla nostra newsletter con:</target>
+			</trans-unit>
+			<trans-unit id="email_removed" resname="email_removed">
 				<source>You have unsubscribed our newsletter successfully.</source>
 				<target>La tua iscrizione alla newsletter è stata revocata con successo:</target>
 			</trans-unit>
-			<trans-unit id="wrong_parameters">
+			<trans-unit id="wrong_parameters" resname="wrong_parameters">
 				<source>Error: wrong parameters in the link.</source>
 				<target>Errore: link con parametri sbagliati.</target>
 			</trans-unit>
-			<trans-unit id="wrong_uid">
+			<trans-unit id="wrong_uid" resname="wrong_uid">
 				<source>Error: no entry for the given uid found.</source>
 				<target>Errore: nessuna entry esiste per la uid trovata</target>
 			</trans-unit>
-			<trans-unit id="wrong_hash">
+			<trans-unit id="wrong_hash" resname="wrong_hash">
 				<source>Error: the given hash in the link is wrong.</source>
 				<target>Errore: l'hash del link è sbagliato</target>
 			</trans-unit>
-			<trans-unit id="wrong_expired">
+			<trans-unit id="wrong_expired" resname="wrong_expired">
 				<source>Error: the link is expired!</source>
 				<target>Errore: il link è scaduto!</target>
 			</trans-unit>
-			<trans-unit id="wrong_verified">
+			<trans-unit id="wrong_verified" resname="wrong_verified">
 				<source>Error: you have verified this email-address already!</source>
 				<target>Errore: il tuo indirizzo email è stato già verificato!</target>
 			</trans-unit>
-			<trans-unit id="wrong_subscribed">
+			<trans-unit id="wrong_subscribed" resname="wrong_subscribed">
 				<source>Error: you are already subscribed to our newsletter!</source>
 				<target>Errore: sei già iscritto alla newsletter!</target>
 			</trans-unit>
-			<trans-unit id="wrong_unsubscribed">
+			<trans-unit id="wrong_unsubscribed" resname="wrong_unsubscribed">
 				<source>Error: you are not subscribed, so you can not be unsubscribed!</source>
 				<target>Errore: non sei iscritto, così non puoi revocare l'iscrizione!</target>
 			</trans-unit>
-			<trans-unit id="wrong_unsubscribed_parameters">
+			<trans-unit id="wrong_unsubscribed_parameters" resname="wrong_unsubscribed_parameters">
 				<source>Error: missing or wrong parameters for unsubcription!</source>
 				<target>Errore: parametri mancanti o sbagliati per la revoca!</target>
 			</trans-unit>
-			<trans-unit id="wrong_user">
+			<trans-unit id="wrong_user" resname="wrong_user">
 				<source>Error: user not found! Maybe you are already unsubscribed.</source>
 				<target>Errore: utente non trovato. Forse hai già revocato l'iscrizione</target>
 			</trans-unit>
-			<trans-unit id="wrong_email">
+			<trans-unit id="wrong_email" resname="wrong_email">
 				<source>Error: the given email-address is not valid!</source>
 				<target>Errore: l'indirizzo email fornito non è valido!</target>
 			</trans-unit>
-			<trans-unit id="wrong_captcha">
-				<source>Error: the given captcha is not valid!</source>
+			<trans-unit id="wrong_captcha" resname="wrong_captcha">
+				<source>Error: the captcha is not valid!</source>
 				<target>Errore: l'indirizzo captcha non è valido!</target>
 			</trans-unit>
-			<trans-unit id="wrong_honeypot">
+			<trans-unit id="wrong_honeypot" resname="wrong_honeypot">
 				<source>Error: spam detected (honeypot)!</source>
 				<target>Errore: spam detected (honeypot)!</target>
 			</trans-unit>
-			<trans-unit id="wrong_insert">
+			<trans-unit id="wrong_insert" resname="wrong_insert">
 				<source>Error: sql insert error!</source>
 				<target>Errore di inserimento nel database!</target>
 			</trans-unit>
-			<trans-unit id="required">
+			<trans-unit id="required" resname="required">
 				<source>required.</source>
 				<target>obbligatorio</target>
 			</trans-unit>
-			<trans-unit id="errors">
+			<trans-unit id="errors" resname="errors">
 				<source>Error: please note this messages:</source>
 				<target>Errore: nota questi messaggi:</target>
 			</trans-unit>
-			<trans-unit id="error_email">
+			<trans-unit id="error_email" resname="error_email">
 				<source>- you need to enter an valid email-address!</source>
 				<target>- devi inserire un email valido</target>
 			</trans-unit>
-			<trans-unit id="error_gdpr">
+			<trans-unit id="error_gdpr" resname="error_gdpr">
 				<source>- you need to accept the GDPR!</source>
 				<target>- devi accettare le condizioni GDPR</target>
 			</trans-unit>
-			<trans-unit id="error_not_here">
+			<trans-unit id="error_not_here" resname="error_not_here">
 				<source>Error: this point should not be reached!</source>
 				<target>Errore generico</target>
 			</trans-unit>
-			<trans-unit id="email.dear-gender-first-and-last-name">
+			<trans-unit id="email.dear-gender-first-and-last-name" resname="email.dear-gender-first-and-last-name">
+				<source>Dear %s %s %s,</source>
 				<target>Cara %s %s %s,</target>
 			</trans-unit>
-			<trans-unit id="email.dear-first-and-last-name">
+			<trans-unit id="email.dear-first-and-last-name" resname="email.dear-first-and-last-name">
+				<source>Dear %s %s,</source>
 				<target>Cara %s %s,</target>
 			</trans-unit>
-			<trans-unit id="email.dear-first-name">
+			<trans-unit id="email.dear-first-name" resname="email.dear-first-name">
+				<source>Dear %s,</source>
 				<target>Cara %s,</target>
 			</trans-unit>
-			<trans-unit id="email.dear">
+			<trans-unit id="email.dear" resname="email.dear">
+				<source>Hello,</source>
 				<target>Ciao,</target>
 			</trans-unit>
-			<trans-unit id="email.gender-first-and-last-name">
+			<trans-unit id="email.gender-first-and-last-name" resname="email.gender-first-and-last-name">
+				<source> %s %s %s</source>
 				<target> %s %s %s</target>
 			</trans-unit>
-			<trans-unit id="email.first-and-last-name">
+			<trans-unit id="email.first-and-last-name" resname="email.first-and-last-name">
+				<source> %s %s</source>
 				<target> %s %s</target>
 			</trans-unit>
-			<trans-unit id="email.first-name">
+			<trans-unit id="email.first-name" resname="email.first-name">
+				<source> %s</source>
 				<target> %s</target>
 			</trans-unit>
 		</body>

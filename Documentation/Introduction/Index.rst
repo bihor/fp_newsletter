@@ -24,6 +24,8 @@ Note: there are more TypoScript-settings than FlexForm-settings.
 But the extension can be used without tt_address too. Therefore an admin-email-address can be specified.
 The admin will then get an email with the subscription data.
 Google reCaptcha v3 or a mathematical captcha can be enabled too.
+There is a widget for the dashboard and the extension dashboard needs to be installed in TYPO3 11.5,
+because the check for the extension does not work (anymore) in TYPO3 11.
 Available languages: english, german/deutsch and italian/italiano.
 
 
