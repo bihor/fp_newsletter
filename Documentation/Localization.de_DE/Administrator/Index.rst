@@ -110,9 +110,21 @@ FAQ
   TYPO3 9 ignoriert anscheinend den Parameter absolute="1"? Oder du hast keine Domain im Backend angegeben?
   Füge die Domain dann selber hinzu.
 
+- Was ist der username wenn ich die Tabelle fe_users verwende?
+
+  Als username wird die E-Mail-Adresse verwendet. Das Standard-Passwort ist joh316. Die Kategorie setzt man mittels module_sys_dmail_category.
+
+- Ich benutzt die fe_users Tabelle, aber es passiert nichts.
+
+  Hast du auch settings.module_sys_dmail_category gesetzt?
+
+- Wie kann man sich bei luxletter abmelden?
+
+  Weiß ich noch nicht.
+
 - Ich brauche / will keine Log-Einträge. Kann man das ausschalten?
 
   Nicht ganz. Man kann nur alte Log-Einträge automatisch löschen lassen. Dazu fügt man einen Task
   "Tabellen-Müllsammlung" hinzu und wählt da die Tabelle tx_fpnewsletter_domain_model_log aus.
-  Dann kann man angeben, nach wievielen Tagen ein Log-Eintrag gelöscht werden soll.
+  Dann kann man angeben, nach wie vielen Tagen ein Log-Eintrag gelöscht werden soll.
   Wenn der ConJob läuft, werden alte Log-Einträge dann automatisch gelöscht.

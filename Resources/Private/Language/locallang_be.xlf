@@ -85,7 +85,7 @@
 				<source>Enable a honeypot?</source>
 			</trans-unit>
 			<trans-unit id="settings.searchPidMode" resname="settings.searchPidMode">
-				<source>Search address in tt_address in all specified folders?</source>
+				<source>Search address (in tt_address/fe_users) in all specified folders?</source>
 			</trans-unit>
 			<trans-unit id="settings.deleteMode" resname="settings.deleteMode">
 				<source>Hard or soft delete mode?</source>

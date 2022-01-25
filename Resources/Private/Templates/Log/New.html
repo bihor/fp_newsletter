@@ -23,7 +23,7 @@
 
 <f:form action="create" name="log" object="{log}">
 	<f:render partial="Log/FormFields" arguments="{_all}" />
-	<f:form.submit value="{f:translate(key: 'subscribe', default: 'subscribe')}" class="btn btn-sm" />
+	<f:form.submit value="{f:translate(key: 'subscribe', default: 'subscribe')}" class="btn btn-sm btn-secondary" />
 </f:form>
 
 <f:if condition="{settings.enableUnsubscribeForm} == 1">

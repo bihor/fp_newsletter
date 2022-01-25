@@ -214,8 +214,8 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $email = $log->getEmail();
         $dbuidext = 0;
         if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
-            if ($this->settings['table'] == 'tt_address') {
-                $dbuidext = $this->logRepository->getFromTtAddress($email, $log->getPid());
+            if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
+                $dbuidext = $this->logRepository->getUidFromExternal($email, $log->getPid(), $this->settings['table']);
             }
         } else {
             $error = 8;
@@ -344,7 +344,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $u = intval($_GET['u']);
         $a = $_GET['a'];
         if ($t && $t == $this->settings['table'] && $u && $a) {
-            $user = $this->logRepository->getUserFromTtAddress($u);
+            $user = $this->logRepository->getUserFromExternal($u, $t);
             // zum testen: echo GeneralUtility::stdAuthCode($user, 'uid');
             if ($user) {
                 if (preg_match('/^[0-9a-f]{8}$/', $a) && ($a == GeneralUtility::stdAuthCode($user, 'uid'))) {
@@ -402,11 +402,11 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         }
 
         if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
-            if ($this->settings['table'] == 'tt_address') {
+            if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
                 if ($this->settings['searchPidMode'] == 1) {
-                    $dbuidext = $this->logRepository->getFromTtAddressCheckAllFolders($email, $storagePidsArray);
+                    $dbuidext = $this->logRepository->getUidFromExternal($email, $storagePidsArray, $this->settings['table']);
                 } else {
-                    $dbuidext = $this->logRepository->getFromTtAddress($email, $pid);
+                    $dbuidext = $this->logRepository->getUidFromExternal($email, $pid, $this->settings['table']);
                 }
                 // zum testen: echo "uid $dbuidext mit $email, $pid";
             }
@@ -484,14 +484,8 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 $this->logRepository->update($log);
                 $persistenceManager->persistAll();
             } else {
-                if ($this->settings['table'] == 'tt_address') {
-                    if ($this->settings['module_sys_dmail_category']) {
-                        $dmail_cats = str_replace(' ', '', $this->settings['module_sys_dmail_category']);
-                        $dmCatArr = explode(',', $dmail_cats);
-                    } else {
-                        $dmCatArr = [];
-                    }
-                    $this->logRepository->deleteInTtAddress($dbuidext, $this->settings['deleteMode'], $dmCatArr);
+                if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
+                    $this->deleteThisUser($dbuidext);
                 }
                 if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                     $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
@@ -567,8 +561,8 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                     } else {
                         $dbuidext = 0;
                         if (GeneralUtility::validEmail($dbemail)) {
-                            if ($this->settings['table'] == 'tt_address') {
-                                $dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
+                            if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
+                                $dbuidext = $this->logRepository->getUidFromExternal($dbemail, $address->getPid(), $this->settings['table']);
                             }
                         }
                         if ($dbuidext > 0) {
@@ -586,6 +580,34 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                                     $dmCatArr = [];
                                 }
                                 $success = $this->logRepository->insertInTtAddress($address, $html, $dmCatArr);
+                            } else if ($this->settings['table'] == 'fe_users' && $this->settings['password']) {
+                                $frontendUser = new \TYPO3\CMS\Extbase\Domain\Model\FrontendUser();
+                                $password = $this->settings['password'];
+                                $hashInstance = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory::class)->getDefaultHashInstance('FE');
+                                $hashedPassword = $hashInstance->getHashedPassword($password);
+                                $frontendUser->setUsername($dbemail);
+                                $frontendUser->setPassword($hashedPassword);
+                                $frontendUser->setPid(intval($address->getPid()));
+                                $frontendUser->setEmail($dbemail);
+                                if ($address->getFirstName() || $address->getLastName()) {
+                                    $frontendUser->setFirstName($address->getFirstName());
+                                    $frontendUser->setLastName($address->getLastName());
+                                    $frontendUser->setName(trim($address->getFirstName() . ' ' . $address->getLastName()));
+                                }
+                                $frontendUser->setAddress($address->getAddress());
+                                $frontendUser->setZip($address->getZip());
+                                $frontendUser->setCity($address->getCity());
+                                $frontendUser->setCountry($address->getCountry());
+                                $frontendUser->setTelephone($address->getPhone());
+                                $frontendUser->setFax($address->getFax());
+                                $frontendUser->setCompany($address->getCompany());
+                                if ($dmCat) {
+                                    $frontendUser->_setProperty('usergroup', $dmCat);
+                                    //$frontendUser->addUserGroup($this->frontendUserGroupRepository->findByUid($this->settings['frontendUserGroup']));
+                                }
+                                $frontendUserRepository = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserRepository');
+                                $frontendUserRepository->add($frontendUser);
+                                $success = 1;
                             }
                             if ($this->settings['table'] && $success < 1) {
                                 $error = 8;
@@ -654,11 +676,11 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                     } else {
                         $dbuidext = 0;
                         if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($dbemail)) {
-                            if ($this->settings['table'] == 'tt_address') {
+                            if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
                                 if ($this->settings['searchPidMode'] == 1) {
-                                    $dbuidext = $this->logRepository->getFromTtAddressCheckAllFolders($dbemail, $this->logRepository->getStoragePids());
+                                    $dbuidext = $this->logRepository->getUidFromExternal($dbemail, $this->logRepository->getStoragePids(), $this->settings['table']);
                                 } else {
-                                    $dbuidext = $this->logRepository->getFromTtAddress($dbemail, $address->getPid());
+                                    $dbuidext = $this->logRepository->getUidFromExternal($dbemail, $address->getPid(), $this->settings['table']);
                                 }
                             }
                         }
@@ -670,14 +692,8 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                             $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
                             $persistenceManager->persistAll();
 
-                            if ($this->settings['table'] == 'tt_address') {
-                                if ($this->settings['module_sys_dmail_category']) {
-                                    $dmail_cats = str_replace(' ', '', $this->settings['module_sys_dmail_category']);
-                                    $dmCatArr = explode(',', $dmail_cats);
-                                } else {
-                                    $dmCatArr = [];
-                                }
-                                $this->logRepository->deleteInTtAddress($dbuidext, $this->settings['deleteMode'], $dmCatArr);
+                            if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
+                                $this->deleteThisUser($dbuidext);
                             }
                             if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                                 $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
@@ -700,6 +716,25 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
                 $this->view->assign('error', $error);
             }
         }
+    }
+
+    /**
+     * Delete a user
+     *
+     * @param int $uid uid of the user
+     */
+    protected function deleteThisUser($uid) {
+        if ($this->settings['table'] == 'tt_address') {
+            if ($this->settings['module_sys_dmail_category']) {
+                $dmail_cats = str_replace(' ', '', $this->settings['module_sys_dmail_category']);
+                $dmCatArr = explode(',', $dmail_cats);
+            } else {
+                $dmCatArr = [];
+            }
+        } else {
+            $dmCatArr = [];
+        }
+        $this->logRepository->deleteExternalUser($uid, $this->settings['deleteMode'], $dmCatArr, $this->settings['table']);
     }
 
     /**

@@ -12,7 +12,7 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Newsletter subscriber management',
-    'description' => 'Plugin for newsletter subscription and unsubscription with double opt in (and double opt out). Used table: tt_address. A log is written.',
+    'description' => 'Plugin for newsletter subscription and unsubscription with double opt in (and double opt out). Used table: tt_address or fe_users. A log is written.',
     'category' => 'plugin',
     'author' => 'Kurt Gusbeth',
     'author_company' => 'fixpunkt werbeagentur gmbh',
@@ -21,7 +21,7 @@ $EM_CONF[$_EXTKEY] = [
     'internal' => '',
     'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '2.2.3',
+    'version' => '2.2.4',
     'constraints' => [
         'depends' => [
         	'typo3' => '10.4.6-11.5.99'

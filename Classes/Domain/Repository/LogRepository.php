@@ -24,20 +24,26 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
 	/**
-	 * getFromTTAddress: find user ID
+	 * getUidFromExternal: find user ID
 	 * @param	string $email: die Email-Adresse wurde schon vorher geprüft!
-	 * @param	integer	$pid
-	 * @return integer
+	 * @param	mixed	$pid: PID oder Liste mit PIDs
+     * @param   string  $table: tt_address oder fe_users
+	 * @return  integer
 	 */
-	function getFromTTAddress($email, $pid)
+	function getUidFromExternal($email, $pid, $table)
 	{
 		$dbuid = 0;
-		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+        if (is_numeric($pid)) {
+            $where = $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT));
+        } else {
+            $where = $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter($pid, Connection::PARAM_INT_ARRAY));
+        }
 		$statement = $queryBuilder
 					->select('uid')
-					->from('tt_address')
+					->from($table)
 					->where(
-						$queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT))
+						$where
 					)
 					->andWhere(
 						$queryBuilder->expr()->eq('email', $queryBuilder->createNamedParameter($email))
@@ -45,48 +51,24 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 					->execute();
 		while ($row = $statement->fetch()) {
 			$dbuid = intval($row['uid']);
+            break;
 		}		
 		return $dbuid;
 	}
 
-    /**
-     * getFromTTAddress: find user ID in more folders an take the first finding
-     * @param	string $email: die Email-Adresse wurde schon vorher geprüft!
-     * @param	array	$pidsArray
-     * @return integer
-     */
-    function getFromTtAddressCheckAllFolders($email, $pidsArray)
-    {
-        $dbuid = 0;
-        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
-        $statement = $queryBuilder
-            ->select('uid')
-            ->from('tt_address')
-            ->where(
-                $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter($pidsArray, Connection::PARAM_INT_ARRAY))
-            )
-            ->andWhere(
-                $queryBuilder->expr()->eq('email', $queryBuilder->createNamedParameter($email))
-            )
-            ->execute();
-        while ($row = $statement->fetch()) {
-            $dbuid = intval($row['uid']);
-            break;
-        }
-        return $dbuid;
-    }
 
     /**
-	 * getUserFromTTAddress: find user array
+	 * getUserFromExternal: find user array
 	 * @param	integer $uid: UID des User
+     * @param   string $table: tt_address oder fe_users
 	 * @return	array
 	 */
-	function getUserFromTTAddress($uid)
+	function getUserFromExternal($uid, $table)
 	{
-		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
+		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
 		$statement = $queryBuilder
 		->select('*')
-		->from('tt_address')
+		->from($table)
 		->where(
 			$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
 		)
@@ -134,7 +116,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		}
 		if ($address->getCategories()) {
 			// Priorität haben die Kategorien aus dem Formular/Log-Eintrag
-			$dmCatArr = explode(',', $address->getCategories());	
+			$dmCatArr = explode(',', $address->getCategories());
 		}
 		if (is_array($dmCatArr) && count($dmCatArr)>0) {
 			$insert['module_sys_dmail_category'] = count($dmCatArr);
@@ -151,7 +133,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		if (is_array($dmCatArr) && count($dmCatArr)>0) {
 			$count = 0;
 			foreach ($dmCatArr as $uid) {
-				if (is_numeric($uid)) {
+				if (is_numeric(trim($uid))) {
 					// set the categories to the mm table of direct_mail
 					$count++;
 					$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_dmail_ttaddress_category_mm');
@@ -169,45 +151,46 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		}
 		return $tableUid;
 	}
-	
-	/**
-	 * deleteInTTAddress: delete user
-	 * @param	integer	$uid		tt_address uid
-	 * @param	integer	$mode		Lösch-Modus: 1: update, 2: löschen
-	 * @param	array	$dmCatArr	direct_mail categories
-	 */
-	function deleteInTtAddress($uid, $mode, $dmCatArr = []) {
-		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
-	    if ($mode == 2) {
-        	$queryBuilder
-        		->delete('tt_address')
-	        	->where(
-	        		$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
-        		)
-	       		->execute();
-	    } else {
-	        $queryBuilder
-	       		->update('tt_address')
-	       		->where(
-	        		$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
-	        	)
-	        	->set('deleted', '1')
-	        	->set('tstamp', time())
-	        	->execute();
-	    }
-	    if (is_array($dmCatArr) && count($dmCatArr)>0) {
-	    	// alle Kategorie-Relationen löschen
-	    	$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_dmail_ttaddress_category_mm');
-	    	$queryBuilder
-	    		->delete('sys_dmail_ttaddress_category_mm')
-	    		->where(
-	    			$queryBuilder->expr()->eq('uid_local', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
-	    		)
-	    		->execute();
-	    }
-	}
-	
-	/**
+
+    /**
+     * deleteExternalUser: delete user
+     * @param	integer	$uid		tt_address oder fe_users uid
+     * @param	integer	$mode		Lösch-Modus: 1: update, 2: löschen
+     * @param	array	$dmCatArr	direct_mail categories
+     * @param   string  $table      tt_address or fe_users
+     */
+    function deleteExternalUser($uid, $mode, $dmCatArr = [], $table = 'tt_address') {
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+        if ($mode == 2) {
+            $queryBuilder
+                ->delete($table)
+                ->where(
+                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+                )
+                ->execute();
+        } else {
+            $queryBuilder
+                ->update($table)
+                ->where(
+                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+                )
+                ->set('deleted', '1')
+                ->set('tstamp', time())
+                ->execute();
+        }
+        if (($table == 'tt_address') && is_array($dmCatArr) && count($dmCatArr)>0) {
+            // alle Kategorie-Relationen löschen
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_dmail_ttaddress_category_mm');
+            $queryBuilder
+                ->delete('sys_dmail_ttaddress_category_mm')
+                ->where(
+                    $queryBuilder->expr()->eq('uid_local', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+                )
+                ->execute();
+        }
+    }
+
+    /**
 	 * Find an entry with sys_language_uid > 0
 	 * https://forge.typo3.org/issues/86405
 	 * 

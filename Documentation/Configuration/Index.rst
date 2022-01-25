@@ -30,7 +30,7 @@ Properties for settings
 ================================= =========== ===================================================================== =================================
 Property                          Data type   Description                                                           Default
 ================================= =========== ===================================================================== =================================
-table                             string      Today only tt_address or none (empty value) supported                  tt_address
+table                             string      tt_address, fe_users or none (empty value) supported                  tt_address
 optionalFields                    string      Optional fields: see below                                            gender,firstname,lastname
 optionalFieldsRequired            string      Optional required* fields: see below
 doubleOptOut                      boolean     Enable double out out unsubscription?                                 0
@@ -51,7 +51,8 @@ searchPidMode                     integer     Search in tt_address: 0: only in t
 deleteMode                        integer     1: set deletion flag; 2: delete entry                                 1
 languageMode                      integer     0: uses -1 if L>0; 1: uses the sys_language_uid from pages            0
 module_sys_dmail_html             integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1
-module_sys_dmail_category         string      Comma separated list of categories (uid) from sys_dmail_category
+module_sys_dmail_category         string      List of categories (uid) from sys_dmail_category or fe_groups^
+password                          string      Password for the fe_users table. Every user will have the same pw!    joh316
 reCAPTCHA_site_key                string      Website-key for Google reCaptcha v3. curl needed!
 reCAPTCHA_secret_key              string      Secret key for Google reCaptcha v3
 mathCAPTCHA                       integer     Show a mathematical captcha? 0: no; 1: with 1 digit; 2: with 2 digits 0
@@ -85,6 +86,8 @@ Note**: you need an own page for the unsubscription! unsubscribeUid should be de
 Note***: this page is used too, if doubleOptOut=0. unsubscribeMessageUid is not used if doubleOptOut=0.
 
 Note°: this works only at the unsubscription.
+
+Note^: comma separated list. E.g. 1,3. Without space.
 
 
 Property details / examples

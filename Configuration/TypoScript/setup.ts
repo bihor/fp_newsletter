@@ -41,6 +41,7 @@ plugin.tx_fpnewsletter {
 	languageMode = 0
 	module_sys_dmail_html = 1
 	module_sys_dmail_category =
+	password = joh316
 	reCAPTCHA_site_key =
 	reCAPTCHA_secret_key =
 	mathCAPTCHA = 0

@@ -18,7 +18,7 @@ Was macht die Extension?
 ------------------------
 
 Die Extension fp_newsletter wurde dazu geschrieben, eine datenschutzkonforme An- und Abmeldung zu Newslettern zu ermöglichen.
-Bisher wird dazu nur die Tabelle tt_address benutzt. Die kann z.B. von der Extension direct_mail zur Newsletter-Versendung benutzt werden.
+Unterstützte Tabellen: tt_address und fe_users. Die kann z.B. von der Extension direct_mail zur Newsletter-Versendung benutzt werden.
 Sämtliche Aktionen werden in einer Log-Tabelle festgehalten, damit alle Aktionen der Benutzer überprüft werden können.
 Allerdings werden manche Einträge auch geändert und nicht immer neu angelegt.
 So kann man als Admin sehen, wer sich wann an- oder abgemeldet hat. Erst nach einer erfolgreichen Anmeldung werden die Daten in die

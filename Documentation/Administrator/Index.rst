@@ -107,6 +107,19 @@ FAQ
   TYPO3 9 ignores the parameter absolute="1"? Or you have not added a domain in the backend?
   Add the domain by your own in that case.
 
+- What will be the username if I use fe_users?
+
+  The username will be the email-address. The default password is joh316. The category can be set via
+  module_sys_dmail_category and is mandatory!!!
+
+- I use fe_users but nothing happens.
+
+  Have you set the setting module_sys_dmail_category?
+
+- How can I unsubscribe via luxletter?
+
+  I don´t know.
+
 - I don´t want/need a log entry. Can I avoid that?
 
   Not at all. You can add a task to your scheduler: select the task Scheduler / Table garbage collection.

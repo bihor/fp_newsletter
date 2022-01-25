@@ -112,8 +112,8 @@
 				<target>Einen Honigtopf (honeypot) gegen Spam einschalten?</target>
 			</trans-unit>
 			<trans-unit id="settings.searchPidMode" resname="settings.searchPidMode">
-				<source>Search address in tt_address in all specified folders?</source>
-				<target>Suche eine Adresse in tt_address in allen angegebenen Ordnern?</target>
+				<source>Search address (in tt_address/fe_users) in all specified folders?</source>
+				<target>Suche eine Adresse (in tt_address/fe_users) in allen angegebenen Ordnern?</target>
 			</trans-unit>
 			<trans-unit id="settings.deleteMode" resname="settings.deleteMode">
 				<source>Hard or soft delete mode?</source>
