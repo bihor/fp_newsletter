@@ -72,4 +72,6 @@ extension-key zu composer.json hinzugefügt.
 Version 2.2.1: Mehr translate keys für E-Mail-Templates hinzugefügt. Siehe Kapitel Administration.
 Jetzt für TYPO3 10 und 11.
 
-Version 2.2.3: Ein Widget für das Dashboard hinzugefügt. Die Extension Dashboard wird in TYPO3 11 benötigt (da die Abfrage danach nicht funktioniert).
+Version 2.2.5: Ein Widget für das Dashboard hinzugefügt. Die Extension Dashboard wird in TYPO3 11 benötigt (da die Abfrage danach nicht funktioniert).
+Es kann nun auch die Tabelle fe_users benutzt werden!
+no-cache Parameter entfernt.

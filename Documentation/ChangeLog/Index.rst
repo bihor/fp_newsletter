@@ -72,4 +72,6 @@ extension-key added to composer.json.
 Version 2.2.1: more variables/translate keys for emails added. See chapter Administration.
 Now for TYPO3 10 and 11.
 
-Version 2.2.3: a widget for the dashboard added. The extension dashboard is required in TYPO3 11.
+Version 2.2.5: a widget for the dashboard added. The extension dashboard is required in TYPO3 11.
+The table fe_users can now be used too.
+no-cache parameter removed.

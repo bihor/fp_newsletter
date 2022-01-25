@@ -6,7 +6,7 @@
 <f:translate key="email.dear" />
 </f:else></f:if>
 you need to click at the verify link to verify your email-address:
-<f:format.raw><f:uri.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" arguments="{uid: uid, hash: hash}" noCache="1" absolute="1" /></f:format.raw>
+<f:format.raw><f:uri.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" arguments="{uid: uid, hash: hash}" absolute="1" /></f:format.raw>
 
 Best regards
 {settings.company}
