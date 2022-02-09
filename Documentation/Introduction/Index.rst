@@ -18,11 +18,12 @@ What does it do?
 ----------------
 
 The extension fp_newsletter is designed to provide a newsletter subscription and unsubscription service for the table
-tt_address or fe_users which can be used by the extension direct_mail. Furthermore it is designed to be compatible with the GDPR.
+tt_address or fe_users which can be used by the extension direct_mail or luxletter.
+Furthermore it is designed to be compatible with the GDPR.
 A log is written about (every) action in a separate table.
 Old log entries can be deleted by a scheduler task.
 Note: there are more TypoScript-settings than FlexForm-settings.
-But the extension can be used without tt_address too. Therefore an admin-email-address can be specified.
+But the extension can be used without tt_address/fe_users too. Therefore an admin-email-address can be specified.
 The admin will then get an email with the subscription data.
 Google reCaptcha v3 or a mathematical captcha can be enabled too.
 There is a widget for the dashboard and the extension dashboard needs to be installed in TYPO3 11.5,

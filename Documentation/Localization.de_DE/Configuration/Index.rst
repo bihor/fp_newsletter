@@ -58,6 +58,7 @@ reCAPTCHA_site_key                string      Websiteschlüssel für Google reCa
 reCAPTCHA_secret_key              string      Geheimer Schlüssel für Google reCaptcha v3
 mathCAPTCHA                       integer     Zeige ein mathematisches Captcha? 0: nein; 1, 2: ja, mit 1-2 Ziffern  0
 honeypot                          boolean     Einen Honigtopf (honeypot) gegen Spam einschalten?                    0
+checkForRequiredExtensions        boolean     Prüfen, ob benötigte Extensions installiert sind? 0: nein; 1: ja.     1
 company                           string      Name der Firma                                                        Ihre Firma
 gender.please                     string      Text für die Anrede-Auswahl                                           Bitte auswählen
 gender.mr                         string      Text für Herr                                                         Herr
@@ -166,3 +167,12 @@ Wie in jeder Extension auch, kann man die Labels via TypoScript ändern. Hier 2 
   plugin.tx_fpnewsletter._LOCAL_LANG.de.tx_fpnewsletter_domain_model_log.gdpr_desc2 = Ich bin damit einverstanden, dass die von mir angegebenen Daten elektronisch erhoben und gespeichert werden.
 
 Man findet die Bezeichnungen in den Templates bei f:translate key.
+
+Benötigte Extensions
+^^^^^^^^^^^^^^^^^^^^
+
+Standardmäßig überprüft die Extension in der Action new (Anmeldeformular), ob die benötigten Extensions installiert sind.
+settings.table kann leer, tt_address oder fe_users sein. Bei tt_address wird auch direct_mail benötigt, wenn man entweder
+settings.module_sys_dmail_html oder settings.module_sys_dmail_category verwendet. Die Überprüfung kann man ausschalten::
+
+  plugin.tx_fpnewslettersettings.checkForRequiredExtensions = 0

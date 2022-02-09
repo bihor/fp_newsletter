@@ -46,6 +46,7 @@ plugin.tx_fpnewsletter {
 	reCAPTCHA_secret_key =
 	mathCAPTCHA = 0
 	honeypot = 0
+    checkForRequiredExtensions = 1
 	company = Ihre Firma
 	gender {
 	  please = Bitte auswählen

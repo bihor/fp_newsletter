@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-01-10T13:22:58Z" product-name="fp_newsletter">
+	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-02-09T10:53:59Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
@@ -176,6 +176,12 @@
 			</trans-unit>
 			<trans-unit id="error_not_here" resname="error_not_here">
 				<source>Error: this point should not be reached!</source>
+			</trans-unit>
+			<trans-unit id="missing_tt_address" resname="missing_tt_address">
+				<source>Error: the extension tt_address is required if you use settings.table=tt_address!</source>
+			</trans-unit>
+			<trans-unit id="missing_direct_mail" resname="missing_direct_mail">
+				<source>Error: the extension direct_mail is required if settings.module_sys_dmail_html!=-1 or settings.module_sys_dmail_category is set!</source>
 			</trans-unit>
 			<trans-unit id="email.dear-gender-first-and-last-name" resname="email.dear-gender-first-and-last-name">
 				<source>Dear %s %s %s,</source>

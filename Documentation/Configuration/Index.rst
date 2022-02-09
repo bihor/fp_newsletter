@@ -57,6 +57,7 @@ reCAPTCHA_site_key                string      Website-key for Google reCaptcha v
 reCAPTCHA_secret_key              string      Secret key for Google reCaptcha v3
 mathCAPTCHA                       integer     Show a mathematical captcha? 0: no; 1: with 1 digit; 2: with 2 digits 0
 honeypot                          boolean     Enable a honeypot against spam?                                       0
+checkForRequiredExtensions        boolean     Check, if required extensions are installed. 0: no; 1: yes.           1
 company                           string      Name of your company                                                  Ihre Firma
 gender.please                     string      Text for gender selection                                             Bitte auswählen
 gender.mr                         string      Text for the gender mr                                                Herr
@@ -164,3 +165,12 @@ Like in every extension, you can change the labels via TypoScript. Here 2 exampl
   plugin.tx_fpnewsletter._LOCAL_LANG.de.tx_fpnewsletter_domain_model_log.gdpr_desc2 = Ich bin damit einverstanden, dass die von mir angegebenen Daten elektronisch erhoben und gespeichert werden.
 
 You find the designations in the templates used in f:translate key.
+
+Required extensions
+^^^^^^^^^^^^^^^^^^^
+
+This extensions checks in the new action (subscription form) if required extensions are installed.
+settings.table can be empty, tt_address or fe_users. When tt_address, direct_mail is required too, if you use
+settings.module_sys_dmail_html or settings.module_sys_dmail_category. You can disable this check::
+
+  plugin.tx_fpnewslettersettings.checkForRequiredExtensions = 0

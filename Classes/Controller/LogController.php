@@ -142,6 +142,15 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
             $GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptchaop', $operator);
             $GLOBALS['TSFE']->fe_user->storeSessionData();
         }
+        if (!$error && $this->settings['checkForRequiredExtensions'] && $this->settings['table']=='tt_address') {
+            if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('tt_address')) {
+                $error = 20;
+            }
+            if ((intval($this->settings['module_sys_dmail_html'])>-1 || $this->settings['module_sys_dmail_category'])
+                && !\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('direct_mail')) {
+                $error = 21;
+            }
+        }
         $this->view->assign('genders', $genders);
         $this->view->assign('optional', $optional);
         $this->view->assign('required', $required);
