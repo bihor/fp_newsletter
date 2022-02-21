@@ -20,6 +20,12 @@
 </h3>
 <p>you need to click at the verify link to verify your email-address:</p>
 <p><f:link.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" arguments="{uid: uid, hash: hash}" absolute="1"><f:format.raw><f:uri.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" arguments="{uid: uid, hash: hash}" absolute="1" /></f:format.raw></f:link.action></p>
+<f:form pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" absolute="1" method="POST">
+    <f:form.hidden name="uid" value="{uid}"/>
+    <f:form.hidden name="hash" value="{hash}"/>
+    <p>Alternatively, you can also click on this button:</p>
+    <f:form.submit value="Verify email address" />
+</f:form>
 <p>Best regards<br>
 {settings.company}</p>
 </body>

@@ -18,8 +18,14 @@
         </f:else>
     </f:if>
 </h3>
-<p>um sich von unserem Newsletter abzumelden, müssen Sie Ihre E-Mailadresse mit Klick auf diesen Link verifizieren:</p>
+<p>um sich von unserem Newsletter abzumelden, müssen Sie Ihre E-Mail-Adresse mit Klick auf diesen Link verifizieren:</p>
 <p><f:link.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" absolute="1"><f:format.raw><f:uri.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" absolute="1" /></f:format.raw></f:link.action></p>
+<f:form pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" absolute="1" method="POST">
+    <f:form.hidden name="uid" value="{uid}"/>
+    <f:form.hidden name="hash" value="{hash}"/>
+    <p>Alternativ können Sie auch auf diesen Button klicken:</p>
+    <f:form.submit value="E-Mail-Adresse verifizieren" />
+</f:form>
 <p>Mit freundlichen Grüßen<br>
 {settings.company}</p>
 </body>

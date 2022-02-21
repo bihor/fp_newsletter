@@ -909,7 +909,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         $emailViewText->setFormat('txt');
         $emailViewText->assignMultiple($variables);
         $emailBodyText = $emailViewText->render();
-        // echo "###" . $emailBodyText . '###';
+        // echo "###" . $emailBodyHtml . '###';
         // return;
 
         /** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
