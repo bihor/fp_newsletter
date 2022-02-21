@@ -298,24 +298,25 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * action unsubscribe with form
      *
-     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log
-     *            Log-Entry
-     * @param int $error
-     *            Error-Code
+     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log|null $log Log-Entry
+     * @param int $error Error-Code
      * @return void
+     * @throws \Exception
      */
-    public function unsubscribeAction(\Fixpunkt\FpNewsletter\Domain\Model\Log $log = null, $error = 0)
+    public function unsubscribeAction(\Fixpunkt\FpNewsletter\Domain\Model\Log $log = null, int $error = 0)
     {
         $storagePidsArray = $this->logRepository->getStoragePids();
         $pid = intval($storagePidsArray[0]);
         if (! $log) {
             $log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
             $log->setPid($pid);
-        }
-        if ($this->settings['parameters']['email']) {
-            $email = $_GET[$this->settings['parameters']['email']];
-            if (! $email) {
-                $email = $_POST[$this->settings['parameters']['email']];
+            // default E-Mail holen, falls log noch nicht definiert ist; default email from unsubscribeDMAction
+            $email = $this->request->hasArgument('defaultEmail') ? $this->request->getArgument('defaultEmail') : '';
+            if (! $email && $this->settings['parameters']['email']) {
+                $email = $_GET[$this->settings['parameters']['email']];
+                if (! $email) {
+                    $email = $_POST[$this->settings['parameters']['email']];
+                }
             }
             if ($email) {
                 $log->setEmail($email);
@@ -355,14 +356,20 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
         if ($t && $t == $this->settings['table'] && $u && $a) {
             $user = $this->logRepository->getUserFromExternal($u, $t);
             // zum testen: echo GeneralUtility::stdAuthCode($user, 'uid');
-            if ($user) {
+            if (is_array($user) && isset($user['email'])) {
                 if (preg_match('/^[0-9a-f]{8}$/', $a) && ($a == GeneralUtility::stdAuthCode($user, 'uid'))) {
-                    // unsubscribe user now
-                    $GLOBALS['TSFE']->fe_user->setKey('ses', 'authDM', $a);
-                    $GLOBALS['TSFE']->fe_user->storeSessionData();
-                    $this->redirect('delete', null, null, [
-                        'user' => $user
-                    ]);
+                    if ($this->settings['dmUnsubscribeMode'] == 1) {
+                        $this->redirect('unsubscribe', null, null, [
+                            'defaultEmail' => $user['email']
+                        ]);
+                    } else {
+                        // unsubscribe user now
+                        $GLOBALS['TSFE']->fe_user->setKey('ses', 'authDM', $a);
+                        $GLOBALS['TSFE']->fe_user->storeSessionData();
+                        $this->redirect('delete', null, null, [
+                            'user' => $user
+                        ]);
+                    }
                 } else {
                     $error = 10;
                 }
@@ -376,19 +383,19 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     }
 
     /**
-     * action delete an user from the DB: unsubscribe him from the newsletter
+     * action delete a user from the DB: unsubscribe him from the newsletter
      *
      * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log
      * @param array $user
      * @return void
      */
-    public function deleteAction(\Fixpunkt\FpNewsletter\Domain\Model\Log $log = null, $user = [])
+    public function deleteAction(\Fixpunkt\FpNewsletter\Domain\Model\Log $log = null, array $user = [])
     {
         $error = 0;
         $messageUid = 0;
         $skipCaptchaTest = false;
         $storagePidsArray = $this->logRepository->getStoragePids();
-        if (! $log) {
+        if (! $log && isset($user['email'])) {
             $log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
             $log->setEmail($user['email']);
             $log->setPid($user['pid']);

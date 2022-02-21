@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-02-09T10:34:30Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-02-21T14:30:48Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
@@ -240,7 +240,7 @@
 				<target>Fehler: die Extension tt_address wird benötigt, wenn settings.table=tt_address gesetzt ist!</target>
 			</trans-unit>
 			<trans-unit id="missing_direct_mail" resname="missing_direct_mail">
-				<source>Error: the extension direct_mail is required if you use settings.module_sys_dmail_html or settings.module_sys_dmail_category!</source>
+				<source>Error: the extension direct_mail is required if settings.module_sys_dmail_html!=-1 or settings.module_sys_dmail_category is set!</source>
 				<target>Fehler: die Extension direct_mail wird benötigt, wenn settings.module_sys_dmail_html=!-1 oder settings.module_sys_dmail_category gesetzt ist!</target>
 			</trans-unit>
 			<trans-unit id="email.dear-gender-first-and-last-name" resname="email.dear-gender-first-and-last-name">

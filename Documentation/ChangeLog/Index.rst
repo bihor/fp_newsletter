@@ -77,3 +77,5 @@ Setting checkForRequiredExtensions added (does not work for dashboard in TYPO3 1
 The table fe_users can now be used too.
 Form with button added to the verification emails.
 no-cache parameter removed.
+
+Version 2.3.3: Setting dmUnsubscribeMode added. Flexform for "unsubscribe via link" needs to be saved again.

@@ -33,7 +33,7 @@
             </numIndex>
             <numIndex index="6">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeDM</numIndex>
-                <numIndex index="1">Log->unsubscribeDM;Log->delete;Log->verifyUnsubscribe</numIndex>
+                <numIndex index="1">Log->unsubscribeDM;Log->unsubscribe;Log->delete;Log->verifyUnsubscribe</numIndex>
             </numIndex>
             <numIndex index="7">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeVerify</numIndex>
@@ -297,6 +297,24 @@
 					</config>
 				</TCEforms>
 			</settings.module_sys_dmail_html>
+			  <settings.dmUnsubscribeMode>
+				  <TCEforms>
+					  <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.dmUnsubscribeMode</label>
+					  <config>
+						  <type>radio</type>
+						  <items type="array">
+							  <numIndex index="0" type="array">
+								  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.no</numIndex>
+								  <numIndex index="1">0</numIndex>
+							  </numIndex>
+							  <numIndex index="1" type="array">
+								  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.yes</numIndex>
+								  <numIndex index="1">1</numIndex>
+							  </numIndex>
+						  </items>
+					  </config>
+				  </TCEforms>
+			  </settings.dmUnsubscribeMode>
 			  <settings.searchPidMode>
 				  <TCEforms>
 					  <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.searchPidMode</label>

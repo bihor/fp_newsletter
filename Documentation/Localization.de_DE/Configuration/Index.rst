@@ -51,6 +51,7 @@ daysExpire                        integer     Der Verifikations-Link wird ungül
 searchPidMode                     integer     Suche in tt_address: 0: nur im 1. Ordner; 1: in allen Ordners°        0
 deleteMode                        integer     1: setze delete-Flag; 2: lösche endgültig                             1
 languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
+dmUnsubscribeMode                 integer     0: Sofort-Abmeldung durch Link aus direct_mail; 1: zeige Abmeldeform. 0
 module_sys_dmail_html             integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1
 module_sys_dmail_category         string      Liste von Kategorien (uid) aus sys_dmail_category oder fe_groups^
 password                          string      Passwort für die fe_users Tabelle. Jeder hat das selbe Passwort!      joh316

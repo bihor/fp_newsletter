@@ -50,6 +50,7 @@ daysExpire                        integer     The link expires after X days     
 searchPidMode                     integer     Search in tt_address: 0: only in the 1. folder; 1: in all folders°    0
 deleteMode                        integer     1: set deletion flag; 2: delete entry                                 1
 languageMode                      integer     0: uses -1 if L>0; 1: uses the sys_language_uid from pages            0
+dmUnsubscribeMode                 integer     0: direct unsubscription with link from direct_mail; 1: show form.    0
 module_sys_dmail_html             integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1
 module_sys_dmail_category         string      List of categories (uid) from sys_dmail_category or fe_groups^
 password                          string      Password for the fe_users table. Every user will have the same pw!    joh316

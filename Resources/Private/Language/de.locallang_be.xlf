@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-01-10T13:18:50Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-02-21T15:05:47Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
@@ -144,8 +144,12 @@
 				<target>Bestätigungs-E-Mails einschalten?</target>
 			</trans-unit>
 			<trans-unit id="settings.dontAppendL" resname="settings.dontAppendL">
-				<source>Aggiungere l'UID della lingua ai modelli di posta elettronica?</source>
+				<source>Add language UID to email templates?</source>
 				<target>Hänge die Sprach-UID an die E-Mail-Templates an?</target>
+			</trans-unit>
+			<trans-unit id="settings.dmUnsubscribeMode" resname="settings.dmUnsubscribeMode">
+				<source>Direct mail unsubscribe mode: direct unsubscribe (no) or go to the unsubscribe page (yes)?</source>
+				<target>Direct mail Abmelde-Modus: Sofort-Abmeldung (nein) oder erst auf die Abmeldeseite weiterleiten (ja)?</target>
 			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html" resname="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>

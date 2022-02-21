@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="it" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-01-10T13:21:11Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="it" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-02-21T15:04:47Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
@@ -112,7 +112,7 @@
 				<target>Mostra un honeypot?</target>
 			</trans-unit>
 			<trans-unit id="settings.searchPidMode" resname="settings.searchPidMode">
-				<source>Search address in tt_address/fe_users in all specified folders?</source>
+				<source>Search address (in tt_address/fe_users) in all specified folders?</source>
 				<target>Cerca indirizzo in tt_address/fe_users in tutte le cartelle specificate?</target>
 			</trans-unit>
 			<trans-unit id="settings.deleteMode" resname="settings.deleteMode">
@@ -144,8 +144,12 @@
 				<target>Abilitare le email di conferma all'utente?</target>
 			</trans-unit>
 			<trans-unit id="settings.dontAppendL" resname="settings.dontAppendL">
-				<source>Aggiungere l'UID della lingua ai modelli di posta elettronica?</source>
-				<target>Abilitare le email di conferma all'utente?</target>
+				<source>Add language UID to email templates?</source>
+				<target>Aggiungere l'UID della lingua ai modelli di posta elettronica?</target>
+			</trans-unit>
+			<trans-unit id="settings.dmUnsubscribeMode" resname="settings.dmUnsubscribeMode">
+				<source>Direct mail unsubscribe mode: direct unsubscribe (no) or go to the unsubscribe page (yes)?</source>
+				<target>Direct mail modalità di annullamento dell'iscrizione: disiscrizione diretta (no) o vai alla pagina di annullamento dell'iscrizione (si)?</target>
 			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html" resname="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>

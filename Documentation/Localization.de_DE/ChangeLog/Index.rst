@@ -77,3 +77,5 @@ Setting checkForRequiredExtensions hinzugefügt (funktioniert aber nicht für Da
 Es kann nun auch die Tabelle fe_users benutzt werden!
 Ein Formular mit Button zu den Verifizierung-E-Mails hinzugefügt.
 no-cache Parameter entfernt.
+
+Version 2.3.3: Setting dmUnsubscribeMode hinzugefügt. Flexform für "Abmeldung via Link" muss neu gespeichert werden.
