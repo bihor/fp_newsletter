@@ -20,7 +20,7 @@ Bugfix 2: die Texte-E-Mails wurden bisher überschrieben.
 Version 0.11.0: Die Links in den E-Mail-Templates funktionieren nun endlich auch mit TYPO3 8.
 Leere FlexForms werden nun durch die TypoScript-Einstellungen überschrieben.
 
-Version 0.12.0: double opt out wird jetzt auch unterstüzt. Mehr FlexForms.
+Version 0.12.0: double opt out wird jetzt auch unterstützt. Mehr FlexForms.
 
 Version 0.13.0: italienische Übersetzung hinzugefügt.
 Erste Version für TYPO3 9 (läuft nur, wenn auch typo3db_legacy installiert ist).
@@ -35,7 +35,7 @@ reCaptcha v3 eingebaut (optional).
 
 Version 0.16.0: f:format.raw zu Text-Links hinzugefügt.
 Option module_sys_dmail_category hinzugefügt.
-Adress-Objekt in Verify-Templates jetzt verfügbar.
+Address-Objekt in Verify-Templates jetzt verfügbar.
 TS optionalFieldsRequired hinzugefügt. required-Attribut hinzugefügt.
 
 Version 0.17.0: neue TypoScript-Einstellung: email.adminMailBeforeVerification
@@ -57,7 +57,7 @@ Version 1.0.4: Bugfix: Anmeldung via externem Formular.
 Version 1.1.0: honeypot hinzugefügt.
 Bugfix: Fehlermeldung verhindern beim abmelden, wenn ein Captcha aktiviert ist.
 
-Version 1.2.0: veralterte Methoden ersetzt.
+Version 1.2.0: veraltete Methoden ersetzt.
 
 Version 2.0.0: über die Einstellung languageMode kann man nun die Sprache der Einträge bestimmen.
 Das Verhalten bei Sprachen>0 ist nun anders. Zudem ist die Einstellung email.dontAppendL neu.

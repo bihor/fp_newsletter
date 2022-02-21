@@ -19,4 +19,4 @@ Version 2.3.2: a widget for the dashboard added. The extension dashboard is requ
 Setting checkForRequiredExtensions added (does not work for dashboard in TYPO3 11).
 Supports now the fe_users table too.
 Form with button added to the verification emails.
-no-cache paramater removed.
+no-cache parameter removed.
