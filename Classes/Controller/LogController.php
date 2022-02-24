@@ -3,6 +3,11 @@ namespace Fixpunkt\FpNewsletter\Controller;
 
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Context\Context;
+use TYPO3\CMS\Core\Exception\SiteNotFoundException;
+use TYPO3\CMS\Core\Messaging\AbstractMessage;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
+use Fixpunkt\FpNewsletter\Domain\Model\Log;
 
 /**
  *
@@ -18,7 +23,7 @@ use TYPO3\CMS\Core\Context\Context;
 /**
  * LogController
  */
-class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
+class LogController extends ActionController
 {
 
     /**
@@ -87,13 +92,13 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * action new
      *
-     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log
+     * @param Log $log
      *            Log-Entry
      * @param int $error
      *            Error-Code
      * @return void
      */
-    public function newAction(\Fixpunkt\FpNewsletter\Domain\Model\Log $log = null, $error = 0)
+    public function newAction(Log $log = null, $error = 0)
     {
         $genders = [
             "0" => $this->settings['gender']['please'],
@@ -190,11 +195,17 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * action create
      *
-     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log
+     * @param Log|null $log
      * @return void
+     * @throws StopActionException
+     * @throws SiteNotFoundException
      */
-    public function createAction(\Fixpunkt\FpNewsletter\Domain\Model\Log $log)
+    public function createAction(Log $log = null)
     {
+        if (!$log) {
+            $this -> addFlashMessage("Missing Log entry!", "", AbstractMessage::ERROR);
+            $this -> redirect('new');
+        }
         $hash = md5(uniqid($log->getEmail(), true));
         $log->setSecurityhash($hash);
         // Sprachsetzung sollte eigentlich automatisch passieren, tut es wohl aber nicht.
@@ -298,12 +309,12 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * action unsubscribe with form
      *
-     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log|null $log Log-Entry
+     * @param Log|null $log Log-Entry
      * @param int $error Error-Code
      * @return void
      * @throws \Exception
      */
-    public function unsubscribeAction(\Fixpunkt\FpNewsletter\Domain\Model\Log $log = null, int $error = 0)
+    public function unsubscribeAction(Log $log = null, int $error = 0)
     {
         $storagePidsArray = $this->logRepository->getStoragePids();
         $pid = intval($storagePidsArray[0]);
@@ -385,11 +396,11 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * action delete a user from the DB: unsubscribe him from the newsletter
      *
-     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log
+     * @param Log $log
      * @param array $user
      * @return void
      */
-    public function deleteAction(\Fixpunkt\FpNewsletter\Domain\Model\Log $log = null, array $user = [])
+    public function deleteAction(Log $log = null, array $user = [])
     {
         $error = 0;
         $messageUid = 0;
@@ -756,7 +767,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
     /**
      * Prepare Array for emails and trigger sending of emails
      *
-     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log
+     * @param Log $log
      * @param boolean $isSubscribe
      *            Subscription or unsubscription?
      * @param boolean $isConfirmation
@@ -770,7 +781,7 @@ class LogController extends \TYPO3\CMS\Extbase\Mvc\Controller\ActionController
      * @param integer $verifyUid
      *            UID of the verification page
      */
-    protected function prepareEmail(\Fixpunkt\FpNewsletter\Domain\Model\Log &$log, $isSubscribe = true, $isConfirmation = false, $toUser = false, $toAdmin = false, $hash = '', $verifyUid = 0)
+    protected function prepareEmail(Log &$log, $isSubscribe = true, $isConfirmation = false, $toUser = false, $toAdmin = false, $hash = '', $verifyUid = 0)
     {
         $genders = [
             "0" => '',
