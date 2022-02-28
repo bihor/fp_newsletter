@@ -10,9 +10,9 @@ use Fixpunkt\FpNewsletter\Widgets\Provider\LogDataProvider;
 use Fixpunkt\FpNewsletter\Widgets\RecentLogEntriesWidget;
 
 return function (ContainerConfigurator $configurator, ContainerBuilder $containerBuilder) {
-    $services = $configurator->services();
+    if ($containerBuilder->hasDefinition(BarChartWidget::class)) {
+        $services = $configurator->services();
 
-    if ((TYPO3_branch == '10.4' && ExtensionManagementUtility::isLoaded('dashboard')) || TYPO3_branch == '11.5') {
         $services->set('dashboard.widget.fixpunktRecentLogEntries')
             ->class(RecentLogEntriesWidget::class)
             ->arg('$view', new Reference('dashboard.views.widget'))
