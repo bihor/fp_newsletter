@@ -9,7 +9,7 @@
 			</trans-unit>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description" resname="tx_fp_newsletter_domain_model_pi1.description">
 				<source>Plugin for newsletter subscription and unsubscription. Used table: tt_address or fe_users. A log is written.</source>
-				<target>Plugin d'inscription et désinscription aux infolettres. Utilise les tables: tt_address ou fe_users. Un journal est écrit.</source>
+				<target>Plugin d'inscription et désinscription aux infolettres. Utilise les tables: tt_address ou fe_users. Un journal est écrit.</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log" resname="tx_fpnewsletter_domain_model_log">
 				<source>Log</source>
@@ -184,7 +184,7 @@
 			</trans-unit>
 			<trans-unit id="wrong_unsubscribed" resname="wrong_unsubscribed">
 				<source>Error: you are not subscribed, so you can not be unsubscribed!</source>
-				<target>Erreur: Vous n'êtes pas inscrit, Vous ne pouvez pas vous désinscrire!</source>
+				<target>Erreur: Vous n'êtes pas inscrit, Vous ne pouvez pas vous désinscrire!</target>
 			</trans-unit>
 			<trans-unit id="wrong_unsubscribed_parameters" resname="wrong_unsubscribed_parameters">
 				<source>Error: missing or wrong parameters for unsubcription!</source>
