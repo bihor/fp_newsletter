@@ -78,6 +78,7 @@ Es kann nun auch die Tabelle fe_users benutzt werden!
 Ein Formular mit Button zu den Verifizierung-E-Mails hinzugefügt.
 no-cache Parameter entfernt.
 
-Version 2.3.5: Setting dmUnsubscribeMode hinzugefügt. Flexform für "Abmeldung via Link" muss neu gespeichert werden.
-StopActionException beim create, wenn kein Paramater vorhanden ist.
+Version 2.4.0: Setting dmUnsubscribeMode hinzugefügt. Flexform für "Abmeldung via Link" muss neu gespeichert werden.
+StopActionException beim create, wenn kein Parameter vorhanden ist.
 Die Extension Dashboard wird nicht mehr zwingend benötigt in TYPO3 11.
+Französisch hinzugefügt (Dank an lucmuller).

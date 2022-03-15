@@ -27,7 +27,7 @@ But the extension can be used without tt_address/fe_users too. Therefore an admi
 The admin will then get an email with the subscription data.
 Google reCaptcha v3 or a mathematical captcha can be enabled too.
 There is a widget for the dashboard available.
-Available languages: english, german/deutsch and italian/italiano.
+Available languages: english, german/deutsch, french/français and italian/italiano.
 
 
 .. _screenshots:

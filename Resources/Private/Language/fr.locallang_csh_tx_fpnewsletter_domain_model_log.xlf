@@ -7,7 +7,7 @@
 				<target>Gestion des inscriptions aux infolettres</target>
 			</trans-unit>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
-				<target>Plugin d'inscription et désinscription aux infolettres. Utilise les tables: tt_address ou fe_users. Un journal est écrit..</target>
+				<target>Plugin d'inscription et désinscription aux infolettres. Utilise les tables: tt_address ou fe_users. Un journal est écrit.</target>
 			</trans-unit>
 			<trans-unit id="gender.description">
 				<target>Genre</target>

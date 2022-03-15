@@ -28,7 +28,7 @@ einen externen Newsletter eintragen.
 Bei der Double-Opt-In-Anmeldung und ggf. auch bei der Abmeldung muss man den Datenschutzbestimmungen zustimmen.
 Google reCaptcha v3 oder ein mathematisches Captcha kann ggf. auch eingebunden werden.
 Es gibt auch ein Widget fürs Dashboard.
-Verfügbare Sprachen: englisch, deutsch und italienisch.
+Verfügbare Sprachen: englisch, deutsch, französisch und italienisch.
 
 
 .. _screenshots:
