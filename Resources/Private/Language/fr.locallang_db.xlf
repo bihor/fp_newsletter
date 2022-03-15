@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-06-15T15:10:55Z" product-name="fp_newsletter">
+		<header/>
+		<body>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
+				<target>Gestion des inscriptions aux infolettres</target>
+			</trans-unit>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
+				<target>Plugin respectant la confidentialité pour l'abonnement et le désabonnement aux newsletter (pour direct_mail via tt_address/luxletter via fe_users) .</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log">
+				<target>Journal</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.language">
+				<target>Langue</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.allLanguages">
+				<target>Toutes les langues</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.l18n_parent">
+				<target>Langue parente</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.hidden">
+				<target>Caché ?</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.tstamp">
+				<target>Horodatage</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender">
+				<target>Genre</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.title">
+				<target>Titre</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.firstname">
+				<target>Prénom</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.lastname">
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.email">
+				<target>Courriel</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.address">
+				<target>Adresse</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.zip">
+				<target>Code postal</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.city">
+				<target>Ville</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.region">
+				<target>Région</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.country">
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.phone">
+				<target>Téléphone</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.mobile">
+				<target>Mobile</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.fax">
+				<target>Fax</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.www">
+				<target>WWW</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.position">
+				<target>Fonction</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.company">
+				<target>Société</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.categories">
+				<target>Catégories (séparées par des virgules ',')</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status">
+				<target>Statut</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.securityhash">
+				<target>Hash de sécurité</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.retoken">
+				<target>Token reCaptcha</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.mathcaptcha">
+				<target>Protection anti-spam mathématique</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
+				<target>RGPD</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mrs">
+				<target>Mme.</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mr">
+				<target>M.</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.divers">
+				<target>Divers</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.0">
+				<target>inconnu</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.1">
+				<target>inscrit, en attente de confirmation</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.2">
+				<target>inscrit, confirmé</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.3">
+				<target>désinscrit, en attente de confirmation</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.4">
+				<target>désinscrit, confirmé</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.6">
+				<target>déjà inscrit</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.7">
+				<target>désinscrit</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>

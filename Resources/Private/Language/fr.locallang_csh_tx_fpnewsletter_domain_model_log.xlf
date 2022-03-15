@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="fr" datatype="plaintext" original="messages" date="2018-06-15T15:10:55Z" product-name="fp_newsletter">
+		<header/>
+		<body>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
+				<target>Gestion des inscriptions aux infolettres</target>
+			</trans-unit>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
+				<target>Plugin d'inscription et désinscription aux infolettres. Utilise les tables: tt_address ou fe_users. Un journal est écrit..</target>
+			</trans-unit>
+			<trans-unit id="gender.description">
+				<target>Genre</target>
+			</trans-unit>
+			<trans-unit id="title.description">
+				<target>Titre</target>
+			</trans-unit>
+			<trans-unit id="firstname.description">
+				<target>Prénom</target>
+			</trans-unit>
+			<trans-unit id="lastname.description">
+				<target>Nom</target>
+			</trans-unit>
+			<trans-unit id="email.description">
+				<target>Courriel</target>
+			</trans-unit>
+			<trans-unit id="address.description">
+				<target>Adresse</target>
+			</trans-unit>
+			<trans-unit id="zip.description">
+				<target>Code postal</target>
+			</trans-unit>
+			<trans-unit id="city.description">
+				<target>Ville</target>
+			</trans-unit>
+			<trans-unit id="region.description">
+				<target>Region</target>
+			</trans-unit>
+			<trans-unit id="country.description">
+				<target>Pays</target>
+			</trans-unit>
+			<trans-unit id="phone.description">
+				<target>Téléphone</target>
+			</trans-unit>
+			<trans-unit id="mobile.description">
+				<target>Mobile</target>
+			</trans-unit>
+			<trans-unit id="fax.description">
+				<target>Fax</target>
+			</trans-unit>
+			<trans-unit id="www.description">
+				<target>WWW</target>
+			</trans-unit>
+			<trans-unit id="position.description">
+				<target>Fonction</target>
+			</trans-unit>
+			<trans-unit id="company.description">
+				<target>Société</target>
+			</trans-unit>
+			<trans-unit id="categories.description">
+				<target>Catégories (séparées par des virgules ',')</target>
+			</trans-unit>
+			<trans-unit id="status.description">
+				<target>Statut</target>
+			</trans-unit>
+			<trans-unit id="securityhash.description">
+				<target>Hash de sécurité</target>
+			</trans-unit>
+			<trans-unit id="retoken.description">
+				<target>Token reCaptcha</target>
+			</trans-unit>
+			<trans-unit id="mathcaptcha.description">
+				<target>Protection anti-spam mathématique</target>
+			</trans-unit>
+			<trans-unit id="gdpr.description">
+				<target>Case à cocher RGPD</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
