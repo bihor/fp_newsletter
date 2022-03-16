@@ -1,126 +1,126 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
-<xliff version="1.0">
-	<file source-language="en" datatype="plaintext" original="messages" date="2018-06-15T15:10:55Z" product-name="fp_newsletter">
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf" date="2022-03-16T13:45:40Z" product-name="fp_newsletter">
 		<header/>
 		<body>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
 				<source>Newsletter subscriber management</source>
 			</trans-unit>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description" resname="tx_fp_newsletter_domain_model_pi1.description">
 				<source>Privacy compliant plugin for newsletter subscription and unsubscription (for direct_mail via tt_address/luxletter via fe_users).</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log">
+			<trans-unit id="tx_fpnewsletter_domain_model_log" resname="tx_fpnewsletter_domain_model_log">
 				<source>Log</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.language">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.language" resname="tx_fpnewsletter_domain_model_log.language">
 				<source>Language</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.allLanguages">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.allLanguages" resname="tx_fpnewsletter_domain_model_log.allLanguages">
 				<source>all languages</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.l18n_parent">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.l18n_parent" resname="tx_fpnewsletter_domain_model_log.l18n_parent">
 				<source>Parent</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.hidden">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.hidden" resname="tx_fpnewsletter_domain_model_log.hidden">
 				<source>Hidden?</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.tstamp">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.tstamp" resname="tx_fpnewsletter_domain_model_log.tstamp">
 				<source>Time stamp</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gender">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender" resname="tx_fpnewsletter_domain_model_log.gender">
 				<source>Gender</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.title">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.title" resname="tx_fpnewsletter_domain_model_log.title">
 				<source>Title</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.firstname">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.firstname" resname="tx_fpnewsletter_domain_model_log.firstname">
 				<source>Firstname</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.lastname">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.lastname" resname="tx_fpnewsletter_domain_model_log.lastname">
 				<source>Lastname</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.email">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.email" resname="tx_fpnewsletter_domain_model_log.email">
 				<source>E-Mail</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.address">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.address" resname="tx_fpnewsletter_domain_model_log.address">
 				<source>Address</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.zip">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.zip" resname="tx_fpnewsletter_domain_model_log.zip">
 				<source>Zip</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.city">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.city" resname="tx_fpnewsletter_domain_model_log.city">
 				<source>City</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.region">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.region" resname="tx_fpnewsletter_domain_model_log.region">
 				<source>Region</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.country">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.country" resname="tx_fpnewsletter_domain_model_log.country">
 				<source>Country</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.phone">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.phone" resname="tx_fpnewsletter_domain_model_log.phone">
 				<source>Phone</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.mobile">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.mobile" resname="tx_fpnewsletter_domain_model_log.mobile">
 				<source>Mobile</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.fax">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.fax" resname="tx_fpnewsletter_domain_model_log.fax">
 				<source>Fax</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.www">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.www" resname="tx_fpnewsletter_domain_model_log.www">
 				<source>WWW</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.position">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.position" resname="tx_fpnewsletter_domain_model_log.position">
 				<source>Position</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.company">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.company" resname="tx_fpnewsletter_domain_model_log.company">
 				<source>Company</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.categories">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.categories" resname="tx_fpnewsletter_domain_model_log.categories">
 				<source>Categories (comma separated)</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.status">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status" resname="tx_fpnewsletter_domain_model_log.status">
 				<source>Status</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.securityhash">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.securityhash" resname="tx_fpnewsletter_domain_model_log.securityhash">
 				<source>Security-hash</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.retoken">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.retoken" resname="tx_fpnewsletter_domain_model_log.retoken">
 				<source>reCaptcha-token</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.mathcaptcha">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.mathcaptcha" resname="tx_fpnewsletter_domain_model_log.mathcaptcha">
 				<source>Mathematical captcha</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr" resname="tx_fpnewsletter_domain_model_log.gdpr">
 				<source>GDPR</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mrs">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mrs" resname="tx_fpnewsletter_domain_model_log.gender.mrs">
 				<source>Mrs.</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mr">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mr" resname="tx_fpnewsletter_domain_model_log.gender.mr">
 				<source>Mr.</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.divers">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.divers" resname="tx_fpnewsletter_domain_model_log.gender.divers">
 				<source>Divers</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.status.0">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.0" resname="tx_fpnewsletter_domain_model_log.status.0">
 				<source>unknown</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.status.1">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.1" resname="tx_fpnewsletter_domain_model_log.status.1">
 				<source>subscribed, waiting for verify</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.status.2">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.2" resname="tx_fpnewsletter_domain_model_log.status.2">
 				<source>subscribed, verified</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.status.3">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.3" resname="tx_fpnewsletter_domain_model_log.status.3">
 				<source>unsubscribed, waiting for verify</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.status.4">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.4" resname="tx_fpnewsletter_domain_model_log.status.4">
 				<source>unsubscribed, verified</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.status.6">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.6" resname="tx_fpnewsletter_domain_model_log.status.6">
 				<source>already subscribed</source>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.status.7">
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.7" resname="tx_fpnewsletter_domain_model_log.status.7">
 				<source>unsubscribed</source>
 			</trans-unit>
 		</body>

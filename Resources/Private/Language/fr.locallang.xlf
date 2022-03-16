@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="fr" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-02-21T14:31:45Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="fr" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-03-16T13:50:30Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
@@ -17,6 +17,7 @@
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.date" resname="tx_fpnewsletter_domain_model_log.date">
 				<source>Date</source>
+				<target>Date</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.name" resname="tx_fpnewsletter_domain_model_log.name">
 				<source>Name</source>
@@ -68,12 +69,15 @@
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.mobile" resname="tx_fpnewsletter_domain_model_log.mobile">
 				<source>Mobile</source>
+				<target>Mobile</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.fax" resname="tx_fpnewsletter_domain_model_log.fax">
 				<source>Fax</source>
+				<target>Fax</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.www" resname="tx_fpnewsletter_domain_model_log.www">
 				<source>WWW</source>
+				<target>WWW</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.position" resname="tx_fpnewsletter_domain_model_log.position">
 				<source>Position</source>
@@ -135,6 +139,14 @@
 				<source>Unsubscribe from the newsletter</source>
 				<target>Se désinscrire des infoslettres</target>
 			</trans-unit>
+			<trans-unit id="resendLink" resname="resendLink">
+				<source>Resend the verification email</source>
+				<target>Renvoyer l'e-mail de vérification</target>
+			</trans-unit>
+			<trans-unit id="resendButton" resname="resendButton">
+				<source>Resend the verification email</source>
+				<target>Renvoyer l'e-mail de vérification</target>
+			</trans-unit>
 			<trans-unit id="go_back" resname="go_back">
 				<source>go back</source>
 				<target>retour</target>
@@ -144,19 +156,32 @@
 				<target>Un courriel vous a été envoyé. Veuillez vérifier votre courriel pour confirmer votre inscription.</target>
 			</trans-unit>
 			<trans-unit id="email_send2" resname="email_send2">
-				<source>Un courriel vous a été envoyé. Veuillez vérifier votre courriel pour confirmer votre désinscription.</source>
+				<source>An email has been send to you. Please verify your email-address for the newsletter unsubscription.</source>
+				<target>Un email vous a été envoyé. Veuillez vérifier votre adresse e-mail pour la désinscription à la newsletter.</target>
 			</trans-unit>
 			<trans-unit id="email_verified" resname="email_verified">
-				<source>Your email-address is now verfied. You are now subscribed to our newsletter with:</source>
+				<source>Your email-address is now verified. You are now subscribed to our newsletter with:</source>
 				<target>Merci de votre confirmation. Vous êtes à présent inscrit avec l'adresse :</target>
 			</trans-unit>
 			<trans-unit id="email_verified2" resname="email_verified2">
-				<source>Your email-address is now verfied. You are now unsubscribed from our newsletter with:</source>
+				<source>Your email-address is now verified. You are now unsubscribed from our newsletter with:</source>
 				<target>Merci de votre confirmation. Nous avons supprimé l'adresse email suivante :</target>
 			</trans-unit>
 			<trans-unit id="email_removed" resname="email_removed">
 				<source>You have unsubscribed our newsletter successfully.</source>
 				<target>Vous vous êtes désinscrit de notre infolettre avec succès.</target>
+			</trans-unit>
+			<trans-unit id="email_resent" resname="email_resent">
+				<source>An verification email has been resent to:</source>
+				<target>Un e-mail de vérification a été renvoyé à :</target>
+			</trans-unit>
+			<trans-unit id="wrong_email_not_found" resname="wrong_email_not_found">
+				<source>Error: no entry for verification found for this email:</source>
+				<target>Erreur : aucune entrée de vérification trouvée pour cet e-mail :</target>
+			</trans-unit>
+			<trans-unit id="wrong_missing_subscribeVerifyUid" resname="wrong_missing_subscribeVerifyUid">
+				<source>Error: you must first define the setting subscribeVerifyUid (page where to verify the email address).</source>
+				<target>Erreur : vous devez d'abord définir le paramètre subscribeVerifyUid (page où vérifier l'adresse e-mail).</target>
 			</trans-unit>
 			<trans-unit id="wrong_parameters" resname="wrong_parameters">
 				<source>Error: wrong parameters in the link.</source>
@@ -236,7 +261,7 @@
 			</trans-unit>
 			<trans-unit id="missing_direct_mail" resname="missing_direct_mail">
 				<source>Error: the extension direct_mail is required if settings.module_sys_dmail_html!=-1 or settings.module_sys_dmail_category is set!</source>
-				<source>Erreur: l'extension direct_mail est requise si settings.module_sys_dmail_html!=-1 ou si settings.module_sys_dmail_category est renseigné!</source>
+				<target>Erreur : l'extension direct_mail est requise si settings.module_sys_dmail_html!=-1 ou settings.module_sys_dmail_category est défini !</target>
 			</trans-unit>
 			<trans-unit id="email.dear-gender-first-and-last-name" resname="email.dear-gender-first-and-last-name">
 				<source>Dear %s %s %s,</source>
@@ -256,12 +281,15 @@
 			</trans-unit>
 			<trans-unit id="email.gender-first-and-last-name" resname="email.gender-first-and-last-name">
 				<source> %s %s %s</source>
+				<target> %s %s %s</target>
 			</trans-unit>
 			<trans-unit id="email.first-and-last-name" resname="email.first-and-last-name">
 				<source> %s %s</source>
+				<target> %s %s</target>
 			</trans-unit>
 			<trans-unit id="email.first-name" resname="email.first-name">
 				<source> %s</source>
+				<target> %s</target>
 			</trans-unit>
 		</body>
 	</file>

@@ -45,6 +45,7 @@ unsubscribeUid                    integer     Page for the unsubscription       
 unsubscribeMessageUid             integer     Optional page for the redirect after unsubscription
 unsubscribeVerifyUid              integer     Page for the unsubscription-verification
 unsubscribeVerifyMessageUid       integer     Optional page for the redirect after unsubscription-verification***
+resendVerificationUid             integer     Page, where a user can request the verification-email again
 gdprUid                           integer     Page with the GDPR text                                               1
 daysExpire                        integer     The link expires after X days                                         2
 searchPidMode                     integer     Search in tt_address: 0: only in the 1. folder; 1: in all folders°    0
@@ -58,6 +59,7 @@ reCAPTCHA_site_key                string      Website-key for Google reCaptcha v
 reCAPTCHA_secret_key              string      Secret key for Google reCaptcha v3
 mathCAPTCHA                       integer     Show a mathematical captcha? 0: no; 1: with 1 digit; 2: with 2 digits 0
 honeypot                          boolean     Enable a honeypot against spam?                                       0
+debug                             boolean     Don´t send email when debug=1                                         0
 checkForRequiredExtensions        boolean     Check, if required extensions are installed. 0: no; 1: yes.           1
 company                           string      Name of your company                                                  Ihre Firma
 gender.please                     string      Text for gender selection                                             Bitte auswählen

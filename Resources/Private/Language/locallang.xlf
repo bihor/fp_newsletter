@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-02-21T14:31:45Z" product-name="fp_newsletter">
+	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-03-16T13:52:40Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
@@ -105,6 +105,12 @@
 			<trans-unit id="unsubscribe_head" resname="unsubscribe_head">
 				<source>Unsubscribe from the newsletter</source>
 			</trans-unit>
+			<trans-unit id="resendLink" resname="resendLink">
+				<source>Resend the verification email</source>
+			</trans-unit>
+			<trans-unit id="resendButton" resname="resendButton">
+				<source>Resend the verification email</source>
+			</trans-unit>
 			<trans-unit id="go_back" resname="go_back">
 				<source>go back</source>
 			</trans-unit>
@@ -115,13 +121,22 @@
 				<source>An email has been send to you. Please verify your email-address for the newsletter unsubscription.</source>
 			</trans-unit>
 			<trans-unit id="email_verified" resname="email_verified">
-				<source>Your email-address is now verfied. You are now subscribed to our newsletter with:</source>
+				<source>Your email-address is now verified. You are now subscribed to our newsletter with:</source>
 			</trans-unit>
 			<trans-unit id="email_verified2" resname="email_verified2">
-				<source>Your email-address is now verfied. You are now unsubscribed from our newsletter with:</source>
+				<source>Your email-address is now verified. You are now unsubscribed from our newsletter with:</source>
 			</trans-unit>
 			<trans-unit id="email_removed" resname="email_removed">
 				<source>You have unsubscribed our newsletter successfully.</source>
+			</trans-unit>
+			<trans-unit id="email_resent" resname="email_resent">
+				<source>An verification email has been resent to:</source>
+			</trans-unit>
+			<trans-unit id="wrong_email_not_found" resname="wrong_email_not_found">
+				<source>Error: no entry for verification found for this email:</source>
+			</trans-unit>
+			<trans-unit id="wrong_missing_subscribeVerifyUid" resname="wrong_missing_subscribeVerifyUid">
+				<source>Error: you must first define the setting subscribeVerifyUid (page where to verify the email address).</source>
 			</trans-unit>
 			<trans-unit id="wrong_parameters" resname="wrong_parameters">
 				<source>Error: wrong parameters in the link.</source>

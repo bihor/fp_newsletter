@@ -34,6 +34,7 @@ plugin.tx_fpnewsletter {
 	unsubscribeMessageUid =
 	unsubscribeVerifyUid =
 	unsubscribeVerifyMessageUid =
+	resendVerificationUid =
 	gdprUid = 1
 	daysExpire = 2
 	dmUnsubscribeMode = 0
@@ -47,6 +48,7 @@ plugin.tx_fpnewsletter {
 	reCAPTCHA_secret_key =
 	mathCAPTCHA = 0
 	honeypot = 0
+	debug = 0
     checkForRequiredExtensions = 1
 	company = Ihre Firma
 	gender {

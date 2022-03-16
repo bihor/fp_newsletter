@@ -46,6 +46,7 @@ unsubscribeUid                    integer     Seite für die Abmeldung          
 unsubscribeMessageUid             integer     Optionale Seite für den Redirect nach der Abmeldung
 unsubscribeVerifyUid              integer     Seite für die Abmelde-Verifikation (demnächst)
 unsubscribeVerifyMessageUid       integer     Optionale Seite für den Redirect nach der Abmelde-Verifikation***
+resendVerificationUid             integer     Seite, auf der man die Verifizierungsemail erneut anfordern kann
 gdprUid                           integer     Seite mit den DSGVO-Texten                                            1
 daysExpire                        integer     Der Verifikations-Link wird ungültig nach X Tagen                     2
 searchPidMode                     integer     Suche in tt_address: 0: nur im 1. Ordner; 1: in allen Ordners°        0
@@ -59,6 +60,7 @@ reCAPTCHA_site_key                string      Websiteschlüssel für Google reCa
 reCAPTCHA_secret_key              string      Geheimer Schlüssel für Google reCaptcha v3
 mathCAPTCHA                       integer     Zeige ein mathematisches Captcha? 0: nein; 1, 2: ja, mit 1-2 Ziffern  0
 honeypot                          boolean     Einen Honigtopf (honeypot) gegen Spam einschalten?                    0
+debug                             boolean     Sendet keine E-Mails wenn debug=1                                     0
 checkForRequiredExtensions        boolean     Prüfen, ob benötigte Extensions installiert sind? 0: nein; 1: ja.     1
 company                           string      Name der Firma                                                        Ihre Firma
 gender.please                     string      Text für die Anrede-Auswahl                                           Bitte auswählen

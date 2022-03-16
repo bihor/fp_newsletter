@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="it" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-02-21T15:04:47Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="it" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-03-16T13:45:01Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
@@ -38,6 +38,10 @@
 			<trans-unit id="template.unsubscribeVerify" resname="template.unsubscribeVerify">
 				<source>Newsletter: verify unsubscription</source>
 				<target>Newsletter: verifica la revoca della iscrizione</target>
+			</trans-unit>
+			<trans-unit id="template.resend" resname="template.resend">
+				<source>Newsletter: resend verification email</source>
+				<target>Newsletter: invia nuovamente l'e-mail di verifica</target>
 			</trans-unit>
 			<trans-unit id="template.list" resname="template.list">
 				<source>List view: all actions</source>

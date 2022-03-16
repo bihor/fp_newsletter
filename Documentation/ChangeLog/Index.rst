@@ -79,6 +79,7 @@ Form with button added to the verification emails.
 no-cache parameter removed.
 
 Version 2.4.0: Setting dmUnsubscribeMode added. Flexform for "unsubscribe via link" needs to be saved again.
-StopActionException on create when no parameter is there.
 The extension dashboard is no longer required in TYPO3 11.
+New action: resend verification email.
 French added (thanks to lucmuller).
+StopActionException on create when no parameter is there.

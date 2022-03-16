@@ -39,6 +39,10 @@
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeVerify</numIndex>
                 <numIndex index="1">Log->verifyUnsubscribe</numIndex>
             </numIndex>
+			  <numIndex index="8">
+				  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.resend</numIndex>
+				  <numIndex index="1">Log->resend;Log->verify</numIndex>
+			  </numIndex>
             <numIndex index="9">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.list</numIndex>
                 <numIndex index="1">Log->list</numIndex>

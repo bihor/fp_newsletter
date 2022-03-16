@@ -23,7 +23,35 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 {
 
-	/**
+    /**
+     * getByEmailAndPid: find user entry
+     * @param   string $email: email
+     * @param	array $pid: PIDs
+     * @param	int $sys_language_uid: language
+     * @param	int $maxDate: x days ago
+     * @return	array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     */
+    function getByEmailAndPid(string $email, array $pids, int $sys_language_uid, int $maxDate)
+    {
+        $query = $this->createQuery();
+        $constraints = [];
+        $constraints[] = $query->in('pid', $pids);
+        $constraints[] = $query->equals('email', $email);
+        $constraints[] = $query->equals('status', 1);
+        $constraints[] = $query->greaterThan('crdate', $maxDate);
+        if ($sys_language_uid > 0) {
+            $query->getQuerySettings()->setRespectSysLanguage(false);
+            //$query->getQuerySettings()->setSysLanguageUid($sys_language_uid);
+            $constraints[] = $query->equals("sys_language_uid", $sys_language_uid);
+        }
+        $query->matching($query->logicalAnd(...$constraints));
+        $query->setOrderings([
+            'crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
+        ]);
+        return $query->execute()->getFirst();
+    }
+
+    /**
 	 * getUidFromExternal: find user ID
 	 * @param	string $email: die Email-Adresse wurde schon vorher geprüft!
 	 * @param	mixed	$pid: PID oder Liste mit PIDs
@@ -55,7 +83,6 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		}		
 		return $dbuid;
 	}
-
 
     /**
 	 * getUserFromExternal: find user array
@@ -200,7 +227,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 */
 	public function findAnotherByUid($uid, $sys_language_uid) {
 	    $query = $this->createQuery();
-	    $query->getQuerySettings()->setRespectSysLanguage(FALSE);
+	    $query->getQuerySettings()->setRespectSysLanguage(false);
 	    //$query->getQuerySettings()->setSysLanguageUid($sys_language_uid);
 	    $query->matching($query->logicalAnd(
 	        $query->equals('uid', intval($uid)),

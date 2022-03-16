@@ -79,6 +79,7 @@ Ein Formular mit Button zu den Verifizierung-E-Mails hinzugefügt.
 no-cache Parameter entfernt.
 
 Version 2.4.0: Setting dmUnsubscribeMode hinzugefügt. Flexform für "Abmeldung via Link" muss neu gespeichert werden.
-StopActionException beim create, wenn kein Parameter vorhanden ist.
 Die Extension Dashboard wird nicht mehr zwingend benötigt in TYPO3 11.
+Neues Feature: sende Verifizierungs-E-Mail erneut.
 Französisch hinzugefügt (Dank an lucmuller).
+StopActionException beim create, wenn kein Parameter vorhanden ist.

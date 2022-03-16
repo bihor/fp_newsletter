@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-02-21T14:30:48Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-03-16T13:52:40Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
@@ -139,6 +139,14 @@
 				<source>Unsubscribe from the newsletter</source>
 				<target>Vom Newsletter abmelden</target>
 			</trans-unit>
+			<trans-unit id="resendLink" resname="resendLink">
+				<source>Resend the verification email</source>
+				<target>Verifizierungsemail erneut senden</target>
+			</trans-unit>
+			<trans-unit id="resendButton" resname="resendButton">
+				<source>Resend the verification email</source>
+				<target>Verifizierungsemail erneut senden</target>
+			</trans-unit>
 			<trans-unit id="go_back" resname="go_back">
 				<source>go back</source>
 				<target>Zurück</target>
@@ -152,16 +160,28 @@
 				<target>Eine E-Mail mit einem Link zur Verifizierung Ihrer E-Mailadresse wurde Ihnen zugesandt. Erst nach Klick auf den Link in der E-Mail sind Sie von unserem Newsletter abgemeldet!</target>
 			</trans-unit>
 			<trans-unit id="email_verified" resname="email_verified">
-				<source>Your email-address is now verfied. You are now subscribed to our newsletter with:</source>
+				<source>Your email-address is now verified. You are now subscribed to our newsletter with:</source>
 				<target>Ihre E-Mail-Adresse ist nun verifiziert. Sie sind nun zu unserem Newsletter angemeldet mit:</target>
 			</trans-unit>
 			<trans-unit id="email_verified2" resname="email_verified2">
-				<source>Your email-address is now verfied. You are now unsubscribed from our newsletter with:</source>
+				<source>Your email-address is now verified. You are now unsubscribed from our newsletter with:</source>
 				<target>Ihre E-Mail-Adresse ist nun verifiziert. Sie sind nun von unserem Newsletter abgemeldet mit:</target>
 			</trans-unit>
 			<trans-unit id="email_removed" resname="email_removed">
 				<source>You have unsubscribed our newsletter successfully.</source>
 				<target>Sie haben sich erfolgreich aus unserem Newsletter ausgetragen.</target>
+			</trans-unit>
+			<trans-unit id="email_resent" resname="email_resent">
+				<source>An verification email has been resent to:</source>
+				<target>Eine Bestätigungs-E-Mail wurde erneut gesendet an:</target>
+			</trans-unit>
+			<trans-unit id="wrong_email_not_found" resname="wrong_email_not_found">
+				<source>Error: no entry for verification found for this email:</source>
+				<target>Fehler: Für diese E-Mail wurde kein Eintrag zur Verifizierung gefunden:</target>
+			</trans-unit>
+			<trans-unit id="wrong_missing_subscribeVerifyUid" resname="wrong_missing_subscribeVerifyUid">
+				<source>Error: you must first define the setting subscribeVerifyUid (page where to verify the email address).</source>
+				<target>Fehler: Sie müssen zuerst die Einstellung &quot;subscribeVerifyUid&quot; definieren (Seite, auf der die E-Mail-Adresse überprüft werden soll).</target>
 			</trans-unit>
 			<trans-unit id="wrong_parameters" resname="wrong_parameters">
 				<source>Error: wrong parameters in the link.</source>

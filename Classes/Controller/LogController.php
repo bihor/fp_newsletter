@@ -164,6 +164,34 @@ class LogController extends ActionController
     }
 
     /**
+     * action resend
+     *
+     * @return void
+     */
+    public function resendAction()
+    {
+        $log = null;
+        $subscribeVerifyUid = $this->settings['subscribeVerifyUid'];
+        $email = $this->request->hasArgument('email') ? $this->request->getArgument('email') : '';
+        if ($email && $subscribeVerifyUid) {
+            $maxDate = time() - 86400 * $this->settings['daysExpire'];
+            $storagePidsArray = $this->logRepository->getStoragePids();
+            $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+            $sys_language_uid = intval($languageAspect->getId());
+            if ($sys_language_uid > 0 && $this->settings['languageMode']) {
+                $log = $this->logRepository->getByEmailAndPid($email, $storagePidsArray, $sys_language_uid, $maxDate);
+            } else {
+                $log = $this->logRepository->getByEmailAndPid($email, $storagePidsArray, 0, $maxDate);
+            }
+            if ($log) {
+                $this->prepareEmail($log, true, false, true, false, $log->getSecurityhash(), $subscribeVerifyUid);
+            }
+        }
+        $this->view->assign('email', $email);
+        $this->view->assign('log', $log);
+    }
+
+    /**
      * action subscribeExt
      *
      * @return void
@@ -927,8 +955,10 @@ class LogController extends ActionController
         $emailViewText->setFormat('txt');
         $emailViewText->assignMultiple($variables);
         $emailBodyText = $emailViewText->render();
-        // echo "###" . $emailBodyHtml . '###';
-        // return;
+        if ($this->settings['debug']) {
+            echo "###" . $emailBodyHtml . '###';
+            return;
+        }
 
         /** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
         $message = $this->objectManager->get('TYPO3\\CMS\\Core\\Mail\\MailMessage');
