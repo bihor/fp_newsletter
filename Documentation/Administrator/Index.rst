@@ -24,21 +24,24 @@ You will find 2 folders in the templates-folders: Email and Log. In the Log-fold
 If a user submits the form, the entries lands in the table tx_fpnewsletter_domain_model_log.
 Only if a user verifies his email-address, his entry will be copied to the table tt_address.
 
-In the Email-folder you find the templates for the email to use user. Its the email for verifing the email-address.
+In the Email-folder you find the templates for the email to use user. Its the email for verifying the email-address.
 And there are email-templates for the admin: UserToAdmin is sent before verification and SubscribeToAdmin is sent after the email verification.
 If you want to change the text of the email, copy the templates e.g. to fileadmin and set the new path via TypoScript setup::
 
   plugin.tx_fpnewsletter.view.templateRootPaths.1 = fileadmin/bsdist/theme/tmpl/fp_newsletter/Templates/
 
-There is a text and a HTML version for email-templates. And there is an english and a german version of this template (but not for the admin-templates).
-The default template is in german. SubscribeVerify1.html contains the english text. You can use this email-templates like this::
+There is a text and a HTML version for email-templates. And there is an (additional) english and a german version of this template (but not for the admin-templates).
+From version 3.0.0 the normal templates contains localized texts.
+The default template is in german till version 3.0.0. From version 3.0.0 the german templates have the ending 0.html.
+E.g. SubscribeVerify1.html contains the english text. You can use this email-templates like this::
 
   SubscribeVerify<LANGUID>.html and SubscribeVerify<LANGUID>.txt
 
-Only for the language 0 you must remove the number. For the language 1 SubscribeVerify1.html is used automatically.
+Only for the language 0 you must remove the number until version 3.0.0. For the language 1 SubscribeVerify1.html is used automatically.
+This is the behavior when email.dontAppendL = 0. From version 3.0.0 email.dontAppendL is by default 1.
 
 You can switch off this behavior with the setting email.dontAppendL = 1!
-In this case you should use the variable {sys_language_uid} in the email templates.
+In this case you can use the variable {sys_language_uid} in the email templates.
 You could use <f:if condition="{sys_language_uid} == 1"> to use more than one language in one template.
 
 You can use this translate keys in the email templates:

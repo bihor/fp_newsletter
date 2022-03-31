@@ -54,7 +54,7 @@ deleteMode                        integer     1: setze delete-Flag; 2: lösche e
 languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
 dmUnsubscribeMode                 integer     0: Sofort-Abmeldung durch Link aus direct_mail; 1: zeige Abmeldeform. 0
 module_sys_dmail_html             integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1
-module_sys_dmail_category         string      Liste von Kategorien (uid) aus sys_dmail_category oder fe_groups^
+module_sys_dmail_category         string      Liste von Kategorien (uid) aus sys_dmail_category oder fe_groups°°
 password                          string      Passwort für die fe_users Tabelle. Jeder hat das selbe Passwort!      joh316
 reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3. curl wird benötigt!
 reCAPTCHA_secret_key              string      Geheimer Schlüssel für Google reCaptcha v3
@@ -80,20 +80,22 @@ email.adminMailBeforeVerification boolean     0: sende die E-Mail nach der Verif
 email.subscribedSubject           string      Betreff der Bestätigungsmail (Anmeldung)                              Bestätigung Newsletter-Anmeldung
 email.unsubscribedSubject         string      Betreff der Bestätigungsmail (Abmeldung)                              Bestätigung Newsletter-Abmeldung
 email.enableConfirmationMails     boolean     Sende eine Bestätigungs-E-Mail an den Benutzer? 0: nein; 1: ja        0
-email.dontAppendL                 boolean     Hänge die Sprach-UID an Templates an, wenn L>0? 0: ja; 1: nein        0
+email.dontAppendL                 boolean     Hänge die Sprach-UID an Templates an (wenn L>0)? 0: ja; 1: nein°°°    1
 overrideFlexformSettingsIfEmpty   string      Leere Flexforms sollen durch TypoScript überschrieben werden          alle uid-Variablen
 ================================= =========== ===================================================================== ================================
 
 Achtung*: die optional erforderlichen Werte werden nur per Browser geprüft.
 
-Achtung**: man braucht eine eigene Seite für die Abmeldung. unsubscribeUid muss also angebenen werden.
+Achtung**: man braucht eine eigene Seite für die Abmeldung. unsubscribeUid muss also angegebenen werden.
 
 Achtung***: diese Seite wird auch dann benutzt, wenn doubleOptOut=0. unsubscribeMessageUid wird dann nicht benutzt.
 
 Achtung°: dies funktioniert nur bei der Abmeldung.
 
-Achtung^: Kommaseparierte Liste. Beispiel: 1,3. Also ohne Leerzeichen dazwischen.
+Achtung°°: Kommaseparierte Liste. Beispiel: 1,3. Also ohne Leerzeichen dazwischen.
 
+Achtung°°°: der Default-Wert wurde von 0 auf 1 geändert in Version 3.0.0 und selbst wenn L=0 wird ab Version 3.0.0
+0 an den E-Mail-Template-Namen angehangen wenn email.dontAppendL=0.
 
 Beispiele
 ---------
@@ -105,9 +107,12 @@ Man kann die Texte für andere Sprachen so überschreiben::
 
   [siteLanguage("languageId") == "1"]
   plugin.tx_fpnewsletter.settings.company = Your company
+  plugin.tx_fpnewsletter._LOCAL_LANG.de.email.pleaseVerify = Bitte verifiziere deine E-Mail-Adresse durch Klick auf diesen Link:
   [END]
 
 Achtung: wenn man andere Sprachen in den Emails verwenden will, sollte man das Kapitel "Administrator-Handbuch" lesen.
+Bei settings.email.dontAppendL=0  ist die Standardsprache deutsch. Diese Templates enden ab Version 3.0.0 mit 0.html.
+Ab Version 3.0.0 werden in den E-Mail-Templates ohne Zahl-Endung übersetzte Texte verwendet.
 
 Externe Felder
 ^^^^^^^^^^^^^^

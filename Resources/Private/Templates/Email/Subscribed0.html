@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><f:translate key="email.unsubscription" /></title>
+<title>Newsletter-Anmeldung</title>
 </head>
 <body>
 <h3>
@@ -18,9 +18,9 @@
         </f:else>
     </f:if>
 </h3>
-<p><f:translate key="email.unsubscribedSuccess" /></p>
-<p><f:translate key="email.usedEmail" /> {email}</p>
-<p><f:translate key="email.bestRegards" /><br>
+<p>Sie haben sich soeben erfolgreich zu unserem Newsletter angemeldet.</p>
+<p>Verwendete E-Mail-Adresse: <a href="mailto:{email}">{email}</a></p>
+<p>Mit freundlichen Grüßen<br>
 {settings.company}</p>
 </body>
 </html>

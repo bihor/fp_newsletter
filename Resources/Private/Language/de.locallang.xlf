@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-03-16T13:52:40Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-03-31T15:06:06Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
@@ -290,6 +290,58 @@
 			<trans-unit id="email.first-name" resname="email.first-name">
 				<source> %s</source>
 				<target> %s</target>
+			</trans-unit>
+			<trans-unit id="email.subscription" resname="email.subscription">
+				<source>Newsletter subscription</source>
+				<target>Newsletter-Anmeldung</target>
+			</trans-unit>
+			<trans-unit id="email.pleaseVerify" resname="email.pleaseVerify">
+				<source>you need to click at the verify link to verify your email-address:</source>
+				<target>um sich zu unserem Newsletter anzumelden, müssen Sie Ihre E-Mail-Adresse mit Klick auf diesen Link verifizieren:</target>
+			</trans-unit>
+			<trans-unit id="email.alternative" resname="email.alternative">
+				<source>Alternatively, you can also click on this button</source>
+				<target>Alternativ können Sie auch auf diesen Button klicken</target>
+			</trans-unit>
+			<trans-unit id="email.bestRegards" resname="email.bestRegards">
+				<source>Best regards</source>
+				<target>Mit freundlichen Grüßen</target>
+			</trans-unit>
+			<trans-unit id="email.unsubscription" resname="email.unsubscription">
+				<source>Newsletter unsubscription</source>
+				<target>Newsletter-Abmeldung</target>
+			</trans-unit>
+			<trans-unit id="email.pleaseVerifyUnsubscription" resname="email.pleaseVerifyUnsubscription">
+				<source>you need to click at the verify link to verify your unsubscription:</source>
+				<target>um sich von unserem Newsletter abzumelden, müssen Sie Ihre E-Mail-Adresse mit Klick auf diesen Link verifizieren:</target>
+			</trans-unit>
+			<trans-unit id="email.subscribedSuccess" resname="email.subscribedSuccess">
+				<source>You have just successfully registered for our newsletter.</source>
+				<target>Sie haben sich soeben erfolgreich zu unserem Newsletter angemeldet.</target>
+			</trans-unit>
+			<trans-unit id="email.unsubscribedSuccess" resname="email.unsubscribedSuccess">
+				<source>you are now unsubscribed from our newsletter.</source>
+				<target>Sie haben sich nun erfolgreich von unserem Newsletter abgemeldet.</target>
+			</trans-unit>
+			<trans-unit id="email.usedEmail" resname="email.usedEmail">
+				<source>Used email-address:</source>
+				<target>Verwendete E-Mail-Adresse:</target>
+			</trans-unit>
+			<trans-unit id="email.name" resname="email.name">
+				<source>Name:</source>
+				<target>Name:</target>
+			</trans-unit>
+			<trans-unit id="email.toAdminWantsTo" resname="email.toAdminWantsTo">
+				<source>This user wants to subscribe or to unsubscribe:</source>
+				<target>dieser User möchte sich gerne an- oder abmelden:</target>
+			</trans-unit>
+			<trans-unit id="email.toAdminSubscribed" resname="email.toAdminSubscribed">
+				<source>This user has just subscribed to the newsletter:</source>
+				<target>dieser User hat sich gerade zum Newsletter angemeldet:</target>
+			</trans-unit>
+			<trans-unit id="email.toAdminUnsubscribed" resname="email.toAdminUnsubscribed">
+				<source>This user has just unsubscribed from the newsletter:</source>
+				<target>dieser User hat sich gerade vom Newsletter abgemeldet:</target>
 			</trans-unit>
 		</body>
 	</file>

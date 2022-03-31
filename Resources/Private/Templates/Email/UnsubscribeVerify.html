@@ -2,7 +2,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Newsletter-Abmeldung</title>
+<title><f:translate key="email.unsubscription" /></title>
 </head>
 <body>
 <h3>
@@ -18,15 +18,12 @@
         </f:else>
     </f:if>
 </h3>
-<p>um sich von unserem Newsletter abzumelden, müssen Sie Ihre E-Mail-Adresse mit Klick auf diesen Link verifizieren:</p>
-<p><f:link.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" absolute="1"><f:format.raw><f:uri.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" absolute="1" /></f:format.raw></f:link.action></p>
-<f:form pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" absolute="1" method="POST">
-    <f:form.hidden name="uid" value="{uid}"/>
-    <f:form.hidden name="hash" value="{hash}"/>
-    <p>Alternativ können Sie auch auf diesen Button klicken:</p>
-    <f:form.submit value="E-Mail-Adresse verifizieren" />
-</f:form>
-<p>Mit freundlichen Grüßen<br>
+<p><f:translate key="email.pleaseVerifyUnsubscription" /></p>
+<p><f:link.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe"
+                  arguments="{uid: uid, hash: hash}" absolute="1"><f:format.raw><f:uri.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" absolute="1" /></f:format.raw></f:link.action></p>
+<p><f:link.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe"
+                  arguments="{uid: uid, hash: hash}" absolute="1" style="border:1px solid #000;border-radius:3px;padding:2px 10px;"><f:translate key="email.alternative" /></f:link.action></p>
+<p><f:translate key="email.bestRegards" /><br>
 {settings.company}</p>
 </body>
 </html>

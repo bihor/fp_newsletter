@@ -53,7 +53,7 @@ deleteMode                        integer     1: set deletion flag; 2: delete en
 languageMode                      integer     0: uses -1 if L>0; 1: uses the sys_language_uid from pages            0
 dmUnsubscribeMode                 integer     0: direct unsubscription with link from direct_mail; 1: show form.    0
 module_sys_dmail_html             integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1
-module_sys_dmail_category         string      List of categories (uid) from sys_dmail_category or fe_groups^
+module_sys_dmail_category         string      List of categories (uid) from sys_dmail_category or fe_groups°°
 password                          string      Password for the fe_users table. Every user will have the same pw!    joh316
 reCAPTCHA_site_key                string      Website-key for Google reCaptcha v3. curl needed!
 reCAPTCHA_secret_key              string      Secret key for Google reCaptcha v3
@@ -79,7 +79,7 @@ email.adminMailBeforeVerification boolean     0: send email to admin after verif
 email.subscribedSubject           string      Subject of the confirmation email (subscription)                      Bestätigung Newsletter-Anmeldung
 email.unsubscribedSubject         string      Subject of the confirmation email (unsubscription)                    Bestätigung Newsletter-Abmeldung
 email.enableConfirmationMails     boolean     Send confirmation email to the user after verification? 0: no; 1: yes 0
-email.dontAppendL                 boolean     Append the language UID to a template when L>0? 0: yes; 1: no         0
+email.dontAppendL                 boolean     Append the language UID to a template (when L>0)? 0: yes; 1: no°°°    1
 overrideFlexformSettingsIfEmpty   string      Empty FlexForms should be overwritten by TypoScript                   all uid settings
 ================================= =========== ===================================================================== =================================
 
@@ -91,7 +91,10 @@ Note***: this page is used too, if doubleOptOut=0. unsubscribeMessageUid is not 
 
 Note°: this works only at the unsubscription.
 
-Note^: comma separated list. E.g. 1,3. Without space.
+Note°°: comma separated list. E.g. 1,3. Without space.
+
+Note°°°: the default value was changed from 0 to 1 in version 3.0.0 and even when L=0 0 will be added from version 3.0.0
+to the email-templates when email.dontAppendL=0.
 
 
 Property details / examples
@@ -100,14 +103,18 @@ Property details / examples
 Languages
 ^^^^^^^^^
 
-You can overrite the text for other languges like this::
+You can overwrite the text for other languages like this::
 
   [siteLanguage("languageId") == "1"]
   plugin.tx_fpnewsletter.settings.company = Your company
+  plugin.tx_fpnewsletter._LOCAL_LANG.en.email.pleaseVerify = Please verify your email-address by clicking here:
   [END]
 
-Note: the default language of the email-templates is german! You find the english version in the files that end with 1.html.
+Note: the default language of the email-templates is german if settings.email.dontAppendL=0! You find the english version in the files that end with 1.html.
 You should copy the files and modify the path to the templates via TypoScript. See chapter "Administrator manual".
+Otherwise set settings.email.dontAppendL=1.
+Note: till version 3.0.0, the default language is german even when settings.email.dontAppendL=1.
+From version 3.0.0, the email-templates without a appended number are using translated texts by default.
 
 External fields
 ^^^^^^^^^^^^^^^

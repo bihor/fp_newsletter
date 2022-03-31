@@ -83,3 +83,7 @@ Die Extension Dashboard wird nicht mehr zwingend benötigt in TYPO3 11.
 Neues Feature: sende Verifizierungs-E-Mail erneut.
 Französisch hinzugefügt (Dank an lucmuller).
 StopActionException beim create, wenn kein Parameter vorhanden ist.
+
+Version 3.0.0: Achtung: Default-Wert von email.dontAppendL von 0 auf 1 geändert.
+Die E-mail-Templates ohne Zahlen-Endung enthalten nun übersetzte Texte.
+Wenn email.dontAppendL=0 wird nun auch bei L=0 0 and den Template-Namen angehangen.

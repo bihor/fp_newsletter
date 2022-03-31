@@ -1,8 +1,8 @@
-Guten Tag,
+<f:translate key="email.dear" />
 
-dieser User hat sich gerade zum Newsletter angemeldet:
-Name: {gender} {title} {firstname} {lastname}
-E-Mail: {email}
+<f:translate key="email.toAdminSubscribed" />
+<f:translate key="email.name" /> {gender} {title} {firstname} {lastname}
+<f:translate key="email.usedEmail" /> {email}
 
-Mit freundlichen Grüßen
+<f:translate key="email.bestRegards" />
 {settings.company}

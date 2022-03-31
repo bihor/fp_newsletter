@@ -5,8 +5,8 @@
 </f:else><f:else>
 <f:translate key="email.dear" />
 </f:else></f:if>
-Sie haben sich soeben erfolgreich zu unserem Newsletter angemeldet.
-Verwendete E-Mail-Adresse: {email}
+<f:translate key="email.subscribedSuccess" />
+<f:translate key="email.usedEmail" /> {email}
 
-Mit freundlichen Grüßen
+<f:translate key="email.bestRegards" />
 {settings.company}

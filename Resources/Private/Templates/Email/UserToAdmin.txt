@@ -1,8 +1,8 @@
-Guten Tag,
+<f:translate key="email.dear" />
 
-dieser User möchte sich gerne an- oder abmelden:
-Name: {gender} {title} {firstname} {lastname}
-E-Mail: {email}
+<f:translate key="email.toAdminWantsTo" />
+<f:translate key="email.name" /> {gender} {title} {firstname} {lastname}
+<f:translate key="email.usedEmail" /> {email}
 
-Mit freundlichen Grüßen
+<f:translate key="email.bestRegards" />
 {settings.company}

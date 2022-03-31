@@ -5,8 +5,8 @@
 </f:else><f:else>
 <f:translate key="email.dear" />
 </f:else></f:if>
-<f:translate key="email.unsubscribedSuccess" />
-<f:translate key="email.usedEmail" /> {email}
+um sich von unserem Newsletter abzumelden, müssen Sie Ihre E-Mailadresse mit Klick auf diesen Link verifizieren:
+<f:format.raw><f:uri.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" absolute="1" /></f:format.raw>
 
-<f:translate key="email.bestRegards" />
+Mit freundlichen Grüßen
 {settings.company}

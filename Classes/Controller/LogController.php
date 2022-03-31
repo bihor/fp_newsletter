@@ -929,7 +929,7 @@ class LogController extends ActionController
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
         $sys_language_uid = intval($languageAspect->getId());
-        if (($sys_language_uid > 0) && ! $toAdmin && ! $this->settings['email']['dontAppendL']) {
+        if (!$toAdmin && !$this->settings['email']['dontAppendL']) {
             $templateName .= $sys_language_uid;
         }
         $extensionName = $this->request->getControllerExtensionName();
