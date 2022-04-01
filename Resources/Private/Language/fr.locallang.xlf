@@ -333,7 +333,7 @@
 			</trans-unit>
 			<trans-unit id="email.toAdminWantsTo" resname="email.toAdminWantsTo">
 				<source>this user wants to subscribe or to unsubscribe:</source>
-				<target>Cet utilisateur souhaite s'inscrire ou de se désinscrire</target>
+				<target>Cet utilisateur souhaite s'inscrire ou se désinscrire</target>
 			</trans-unit>
 			<trans-unit id="email.toAdminSubscribed" resname="email.toAdminSubscribed">
 				<source>this user has just subscribed to the newsletter:</source>
