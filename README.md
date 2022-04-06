@@ -1,6 +1,6 @@
 # fp_newsletter
 
-version 2.5.0
+version 2.5.1
 
 The TYPO3 extension fp_newsletter is designed to provide a newsletter subscription and unsubscription service for the 
 table tt_address which can be used by the extension direct_mail OR for the table fe_users which can be used by luxletter. 
@@ -26,3 +26,4 @@ StopActionException on create when no parameter is there.
 Version 3.0.0: breaking change: default value of email.dontAppendL changed from 0 to 1.
 The email-templates without a number as ending uses now translated texts.
 If email.dontAppendL=0 even 0 will now be added to the template name.
+French emails now possible.
