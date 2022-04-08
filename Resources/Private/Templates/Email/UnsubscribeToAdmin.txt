@@ -1,7 +1,6 @@
 <f:translate key="email.dear" />
 
 <f:translate key="email.toAdminUnsubscribed" />
-<f:translate key="email.name" /> {gender} {title} {firstname} {lastname}
 <f:translate key="email.usedEmail" /> {email}
 
 <f:translate key="email.bestRegards" />
