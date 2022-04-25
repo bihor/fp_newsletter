@@ -88,3 +88,4 @@ Version 3.0.0: Achtung: Default-Wert von email.dontAppendL von 0 auf 1 geändert
 Die E-mail-Templates ohne Zahlen-Endung enthalten nun übersetzte Texte.
 Wenn email.dontAppendL=0 wird nun auch bei L=0 0 and den Template-Namen angehangen.
 Französische E-Mails nun möglich (Dank an lucmuller).
+Bugfix: Formular durch normalen Button in E-Mails ersetzt.

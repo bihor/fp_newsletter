@@ -1,7 +1,7 @@
 {
 	"name" : "fixpunkt/fp-newsletter",
 	"type" : "typo3-cms-extension",
-	"description" : "Plugin for newsletter subscription and unsubscription (for direct_mail). Used table: tt_address. A log is written.",
+	"description" : "Plugin for newsletter subscription and unsubscription (for direct_mail). Used table: tt_address or fe_users. A log is written.",
 	"authors" : [{
 			"name" : "Kurt Gusbeth",
 			"role" : "Developer",

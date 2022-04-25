@@ -516,7 +516,11 @@ class LogController extends ActionController
             // Der Honigtopf ist gefüllt
             $error = 10;
         }
-        $log->setStatus(0);
+        if ($error == 7) {
+            $log->setStatus(8);
+        } else {
+            $log->setStatus(0);
+        }
         if ($log->getUid() > 0) {
             $this->logRepository->update($log);
         } else {

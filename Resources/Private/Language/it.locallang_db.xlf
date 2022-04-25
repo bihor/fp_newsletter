@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="it" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf" date="2022-03-16T13:45:40Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="it" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf" date="2022-04-25T08:07:47Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
@@ -162,6 +162,10 @@
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status.7" resname="tx_fpnewsletter_domain_model_log.status.7">
 				<source>unsubscribed</source>
 				<target>disiscritto</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.8" resname="tx_fpnewsletter_domain_model_log.status.8">
+				<source>Email not found</source>
+				<target>E-mail non trovata</target>
 			</trans-unit>
 		</body>
 	</file>
