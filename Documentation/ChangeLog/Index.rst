@@ -89,3 +89,5 @@ The email-templates without a number as ending uses now translated texts.
 If email.dontAppendL=0 even 0 will now be added to the template name.
 French emails now possible (thanks to lucmuller).
 Bugfix: form replaced with a normal button in the emails.
+
+Version 3.0.1: salutation in emails moved to a partial. Gender divers will now be ignored in the emails.

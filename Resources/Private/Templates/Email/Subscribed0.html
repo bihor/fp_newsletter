@@ -5,19 +5,7 @@
 <title>Newsletter-Anmeldung</title>
 </head>
 <body>
-<h3>
-    <f:if condition="{gender} && {lastname}">
-        <f:then>
-            <f:translate key="email.dear-gender-first-and-last-name" arguments="{0: gender, 1: firstname, 2: lastname}" />
-        </f:then>
-        <f:else if="{lastname}">
-            <f:translate key="email.dear-first-and-last-name" arguments="{1: firstname, 2: lastname}" />
-        </f:else>
-        <f:else>
-            <f:translate key="email.dear" />
-        </f:else>
-    </f:if>
-</h3>
+<f:render partial="Email/Salutation" arguments="{_all}" />
 <p>Sie haben sich soeben erfolgreich zu unserem Newsletter angemeldet.</p>
 <p>Verwendete E-Mail-Adresse: <a href="mailto:{email}">{email}</a></p>
 <p>Mit freundlichen Grüßen<br>

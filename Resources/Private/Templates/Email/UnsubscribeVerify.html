@@ -5,19 +5,7 @@
 <title><f:translate key="email.unsubscription" /></title>
 </head>
 <body>
-<h3>
-    <f:if condition="{gender} && {lastname}">
-        <f:then>
-            <f:translate key="email.dear-gender-first-and-last-name" arguments="{0: gender, 1: firstname, 2: lastname}" />
-        </f:then>
-        <f:else if="{lastname}">
-            <f:translate key="email.dear-first-and-last-name" arguments="{1: firstname, 2: lastname}" />
-        </f:else>
-        <f:else>
-            <f:translate key="email.dear" />
-        </f:else>
-    </f:if>
-</h3>
+<f:render partial="Email/Salutation" arguments="{_all}" />
 <p><f:translate key="email.pleaseVerifyUnsubscription" /></p>
 <p><f:link.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe"
                   arguments="{uid: uid, hash: hash}" absolute="1"><f:format.raw><f:uri.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" absolute="1" /></f:format.raw></f:link.action></p>

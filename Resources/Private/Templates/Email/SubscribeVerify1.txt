@@ -1,10 +1,4 @@
-<f:if condition="{gender} && {lastname}"><f:then>
-<f:translate key="email.dear-gender-first-and-last-name" arguments="{0: gender, 1: firstname, 2: lastname}" />
-</f:then><f:else if="{lastname}">
-<f:translate key="email.dear-first-and-last-name" arguments="{1: firstname, 2: lastname}" />
-</f:else><f:else>
-<f:translate key="email.dear" />
-</f:else></f:if>
+<f:render partial="Email/Salutation.txt" arguments="{_all}" />
 you need to click at the verify link to verify your email-address:
 <f:format.raw><f:uri.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" arguments="{uid: uid, hash: hash}" absolute="1" /></f:format.raw>
 

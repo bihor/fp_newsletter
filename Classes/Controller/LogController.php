@@ -829,6 +829,7 @@ class LogController extends ActionController
         $dataArray = [];
         $dataArray['uid'] = $log->getUid();
         $dataArray['sys_language_uid'] = $log->get_languageUid();
+        $dataArray['gender_id'] = $log->getGender();
         $dataArray['gender'] = $genders[$log->getGender()];
         $dataArray['title'] = $log->getTitle();
         $dataArray['firstname'] = $log->getFirstname();
@@ -960,6 +961,7 @@ class LogController extends ActionController
         $emailViewText->assignMultiple($variables);
         $emailBodyText = $emailViewText->render();
         if ($this->settings['debug']) {
+            echo "###" . $emailBodyText . '###';
             echo "###" . $emailBodyHtml . '###';
             return;
         }
