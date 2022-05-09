@@ -89,3 +89,7 @@ Die E-mail-Templates ohne Zahlen-Endung enthalten nun übersetzte Texte.
 Wenn email.dontAppendL=0 wird nun auch bei L=0 0 and den Template-Namen angehangen.
 Französische E-Mails nun möglich (Dank an lucmuller).
 Bugfix: Formular durch normalen Button in E-Mails ersetzt.
+
+Version 3.1.0: Die Anrede in den E-Mails wurde in ein Partial verschoben.
+Das Geschlecht divers wird in den E-Mails nicht mehr bei der Anrede berücksichtigt.
+Der Name ist nun auch in der E-Mail an den Admin bei der Abmeldung verfügbar.

@@ -29,6 +29,7 @@ Bei der Double-Opt-In-Anmeldung und ggf. auch bei der Abmeldung muss man den Dat
 Google reCaptcha v3 oder ein mathematisches Captcha kann ggf. auch eingebunden werden.
 Es gibt auch ein Widget fürs Dashboard.
 Verfügbare Sprachen: englisch, deutsch, französisch und italienisch.
+Die Standard-Sprache ist deutsch, aber man kann auch andere Sprachen benutzen.
 
 
 .. _screenshots:

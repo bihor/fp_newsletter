@@ -464,6 +464,19 @@ class LogController extends ActionController
                     $dbuidext = $this->logRepository->getUidFromExternal($email, $pid, $this->settings['table']);
                 }
                 // zum testen: echo "uid $dbuidext mit $email, $pid";
+                if ($dbuidext > 0) {
+                    $extAddress = $this->logRepository->getUserFromExternal($dbuidext,$this->settings['table']);
+                    $log->setLastname($extAddress['last_name']);
+                    $log->setFirstname($extAddress['first_name']);
+                    $log->setTitle($extAddress['title']);
+                    if ($this->settings['table']=='tt_address' && $extAddress['gender']) {
+                        $gender = 0;
+                        if ($extAddress['gender']=='f') $gender = 1;
+                        elseif ($extAddress['gender']=='m') $gender = 2;
+                        elseif ($extAddress['gender']=='v') $gender = 3;
+                        $log->setGender($gender);
+                    }
+                }
             }
         } else {
             $error = 8;

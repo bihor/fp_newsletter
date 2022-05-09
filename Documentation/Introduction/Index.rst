@@ -28,6 +28,7 @@ The admin will then get an email with the subscription data.
 Google reCaptcha v3 or a mathematical captcha can be enabled too.
 There is a widget for the dashboard available.
 Available languages: english, german/deutsch, french/français and italian/italiano.
+The standard language is german, but english texts are also available.
 
 
 .. _screenshots:

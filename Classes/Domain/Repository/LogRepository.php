@@ -85,9 +85,9 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	}
 
     /**
-	 * getUserFromExternal: find user array
-	 * @param	integer $uid: UID des User
-     * @param   string $table: tt_address oder fe_users
+	 * getUserFromExternal: found user array
+	 * @param	integer $uid: UID of the user
+     * @param   string $table: tt_address or fe_users
 	 * @return	array
 	 */
 	function getUserFromExternal($uid, $table)
