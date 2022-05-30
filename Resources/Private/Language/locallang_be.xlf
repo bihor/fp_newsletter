@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-03-16T13:45:01Z" product-name="fp_newsletter">
+	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-05-30T15:06:11Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
@@ -134,6 +134,15 @@
 			</trans-unit>
 			<trans-unit id="dashboard.widget.fixpunktRecentLogEntries.description" resname="dashboard.widget.fixpunktRecentLogEntries.description">
 				<source>Shows date, name, email and status of the last entries</source>
+			</trans-unit>
+			<trans-unit id="dashboard.widget.fixpunktLogStatus.title" resname="dashboard.widget.fixpunktLogStatus.title">
+				<source>fp_newsletter: status diagram</source>
+			</trans-unit>
+			<trans-unit id="dashboard.widget.fixpunktLogStatus.description" resname="dashboard.widget.fixpunktLogStatus.description">
+				<source>Shows how often a status occurs</source>
+			</trans-unit>
+			<trans-unit id="dashboard.widget.fixpunktLogStatus.label" resname="dashboard.widget.fixpunktLogStatus.label">
+				<source>Status code, count</source>
 			</trans-unit>
 		</body>
 	</file>

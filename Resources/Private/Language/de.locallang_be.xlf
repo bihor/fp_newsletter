@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-03-16T13:44:09Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-05-30T15:02:11Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
@@ -178,6 +178,18 @@
 			<trans-unit id="dashboard.widget.fixpunktRecentLogEntries.description" resname="dashboard.widget.fixpunktRecentLogEntries.description">
 				<source>Shows date, name, email and status of the last entries</source>
 				<target>Zeigt Datum, Name, E-mail und Status der letzten Log-Einträge</target>
+			</trans-unit>
+			<trans-unit id="dashboard.widget.fixpunktLogStatus.title" resname="dashboard.widget.fixpunktLogStatus.title">
+				<source>fp_newsletter: status diagram</source>
+				<target>fp_newsletter: Status-Diagramm</target>
+			</trans-unit>
+			<trans-unit id="dashboard.widget.fixpunktLogStatus.description" resname="dashboard.widget.fixpunktLogStatus.description">
+				<source>Shows how often a status is in use</source>
+				<target>Zeigt, wie oft ein Status vorkommt</target>
+			</trans-unit>
+			<trans-unit id="dashboard.widget.fixpunktLogStatus.label" resname="dashboard.widget.fixpunktLogStatus.label">
+				<source>Status code, count</source>
+				<target>Anzahl</target>
 			</trans-unit>
 		</body>
 	</file>

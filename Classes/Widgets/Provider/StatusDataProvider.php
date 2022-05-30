@@ -24,7 +24,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Dashboard\WidgetApi;
 use TYPO3\CMS\Dashboard\Widgets\ChartDataProviderInterface;
 
-class LogDataProvider implements ChartDataProviderInterface
+class StatusDataProvider implements ChartDataProviderInterface
 {
     /**
      * @var array
@@ -41,11 +41,12 @@ class LogDataProvider implements ChartDataProviderInterface
      */
     public function getChartData(): array
     {
+        $this->calculateDataForChart();
         return [
             'labels' => $this->labels,
             'datasets' => [
                 [
-                    'label' => 'im Moment kein Chart',
+                    'label' => $this->getLanguageService()->sL('LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:dashboard.widget.fixpunktLogStatus.label'),
                     'backgroundColor' => WidgetApi::getDefaultChartColors()[0],
                     'border' => 0,
                     'data' => $this->data,
@@ -54,16 +55,22 @@ class LogDataProvider implements ChartDataProviderInterface
         ];
     }
 
-    public function getRecentLogEntries(): array
+    protected function calculateDataForChart(): void
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tx_fpnewsletter_domain_model_log');
-        return $queryBuilder
-            ->select('uid','tstamp','email', 'status', 'firstname', 'lastname')
+        $entries = $queryBuilder
+            ->selectLiteral('count(status) AS num')
+            ->addSelect('status')
             ->from('tx_fpnewsletter_domain_model_log')
-            ->orderBy('tstamp', 'DESC')
-            ->setMaxResults(7)
+            ->orderBy('status', 'ASC')
+            ->groupBy('status')
             ->execute()
             ->fetchAll();
+
+        foreach ($entries as $entry) {
+            $this->labels[] = $this->getLanguageService()->sL('LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.status.'.$entry['status']);
+            $this->data[] = $entry['num'];
+        }
     }
 
     protected function getLanguageService(): LanguageService

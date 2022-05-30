@@ -93,4 +93,5 @@ Bugfix: Formular durch normalen Button in E-Mails ersetzt.
 Version 3.1.0: Die Anrede in den E-Mails wurde in ein Partial verschoben.
 Das Geschlecht divers wird in den E-Mails nicht mehr bei der Anrede berücksichtigt.
 Der Name ist nun auch in der E-Mail an den Admin bei der Abmeldung verfügbar.
+Neues Dashboard-Widget: Status-Diagramm.
 Bugfix: die Spalte retoken war zu klein.
