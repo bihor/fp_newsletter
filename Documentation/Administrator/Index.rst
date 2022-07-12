@@ -121,7 +121,8 @@ FAQ
 
 - How can I unsubscribe via luxletter?
 
-  I don´t know.
+  There is a unsubscribe link in the luxletter template. Currently it is not possible to change the status of a
+  Log entry via luxletter.
 
 - I don´t want/need a log entry. Can I avoid that?
 

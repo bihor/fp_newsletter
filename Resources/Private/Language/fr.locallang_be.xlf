@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="fr" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-05-30T15:04:38Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="fr" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-07-12T09:35:15Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
@@ -159,6 +159,10 @@
 				<source>Subscribe to a HTML-newsletter?</source>
 				<target>Recevoir les infolettres au format HTML ?</target>
 			</trans-unit>
+			<trans-unit id="settings.module_sys_dmail_category" resname="settings.module_sys_dmail_category">
+				<source>UIDs of the direct-mail-categories (direct-mail) OR fe_groups (luxletter)</source>
+				<target>UID de module_sys_dmail_category (direct-mail) OU fe_groups (luxletter)</target>
+			</trans-unit>
 			<trans-unit id="parameters" resname="parameters">
 				<source>External parameters</source>
 				<target>Paramètres externes</target>
@@ -184,7 +188,7 @@
 				<target>fp_newsletter: diagramme d'état</target>
 			</trans-unit>
 			<trans-unit id="dashboard.widget.fixpunktLogStatus.description" resname="dashboard.widget.fixpunktLogStatus.description">
-				<source>Shows how often a status is in use</source>
+				<source>Shows how often a status occurs</source>
 				<target>Affiche la fréquence à laquelle un état se produit</target>
 			</trans-unit>
 			<trans-unit id="dashboard.widget.fixpunktLogStatus.label" resname="dashboard.widget.fixpunktLogStatus.label">

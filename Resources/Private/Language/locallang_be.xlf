@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-05-30T15:06:11Z" product-name="fp_newsletter">
+	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-07-12T09:35:15Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
@@ -119,6 +119,9 @@
 			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html" resname="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>
+			</trans-unit>
+			<trans-unit id="settings.module_sys_dmail_category" resname="settings.module_sys_dmail_category">
+				<source>UIDs of the direct-mail-categories (direct-mail) OR fe_groups (luxletter), e.g. 3,4</source>
 			</trans-unit>
 			<trans-unit id="parameters" resname="parameters">
 				<source>External parameters</source>

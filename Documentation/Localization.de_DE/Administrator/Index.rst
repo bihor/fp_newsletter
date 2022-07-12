@@ -122,7 +122,7 @@ FAQ
 
 - Wie kann man sich bei luxletter abmelden?
 
-  Weiß ich noch nicht.
+  Im Luxletter-Template ist ein Link drin. Damit kann man jedoch noch nicht den Status eines Log-Eintrags ändern!
 
 - Ich brauche / will keine Log-Einträge. Kann man das ausschalten?
 

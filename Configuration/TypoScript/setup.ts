@@ -76,7 +76,7 @@ plugin.tx_fpnewsletter {
 		enableConfirmationMails = 0
 		dontAppendL = 1
 	}
-	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,gdprUid,parameters.active,parameters.email
+	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,gdprUid,parameters.active,parameters.email,module_sys_dmail_category
   }
 }
 

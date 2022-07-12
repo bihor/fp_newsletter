@@ -121,6 +121,17 @@
 					</config>
 				</TCEforms>
 			</settings.gdprUid>
+			<settings.module_sys_dmail_category>
+				<TCEforms>
+					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.module_sys_dmail_category</label>
+					<config>
+						<type>input</type>
+						<size>5</size>
+						<max>5</max>
+						<eval>trim</eval>
+					</config>
+				</TCEforms>
+			</settings.module_sys_dmail_category>
         </el>
       </ROOT>
     </sDEF>

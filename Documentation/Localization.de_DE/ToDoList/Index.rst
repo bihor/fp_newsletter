@@ -11,8 +11,6 @@
 To-Do-Liste
 ===========
 
-- Man sollte auch die Tabelle fe_users und luxletter benutzen können.
-
 - Probleme mit weiteren Sprachen beheben.
 
 - "resend confirmation link".
