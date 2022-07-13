@@ -97,3 +97,5 @@ Neues Dashboard-Widget: Status-Diagramm.
 Bugfix: die Spalte retoken war zu klein.
 
 Version 3.2.0: module_sys_dmail_category ist nun auch per FlexForms einstellbar.
+Wichtig: Layout angepasst an Bootstrap 4.
+IDs im Abmeldeformular geändert.

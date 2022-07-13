@@ -1,36 +1,43 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<label for="fp_email"><f:translate key="tx_fpnewsletter_domain_model_log.email" /> <span class="required">*</span></label>
-<f:form.textfield type="email" property="email" id="fp_email" placeholder="{f:translate(key: 'tx_fpnewsletter_domain_model_log.email')}" additionalAttributes="{required : 'required'}" /><br />
+<div class="form-group">
+	<label for="fp_un_email"><f:translate key="tx_fpnewsletter_domain_model_log.email" /> <span class="required">*</span></label>
+	<f:form.textfield class="form-control" type="email" property="email" id="fp_un_email" placeholder="{f:translate(key: 'tx_fpnewsletter_domain_model_log.email')}" additionalAttributes="{required : 'required'}" />
+</div>
 
 <f:if condition="{settings.mathCAPTCHA} > 0">
-	<label for="fp_mathcaptcha"><f:translate key="tx_fpnewsletter_domain_model_log.mathcaptcha" /> <span class="required">*</span></label>
-	<f:form.textfield property="mathcaptcha" id="fp_mathcaptcha" additionalAttributes="{required : 'required'}" size="5" />
-	(x = {log.mathcaptcha1} {f:if(condition: '{log.mathcaptchaop}', then: '+', else: '-')} {log.mathcaptcha2}; <f:translate key="tx_fpnewsletter_domain_model_log.xcaptcha" />)<br />
+	<div class="form-group">
+		<label for="fp_un_mathcaptcha"><f:translate key="tx_fpnewsletter_domain_model_log.mathcaptcha" /> <span class="required">*</span></label>
+		<f:form.textfield class="form-control" property="mathcaptcha" id="fp_un_mathcaptcha" additionalAttributes="{required : 'required'}" size="5" />
+		(x = {log.mathcaptcha1} {f:if(condition: '{log.mathcaptchaop}', then: '+', else: '-')} {log.mathcaptcha2}; <f:translate key="tx_fpnewsletter_domain_model_log.xcaptcha" />)
+	</div>
 </f:if>
 
 <f:if condition="{settings.honeypot} > 0">
 	<style>
-	input#fp_extras {display:none !important;}
+	input#fp_un_extras {display:none !important;}
 	</style>
-	<f:form.textfield property="extras" id="fp_extras" />
+	<f:form.textfield property="extras" id="fp_un_extras" />
 </f:if>
 <f:if condition="{settings.enableUnsubscribeGdprAsHidden} == 1"><f:then>
 	<f:form.hidden name="log[gdpr]" value="1" />
 </f:then><f:else>
-	<label for="fp_gdpr"><f:translate key="tx_fpnewsletter_domain_model_log.gdpr" /> <span class="required">*</span></label>
-	<f:form.checkbox property="gdpr" id="fp_gdpr" value="1" additionalAttributes="{required : 'required'}" /> &nbsp;
-	<f:format.raw><f:translate key="tx_fpnewsletter_domain_model_log.gdpr_desc1" /></f:format.raw>
-	<f:link.page pageUid="{settings.gdprUid}"><f:translate key="tx_fpnewsletter_domain_model_log.gdpr_link_text" /></f:link.page><f:format.raw><f:translate key="tx_fpnewsletter_domain_model_log.gdpr_desc2" /></f:format.raw>
+	<div class="form-group">
+		<label for="fp_un_gdpr"><f:translate key="tx_fpnewsletter_domain_model_log.gdpr" /> <span class="required">*</span></label>
+		<div class="form-control-checkbox">
+			<f:form.checkbox property="gdpr" id="fp_un_gdpr" value="1" additionalAttributes="{required : 'required'}" /> &nbsp;
+			<f:format.raw><f:translate key="tx_fpnewsletter_domain_model_log.gdpr_desc1" /></f:format.raw>
+			<f:link.page pageUid="{settings.gdprUid}"><f:translate key="tx_fpnewsletter_domain_model_log.gdpr_link_text" /></f:link.page><f:format.raw><f:translate key="tx_fpnewsletter_domain_model_log.gdpr_desc2" /></f:format.raw>
+		</div>
+	</div>
 </f:else></f:if>
 
-<br /><br />
 <f:if condition="{settings.reCAPTCHA_site_key}">
-  <f:form.hidden property="retoken" id="recaptcha3keyU" />
+  <f:form.hidden property="retoken" id="un_recaptcha3keyU" />
   <script>
   var recaptcha3keyU = '{settings.reCAPTCHA_site_key}';
   grecaptcha.ready(function() {
       grecaptcha.execute(recaptcha3keyU, {action: 'homepage'}).then(function(token) {
-         $('#recaptcha3keyU').val(token);
+         $('#un_recaptcha3keyU').val(token);
       });
   });
   </script>
