@@ -95,3 +95,5 @@ Das Geschlecht divers wird in den E-Mails nicht mehr bei der Anrede berücksicht
 Der Name ist nun auch in der E-Mail an den Admin bei der Abmeldung verfügbar.
 Neues Dashboard-Widget: Status-Diagramm.
 Bugfix: die Spalte retoken war zu klein.
+
+Version 3.2.0: module_sys_dmail_category ist nun auch per FlexForms einstellbar.

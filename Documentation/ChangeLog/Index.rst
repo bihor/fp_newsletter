@@ -94,3 +94,5 @@ Version 3.1.0: salutation in emails moved to a partial. Gender divers will now b
 The name is now available in the email to the admin on unsubscription.
 A second dashboard widget added: status diagram.
 Bugfix: retoken column was too small.
+
+Version 3.2.0: module_sys_dmail_category now in FlexForms too.

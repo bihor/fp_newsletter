@@ -12,5 +12,3 @@ To-Do-Liste
 ===========
 
 - Probleme mit weiteren Sprachen beheben.
-
-- "resend confirmation link".

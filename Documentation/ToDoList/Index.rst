@@ -12,5 +12,3 @@ To-Do list
 ==========
 
 - Fix the problems with other languages.
-
-- Add a resend confirmation link.
