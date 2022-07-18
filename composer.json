@@ -25,9 +25,6 @@
 		"typo3-ter/fp-newsletter" : "self.version"
 	},
 	"homepage" : "https://www.fixpunkt.com/webentwicklung/typo3/typo3-programmierung",
-	"support" : {
-		"email" : "info@quizpalme.de"
-	},
 	"license" : "GPL-3.0-or-later",
 	"keywords" : [
 		"newsletter subscription",
