@@ -29,13 +29,10 @@ Newsletter subscriber management
 		newsletter,subscription,unsubscription,verify,gdpr
 
 	:Copyright:
-		2021
+		2022
 
 	:Author:
 		Kurt Gusbeth
-
-	:Email:
-		info@quizpalme.de
 
 	:License:
 		This document is published under the Open Content License
