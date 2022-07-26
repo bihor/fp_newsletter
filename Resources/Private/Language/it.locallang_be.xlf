@@ -1,11 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="it" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-07-12T09:35:03Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="it" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-07-26T16:03:30Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
 				<source>Newsletter-subscriber-settings</source>
 				<target>Settings per la newsletter</target>
+			</trans-unit>
+			<trans-unit id="startingPoint" resname="startingPoint">
+				<source>Startingpoint</source>
+				<target>Punto di partenza</target>
 			</trans-unit>
 			<trans-unit id="template" resname="template">
 				<source>HTML-template:</source>
@@ -160,7 +164,7 @@
 				<target>Iscrizione alla newsletter in formato HTML?</target>
 			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_category" resname="settings.module_sys_dmail_category">
-				<source>UIDs of the direct-mail-categories (direct-mail) OR fe_groups (luxletter)</source>
+				<source>UIDs of the direct-mail-categories (direct-mail) OR fe_groups (luxletter), e.g. 3,4</source>
 				<target>UID di module_sys_dmail_category (direct-mail) O fe_groups (luxletter)</target>
 			</trans-unit>
 			<trans-unit id="parameters" resname="parameters">

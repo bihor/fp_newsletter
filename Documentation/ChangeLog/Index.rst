@@ -98,3 +98,4 @@ Bugfix: retoken column was too small.
 Version 3.2.0: module_sys_dmail_category now in FlexForms too.
 Important: Layout optimized for Bootstrap 4.
 IDs in unsubscribe form changed.
+Backend: preview added.

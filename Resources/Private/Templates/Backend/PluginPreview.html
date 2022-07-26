@@ -1,0 +1,124 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+      xmlns:core="http://typo3.org/ns/TYPO3/CMS/Core/ViewHelpers"
+      data-namespace-typo3-fluid="true">
+
+<f:variable name="flex">{pi_flexform_transformed.settings}</f:variable>
+<table class="table table-condensed table-triped">
+    <f:if condition="{_computed.displayMode}">
+    <thead>
+    <tr>
+        <th>{f:translate(key:'{_computed.lll}template')}</th>
+        <td>
+            {_computed.displayMode}
+        </td>
+    </tr>
+    </thead>
+    </f:if>
+    <tbody>
+    <f:if condition="{_computed.subscribeUid}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}single_records')}</th>
+            <td>
+                <f:render section="rowElement" arguments="{table:'pages', row:_computed.subscribeUid}"/>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_computed.subscribeMessageUid}">
+        <tr>
+            <th>{f:translate(key:'LLL:EXT:core/Resources/Private/Language/locallang_general.xlf:LGL.startingpoint')}
+            </th>
+            <td>
+                <f:render section="rowElement" arguments="{table:'pages', row:_computed.subscribeMessageUid}"/>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_computed.subscribeVerifyUid}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}subscribeVerifyUid')}</th>
+            <td>
+                <f:render section="rowElement" arguments="{table:'pages', row:_computed.subscribeVerifyUid}"/>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_computed.subscribeVerifyMessageUid}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}subscribeVerifyMessageUid')}</th>
+            <td>
+                <f:render section="rowElement" arguments="{table:'pages', row:_computed.subscribeVerifyMessageUid}"/>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_computed.unsubscribeUid}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}unsubscribeUid')}</th>
+            <td>
+                <f:render section="rowElement" arguments="{table:'pages', row:_computed.unsubscribeUid}"/>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_computed.unsubscribeMessageUid}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}unsubscribeMessageUid')}</th>
+            <td>
+                <f:render section="rowElement" arguments="{table:'pages', row:_computed.unsubscribeMessageUid}"/>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_computed.unsubscribeVerifyUid}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}unsubscribeVerifyUid')}</th>
+            <td>
+                <f:render section="rowElement" arguments="{table:'pages', row:_computed.unsubscribeVerifyUid}"/>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_computed.unsubscribeVerifyMessageUid}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}unsubscribeVerifyMessageUid')}</th>
+            <td>
+                <f:render section="rowElement" arguments="{table:'pages', row:_computed.unsubscribeVerifyMessageUid}"/>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_computed.resendVerificationUid}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}resendVerificationUid')}</th>
+            <td>
+                <f:render section="rowElement" arguments="{table:'pages', row:_computed.resendVerificationUid}"/>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_computed.gdprUid}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}gdprUid')}</th>
+            <td>
+                <f:render section="rowElement" arguments="{table:'pages', row:_computed.gdprUid}"/>
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{flex.module_sys_dmail_category}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}settings.module_sys_dmail_category')}</th>
+            <td>
+                {flex.module_sys_dmail_category}
+            </td>
+        </tr>
+    </f:if>
+    <f:if condition="{_computed.startingPoint}">
+        <tr>
+            <th>{f:translate(key:'{_computed.lll}startingPoint')}</th>
+            <td>
+                <f:render section="rowElement" arguments="{table:'pages', row:_computed.startingPoint}"/>
+            </td>
+        </tr>
+    </f:if>
+    </tbody>
+</table>
+
+<f:section name="rowElement">
+    <a href="#" class="t3js-contextmenutrigger" data-table="{table}" data-uid="{row.uid}" title="id={row.uid}">
+        <core:iconForRecord row="{row}" table="{table}"/>
+    </a>
+    {row._computed.title}<br>
+</f:section>
+</html>

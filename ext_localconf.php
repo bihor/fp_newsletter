@@ -47,6 +47,11 @@ call_user_func(
     }
 );
 
+// Plugin Preview
+$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['cms/layout/class.tx_cms_layout.php']['tt_content_drawItem']['fp_newsletter']
+    = \Fixpunkt\FpNewsletter\Hooks\PageLayoutViewHook::class;
+\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig('mod.web_layout.tt_content.preview.list.fpnewsletter_pi1 = EXT:fp_newsletter/Resources/Private/Templates/Backend/PluginPreview.html');
+
 if (empty($GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['TYPO3\\CMS\\Scheduler\\Task\\TableGarbageCollectionTask']['options']['tables']['tx_fpnewsletter_domain_model_log'])) {
 	$GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['scheduler']['tasks']['TYPO3\\CMS\\Scheduler\\Task\\TableGarbageCollectionTask']['options']['tables']['tx_fpnewsletter_domain_model_log'] = array(
 		'dateField' => 'tstamp',
