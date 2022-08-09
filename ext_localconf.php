@@ -4,20 +4,17 @@ defined('TYPO3_MODE') || die('Access denied.');
 call_user_func(
     function()
 	{
-
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'FpNewsletter',
             'Pi1',
             [
                 \Fixpunkt\FpNewsletter\Controller\LogController::class => 'new, create, resend, subscribeExt, unsubscribe, unsubscribeDM, delete, verify, verifyUnsubscribe, list'
             ],
-            // non-cacheable actions
             [
                 \Fixpunkt\FpNewsletter\Controller\LogController::class => 'new, create, resend, subscribeExt, unsubscribe, unsubscribeDM, delete, verify, verifyUnsubscribe'
             ]
         );
 
-    	// wizards
     	\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::addPageTSConfig(
     		'mod {
     			wizards.newContentElement.wizardItems.plugins {
