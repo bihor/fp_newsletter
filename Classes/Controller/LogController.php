@@ -1,6 +1,7 @@
 <?php
 namespace Fixpunkt\FpNewsletter\Controller;
 
+use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Exception\SiteNotFoundException;
@@ -269,18 +270,24 @@ class LogController extends ActionController
             $error = 8;
         }
         if ($this->settings['reCAPTCHA_site_key'] && $this->settings['reCAPTCHA_secret_key']) {
-            // Captcha checken
-            $ch = curl_init();
-            curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
-            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-            curl_setopt($ch, CURLOPT_POST, true);
-            curl_setopt($ch, CURLOPT_POSTFIELDS, [
-                'secret' => $this->settings['reCAPTCHA_secret_key'],
-                'response' => $log->getRetoken()
-            ]);
-            $output = json_decode(curl_exec($ch), true);
-            curl_close($ch);
-            if (! $output["success"]) {
+            $requestFactory = GeneralUtility::makeInstance(RequestFactory::class);
+
+            $url = "https://www.google.com/recaptcha/api/siteverify";
+            $additionalOptions = [
+                'form_params' => [
+                    'secret' => $this->settings['reCAPTCHA_secret_key'],
+                    'response' => $log->getRetoken()
+                ]
+            ];
+
+            $request = $requestFactory->request($url, 'POST', $additionalOptions);
+
+            if ($request->getStatusCode() === 200) {
+                $resultBody = json_decode($request->getBody()->getContents(), true);
+                if (!$resultBody['success'])
+                    $error = 9;
+
+            } else {
                 $error = 9;
             }
         }
@@ -495,18 +502,24 @@ class LogController extends ActionController
         }
         if (! $skipCaptchaTest) {
             if ($this->settings['reCAPTCHA_site_key'] && $this->settings['reCAPTCHA_secret_key']) {
-                // Captcha checken
-                $ch = curl_init();
-                curl_setopt($ch, CURLOPT_URL, "https://www.google.com/recaptcha/api/siteverify");
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-                curl_setopt($ch, CURLOPT_POST, true);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, [
-                    'secret' => $this->settings['reCAPTCHA_secret_key'],
-                    'response' => $log->getRetoken()
-                ]);
-                $output = json_decode(curl_exec($ch), true);
-                curl_close($ch);
-                if (! $output["success"]) {
+                $requestFactory = GeneralUtility::makeInstance(RequestFactory::class);
+
+                $url = "https://www.google.com/recaptcha/api/siteverify";
+                $additionalOptions = [
+                    'form_params' => [
+                        'secret' => $this->settings['reCAPTCHA_secret_key'],
+                        'response' => $log->getRetoken()
+                    ]
+                ];
+
+                $request = $requestFactory->request($url, 'POST', $additionalOptions);
+
+                if ($request->getStatusCode() === 200) {
+                    $resultBody = json_decode($request->getBody()->getContents(), true);
+                    if (!$resultBody['success'])
+                        $error = 9;
+
+                } else {
                     $error = 9;
                 }
             }
