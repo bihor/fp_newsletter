@@ -100,3 +100,5 @@ Version 3.2.0: module_sys_dmail_category ist nun auch per FlexForms einstellbar.
 Wichtig: Layout angepasst an Bootstrap 4.
 IDs im Abmeldeformular geändert.
 Backend: Vorschau hinzugefügt.
+
+Version 3.2.2: Switch von cURL zu RequestFactory.
