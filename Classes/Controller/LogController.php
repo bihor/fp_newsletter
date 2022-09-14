@@ -41,6 +41,13 @@ class LogController extends ActionController
     protected $configurationManager;
 
     /**
+     * Helpers
+     *
+     * @var \Fixpunkt\FpNewsletter\Utility\HelpersUtility
+     */
+    protected $helpersUtility;
+
+    /**
      * Injects the Configuration Manager and is initializing the framework settings: wird doppelt aufgerufen!
      *
      * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
@@ -78,6 +85,17 @@ class LogController extends ActionController
     {
         $this->logRepository = $logRepository;
     }
+
+    /**
+     * Injects the helpers utility
+     *
+     * @param \Fixpunkt\FpNewsletter\Utility\HelpersUtility $helpersUtility
+     */
+    public function injectHelpersUtility(\Fixpunkt\FpNewsletter\Utility\HelpersUtility $helpersUtility)
+    {
+        $this->helpersUtility = $helpersUtility;
+    }
+
 
     /**
      * action list
@@ -292,25 +310,9 @@ class LogController extends ActionController
             }
         }
         if ($this->settings['mathCAPTCHA']) {
-            if($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1') !== NULL && $GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2') !== NULL && $GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptchaop') !== NULL) {
-                $result = intval($log->getMathcaptcha());
-                $no1 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1'));
-                $no2 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2'));
-                $operator = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptchaop'));
-                if ($operator == 1) {
-                    $real_result = $no1 + $no2;
-                } else {
-                    $real_result = $no1 - $no2;
-                }
-                if ($result != $real_result) {
-                    $error = 9;
-                } else {
-                    $GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha1', NULL);
-                    $GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha2', NULL);
-                    $GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptchaop', NULL);
-                }
-            } else {
-                $error = 9;
+            $tmp_error = $this->helpersUtility->checkMathCaptcha(intval($log->getMathcaptcha()));
+            if ($tmp_error > 0) {
+                $error = $tmp_error;
             }
         }
         if ($this->settings['honeypot'] && $log->getExtras()) {
@@ -532,17 +534,9 @@ class LogController extends ActionController
                 }
             }
             if ($this->settings['mathCAPTCHA']) {
-                $result = intval($log->getMathcaptcha());
-                $no1 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1'));
-                $no2 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2'));
-                $operator = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptchaop'));
-                if ($operator == 1) {
-                    $real_result = $no1 + $no2;
-                } else {
-                    $real_result = $no1 - $no2;
-                }
-                if ($result != $real_result) {
-                    $error = 9;
+                $tmp_error = $this->helpersUtility->checkMathCaptcha(intval($log->getMathcaptcha()));
+                if ($tmp_error > 0) {
+                    $error = $tmp_error;
                 }
             }
         }
