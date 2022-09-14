@@ -35,5 +35,6 @@ Important: Layout optimized for Bootstrap 4.
 IDs in unsubscribe form changed.
 Backend: preview added.
 
-Version 3.2.2:
+Version 3.2.4:
 Switch from cURL to RequestFactory.
+Mathematical captcha check enhanced.

@@ -101,4 +101,5 @@ Wichtig: Layout angepasst an Bootstrap 4.
 IDs im Abmeldeformular geändert.
 Backend: Vorschau hinzugefügt.
 
-Version 3.2.2: Switch von cURL zu RequestFactory.
+Version 3.2.4: Switch von cURL zu RequestFactory.
+Mathematical-captcha-check erweitert.
