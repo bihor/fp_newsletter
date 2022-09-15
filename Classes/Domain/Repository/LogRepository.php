@@ -169,7 +169,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 						->values([
 							'uid_local' => intval($tableUid),
 							'uid_foreign' => intval($uid),
-							'tablenames' => 'tt_address',		// unklar
+							'tablenames' => '',		// unklar, ob da tt_address stehen sollte
 							'sorting' => $count
 						])
 						->execute();
