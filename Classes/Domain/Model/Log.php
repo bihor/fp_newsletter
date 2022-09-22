@@ -50,7 +50,7 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Vorname
      *
-     * @Extbase\Validate("RegularExpression",options={ "regularExpression": "/^[\p{L} ,.'-]+$/u" })
+     * @Extbase\Validate("RegularExpression",options={ "regularExpression": "/^[\p{L} ,'-]+$/u" })
      * @var string
      */
     protected $firstname = '';
@@ -58,7 +58,7 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Nachname
      *
-     * @Extbase\Validate("RegularExpression",options={ "regularExpression": "/^[\p{L} ,.'-]+$/u" })
+     * @Extbase\Validate("RegularExpression",options={ "regularExpression": "/^[\p{L} ,'-]+$/u" })
      * @var string
      */
     protected $lastname = '';
