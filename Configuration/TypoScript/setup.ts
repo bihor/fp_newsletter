@@ -64,15 +64,9 @@ plugin.tx_fpnewsletter {
 	email {
 		senderMail = info@example.org
 		senderName = Absender-Name
-		subscribeVerifySubject = Bitte verifizieren Sie Ihre E-Mail-Adresse
-		unsubscribeVerifySubject = Bitte verifizieren Sie Ihre E-Mail-Adresse
 		adminMail =
 		adminName = Admin
-		adminSubscribeSubject = Neue Newsletter-Anmeldung
-		adminUnsubscribeSubject = Neue Newsletter-Abmeldung
 		adminMailBeforeVerification = 0
-		subscribedSubject = Bestätigung Newsletter-Anmeldung
-		unsubscribedSubject = Bestätigung Newsletter-Abmeldung
 		enableConfirmationMails = 0
 		dontAppendL = 1
 	}
@@ -87,12 +81,6 @@ plugin.tx_fpnewsletter_pi1.settings.gender.please = Please select your gender
 plugin.tx_fpnewsletter_pi1.settings.gender.mr = Mr.
 plugin.tx_fpnewsletter_pi1.settings.gender.mrs = Mrs.
 plugin.tx_fpnewsletter_pi1.settings.email.senderName = Sender-name
-plugin.tx_fpnewsletter_pi1.settings.email.subscribeVerifySubject = Please verify your email
-plugin.tx_fpnewsletter_pi1.settings.email.unsubscribeVerifySubject = Please verify your email
-plugin.tx_fpnewsletter_pi1.settings.email.adminSubscribeSubject = New newsletter-subscription
-plugin.tx_fpnewsletter_pi1.settings.email.adminUnsubscribeSubject = New newsletter-unsubscription
-plugin.tx_fpnewsletter_pi1.settings.email.subscribedSubject = Newsletter-subscription confirmation
-plugin.tx_fpnewsletter_pi1.settings.email.unsubscribedSubject = Newsletter-unsubscription confirmation
 [END]
 
 module.tx_dashboard.view {

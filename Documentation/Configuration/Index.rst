@@ -69,15 +69,8 @@ parameters.active                 string      Parameter for newsletter subscript
 parameters.email                  string      Parameter for the email from external source (GET/POST-parameter)
 email.senderMail                  string      Your email-address                                                    beispiel@test.de
 email.senderName                  string      Your name                                                             Absender-Name
-email.subscribeVerifySubject      string      Subject of the verify email (subscription)                            Bitte verifizieren ...
-email.unsubscribeVerifySubject    string      Subject of the verify email (unsubscription)                          Bitte verifizieren ...
 email.adminMail                   string      Admin email-address - if not empty: an email goes to an admin too
 email.adminName                   string      Admin name                                                            Admin
-email.adminSubscribeSubject       string      Subject of the admin email (subscription)                             Neue Newsletter-Anmeldung
-email.adminUnsubscribeSubject     string      Subject of the admin email (unsubscription)                           Neue Newsletter-Abmeldung
-email.adminMailBeforeVerification boolean     0: send email to admin after verification; 1: before verification     0
-email.subscribedSubject           string      Subject of the confirmation email (subscription)                      Bestätigung Newsletter-Anmeldung
-email.unsubscribedSubject         string      Subject of the confirmation email (unsubscription)                    Bestätigung Newsletter-Abmeldung
 email.enableConfirmationMails     boolean     Send confirmation email to the user after verification? 0: no; 1: yes 0
 email.dontAppendL                 boolean     Append the language UID to a template (when L>0)? 0: yes; 1: no°°°    1
 overrideFlexformSettingsIfEmpty   string      Empty FlexForms should be overwritten by TypoScript                   all uid settings
