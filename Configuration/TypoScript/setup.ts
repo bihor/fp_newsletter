@@ -51,12 +51,6 @@ plugin.tx_fpnewsletter {
 	debug = 0
     checkForRequiredExtensions = 1
 	company = Ihre Firma
-	gender {
-	  please = Bitte auswählen
-	  mr = Herr
-	  mrs = Frau
-	  divers = Divers
-	}
 	parameters {
 	  active =
 	  email =
@@ -82,9 +76,6 @@ plugin.tx_fpnewsletter {
 
 [siteLanguage("languageId") == "1"]
 plugin.tx_fpnewsletter_pi1.settings.company = Your company
-plugin.tx_fpnewsletter_pi1.settings.gender.please = Please select your gender
-plugin.tx_fpnewsletter_pi1.settings.gender.mr = Mr.
-plugin.tx_fpnewsletter_pi1.settings.gender.mrs = Mrs.
 plugin.tx_fpnewsletter_pi1.settings.email.senderMail = example@test.com
 plugin.tx_fpnewsletter_pi1.settings.email.senderName = Sender-name
 plugin.tx_fpnewsletter_pi1.settings.email.subscribeVerifySubject = Please verify your email

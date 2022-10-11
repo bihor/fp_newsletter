@@ -9,6 +9,7 @@ use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use Fixpunkt\FpNewsletter\Domain\Model\Log;
+use TYPO3\CMS\Extbase\Utility\LocalizationUtility;
 
 /**
  *
@@ -120,10 +121,10 @@ class LogController extends ActionController
     public function newAction(Log $log = null, $error = 0)
     {
         $genders = [
-            "0" => $this->settings['gender']['please'],
-            "1" => $this->settings['gender']['mrs'],
-            "2" => $this->settings['gender']['mr'],
-            "3" => $this->settings['gender']['divers']
+            "0" => LocalizationUtility::translate('tx_fpnewsletter_domain_model_log.gender.please', 'fp_newsletter'),
+            "1" => LocalizationUtility::translate('tx_fpnewsletter_domain_model_log.gender.mrs', 'fp_newsletter'),
+            "2" => LocalizationUtility::translate('tx_fpnewsletter_domain_model_log.gender.mr', 'fp_newsletter'),
+            "3" => LocalizationUtility::translate('tx_fpnewsletter_domain_model_log.gender.divers', 'fp_newsletter')
         ];
         $optional = [];
         $required = [];

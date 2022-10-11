@@ -21,6 +21,18 @@
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gender" resname="tx_fpnewsletter_domain_model_log.gender">
 				<source>Gender</source>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.please" resname="tx_fpnewsletter_domain_model_log.gender.please">
+				<source>Please select your gender</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mr" resname="tx_fpnewsletter_domain_model_log.gender.mr">
+				<source>Mr.</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mrs" resname="tx_fpnewsletter_domain_model_log.gender.mrs">
+				<source>Mrs.</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.divers" resname="tx_fpnewsletter_domain_model_log.gender.divers">
+				<source>Diverse</source>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.title" resname="tx_fpnewsletter_domain_model_log.title">
 				<source>Title</source>
 			</trans-unit>

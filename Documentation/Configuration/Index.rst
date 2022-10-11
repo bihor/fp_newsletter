@@ -62,9 +62,6 @@ honeypot                          boolean     Enable a honeypot against spam?   
 debug                             boolean     Don´t send email when debug=1                                         0
 checkForRequiredExtensions        boolean     Check, if required extensions are installed. 0: no; 1: yes.           1
 company                           string      Name of your company                                                  Ihre Firma
-gender.please                     string      Text for gender selection                                             Bitte auswählen
-gender.mr                         string      Text for the gender mr                                                Herr
-gender.mrs                        string      Text for the gender mrs                                               Frau
 parameters.active                 string      Parameter for newsletter subscription in external extension (POST)
 parameters.email                  string      Parameter for the email from external source (GET/POST-parameter)
 email.senderMail                  string      Your email-address                                                    beispiel@test.de

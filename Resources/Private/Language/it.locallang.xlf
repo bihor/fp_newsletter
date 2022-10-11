@@ -27,6 +27,22 @@
 				<source>Gender</source>
 				<target>Sesso</target>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.please" resname="tx_fpnewsletter_domain_model_log.gender.please">
+				<source>Please select your gender</source>
+				<target>Si prega di selezionare</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mr" resname="tx_fpnewsletter_domain_model_log.gender.mr">
+				<source>Sig.</source>
+				<target>Herr</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mrs" resname="tx_fpnewsletter_domain_model_log.gender.mrs">
+				<source>Mme</source>
+				<target>Sig.ra</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.divers" resname="tx_fpnewsletter_domain_model_log.gender.divers">
+				<source>Divers</source>
+				<target>Vari</target>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.title" resname="tx_fpnewsletter_domain_model_log.title">
 				<source>Title</source>
 				<target>Titolo</target>
