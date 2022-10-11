@@ -343,6 +343,30 @@
 				<source>This user has just unsubscribed from the newsletter:</source>
 				<target>dieser User hat sich gerade vom Newsletter abgemeldet:</target>
 			</trans-unit>
+			<trans-unit id="email.subscribeVerifySubject" resname="email.subscribeVerifySubject">
+				<source>Please verify your email</source>
+				<target>Bitte verifizieren Sie Ihre E-Mail-Adresse</target>
+			</trans-unit>
+			<trans-unit id="email.unsubscribeVerifySubject" resname="email.unsubscribeVerifySubject">
+				<source>Please verify your email</source>
+				<target>Bitte verifizieren Sie Ihre E-Mail-Adresse</target>
+			</trans-unit>
+			<trans-unit id="email.adminSubscribeSubject" resname="email.adminSubscribeSubject">
+				<source>New newsletter-subscription</source>
+				<target>Neue Newsletter-Anmeldung</target>
+			</trans-unit>
+			<trans-unit id="email.adminUnsubscribeSubject" resname="email.adminUnsubscribeSubject">
+				<source>New newsletter-unsubscription</source>
+				<target>Neue Newsletter-Abmeldung</target>
+			</trans-unit>
+			<trans-unit id="email.subscribedSubject" resname="email.subscribedSubject">
+				<source>Newsletter-subscription confirmation</source>
+				<target>Bestätigung Newsletter-Anmeldung</target>
+			</trans-unit>
+			<trans-unit id="email.unsubscribedSubject" resname="email.unsubscribedSubject">
+				<source>Newsletter-unsubscription confirmation</source>
+				<target>Bestätigung Newsletter-Abmeldung</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

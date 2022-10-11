@@ -258,6 +258,24 @@
 			<trans-unit id="email.toAdminUnsubscribed" resname="email.toAdminUnsubscribed">
 				<source>this user has just unsubscribed from the newsletter:</source>
 			</trans-unit>
+			<trans-unit id="email.subscribeVerifySubject" resname="email.subscribeVerifySubject">
+				<source>Please verify your email</source>
+			</trans-unit>
+			<trans-unit id="email.unsubscribeVerifySubject" resname="email.unsubscribeVerifySubject">
+				<source>Please verify your email</source>
+			</trans-unit>
+			<trans-unit id="email.adminSubscribeSubject" resname="email.adminSubscribeSubject">
+				<source>New newsletter-subscription</source>
+			</trans-unit>
+			<trans-unit id="email.adminUnsubscribeSubject" resname="email.adminUnsubscribeSubject">
+				<source>New newsletter-unsubscription</source>
+			</trans-unit>
+			<trans-unit id="email.subscribedSubject" resname="email.subscribedSubject">
+				<source>Newsletter-subscription confirmation</source>
+			</trans-unit>
+			<trans-unit id="email.unsubscribedSubject" resname="email.unsubscribedSubject">
+				<source>Newsletter-unsubscription confirmation</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>

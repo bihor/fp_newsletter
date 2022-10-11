@@ -886,18 +886,18 @@ class LogController extends ActionController
         if ($toUser) {
             if ($isSubscribe) {
                 if ($isConfirmation) {
-                    $subject = $this->settings['email']['subscribedSubject'];
+                    $subject = LocalizationUtility::translate('email.subscribedSubject', 'fp_newsletter');
                     $template = 'Subscribed';
                 } else {
-                    $subject = $this->settings['email']['subscribeVerifySubject'];
+                    $subject = LocalizationUtility::translate('email.subscribeVerifySubject', 'fp_newsletter');
                     $template = 'SubscribeVerify';
                 }
             } else {
                 if ($isConfirmation) {
-                    $subject = $this->settings['email']['unsubscribedSubject'];
+                    $subject = LocalizationUtility::translate('email.unsubscribedSubject', 'fp_newsletter');
                     $template = 'Unsubscribed';
                 } else {
-                    $subject = $this->settings['email']['unsubscribeVerifySubject'];
+                    $subject = LocalizationUtility::translate('email.unsubscribeVerifySubject', 'fp_newsletter');
                     $template = 'UnsubscribeVerify';
                 }
             }
@@ -912,18 +912,18 @@ class LogController extends ActionController
         if ($toAdmin) {
             if ($isSubscribe) {
                 if ($isConfirmation) {
-                    $subject = $this->settings['email']['adminSubscribeSubject'];
+                    $subject = LocalizationUtility::translate('email.adminSubscribeSubject', 'fp_newsletter');
                     $template = 'SubscribeToAdmin';
                 } else {
-                    $subject = $this->settings['email']['adminSubscribeSubject'];
+                    $subject = LocalizationUtility::translate('email.adminSubscribeSubject', 'fp_newsletter');
                     $template = 'UserToAdmin';
                 }
             } else {
                 if ($isConfirmation) {
-                    $subject = $this->settings['email']['adminUnsubscribeSubject'];
+                    $subject = LocalizationUtility::translate('email.adminUnsubscribeSubject', 'fp_newsletter');
                     $template = 'UnsubscribeToAdmin';
                 } else {
-                    $subject = $this->settings['email']['adminUnsubscribeSubject'];
+                    $subject = LocalizationUtility::translate('email.adminUnsubscribeSubject', 'fp_newsletter');
                     $template = 'UserToAdmin';
                 }
             }

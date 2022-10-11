@@ -291,6 +291,30 @@
 				<source> %s</source>
 				<target> %s</target>
 			</trans-unit>
+			<trans-unit id="email.subscribeVerifySubject" resname="email.subscribeVerifySubject">
+				<source>Please verify your email</source>
+				<target>Per cortesia verifichi il suo indirizzo email</target>
+			</trans-unit>
+			<trans-unit id="email.unsubscribeVerifySubject" resname="email.unsubscribeVerifySubject">
+				<source>Please verify your email</source>
+				<target>Per cortesia verifichi il suo indirizzo email</target>
+			</trans-unit>
+			<trans-unit id="email.adminSubscribeSubject" resname="email.adminSubscribeSubject">
+				<source>New newsletter-subscription</source>
+				<target>Nuova iscrizione alla newsletter</target>
+			</trans-unit>
+			<trans-unit id="email.adminUnsubscribeSubject" resname="email.adminUnsubscribeSubject">
+				<source>New newsletter-unsubscription</source>
+				<target>Nuova newsletter cancellati</target>
+			</trans-unit>
+			<trans-unit id="email.subscribedSubject" resname="email.subscribedSubject">
+				<source>Newsletter-subscription confirmation</source>
+				<target>Conferma dell'iscrizione alla newsletter</target>
+			</trans-unit>
+			<trans-unit id="email.unsubscribedSubject" resname="email.unsubscribedSubject">
+				<source>Newsletter-unsubscription confirmation</source>
+				<target>Conferma dell'annullamento dell'iscrizione alla newsletter</target>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
