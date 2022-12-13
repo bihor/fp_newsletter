@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
+	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-03-31T15:06:06Z" product-name="fp_newsletter">
+		<header/>
+		<body>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
+				<source>Newsletter subscriber management</source>
+				<target>뉴스레터 구독자 관리</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender" resname="tx_fpnewsletter_domain_model_log.gender">
+				<source>Gender</source>
+				<target>인사말</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.please" resname="tx_fpnewsletter_domain_model_log.gender.please">
+				<source>Please select your gender</source>
+				<target>선택 바랍니다.</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mr" resname="tx_fpnewsletter_domain_model_log.gender.mr">
+				<source>Mr.</source>
+				<target>Mr.</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mrs" resname="tx_fpnewsletter_domain_model_log.gender.mrs">
+				<source>Mrs.</source>
+				<target>Mrs.</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.divers" resname="tx_fpnewsletter_domain_model_log.gender.divers">
+				<source>Divers</source>
+				<target>그 외</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.firstname" resname="tx_fpnewsletter_domain_model_log.firstname">
+				<source>Firstname</source>
+				<target>이름</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.lastname" resname="tx_fpnewsletter_domain_model_log.lastname">
+				<source>Lastname</source>
+				<target>성</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.email" resname="tx_fpnewsletter_domain_model_log.email">
+				<source>E-Mail</source>
+				<target>E-Mail</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.country" resname="tx_fpnewsletter_domain_model_log.country">
+				<source>Country</source>
+				<target>국가</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.phone" resname="tx_fpnewsletter_domain_model_log.phone">
+				<source>Phone</source>
+				<target>전화번호</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.mobile" resname="tx_fpnewsletter_domain_model_log.mobile">
+				<source>Mobile</source>
+				<target>휴대폰</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.www" resname="tx_fpnewsletter_domain_model_log.www">
+				<source>WWW</source>
+				<target>WWW</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.position" resname="tx_fpnewsletter_domain_model_log.position">
+				<source>Position</source>
+				<target>직책</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.company" resname="tx_fpnewsletter_domain_model_log.company">
+				<source>Company</source>
+				<target>기관/단체</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr" resname="tx_fpnewsletter_domain_model_log.gdpr">
+				<source>GDPR</source>
+				<target>정보 프라이버시</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc1" resname="tx_fpnewsletter_domain_model_log.gdpr_desc1">
+				<source>I agree that the operator and publisher may inform me about selected topics. My data is used exclusively for this purpose. In particular, no disclosure to unauthorized third parties. I am aware that I can revoke my consent at any time with effect for the future. The</source>
+				<target>운영자와 게시자가 선택한 주제에 대해 나에게 알릴 수 있음에 동의합니다. 내 데이터는 위 명시된 목적으로만 사용됩니다. 특히, 어떠한 정보도 승인되지 않은 제3자에게 전달되지 않습니다. 본인은 언제든지 스스로 동의를 철회할 수 있다는 사실을 알고 있습니다. 개인 정보 보호 정책이 적용되며 여기에는 내 데이터를 수정, 삭제 및 차단할 수 있는 가능성에 대한 추가 정보도 포함됩니다.</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_link_text" resname="tx_fpnewsletter_domain_model_log.gdpr_link_text">
+				<source> Privacy Policy </source>
+				<target>정보 프라이버시</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc2" resname="tx_fpnewsletter_domain_model_log.gdpr_desc2">
+				<source>applies, which also includes other information about how to correct, delete and block my data.</source>
+				<target> </target>
+			</trans-unit>
+			<trans-unit id="subscribe" resname="subscribe">
+				<source>Subscribe</source>
+				<target>등록하기</target>
+			</trans-unit>
+			<trans-unit id="required" resname="required">
+				<source>required.</source>
+				<target>필수 항목</target>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
