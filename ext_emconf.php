@@ -12,16 +12,20 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Newsletter subscriber management',
-    'description' => 'Plugin for newsletter subscription and unsubscription with double opt in (and double opt out). For: direct_mail or luxletter / tt_address or fe_users. A log is written.',
+    'description' => 'Plugin for newsletter subscription and unsubscription with double opt in (and double opt out). Used table: tt_address. A log is written.',
     'category' => 'plugin',
     'author' => 'Kurt Gusbeth',
     'author_company' => 'fixpunkt werbeagentur gmbh',
+    'author_email' => 'info@quizpalme.de',
     'state' => 'stable',
+    'internal' => '',
+    'uploadfolder' => '0',
+    'createDirs' => '',
     'clearCacheOnLoad' => 0,
-    'version' => '3.2.5',
+    'version' => '1.1.1',
     'constraints' => [
         'depends' => [
-        	'typo3' => '10.4.6-11.5.99'
+        	'typo3' => '8.7.28-9.5.99'
         ],
         'conflicts' => [],
         'suggests' => [],

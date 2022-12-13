@@ -13,7 +13,6 @@
           <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template</label>
           <config>
           <type>select</type>
-          <renderType>selectSingle</renderType>
           <items>
             <numIndex index="0">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.new</numIndex>
@@ -33,16 +32,12 @@
             </numIndex>
             <numIndex index="6">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeDM</numIndex>
-                <numIndex index="1">Log->unsubscribeDM;Log->unsubscribe;Log->delete;Log->verifyUnsubscribe</numIndex>
+                <numIndex index="1">Log->unsubscribeDM;Log->delete;Log->verifyUnsubscribe</numIndex>
             </numIndex>
             <numIndex index="7">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeVerify</numIndex>
                 <numIndex index="1">Log->verifyUnsubscribe</numIndex>
             </numIndex>
-			  <numIndex index="8">
-				  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.resend</numIndex>
-				  <numIndex index="1">Log->resend;Log->verify</numIndex>
-			  </numIndex>
             <numIndex index="9">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.list</numIndex>
                 <numIndex index="1">Log->list</numIndex>
@@ -121,17 +116,6 @@
 					</config>
 				</TCEforms>
 			</settings.gdprUid>
-			<settings.module_sys_dmail_category>
-				<TCEforms>
-					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.module_sys_dmail_category</label>
-					<config>
-						<type>input</type>
-						<size>5</size>
-						<max>5</max>
-						<eval>trim</eval>
-					</config>
-				</TCEforms>
-			</settings.module_sys_dmail_category>
         </el>
       </ROOT>
     </sDEF>
@@ -160,24 +144,6 @@
 					</config>
 				</TCEforms>
 			</settings.doubleOptOut>
-			  <settings.disableErrorMsg>
-				  <TCEforms>
-					  <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.disableErrorMsg</label>
-					  <config>
-						  <type>radio</type>
-						  <items type="array">
-							  <numIndex index="0" type="array">
-								  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.no</numIndex>
-								  <numIndex index="1">0</numIndex>
-							  </numIndex>
-							  <numIndex index="1" type="array">
-								  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.yes</numIndex>
-								  <numIndex index="1">1</numIndex>
-							  </numIndex>
-						  </items>
-					  </config>
-				  </TCEforms>
-			  </settings.disableErrorMsg>
 			<settings.enableUnsubscribeForm>
 				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.enableUnsubscribeForm</label>
@@ -254,42 +220,6 @@
 					</config>
 				</TCEforms>
 			</settings.honeypot>
-			<settings.email.enableConfirmationMails>
-				<TCEforms>
-					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.enableConfirmationMails</label>
-	                <config>
-						<type>radio</type>
-						<items type="array">
-							<numIndex index="0" type="array">
-								<numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.no</numIndex>
-								<numIndex index="1">0</numIndex>
-							</numIndex>
-							<numIndex index="1" type="array">
-								<numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.yes</numIndex>
-								<numIndex index="1">1</numIndex>
-							</numIndex>
-						</items>
-					</config>
-				</TCEforms>
-			</settings.email.enableConfirmationMails>
-			<settings.email.dontAppendL>
-				<TCEforms>
-					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.dontAppendL</label>
-	                <config>
-						<type>radio</type>
-						<items type="array">
-							<numIndex index="0" type="array">
-								<numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.yes</numIndex>
-								<numIndex index="1">0</numIndex>
-							</numIndex>
-							<numIndex index="1" type="array">
-								<numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.no</numIndex>
-								<numIndex index="1">1</numIndex>
-							</numIndex>
-						</items>
-					</config>
-				</TCEforms>
-			</settings.email.dontAppendL>
 			<settings.module_sys_dmail_html>
 				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.module_sys_dmail_html</label>
@@ -312,78 +242,6 @@
 					</config>
 				</TCEforms>
 			</settings.module_sys_dmail_html>
-			  <settings.dmUnsubscribeMode>
-				  <TCEforms>
-					  <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.dmUnsubscribeMode</label>
-					  <config>
-						  <type>radio</type>
-						  <items type="array">
-							  <numIndex index="0" type="array">
-								  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.no</numIndex>
-								  <numIndex index="1">0</numIndex>
-							  </numIndex>
-							  <numIndex index="1" type="array">
-								  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.yes</numIndex>
-								  <numIndex index="1">1</numIndex>
-							  </numIndex>
-						  </items>
-					  </config>
-				  </TCEforms>
-			  </settings.dmUnsubscribeMode>
-			  <settings.searchPidMode>
-				  <TCEforms>
-					  <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.searchPidMode</label>
-					  <config>
-						  <type>radio</type>
-						  <items type="array">
-							  <numIndex index="0" type="array">
-								  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.no</numIndex>
-								  <numIndex index="1">0</numIndex>
-							  </numIndex>
-							  <numIndex index="1" type="array">
-								  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.yes</numIndex>
-								  <numIndex index="1">1</numIndex>
-							  </numIndex>
-						  </items>
-					  </config>
-				  </TCEforms>
-			  </settings.searchPidMode>
-			<settings.deleteMode>
-				<TCEforms>
-					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.deleteMode</label>
-	                <config>
-						<type>radio</type>
-						<items type="array">
-							<numIndex index="0" type="array">
-								<numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.deleteMode.1</numIndex>
-								<numIndex index="1">1</numIndex>
-							</numIndex>
-							<numIndex index="1" type="array">
-								<numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.deleteMode.2</numIndex>
-								<numIndex index="1">2</numIndex>
-							</numIndex>
-						</items>
-					</config>
-				</TCEforms>
-			</settings.deleteMode>
-			<settings.languageMode>
-				<TCEforms>
-					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.languageMode</label>
-	                <config>
-						<type>radio</type>
-						<items type="array">
-							<numIndex index="0" type="array">
-								<numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.languageMode.0</numIndex>
-								<numIndex index="1">0</numIndex>
-							</numIndex>
-							<numIndex index="1" type="array">
-								<numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.languageMode.1</numIndex>
-								<numIndex index="1">1</numIndex>
-							</numIndex>
-						</items>
-					</config>
-				</TCEforms>
-			</settings.languageMode>
         </el>
       </ROOT>
     </sENABLE>

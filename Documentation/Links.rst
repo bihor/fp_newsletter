@@ -12,7 +12,7 @@ Links
 -----
 
 :TER:
-	https://extensions.typo3.org/extension/fp_newsletter
+	https://typo3.org/extensions/repository/view/fp_newsletter
 
 :Bug Tracker:
 	https://github.com/bihor/fp_newsletter/issues

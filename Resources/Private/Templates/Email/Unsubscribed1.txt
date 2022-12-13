@@ -1,6 +1,0 @@
-<f:render partial="Email/Salutation.txt" arguments="{_all}" />
-you are now unsubscribed from our newsletter.
-Used email-address: {email}
-
-Best regards
-{settings.company}

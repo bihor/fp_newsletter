@@ -1,6 +1,0 @@
-<f:render partial="Email/Salutation.txt" arguments="{_all}" />
-<f:translate key="email.subscribedSuccess" />
-<f:translate key="email.usedEmail" /> {email}
-
-<f:translate key="email.bestRegards" />
-{settings.company}

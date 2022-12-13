@@ -36,10 +36,6 @@
 </f:then>
 <f:else>
 	<p>{f:translate(key: 'email_send1', default: 'email sent to you')}</p>
-
-	<f:if condition="{settings.resendVerificationUid}">
-		<br/><p><f:link.page pageUid="{settings.resendVerificationUid}">{f:translate(key: 'resendLink', default: 'resend')}</f:link.page></p>
-	</f:if>
 </f:else>
 </f:if>
 </f:section>

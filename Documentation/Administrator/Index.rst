@@ -8,11 +8,11 @@
 
 .. _admin-manual:
 
-Administrator manual
+Administrator Manual
 ====================
 
 You will need the extension tt_address and direct_mail for this extension.
-Users can subscribe to your newsletter, if you uses addresses from tt_address. fe_users is not supported today.
+Users can subscribe to your newsletter, if you uses addresses from tt_address. fe_users is not supported today, but it is planed.
 
 
 .. _admin-templates:
@@ -24,60 +24,20 @@ You will find 2 folders in the templates-folders: Email and Log. In the Log-fold
 If a user submits the form, the entries lands in the table tx_fpnewsletter_domain_model_log.
 Only if a user verifies his email-address, his entry will be copied to the table tt_address.
 
-In the Email-folder you find the templates for the email to use user. Its the email for verifying the email-address.
+In the Email-folder you find the templates for the email to use user. Its the email for verifing the email-address.
 And there are email-templates for the admin: UserToAdmin is sent before verification and SubscribeToAdmin is sent after the email verification.
 If you want to change the text of the email, copy the templates e.g. to fileadmin and set the new path via TypoScript setup::
 
   plugin.tx_fpnewsletter.view.templateRootPaths.1 = fileadmin/bsdist/theme/tmpl/fp_newsletter/Templates/
 
-There is a text and a HTML version for email-templates. And there is an (additional) english and a german version of this template (but not for the admin-templates).
-From version 3.0.0 the normal templates contains localized texts.
-The default template is in german till version 3.0.0. From version 3.0.0 the german templates have the ending 0.html.
-E.g. SubscribeVerify1.html contains the english text. You can use this email-templates like this::
+There is a text and a HTML version. And there is an english and a german version of this template.
+The translate-ViewHelper can not be used in this templates thats why you need to create a template for every used language.
+The default template is in german. SubscribeVerify1.html contains the english text. You can use this email-templates like this::
 
   SubscribeVerify<LANGUID>.html and SubscribeVerify<LANGUID>.txt
 
-Only for the language 0 you must remove the number until version 3.0.0. For the language 1 SubscribeVerify1.html is used automatically.
-This is the behavior when email.dontAppendL = 0. From version 3.0.0 email.dontAppendL is by default 1.
+Only for the language 0 you must remove the number. For the language 1 SubscribeVerify1.html is used automatically.
 
-You can switch off this behavior with the setting email.dontAppendL = 1!
-In this case you can use the variable {sys_language_uid} in the email templates.
-You could use <f:if condition="{sys_language_uid} == 1"> to use more than one language in one template.
-
-You can use this translate keys in the email templates:
-email.dear-gender-first-and-last-name, email.dear-first-and-last-name, email.dear-first-name, email.dear,
-email.gender-first-and-last-name, email.first-and-last-name and email.first-name.
-
-
-.. _admin-fluid-page-template:
-
-Fluid Page Template
--------------------
-
-You want to insert a newsletter subscription form to your fluid page template? E.g. in the footer of every page?
-Then you have 2 possibilities.
-
-First way: insert a static form in your template. This extension can read this variables if you provide the used form elements.
-Read the chapter "Configuration -> External fields" for more informations about this way.
-
-Second way: you can load the plugin via f:cObject typoscriptObjectPath in your page template like this::
-
-  <f:cObject typoscriptObjectPath="lib.nlsubscriptionContent" />
-
-Therefore you need to define lib.nlsubscriptionContent like this::
-
-  lib.nlsubscriptionContent = CONTENT
-  lib.nlsubscriptionContent {
-    table = tt_content
-    wrap = |
-    select {
-      pidInList = 22
-      where = colPos = 0
-    }
-  }
-
-Replace the 0 and 22 with your used colPos and page-uid at the page with your subscription form.
- 
 
 .. _admin-newsletter:
 
@@ -109,20 +69,6 @@ FAQ
 
   TYPO3 9 ignores the parameter absolute="1"? Or you have not added a domain in the backend?
   Add the domain by your own in that case.
-
-- What will be the username if I use fe_users?
-
-  The username will be the email-address. The default password is joh316. The category can be set via
-  module_sys_dmail_category and is mandatory!!!
-
-- I use fe_users but nothing happens.
-
-  Have you set the setting module_sys_dmail_category?
-
-- How can I unsubscribe via luxletter?
-
-  There is a unsubscribe link in the luxletter template. Currently it is not possible to change the status of a
-  Log entry via luxletter.
 
 - I don´t want/need a log entry. Can I avoid that?
 

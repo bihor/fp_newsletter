@@ -11,6 +11,12 @@
 ChangeLog
 =========
 
+Version 0.9.8: German documentation added.
+
+Version 0.9.9: Unsubscribe link added to the manual.
+
+Version 0.9.11: Status 6 added.
+
 Version 0.10.0: Important change: plugin.tx_fpnewsletter_pi1 renamed to plugin.tx_fpnewsletter, because otherwise empty TS-values overwrite given FlexForm-values.
 New action: subscribeExt for newsletter subscription via other extensions. Bugfix: partial-path.
 
@@ -50,56 +56,19 @@ More optional fields: address, zip, city, region, country, phone, mobile, fax, w
 
 Version 1.0.0: possibility added, to delete old log-entries via a task.
 Important change: redirect to the new- or unsubscribe-action on email-format- or captcha-errors.
-Bugfix: you can use now reCAPTCHA and mathCAPTCHA together.
+Bugfix: you can use now reCAPTCHA und mathCAPTCHA together.
 
 Version 1.0.4: Bugfix: subscription via external form.
 
 Version 1.1.0: possibility added, to activate a honeypot.
 Bugfix: prevent error on unsubscribe when a captcha is enabled.
 
-Version 1.2.0: deprecated methods replaced.
+Version 1.1.1:
 
-Version 2.0.0: with the new setting languageMode you can define the language of the entries.
-There is now a new behavior when L>0. Furthermore the setting email.dontAppendL is new.
-Confirmation emails can now be send by enabling them with the setting email.enableConfirmationMails.
-The translate-viewhelper can now be used in the email-templates.
-Name and salutation can be used now in the email-templates.
-More FlexForms.
+Security fix: mathematical captcha check enhanced (it was possible to cheat).
 
-Version 2.1.0: setting searchPidMode and disableErrorMsg added.
-extension-key added to composer.json.
+Security fix: settings.doubleOptOut set from 0 to 1. You can set it to 0 if you don´t want a double opt out subscription.
 
-Version 2.2.1: more variables/translate keys for emails added. See chapter Administration.
-Now for TYPO3 10 and 11.
+Security fix: additional check added to the delete-action (it was possible to unsubscribe all users).
 
-Version 2.3.2: a widget for the dashboard added. The extension dashboard is required in TYPO3 11.
-Setting checkForRequiredExtensions added (does not work for dashboard in TYPO3 11).
-The table fe_users can now be used too.
-Form with button added to the verification emails.
-no-cache parameter removed.
-
-Version 2.4.0: Setting dmUnsubscribeMode added. Flexform for "unsubscribe via link" needs to be saved again.
-The extension dashboard is no longer required in TYPO3 11.
-New action: resend verification email.
-French added (thanks to lucmuller).
-StopActionException on create when no parameter is there.
-
-Version 3.0.0: breaking change: default value of email.dontAppendL changed from 0 to 1.
-The email-templates without a number as ending uses now translated texts.
-If email.dontAppendL=0 even 0 will now be added to the template name.
-French emails now possible (thanks to lucmuller).
-Bugfix: form replaced with a normal button in the emails.
-
-Version 3.1.0: salutation in emails moved to a partial. Gender divers will now be ignored in the salutation in emails.
-The name is now available in the email to the admin on unsubscription.
-A second dashboard widget added: status diagram.
-Bugfix: retoken column was too small.
-
-Version 3.2.0: module_sys_dmail_category now in FlexForms too.
-Important: Layout optimized for Bootstrap 4.
-IDs in unsubscribe form changed.
-Backend: preview added.
-
-Version 3.2.5: switch from cURL to RequestFactory.
-Mathematical captcha check enhanced.
-Bugfix #59: no categories added in tt_address
+Security fix: Information Disclosure in the  new- and unsubscribe-action.

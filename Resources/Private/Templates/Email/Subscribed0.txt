@@ -1,6 +1,0 @@
-<f:render partial="Email/Salutation.txt" arguments="{_all}" />
-Sie haben sich soeben erfolgreich zu unserem Newsletter angemeldet.
-Verwendete E-Mail-Adresse: {email}
-
-Mit freundlichen Grüßen
-{settings.company}

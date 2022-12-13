@@ -1,203 +1,97 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-07-26T16:02:46Z" product-name="fp_newsletter">
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-06-15T15:10:55Z" product-name="fp_newsletter">
 		<header/>
 		<body>
-			<trans-unit id="title" resname="title">
-				<source>Newsletter-subscriber-settings</source>
+			<trans-unit id="title">
 				<target>Newsletter-Abonnenten-Einstellungen</target>
 			</trans-unit>
-			<trans-unit id="startingPoint" resname="startingPoint">
-				<source>Startingpoint</source>
-				<target>Datensatzsammlung</target>
-			</trans-unit>
-			<trans-unit id="template" resname="template">
-				<source>HTML-template:</source>
+			<trans-unit id="template">
 				<target>HTML-Template:</target>
 			</trans-unit>
-			<trans-unit id="template.not_configured" resname="template.not_configured">
-				<source>no template layout selected!</source>
+			<trans-unit id="template.not_configured">
 				<target>kein Template ausgewählt!</target>
 			</trans-unit>
-			<trans-unit id="template.new" resname="template.new">
-				<source>Newsletter: subscribe (and unsubscribe)</source>
+			<trans-unit id="template.new">
 				<target>Newsletter: Anmeldung (und Abmeldung)</target>
 			</trans-unit>
-			<trans-unit id="template.subscribeExtern" resname="template.subscribeExtern">
-				<source>Newsletter: subscribe via external extension</source>
+			<trans-unit id="template.subscribeExtern">
 				<target>Newsletter: Anmeldung über externe Extension</target>
 			</trans-unit>
-			<trans-unit id="template.subscribeVerify" resname="template.subscribeVerify">
-				<source>Newsletter: verify subscription</source>
+			<trans-unit id="template.subscribeVerify">
 				<target>Newsletter: Anmeldung verifizieren</target>
 			</trans-unit>
-			<trans-unit id="template.unsubscribe" resname="template.unsubscribe">
-				<source>Newsletter: unsubscribe via form</source>
+			<trans-unit id="template.unsubscribe">
 				<target>Newsletter: Abmeldung via Formular</target>
 			</trans-unit>
-			<trans-unit id="template.unsubscribeDM" resname="template.unsubscribeDM">
-				<source>Newsletter: unsubscribe via link</source>
+			<trans-unit id="template.unsubscribeDM">
 				<target>Newsletter: Abmeldung via Link</target>
 			</trans-unit>
-			<trans-unit id="template.unsubscribeVerify" resname="template.unsubscribeVerify">
-				<source>Newsletter: verify unsubscription</source>
+			<trans-unit id="template.unsubscribeVerify">
 				<target>Newsletter: Abmeldung verifizieren</target>
 			</trans-unit>
-			<trans-unit id="template.resend" resname="template.resend">
-				<source>Newsletter: resend verification email</source>
-				<target>Newsletter: Verifizierungsemail erneut anfordern</target>
-			</trans-unit>
-			<trans-unit id="template.list" resname="template.list">
-				<source>List view: all actions</source>
+			<trans-unit id="template.list">
 				<target>Liste: alle Aktionen</target>
 			</trans-unit>
-			<trans-unit id="subscribeUid" resname="subscribeUid">
-				<source>Page for the subscription</source>
+			<trans-unit id="subscribeUid">
 				<target>Seite für die Anmeldung</target>
 			</trans-unit>
-			<trans-unit id="subscribeVerifyUid" resname="subscribeVerifyUid">
-				<source>Page to verify email-address for subscription</source>
+			<trans-unit id="subscribeVerifyUid">
 				<target>Seite für die Verifikation bei der Anmeldung</target>
 			</trans-unit>
-			<trans-unit id="unsubscribeUid" resname="unsubscribeUid">
-				<source>Page for the unsubscription</source>
+			<trans-unit id="unsubscribeUid">
 				<target>Seite für die Abmeldung</target>
 			</trans-unit>
-			<trans-unit id="unsubscribeVerifyUid" resname="unsubscribeVerifyUid">
-				<source>Page to verify email-address for unsubscription</source>
+			<trans-unit id="unsubscribeVerifyUid">
 				<target>Seite für die Verifikation bei der Abmeldung</target>
 			</trans-unit>
-			<trans-unit id="gdprUid" resname="gdprUid">
-				<source>Page with the GDPR</source>
+			<trans-unit id="gdprUid">
 				<target>Seite mit den Datenschutzbestimmungen</target>
 			</trans-unit>
-			<trans-unit id="enables" resname="enables">
-				<source>Enable/disable</source>
+			<trans-unit id="enables">
 				<target>Ein- / Ausschalten</target>
 			</trans-unit>
-			<trans-unit id="settings.no" resname="settings.no">
-				<source>no</source>
+			<trans-unit id="settings.no">
 				<target>nein</target>
 			</trans-unit>
-			<trans-unit id="settings.yes" resname="settings.yes">
-				<source>yes</source>
+			<trans-unit id="settings.yes">
 				<target>ja</target>
 			</trans-unit>
-			<trans-unit id="settings.yes1" resname="settings.yes1">
-				<source>yes, with 1 digit</source>
+			<trans-unit id="settings.yes1">
 				<target>ja, mit einer Ziffer</target>
 			</trans-unit>
-			<trans-unit id="settings.yes2" resname="settings.yes2">
-				<source>yes, with 1-2 digits</source>
+			<trans-unit id="settings.yes2">
 				<target>ja, mit 1-2 Ziffern</target>
 			</trans-unit>
-			<trans-unit id="settings.ignore" resname="settings.ignore">
-				<source>ignore this field</source>
+			<trans-unit id="settings.ignore">
 				<target>ignoriere dieses Feld</target>
 			</trans-unit>
-			<trans-unit id="settings.doubleOptOut" resname="settings.doubleOptOut">
-				<source>Enable double opt out unsubscription?</source>
+			<trans-unit id="settings.doubleOptOut">
 				<target>Double-opt-out-Abmeldung einschalten?</target>
 			</trans-unit>
-			<trans-unit id="settings.disableErrorMsg" resname="settings.disableErrorMsg">
-				<source>Disable some error messages (e.g. already/not subscribed)?</source>
-				<target>Manche Fehlermeldungen ignorieren (z.B. bereits/nicht angemeldet)?</target>
-			</trans-unit>
-			<trans-unit id="settings.enableUnsubscribeForm" resname="settings.enableUnsubscribeForm">
-				<source>Enable unsubscription form under the subscription form too?</source>
+			<trans-unit id="settings.enableUnsubscribeForm">
 				<target>Abmeldeformular auch unter dem Anmeldeformular anzeigen?</target>
 			</trans-unit>
-			<trans-unit id="settings.enableUnsubscribeGdprAsHidden" resname="settings.enableUnsubscribeGdprAsHidden">
-				<source>Set the GDPR-checkbox to hidden on the unsubscription form?</source>
+			<trans-unit id="settings.enableUnsubscribeGdprAsHidden">
 				<target>Die DSGVO-Checkbox auf der Abmeldeseite verbergen?</target>
 			</trans-unit>
-			<trans-unit id="settings.mathCAPTCHA" resname="settings.mathCAPTCHA">
-				<source>Show a mathematical captcha?</source>
+			<trans-unit id="settings.mathCAPTCHA">
 				<target>Zeige ein mathematisches Captcha?</target>
 			</trans-unit>
-			<trans-unit id="settings.honeypot" resname="settings.honeypot">
-				<source>Enable a honeypot?</source>
+			<trans-unit id="settings.honeypot">
 				<target>Einen Honigtopf (honeypot) gegen Spam einschalten?</target>
 			</trans-unit>
-			<trans-unit id="settings.searchPidMode" resname="settings.searchPidMode">
-				<source>Search address (in tt_address/fe_users) in all specified folders?</source>
-				<target>Suche eine Adresse (in tt_address/fe_users) in allen angegebenen Ordnern?</target>
-			</trans-unit>
-			<trans-unit id="settings.deleteMode" resname="settings.deleteMode">
-				<source>Hard or soft delete mode?</source>
-				<target>Löschmodus</target>
-			</trans-unit>
-			<trans-unit id="settings.deleteMode.1" resname="settings.deleteMode.1">
-				<source>set deletion flag</source>
-				<target>setze das delete-Flag</target>
-			</trans-unit>
-			<trans-unit id="settings.deleteMode.2" resname="settings.deleteMode.2">
-				<source>delete entry</source>
-				<target>lösche den Eintrag endgültig</target>
-			</trans-unit>
-			<trans-unit id="settings.languageMode" resname="settings.languageMode">
-				<source>Language mode</source>
-				<target>Sprachmodus</target>
-			</trans-unit>
-			<trans-unit id="settings.languageMode.0" resname="settings.languageMode.0">
-				<source>set sys_language_uid to -1 if L&gt;0</source>
-				<target>setzt sys_language_uid auf -1 wenn L&gt;0</target>
-			</trans-unit>
-			<trans-unit id="settings.languageMode.1" resname="settings.languageMode.1">
-				<source>use the value of sys_language_uid</source>
-				<target>benutze den Wert von sys_language_uid</target>
-			</trans-unit>
-			<trans-unit id="settings.enableConfirmationMails" resname="settings.enableConfirmationMails">
-				<source>Enable confirmation emails to the user?</source>
-				<target>Bestätigungs-E-Mails einschalten?</target>
-			</trans-unit>
-			<trans-unit id="settings.dontAppendL" resname="settings.dontAppendL">
-				<source>Add language UID to email templates?</source>
-				<target>Hänge die Sprach-UID an die E-Mail-Templates an?</target>
-			</trans-unit>
-			<trans-unit id="settings.dmUnsubscribeMode" resname="settings.dmUnsubscribeMode">
-				<source>Direct mail unsubscribe mode: direct unsubscribe (no) or go to the unsubscribe page (yes)?</source>
-				<target>Direct mail Abmelde-Modus: Sofort-Abmeldung (nein) oder erst auf die Abmeldeseite weiterleiten (ja)?</target>
-			</trans-unit>
-			<trans-unit id="settings.module_sys_dmail_html" resname="settings.module_sys_dmail_html">
-				<source>Subscribe to a HTML-newsletter?</source>
+			<trans-unit id="settings.module_sys_dmail_html">
 				<target>Newsletter im HTML-Format abonnieren?</target>
 			</trans-unit>
-			<trans-unit id="settings.module_sys_dmail_category" resname="settings.module_sys_dmail_category">
-				<source>UIDs of the direct-mail-categories (direct-mail) OR fe_groups (luxletter), e.g. 3,4</source>
-				<target>UIDs von direct-mail-Kategorien (direct-mail) oder fe_groups (luxletter), Z.B. 3,4</target>
-			</trans-unit>
-			<trans-unit id="parameters" resname="parameters">
-				<source>External parameters</source>
+			<trans-unit id="parameters">
 				<target>Externe Parameter</target>
 			</trans-unit>
-			<trans-unit id="settings.parameters.active" resname="settings.parameters.active">
-				<source>Checkbox name for the newsletter-subscription (e.g. tx_myshop_pi1|newBestellung|newsletter)</source>
+			<trans-unit id="settings.parameters.active">
 				<target>Checkbox-Name für NL-Wunsch (z.B. tx_myshop_pi1|newBestellung|newsletter)</target>
 			</trans-unit>
-			<trans-unit id="settings.parameters.email" resname="settings.parameters.email">
-				<source>Input-field name for the email-address (e.g. tx_myshop_pi1|newBestellung|email)</source>
+			<trans-unit id="settings.parameters.email">
 				<target>Feld-Name für die E-Mail-Adresse (z.B. tx_myshop_pi1|newBestellung|email)</target>
-			</trans-unit>
-			<trans-unit id="dashboard.widget.fixpunktRecentLogEntries.title" resname="dashboard.widget.fixpunktRecentLogEntries.title">
-				<source>fp_newsletter: recent 7 log entries</source>
-				<target>fp_newsletter: die letzten 7 Einträge</target>
-			</trans-unit>
-			<trans-unit id="dashboard.widget.fixpunktRecentLogEntries.description" resname="dashboard.widget.fixpunktRecentLogEntries.description">
-				<source>Shows date, name, email and status of the last entries</source>
-				<target>Zeigt Datum, Name, E-mail und Status der letzten Log-Einträge</target>
-			</trans-unit>
-			<trans-unit id="dashboard.widget.fixpunktLogStatus.title" resname="dashboard.widget.fixpunktLogStatus.title">
-				<source>fp_newsletter: status diagram</source>
-				<target>fp_newsletter: Status-Diagramm</target>
-			</trans-unit>
-			<trans-unit id="dashboard.widget.fixpunktLogStatus.description" resname="dashboard.widget.fixpunktLogStatus.description">
-				<source>Shows how often a status occurs</source>
-				<target>Zeigt, wie oft ein Status vorkommt</target>
-			</trans-unit>
-			<trans-unit id="dashboard.widget.fixpunktLogStatus.label" resname="dashboard.widget.fixpunktLogStatus.label">
-				<source>Status code, count</source>
-				<target>Anzahl</target>
 			</trans-unit>
 		</body>
 	</file>
