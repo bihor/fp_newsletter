@@ -7,7 +7,7 @@
 				<target>Newsletter-Abonnenten-Management</target>
 			</trans-unit>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
-				<target>Datenschutzkonformes Plugin für Newsletter-An- und Abmeldungen via tt_address oder fe_users.</target>
+				<target>Datenschutzkonformes Plugin für direct_mail An- und Abmeldungen via tt_address.</target>
 			</trans-unit>
 			<trans-unit id="gender.description">
 				<target>Anrede</target>

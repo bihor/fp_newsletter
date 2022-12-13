@@ -61,7 +61,7 @@ Version 1.2.0: deprecated methods replaced.
 
 Version 2.0.0: with the new setting languageMode you can define the language of the entries.
 There is now a new behavior when L>0. Furthermore the setting email.dontAppendL is new.
-Confirmation emails can now be send by enabling them with the setting email.enableConfirmationMails.
+Confirmation emails can now be send by enabeling them with the setting email.enableConfirmationMails.
 The translate-viewhelper can now be used in the email-templates.
 Name and salutation can be used now in the email-templates.
 More FlexForms.
@@ -69,37 +69,14 @@ More FlexForms.
 Version 2.1.0: setting searchPidMode and disableErrorMsg added.
 extension-key added to composer.json.
 
-Version 2.2.1: more variables/translate keys for emails added. See chapter Administration.
-Now for TYPO3 10 and 11.
+Version 2.1.1: more variables/translate keys for emails added. See chapter Administration.
 
-Version 2.3.2: a widget for the dashboard added. The extension dashboard is required in TYPO3 11.
-Setting checkForRequiredExtensions added (does not work for dashboard in TYPO3 11).
-The table fe_users can now be used too.
-Form with button added to the verification emails.
-no-cache parameter removed.
+Version 2.1.2:
 
-Version 2.4.0: Setting dmUnsubscribeMode added. Flexform for "unsubscribe via link" needs to be saved again.
-The extension dashboard is no longer required in TYPO3 11.
-New action: resend verification email.
-French added (thanks to lucmuller).
-StopActionException on create when no parameter is there.
+Security fix: mathematical captcha check enhanced (it was possible to cheat).
 
-Version 3.0.0: breaking change: default value of email.dontAppendL changed from 0 to 1.
-The email-templates without a number as ending uses now translated texts.
-If email.dontAppendL=0 even 0 will now be added to the template name.
-French emails now possible (thanks to lucmuller).
-Bugfix: form replaced with a normal button in the emails.
+Security fix: settings.doubleOptOut set from 0 to 1. You can set it to 0 if you don´t want a double opt out subscription.
 
-Version 3.1.0: salutation in emails moved to a partial. Gender divers will now be ignored in the salutation in emails.
-The name is now available in the email to the admin on unsubscription.
-A second dashboard widget added: status diagram.
-Bugfix: retoken column was too small.
+Security fix: additional check added to the delete-action (it was possible to unsubscribe all users).
 
-Version 3.2.0: module_sys_dmail_category now in FlexForms too.
-Important: Layout optimized for Bootstrap 4.
-IDs in unsubscribe form changed.
-Backend: preview added.
-
-Version 3.2.5: switch from cURL to RequestFactory.
-Mathematical captcha check enhanced.
-Bugfix #59: no categories added in tt_address
+Security fix: Information Disclosure in the  new- and unsubscribe-action.

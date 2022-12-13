@@ -22,7 +22,7 @@ plugin.tx_fpnewsletter {
 	table = tt_address
 	optionalFields = gender,firstname,lastname
 	optionalFieldsRequired =
-	doubleOptOut = 0
+	doubleOptOut = 1
 	disableErrorMsg = 0
 	enableUnsubscribeForm = 0
 	enableUnsubscribeGdprAsHidden = 0
@@ -34,22 +34,17 @@ plugin.tx_fpnewsletter {
 	unsubscribeMessageUid =
 	unsubscribeVerifyUid =
 	unsubscribeVerifyMessageUid =
-	resendVerificationUid =
 	gdprUid = 1
 	daysExpire = 2
-	dmUnsubscribeMode = 0
 	searchPidMode = 0
 	deleteMode = 1
 	languageMode = 0
 	module_sys_dmail_html = 1
 	module_sys_dmail_category =
-	password = joh316
 	reCAPTCHA_site_key =
 	reCAPTCHA_secret_key =
 	mathCAPTCHA = 0
 	honeypot = 0
-	debug = 0
-    checkForRequiredExtensions = 1
 	company = Ihre Firma
 	gender {
 	  please = Bitte auswählen
@@ -74,9 +69,9 @@ plugin.tx_fpnewsletter {
 		subscribedSubject = Bestätigung Newsletter-Anmeldung
 		unsubscribedSubject = Bestätigung Newsletter-Abmeldung
 		enableConfirmationMails = 0
-		dontAppendL = 1
+		dontAppendL = 0
 	}
-	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,gdprUid,parameters.active,parameters.email,module_sys_dmail_category
+	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,gdprUid,parameters.active,parameters.email
   }
 }
 
@@ -94,12 +89,3 @@ plugin.tx_fpnewsletter_pi1.settings.email.adminUnsubscribeSubject = New newslett
 plugin.tx_fpnewsletter_pi1.settings.email.subscribedSubject = Newsletter-subscription confirmation
 plugin.tx_fpnewsletter_pi1.settings.email.unsubscribedSubject = Newsletter-unsubscription confirmation
 [END]
-
-module.tx_dashboard.view {
-	layoutRootPaths {
-		43 = EXT:fp_newsletter/Resources/Private/Layouts/
-	}
-	templateRootPaths {
-		43 = EXT:fp_newsletter/Resources/Private/Templates/
-	}
-}

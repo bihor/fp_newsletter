@@ -5,11 +5,21 @@
 <title>Newsletter unsubscription</title>
 </head>
 <body>
-<f:render partial="Email/Salutation" arguments="{_all}" />
+<h3>
+    <f:if condition="{gender} && {lastname}">
+        <f:then>
+            <f:translate key="email.dear-gender-first-and-last-name" arguments="{0: gender, 1: firstname, 2: lastname}" />
+        </f:then>
+        <f:else if="{lastname}">
+            <f:translate key="email.dear-first-and-last-name" arguments="{1: firstname, 2: lastname}" />
+        </f:else>
+        <f:else>
+            <f:translate key="email.dear" />
+        </f:else>
+    </f:if>
+</h3>
 <p>you need to click at the verify link to verify your unsubscription:</p>
-<p><f:link.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" absolute="1"><f:format.raw><f:uri.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" absolute="1" /></f:format.raw></f:link.action></p>
-<p><f:link.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe"
-                  arguments="{uid: uid, hash: hash}" absolute="1" style="border:1px solid #000;border-radius:3px;padding:2px 10px;">Alternatively, you can also click on this button</f:link.action></p>
+<p><f:link.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" noCache="1" absolute="1"><f:format.raw><f:uri.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" noCache="1" absolute="1" /></f:format.raw></f:link.action></p>
 <p>Best regards<br>
 {settings.company}</p>
 </body>

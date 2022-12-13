@@ -20,19 +20,22 @@ Newsletter subscriber management
 		|release|
 
 	:Language:
-		en, de, it, fr
+		en, de, it
 
 	:Description:
-		Plugin for newsletter subscription and unsubscription. Can be used for the table tt_address or fe_users. A log is written.
+		Plugin for newsletter subscription and unsubscription. Can be used for the table tt_address. A log is written.
 
 	:Keywords:
 		newsletter,subscription,unsubscription,verify,gdpr
 
 	:Copyright:
-		2022
+		2021
 
 	:Author:
 		Kurt Gusbeth
+
+	:Email:
+		info@quizpalme.de
 
 	:License:
 		This document is published under the Open Content License

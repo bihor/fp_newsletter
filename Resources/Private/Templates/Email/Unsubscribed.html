@@ -2,13 +2,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><f:translate key="email.unsubscription" /></title>
+<title>Newsletter-Abmeldung</title>
 </head>
 <body>
-<f:render partial="Email/Salutation" arguments="{_all}" />
-<p><f:translate key="email.unsubscribedSuccess" /></p>
-<p><f:translate key="email.usedEmail" /> {email}</p>
-<p><f:translate key="email.bestRegards" /><br>
+<h3>
+    <f:if condition="{gender} && {lastname}">
+        <f:then>
+            <f:translate key="email.dear-gender-first-and-last-name" arguments="{0: gender, 1: firstname, 2: lastname}" />
+        </f:then>
+        <f:else if="{lastname}">
+            <f:translate key="email.dear-first-and-last-name" arguments="{1: firstname, 2: lastname}" />
+        </f:else>
+        <f:else>
+            <f:translate key="email.dear" />
+        </f:else>
+    </f:if>
+</h3>
+<p>Sie haben sich nun erfolgreich von unserem Newsletter abgemeldet.</p>
+<p>Verwendete E-Mail-Adresse: {email}</p>
+<p>Mit freundlichen Grüßen<br>
 {settings.company}</p>
 </body>
 </html>

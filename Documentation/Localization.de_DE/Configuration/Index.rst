@@ -31,10 +31,10 @@ Settings-Einstellungen
 ================================= =========== ===================================================================== ================================
 Feld                              Typ         Beschreibung                                                          Standard-Wert
 ================================= =========== ===================================================================== ================================
-table                             string      tt_address, fe_users oder keine Tabelle (leerer Wert) möglich         tt_address
+table                             string      Bisher nur tt_address oder keine Tabelle (leerer Wert) möglich        tt_address
 optionalFields                    string      Optionale Werte: siehe weiter unten                                   gender,firstname,lastname
 optionalFieldsRequired            string      Optionale erforderliche* Werte: siehe weiter unten
-doubleOptOut                      boolean     Double opt out Abmeldung einschalten?                                 0
+doubleOptOut                      boolean     Double opt out Abmeldung einschalten?                                 1
 disableErrorMsg                   boolean     Manche Fehlermeldungen ignorieren (z.B. bereits/nicht angemeldet)?    0
 enableUnsubscribeForm             boolean     Abmeldeformular auf der Anmeldeseite mit ausgeben?**                  0
 enableUnsubscribeGdprAsHidden     boolean     DSGVO-Checkbox beim Abmeldeformular verbergen?                        0
@@ -46,22 +46,17 @@ unsubscribeUid                    integer     Seite für die Abmeldung          
 unsubscribeMessageUid             integer     Optionale Seite für den Redirect nach der Abmeldung
 unsubscribeVerifyUid              integer     Seite für die Abmelde-Verifikation (demnächst)
 unsubscribeVerifyMessageUid       integer     Optionale Seite für den Redirect nach der Abmelde-Verifikation***
-resendVerificationUid             integer     Seite, auf der man die Verifizierungsemail erneut anfordern kann
 gdprUid                           integer     Seite mit den DSGVO-Texten                                            1
 daysExpire                        integer     Der Verifikations-Link wird ungültig nach X Tagen                     2
 searchPidMode                     integer     Suche in tt_address: 0: nur im 1. Ordner; 1: in allen Ordners°        0
 deleteMode                        integer     1: setze delete-Flag; 2: lösche endgültig                             1
 languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
-dmUnsubscribeMode                 integer     0: Sofort-Abmeldung durch Link aus direct_mail; 1: zeige Abmeldeform. 0
 module_sys_dmail_html             integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1
-module_sys_dmail_category         string      Liste von Kategorien (uid) aus sys_dmail_category oder fe_groups°°
-password                          string      Passwort für die fe_users Tabelle. Jeder hat das selbe Passwort!      joh316
+module_sys_dmail_category         string      Komma separierte Liste von Kategorien (uid) aus sys_dmail_category
 reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3. curl wird benötigt!
 reCAPTCHA_secret_key              string      Geheimer Schlüssel für Google reCaptcha v3
 mathCAPTCHA                       integer     Zeige ein mathematisches Captcha? 0: nein; 1, 2: ja, mit 1-2 Ziffern  0
 honeypot                          boolean     Einen Honigtopf (honeypot) gegen Spam einschalten?                    0
-debug                             boolean     Sendet keine E-Mails wenn debug=1                                     0
-checkForRequiredExtensions        boolean     Prüfen, ob benötigte Extensions installiert sind? 0: nein; 1: ja.     1
 company                           string      Name der Firma                                                        Ihre Firma
 gender.please                     string      Text für die Anrede-Auswahl                                           Bitte auswählen
 gender.mr                         string      Text für Herr                                                         Herr
@@ -80,22 +75,18 @@ email.adminMailBeforeVerification boolean     0: sende die E-Mail nach der Verif
 email.subscribedSubject           string      Betreff der Bestätigungsmail (Anmeldung)                              Bestätigung Newsletter-Anmeldung
 email.unsubscribedSubject         string      Betreff der Bestätigungsmail (Abmeldung)                              Bestätigung Newsletter-Abmeldung
 email.enableConfirmationMails     boolean     Sende eine Bestätigungs-E-Mail an den Benutzer? 0: nein; 1: ja        0
-email.dontAppendL                 boolean     Hänge die Sprach-UID an Templates an (wenn L>0)? 0: ja; 1: nein°°°    1
+email.dontAppendL                 boolean     Hänge die Sprach-UID an Templates an, wenn L>0? 0: ja; 1: nein        0
 overrideFlexformSettingsIfEmpty   string      Leere Flexforms sollen durch TypoScript überschrieben werden          alle uid-Variablen
 ================================= =========== ===================================================================== ================================
 
 Achtung*: die optional erforderlichen Werte werden nur per Browser geprüft.
 
-Achtung**: man braucht eine eigene Seite für die Abmeldung. unsubscribeUid muss also angegebenen werden.
+Achtung**: man braucht eine eigene Seite für die Abmeldung. unsubscribeUid muss also angebenen werden.
 
 Achtung***: diese Seite wird auch dann benutzt, wenn doubleOptOut=0. unsubscribeMessageUid wird dann nicht benutzt.
 
 Achtung°: dies funktioniert nur bei der Abmeldung.
 
-Achtung°°: Kommaseparierte Liste. Beispiel: 1,3. Also ohne Leerzeichen dazwischen.
-
-Achtung°°°: der Default-Wert wurde von 0 auf 1 geändert in Version 3.0.0 und selbst wenn L=0 wird ab Version 3.0.0
-0 an den E-Mail-Template-Namen angehangen wenn email.dontAppendL=0.
 
 Beispiele
 ---------
@@ -106,13 +97,10 @@ Sprachen
 Man kann die Texte für andere Sprachen so überschreiben::
 
   [siteLanguage("languageId") == "1"]
-  plugin.tx_fpnewsletter.settings.company = Your company
-  plugin.tx_fpnewsletter._LOCAL_LANG.de.email.pleaseVerify = Bitte verifiziere deine E-Mail-Adresse durch Klick auf diesen Link:
+  plugin.tx_fpnewsletter_pi1.settings.company = Your company
   [END]
 
 Achtung: wenn man andere Sprachen in den Emails verwenden will, sollte man das Kapitel "Administrator-Handbuch" lesen.
-Bei settings.email.dontAppendL=0  ist die Standardsprache deutsch. Diese Templates enden ab Version 3.0.0 mit 0.html.
-Ab Version 3.0.0 werden in den E-Mail-Templates ohne Zahl-Endung übersetzte Texte verwendet.
 
 Externe Felder
 ^^^^^^^^^^^^^^
@@ -149,8 +137,8 @@ erforderlich markieren. Folgende optionalen Felder sind möglich/stehen zur Verf
 gender, title, firstname, lastname, address, zip, city, region, country, phone, mobile, fax, www, position, company.
 Man kann alle diese Felder auch als erforderlich markieren. Hier ein Beispiel für das Anmeldeformular via TypoScript Setup::
 
-  plugin.tx_fpnewsletter.settings.optionalFields = gender,title,firstname,lastname,www,position,company
-  plugin.tx_fpnewsletter.settings.optionalFieldsRequired = firstname,lastname,company
+  plugin.tx_fpnewsletter_pi1.settings.optionalFields = gender,title,firstname,lastname,www,position,company
+  plugin.tx_fpnewsletter_pi1.settings.optionalFieldsRequired = firstname,lastname,company
 
 Benutzung von Kategorien
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -158,7 +146,7 @@ Benutzung von Kategorien
 Die Tabelle module_sys_dmail_category enthält Kategorien für direct_mail. Diese Extension benutzt diese Kategorien und nicht die von sys_category.
 Wenn man sie so benutzt::
 
-  plugin.tx_fpnewsletter.settings.module_sys_dmail_category = 1,3
+  plugin.tx_fpnewsletter_pi1.settings.module_sys_dmail_category = 1,3
 
 dann tut diese Extension das selbe wie auch direct_mail_subscription. Sie wird 2 Einträge in sys_dmail_ttaddress_category_mm machen
 und sie wird module_sys_dmail_category in tt_address setzen (nach der Verifikation). Gibt es diesbezüglich etwa andere Erwartungen?
@@ -175,12 +163,3 @@ Wie in jeder Extension auch, kann man die Labels via TypoScript ändern. Hier 2 
   plugin.tx_fpnewsletter._LOCAL_LANG.de.tx_fpnewsletter_domain_model_log.gdpr_desc2 = Ich bin damit einverstanden, dass die von mir angegebenen Daten elektronisch erhoben und gespeichert werden.
 
 Man findet die Bezeichnungen in den Templates bei f:translate key.
-
-Benötigte Extensions
-^^^^^^^^^^^^^^^^^^^^
-
-Standardmäßig überprüft die Extension in der Action new (Anmeldeformular), ob die benötigten Extensions installiert sind.
-settings.table kann leer, tt_address oder fe_users sein. Bei tt_address wird auch direct_mail benötigt, wenn man entweder
-settings.module_sys_dmail_html oder settings.module_sys_dmail_category verwendet. Die Überprüfung kann man ausschalten::
-
-  plugin.tx_fpnewslettersettings.checkForRequiredExtensions = 0

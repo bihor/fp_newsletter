@@ -24,16 +24,19 @@ Newsletter-Abonnenten-Management
 		de
 
 	:Beschreibung:
-		Plugin für Newsletter An- und Abmeldung. Benutzte Tabelle: tt_address oder fe_users. Ein Log aller Aktionen wird erstellt.
+		Plugin für Newsletter An- und Abmeldung. Benutzte Tabelle: tt_address. Ein Log aller Aktionen wird erstellt.
 
 	:Schlüsselwörter:
-		tt_address,direct_mail,luxletter,newsletter,subscription,unsubscription,dsgvo,gdpr
+		tt_address,direct_mail,newsletter,subscription,unsubscription,dsgvo,gdpr
 
 	:Copyright:
-		2022
+		2018
 
 	:Autor:
 		Kurt Gusbeth
+
+	:E-Mail:
+		k.gusbeth@fixpunkt.com
 
 	:Lizenz:
 		Dieses Dokument wird unter der Open Publication License, siehe

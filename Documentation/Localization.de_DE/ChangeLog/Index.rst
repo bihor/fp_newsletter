@@ -20,7 +20,7 @@ Bugfix 2: die Texte-E-Mails wurden bisher überschrieben.
 Version 0.11.0: Die Links in den E-Mail-Templates funktionieren nun endlich auch mit TYPO3 8.
 Leere FlexForms werden nun durch die TypoScript-Einstellungen überschrieben.
 
-Version 0.12.0: double opt out wird jetzt auch unterstützt. Mehr FlexForms.
+Version 0.12.0: double opt out wird jetzt auch unterstüzt. Mehr FlexForms.
 
 Version 0.13.0: italienische Übersetzung hinzugefügt.
 Erste Version für TYPO3 9 (läuft nur, wenn auch typo3db_legacy installiert ist).
@@ -35,7 +35,7 @@ reCaptcha v3 eingebaut (optional).
 
 Version 0.16.0: f:format.raw zu Text-Links hinzugefügt.
 Option module_sys_dmail_category hinzugefügt.
-Address-Objekt in Verify-Templates jetzt verfügbar.
+Adress-Objekt in Verify-Templates jetzt verfügbar.
 TS optionalFieldsRequired hinzugefügt. required-Attribut hinzugefügt.
 
 Version 0.17.0: neue TypoScript-Einstellung: email.adminMailBeforeVerification
@@ -57,7 +57,7 @@ Version 1.0.4: Bugfix: Anmeldung via externem Formular.
 Version 1.1.0: honeypot hinzugefügt.
 Bugfix: Fehlermeldung verhindern beim abmelden, wenn ein Captcha aktiviert ist.
 
-Version 1.2.0: veraltete Methoden ersetzt.
+Version 1.2.0: veralterte Methoden ersetzt.
 
 Version 2.0.0: über die Einstellung languageMode kann man nun die Sprache der Einträge bestimmen.
 Das Verhalten bei Sprachen>0 ist nun anders. Zudem ist die Einstellung email.dontAppendL neu.
@@ -69,38 +69,10 @@ Mehr FlexForms.
 Version 2.1.0: Einstellung searchPidMode und disableErrorMsg hinzugefügt.
 extension-key zu composer.json hinzugefügt.
 
-Version 2.2.1: Mehr translate keys für E-Mail-Templates hinzugefügt. Siehe Kapitel Administration.
-Jetzt für TYPO3 10 und 11.
+Version 2.1.1: Mehr translate keys für E-Mail-Templates hinzugefügt. Siehe Kapitel Administration.
 
-Version 2.3.2: Ein Widget für das Dashboard hinzugefügt. Die Extension Dashboard wird in TYPO3 11 benötigt.
-Setting checkForRequiredExtensions hinzugefügt (funktioniert aber nicht für Dashboard in TYPO3 11).
-Es kann nun auch die Tabelle fe_users benutzt werden!
-Ein Formular mit Button zu den Verifizierung-E-Mails hinzugefügt.
-no-cache Parameter entfernt.
-
-Version 2.4.0: Setting dmUnsubscribeMode hinzugefügt. Flexform für "Abmeldung via Link" muss neu gespeichert werden.
-Die Extension Dashboard wird nicht mehr zwingend benötigt in TYPO3 11.
-Neues Feature: sende Verifizierungs-E-Mail erneut.
-Französisch hinzugefügt (Dank an lucmuller).
-StopActionException beim create, wenn kein Parameter vorhanden ist.
-
-Version 3.0.0: Achtung: Default-Wert von email.dontAppendL von 0 auf 1 geändert.
-Die E-mail-Templates ohne Zahlen-Endung enthalten nun übersetzte Texte.
-Wenn email.dontAppendL=0 wird nun auch bei L=0 0 and den Template-Namen angehangen.
-Französische E-Mails nun möglich (Dank an lucmuller).
-Bugfix: Formular durch normalen Button in E-Mails ersetzt.
-
-Version 3.1.0: Die Anrede in den E-Mails wurde in ein Partial verschoben.
-Das Geschlecht divers wird in den E-Mails nicht mehr bei der Anrede berücksichtigt.
-Der Name ist nun auch in der E-Mail an den Admin bei der Abmeldung verfügbar.
-Neues Dashboard-Widget: Status-Diagramm.
-Bugfix: die Spalte retoken war zu klein.
-
-Version 3.2.0: module_sys_dmail_category ist nun auch per FlexForms einstellbar.
-Wichtig: Layout angepasst an Bootstrap 4.
-IDs im Abmeldeformular geändert.
-Backend: Vorschau hinzugefügt.
-
-Version 3.2.5: Switch von cURL zu RequestFactory.
-Mathematical-captcha-check erweitert.
-Bugfix #59: no categories added in tt_address
+Version 2.1.2:
+Security fix: mathematical-captcha-check erweitert (man konnte bisher mogeln).
+Security fix: settings.doubleOptOut von 0 auf 1 gesetzt. Kann man auf 0 setzen, wenn man kein double opt out beim abmelden haben will.
+Security fix: einen weiteren Check zur Abmelde-Funktion hinzugefügt (man konnte bisher alle Empfänger abmelden).
+Security fix: "Information Disclosure" in der  new- und unsubscribe-action.

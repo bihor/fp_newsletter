@@ -23,7 +23,7 @@ Templates
 
 Man findet 2 Ordner mit Templates: Email und Log. Im Log-Ordner findet man die Templates für die Formulare.
 Wenn ein Benutzer solch ein Formular absendet, landen die Daten in der Tabelle tx_fpnewsletter_domain_model_log.
-Erst nachdem ein Benutzer seine E-Mail-Adresse verifiziert hat, werden die Daten in die Tabelle tt_address oder fe_users kopiert.
+Erst nachdem ein Benutzer seine E-Mail-Adresse verifiziert hat, werden die Daten in die Tabelle tt_address kopiert.
 
 Im Email-Ordner findet man die Templates, die per E-Mail verschickt werden.
 Es gibt Email-Templates für die Verifizierung der E-Mail-Adresse und für den Admin.
@@ -32,18 +32,16 @@ Zum ändern der Templates muss man sie z.B. nach fileadmin kopieren und den Link
 
   plugin.tx_fpnewsletter.view.templateRootPaths.1 = fileadmin/bsdist/theme/tmpl/fp_newsletter/Templates/
 
-Es gibt eine Text- und eine HTML-Version für die E-Mails. Und es gibt beide Templates auch in deutsch und in englisch (außer die für den Admin).
-Standardmässig musste man bis Version 3.0.0 für jede Sprache neue Templates anlegen.
-Das Default-Template enthält übersetzbare Texte ab Version 3.0.0 und bis Version 3.0.0 sind Template ohne Zahlen-Endung in deutsch verfasst und
-z.B. SubscribeVerify1.html in englisch verfasst. Ab Version 3.0.0 haben die deutschen Templates die Endung 0.html.
-Es werden automatisch diese Templates verwendet, wenn settings.email.dontAppendL=0 ist::
+Es gibt eine Text- und eine HTML-Version für die E-Mails. Und es gibt beide Templates in deutsch und in englisch (außer die für den Admin).
+Standardmässig muss man für jede Sprache neue Templates anlegen. Das Default-Template ist in deutsch und SubscribeVerify1.html
+ist in englisch verfasst. Es werden automatisch diese Templates verwendet::
 
   SubscribeVerify<LANGUID>.html and SubscribeVerify<LANGUID>.txt
 
-Für die Sprache 0 muss man die Zahl weglassen bis Version 3.0.0. SubscribeVerify1.txt ist das Template für die Sprache 1.
+Nur für die Sprache 0 muss man die Zahl weglassen. SubscribeVerify1.txt ist das Template für die Sprache 1.
 
 Man kann dieses Verhalten jedoch mit der Einstellung email.dontAppendL=1 abschalten!
-In dem Fall kann man die Variable {sys_language_uid} in den E-Mail-Templates verwenden.
+In dem Fall sollte man die Variable {sys_language_uid} in den E-Mail-Templates verwenden.
 Man kann also mit Hilfe von <f:if condition="{sys_language_uid} == 1"> mehrere Sprachen in einem Template verwenden.
 
 Man kann folgende keys in den E-Mail-Templates benutzen:
@@ -112,21 +110,9 @@ FAQ
   TYPO3 9 ignoriert anscheinend den Parameter absolute="1"? Oder du hast keine Domain im Backend angegeben?
   Füge die Domain dann selber hinzu.
 
-- Was ist der username wenn ich die Tabelle fe_users verwende?
-
-  Als username wird die E-Mail-Adresse verwendet. Das Standard-Passwort ist joh316. Die Kategorie setzt man mittels module_sys_dmail_category.
-
-- Ich benutzt die fe_users Tabelle, aber es passiert nichts.
-
-  Hast du auch settings.module_sys_dmail_category gesetzt?
-
-- Wie kann man sich bei luxletter abmelden?
-
-  Im Luxletter-Template ist ein Link drin. Damit kann man jedoch noch nicht den Status eines Log-Eintrags ändern!
-
 - Ich brauche / will keine Log-Einträge. Kann man das ausschalten?
 
   Nicht ganz. Man kann nur alte Log-Einträge automatisch löschen lassen. Dazu fügt man einen Task
   "Tabellen-Müllsammlung" hinzu und wählt da die Tabelle tx_fpnewsletter_domain_model_log aus.
-  Dann kann man angeben, nach wie vielen Tagen ein Log-Eintrag gelöscht werden soll.
+  Dann kann man angeben, nach wievielen Tagen ein Log-Eintrag gelöscht werden soll.
   Wenn der ConJob läuft, werden alte Log-Einträge dann automatisch gelöscht.

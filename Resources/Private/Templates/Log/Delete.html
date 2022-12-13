@@ -5,6 +5,9 @@
 
 <f:if condition="{error} > 0">
 <f:then>
+	<f:if condition="{error} == 1">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_parameter', default: 'wrong parameters')}</p>
+	</f:if>
 	<f:if condition="{error} == 7">
 		<p class="alert alert-danger">{f:translate(key: 'wrong_unsubscribed', default: 'you are not subscribed')}</p>
 	</f:if>

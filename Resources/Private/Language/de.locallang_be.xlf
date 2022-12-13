@@ -1,15 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-07-26T16:02:46Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2021-05-27T09:58:10Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
 				<source>Newsletter-subscriber-settings</source>
 				<target>Newsletter-Abonnenten-Einstellungen</target>
-			</trans-unit>
-			<trans-unit id="startingPoint" resname="startingPoint">
-				<source>Startingpoint</source>
-				<target>Datensatzsammlung</target>
 			</trans-unit>
 			<trans-unit id="template" resname="template">
 				<source>HTML-template:</source>
@@ -42,10 +38,6 @@
 			<trans-unit id="template.unsubscribeVerify" resname="template.unsubscribeVerify">
 				<source>Newsletter: verify unsubscription</source>
 				<target>Newsletter: Abmeldung verifizieren</target>
-			</trans-unit>
-			<trans-unit id="template.resend" resname="template.resend">
-				<source>Newsletter: resend verification email</source>
-				<target>Newsletter: Verifizierungsemail erneut anfordern</target>
 			</trans-unit>
 			<trans-unit id="template.list" resname="template.list">
 				<source>List view: all actions</source>
@@ -120,8 +112,8 @@
 				<target>Einen Honigtopf (honeypot) gegen Spam einschalten?</target>
 			</trans-unit>
 			<trans-unit id="settings.searchPidMode" resname="settings.searchPidMode">
-				<source>Search address (in tt_address/fe_users) in all specified folders?</source>
-				<target>Suche eine Adresse (in tt_address/fe_users) in allen angegebenen Ordnern?</target>
+				<source>Search address in tt_address in all specified folders?</source>
+				<target>Suche eine Adresse in tt_address in allen angegebenen Ordnern?</target>
 			</trans-unit>
 			<trans-unit id="settings.deleteMode" resname="settings.deleteMode">
 				<source>Hard or soft delete mode?</source>
@@ -152,20 +144,12 @@
 				<target>Bestätigungs-E-Mails einschalten?</target>
 			</trans-unit>
 			<trans-unit id="settings.dontAppendL" resname="settings.dontAppendL">
-				<source>Add language UID to email templates?</source>
+				<source>Aggiungere l'UID della lingua ai modelli di posta elettronica?</source>
 				<target>Hänge die Sprach-UID an die E-Mail-Templates an?</target>
-			</trans-unit>
-			<trans-unit id="settings.dmUnsubscribeMode" resname="settings.dmUnsubscribeMode">
-				<source>Direct mail unsubscribe mode: direct unsubscribe (no) or go to the unsubscribe page (yes)?</source>
-				<target>Direct mail Abmelde-Modus: Sofort-Abmeldung (nein) oder erst auf die Abmeldeseite weiterleiten (ja)?</target>
 			</trans-unit>
 			<trans-unit id="settings.module_sys_dmail_html" resname="settings.module_sys_dmail_html">
 				<source>Subscribe to a HTML-newsletter?</source>
 				<target>Newsletter im HTML-Format abonnieren?</target>
-			</trans-unit>
-			<trans-unit id="settings.module_sys_dmail_category" resname="settings.module_sys_dmail_category">
-				<source>UIDs of the direct-mail-categories (direct-mail) OR fe_groups (luxletter), e.g. 3,4</source>
-				<target>UIDs von direct-mail-Kategorien (direct-mail) oder fe_groups (luxletter), Z.B. 3,4</target>
 			</trans-unit>
 			<trans-unit id="parameters" resname="parameters">
 				<source>External parameters</source>
@@ -178,26 +162,6 @@
 			<trans-unit id="settings.parameters.email" resname="settings.parameters.email">
 				<source>Input-field name for the email-address (e.g. tx_myshop_pi1|newBestellung|email)</source>
 				<target>Feld-Name für die E-Mail-Adresse (z.B. tx_myshop_pi1|newBestellung|email)</target>
-			</trans-unit>
-			<trans-unit id="dashboard.widget.fixpunktRecentLogEntries.title" resname="dashboard.widget.fixpunktRecentLogEntries.title">
-				<source>fp_newsletter: recent 7 log entries</source>
-				<target>fp_newsletter: die letzten 7 Einträge</target>
-			</trans-unit>
-			<trans-unit id="dashboard.widget.fixpunktRecentLogEntries.description" resname="dashboard.widget.fixpunktRecentLogEntries.description">
-				<source>Shows date, name, email and status of the last entries</source>
-				<target>Zeigt Datum, Name, E-mail und Status der letzten Log-Einträge</target>
-			</trans-unit>
-			<trans-unit id="dashboard.widget.fixpunktLogStatus.title" resname="dashboard.widget.fixpunktLogStatus.title">
-				<source>fp_newsletter: status diagram</source>
-				<target>fp_newsletter: Status-Diagramm</target>
-			</trans-unit>
-			<trans-unit id="dashboard.widget.fixpunktLogStatus.description" resname="dashboard.widget.fixpunktLogStatus.description">
-				<source>Shows how often a status occurs</source>
-				<target>Zeigt, wie oft ein Status vorkommt</target>
-			</trans-unit>
-			<trans-unit id="dashboard.widget.fixpunktLogStatus.label" resname="dashboard.widget.fixpunktLogStatus.label">
-				<source>Status code, count</source>
-				<target>Anzahl</target>
 			</trans-unit>
 		</body>
 	</file>

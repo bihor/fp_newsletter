@@ -1,347 +1,196 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-03-31T15:06:06Z" product-name="fp_newsletter">
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file source-language="en" target-language="de" datatype="plaintext" original="messages" date="2018-06-15T15:10:55Z" product-name="fp_newsletter">
 		<header/>
 		<body>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
-				<source>Newsletter subscriber management</source>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1">
 				<target>Newsletter-Abonnenten-Management</target>
 			</trans-unit>
-			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description" resname="tx_fp_newsletter_domain_model_pi1.description">
-				<source>Plugin for newsletter subscription and unsubscription. Used table: tt_address or fe_users. A log is written.</source>
-				<target>Datenschutzkonformes Plugin für Newsletter-An- und Abmeldungen via tt_address oder fe_users.</target>
+			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description">
+				<target>Datenschutzkonformes Plugin für direct_mail An- und Abmeldungen via tt_address.</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log" resname="tx_fpnewsletter_domain_model_log">
-				<source>Log</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log">
 				<target>Log</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.date" resname="tx_fpnewsletter_domain_model_log.date">
-				<source>Date</source>
-				<target>Datum</target>
-			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.name" resname="tx_fpnewsletter_domain_model_log.name">
-				<source>Name</source>
-				<target>Name</target>
-			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gender" resname="tx_fpnewsletter_domain_model_log.gender">
-				<source>Gender</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender">
 				<target>Anrede</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.title" resname="tx_fpnewsletter_domain_model_log.title">
-				<source>Title</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.title">
 				<target>Titel</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.firstname" resname="tx_fpnewsletter_domain_model_log.firstname">
-				<source>Firstname</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.firstname">
 				<target>Vorname</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.lastname" resname="tx_fpnewsletter_domain_model_log.lastname">
-				<source>Lastname</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.lastname">
 				<target>Nachname</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.email" resname="tx_fpnewsletter_domain_model_log.email">
-				<source>E-Mail</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.email">
 				<target>E-Mail</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.address" resname="tx_fpnewsletter_domain_model_log.address">
-				<source>Address</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.address">
 				<target>Adresse</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.zip" resname="tx_fpnewsletter_domain_model_log.zip">
-				<source>Zip</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.zip">
 				<target>PLZ</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.city" resname="tx_fpnewsletter_domain_model_log.city">
-				<source>City</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.city">
 				<target>Ort</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.region" resname="tx_fpnewsletter_domain_model_log.region">
-				<source>Region</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.region">
 				<target>Region</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.country" resname="tx_fpnewsletter_domain_model_log.country">
-				<source>Country</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.country">
 				<target>Land</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.phone" resname="tx_fpnewsletter_domain_model_log.phone">
-				<source>Phone</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.phone">
 				<target>Telefon</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.mobile" resname="tx_fpnewsletter_domain_model_log.mobile">
-				<source>Mobile</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.mobile">
 				<target>Mobil</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.fax" resname="tx_fpnewsletter_domain_model_log.fax">
-				<source>Fax</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.fax">
 				<target>Fax</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.www" resname="tx_fpnewsletter_domain_model_log.www">
-				<source>WWW</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.www">
 				<target>WWW</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.position" resname="tx_fpnewsletter_domain_model_log.position">
-				<source>Position</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.position">
 				<target>Position</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.company" resname="tx_fpnewsletter_domain_model_log.company">
-				<source>Company</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.company">
 				<target>Institution/Organisation</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.categories" resname="tx_fpnewsletter_domain_model_log.categories">
-				<source>Categories (comma separated)</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.categories">
 				<target>Kategorien (Kommagetrennt)</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.status" resname="tx_fpnewsletter_domain_model_log.status">
-				<source>Status</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status">
 				<target>Status</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.securityhash" resname="tx_fpnewsletter_domain_model_log.securityhash">
-				<source>Security-hash</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.securityhash">
 				<target>Security-Hash</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.retoken" resname="tx_fpnewsletter_domain_model_log.retoken">
-				<source>reCaptcha-token</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.retoken">
 				<target>reCaptcha-token</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.mathcaptcha" resname="tx_fpnewsletter_domain_model_log.mathcaptcha">
-				<source>Spam protection</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.mathcaptcha">
 				<target>Math. Captcha</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.xcaptcha" resname="tx_fpnewsletter_domain_model_log.xcaptcha">
-				<source>enter the result of x</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.xcaptcha">
 				<target>geben Sie bitte das Rechenergebnis von x ein</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr" resname="tx_fpnewsletter_domain_model_log.gdpr">
-				<source>GDPR</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr">
 				<target>Datenschutz</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc1" resname="tx_fpnewsletter_domain_model_log.gdpr_desc1">
-				<source>I agree that the operator and publisher may inform me about selected topics. My data is used exclusively for this purpose. In particular, no disclosure to unauthorized third parties. I am aware that I can revoke my consent at any time with effect for the future. The</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc1">
 				<target>Ich bin damit einverstanden, dass mich der Betreiber und Herausgeber über ausgewählte Themen informieren darf. Meine Daten werden ausschließlich zu diesem Zweck genutzt. Insbesondere erfolgt keine Weitergabe an unberechtigte Dritte. Mir ist bekannt, dass ich meine Einwilligung jederzeit mit Wirkung für die Zukunft widerrufen kann. Es gilt die</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_link_text" resname="tx_fpnewsletter_domain_model_log.gdpr_link_text">
-				<source> Privacy Policy </source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_link_text">
 				<target>Datenschutzerklärung</target>
 			</trans-unit>
-			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc2" resname="tx_fpnewsletter_domain_model_log.gdpr_desc2">
-				<source>applies, which also includes other information about how to correct, delete and block my data.</source>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc2">
 				<target>, die auch weitere Informationen über Möglichkeiten zur Berichtigung, Löschung und Sperrung meiner Daten beinhaltet.</target>
 			</trans-unit>
-			<trans-unit id="subscribe" resname="subscribe">
-				<source>Subscribe</source>
+			<trans-unit id="subscribe">
 				<target>Anmelden</target>
 			</trans-unit>
-			<trans-unit id="unsubscribe" resname="unsubscribe">
-				<source>Unsubscribe</source>
+			<trans-unit id="unsubscribe">
 				<target>Abmelden</target>
 			</trans-unit>
-			<trans-unit id="unsubscribe_head" resname="unsubscribe_head">
-				<source>Unsubscribe from the newsletter</source>
+			<trans-unit id="unsubscribe_head">
 				<target>Vom Newsletter abmelden</target>
 			</trans-unit>
-			<trans-unit id="resendLink" resname="resendLink">
-				<source>Resend the verification email</source>
-				<target>Verifizierungsemail erneut senden</target>
-			</trans-unit>
-			<trans-unit id="resendButton" resname="resendButton">
-				<source>Resend the verification email</source>
-				<target>Verifizierungsemail erneut senden</target>
-			</trans-unit>
-			<trans-unit id="go_back" resname="go_back">
-				<source>go back</source>
+			<trans-unit id="go_back">
 				<target>Zurück</target>
 			</trans-unit>
-			<trans-unit id="email_send1" resname="email_send1">
-				<source>An email has been send to you. Please verify your email-address for the newsletter subscription.</source>
+			<trans-unit id="email_send1">
 				<target>Eine E-Mail mit einem Link zur Verifizierung Ihrer E-Mailadresse wurde Ihnen zugesandt. Erst nach Klick auf den Link in der E-Mail sind Sie zu unserem Newsletter angemeldet!</target>
 			</trans-unit>
-			<trans-unit id="email_send2" resname="email_send2">
-				<source>An email has been send to you. Please verify your email-address for the newsletter unsubscription.</source>
+			<trans-unit id="email_send2">
 				<target>Eine E-Mail mit einem Link zur Verifizierung Ihrer E-Mailadresse wurde Ihnen zugesandt. Erst nach Klick auf den Link in der E-Mail sind Sie von unserem Newsletter abgemeldet!</target>
 			</trans-unit>
-			<trans-unit id="email_verified" resname="email_verified">
-				<source>Your email-address is now verified. You are now subscribed to our newsletter with:</source>
+			<trans-unit id="email_verified">
 				<target>Ihre E-Mail-Adresse ist nun verifiziert. Sie sind nun zu unserem Newsletter angemeldet mit:</target>
 			</trans-unit>
-			<trans-unit id="email_verified2" resname="email_verified2">
-				<source>Your email-address is now verified. You are now unsubscribed from our newsletter with:</source>
+			<trans-unit id="email_verified2">
 				<target>Ihre E-Mail-Adresse ist nun verifiziert. Sie sind nun von unserem Newsletter abgemeldet mit:</target>
 			</trans-unit>
-			<trans-unit id="email_removed" resname="email_removed">
-				<source>You have unsubscribed our newsletter successfully.</source>
+			<trans-unit id="email_removed">
 				<target>Sie haben sich erfolgreich aus unserem Newsletter ausgetragen.</target>
 			</trans-unit>
-			<trans-unit id="email_resent" resname="email_resent">
-				<source>An verification email has been resent to:</source>
-				<target>Eine Bestätigungs-E-Mail wurde erneut gesendet an:</target>
-			</trans-unit>
-			<trans-unit id="wrong_email_not_found" resname="wrong_email_not_found">
-				<source>Error: no entry for verification found for this email:</source>
-				<target>Fehler: Für diese E-Mail wurde kein Eintrag zur Verifizierung gefunden:</target>
-			</trans-unit>
-			<trans-unit id="wrong_missing_subscribeVerifyUid" resname="wrong_missing_subscribeVerifyUid">
-				<source>Error: you must first define the setting subscribeVerifyUid (page where to verify the email address).</source>
-				<target>Fehler: Sie müssen zuerst die Einstellung &quot;subscribeVerifyUid&quot; definieren (Seite, auf der die E-Mail-Adresse überprüft werden soll).</target>
-			</trans-unit>
-			<trans-unit id="wrong_parameters" resname="wrong_parameters">
-				<source>Error: wrong parameters in the link.</source>
+			<trans-unit id="wrong_parameters">
 				<target>Fehler - Der Link konnte nicht verarbeitet werden.</target>
 			</trans-unit>
-			<trans-unit id="wrong_uid" resname="wrong_uid">
-				<source>Error: no entry for the given uid found.</source>
+			<trans-unit id="wrong_uid">
 				<target>Fehler - Es konnte kein passender Eintrag gefunden werden.</target>
 			</trans-unit>
-			<trans-unit id="wrong_hash" resname="wrong_hash">
-				<source>Error: the given hash in the link is wrong.</source>
+			<trans-unit id="wrong_hash">
 				<target>Fehler - Der Link konnte nicht verarbeitet werden.</target>
 			</trans-unit>
-			<trans-unit id="wrong_expired" resname="wrong_expired">
-				<source>Error: the link is expired!</source>
+			<trans-unit id="wrong_expired">
 				<target>Fehler - Der Link ist nicht mehr gültig.</target>
 			</trans-unit>
-			<trans-unit id="wrong_verified" resname="wrong_verified">
-				<source>Error: you have verified this email-address already!</source>
+			<trans-unit id="wrong_verified">
 				<target>Fehler - Der Eintrag wurde bereits verifiziert.</target>
 			</trans-unit>
-			<trans-unit id="wrong_subscribed" resname="wrong_subscribed">
-				<source>Error: you are already subscribed to our newsletter!</source>
+			<trans-unit id="wrong_subscribed">
 				<target>Fehler - Die E-Mailadresse ist bereits für den Newsletter registriert.</target>
 			</trans-unit>
-			<trans-unit id="wrong_unsubscribed" resname="wrong_unsubscribed">
-				<source>Error: you are not subscribed, so you can not be unsubscribed!</source>
+			<trans-unit id="wrong_unsubscribed">
 				<target>Fehler - Die E-Mailadresse ist nicht vorhanden.</target>
 			</trans-unit>
-			<trans-unit id="wrong_unsubscribed_parameters" resname="wrong_unsubscribed_parameters">
-				<source>Error: missing or wrong parameters for unsubcription!</source>
+			<trans-unit id="wrong_unsubscribed_parameters">
 				<target>Fehler - Der Abmelde-Link konnte nicht verarbeitet werden.</target>
 			</trans-unit>
-			<trans-unit id="wrong_user" resname="wrong_user">
-				<source>Error: user not found! Maybe you are already unsubscribed.</source>
+			<trans-unit id="wrong_user">
 				<target>Fehler - E-Mail nicht vorhanden. Die Abmeldung ist fehlgeschlagen.</target>
 			</trans-unit>
-			<trans-unit id="wrong_email" resname="wrong_email">
-				<source>Error: the given email-address is not valid!</source>
+			<trans-unit id="wrong_email">
 				<target>Fehler - Die E-Mailadresse ist nicht valide!</target>
 			</trans-unit>
-			<trans-unit id="wrong_captcha" resname="wrong_captcha">
-				<source>Error: the captcha is not valid!</source>
+			<trans-unit id="wrong_captcha">
 				<target>Fehler - Die Captcha-Prüfung verlief nicht erfolgreich!</target>
 			</trans-unit>
-			<trans-unit id="wrong_honeypot" resname="wrong_honeypot">
-				<source>Error: spam detected (honeypot)!</source>
+			<trans-unit id="wrong_honeypot">
 				<target>Fehler - Spam erkannt (Honeypot)!</target>
 			</trans-unit>
-			<trans-unit id="wrong_insert" resname="wrong_insert">
-				<source>Error: sql insert error!</source>
+			<trans-unit id="wrong_insert">
 				<target>Fehler - Der Datensatz konnte nicht eingefügt werden.</target>
 			</trans-unit>
-			<trans-unit id="required" resname="required">
-				<source>required.</source>
+			<trans-unit id="required">
 				<target>Pflichtfeld.</target>
 			</trans-unit>
-			<trans-unit id="errors" resname="errors">
-				<source>Error: please note this messages:</source>
+			<trans-unit id="errors">
 				<target>Folgende Fehler sind aufgetreten:</target>
 			</trans-unit>
-			<trans-unit id="error_email" resname="error_email">
-				<source>- you need to enter an valid email-address!</source>
+			<trans-unit id="error_email">
 				<target>- die E-Mailadresse ist nicht valide!</target>
 			</trans-unit>
-			<trans-unit id="error_gdpr" resname="error_gdpr">
-				<source>- you need to accept the GDPR!</source>
+			<trans-unit id="error_gdpr">
 				<target>- Sie müssen den Datenschutzbestimmungen zustimmen!</target>
 			</trans-unit>
-			<trans-unit id="error_not_here" resname="error_not_here">
-				<source>Error: this point should not be reached!</source>
+			<trans-unit id="error_not_here">
 				<target>Fehler: unbekannt!</target>
 			</trans-unit>
-			<trans-unit id="missing_tt_address" resname="missing_tt_address">
-				<source>Error: the extension tt_address is required if you use settings.table=tt_address!</source>
-				<target>Fehler: die Extension tt_address wird benötigt, wenn settings.table=tt_address gesetzt ist!</target>
-			</trans-unit>
-			<trans-unit id="missing_direct_mail" resname="missing_direct_mail">
-				<source>Error: the extension direct_mail is required if settings.module_sys_dmail_html!=-1 or settings.module_sys_dmail_category is set!</source>
-				<target>Fehler: die Extension direct_mail wird benötigt, wenn settings.module_sys_dmail_html=!-1 oder settings.module_sys_dmail_category gesetzt ist!</target>
-			</trans-unit>
-			<trans-unit id="email.dear-gender-first-and-last-name" resname="email.dear-gender-first-and-last-name">
-				<source>Dear %s %s %s,</source>
+			<trans-unit id="email.dear-gender-first-and-last-name">
 				<target>Guten Tag %s %s %s,</target>
 			</trans-unit>
-			<trans-unit id="email.dear-first-and-last-name" resname="email.dear-first-and-last-name">
-				<source>Dear %s %s,</source>
+			<trans-unit id="email.dear-first-and-last-name">
 				<target>Guten Tag %s %s,</target>
 			</trans-unit>
-			<trans-unit id="email.dear-first-name" resname="email.dear-first-name">
-				<source>Dear %s,</source>
+			<trans-unit id="email.dear-first-name">
 				<target>Guten Tag %s,</target>
 			</trans-unit>
-			<trans-unit id="email.dear" resname="email.dear">
-				<source>Hello,</source>
+			<trans-unit id="email.dear">
 				<target>Guten Tag,</target>
 			</trans-unit>
-			<trans-unit id="email.gender-first-and-last-name" resname="email.gender-first-and-last-name">
-				<source> %s %s %s</source>
+			<trans-unit id="email.gender-first-and-last-name">
 				<target> %s %s %s</target>
 			</trans-unit>
-			<trans-unit id="email.first-and-last-name" resname="email.first-and-last-name">
-				<source> %s %s</source>
+			<trans-unit id="email.first-and-last-name">
 				<target> %s %s</target>
 			</trans-unit>
-			<trans-unit id="email.first-name" resname="email.first-name">
-				<source> %s</source>
+			<trans-unit id="email.first-name">
 				<target> %s</target>
-			</trans-unit>
-			<trans-unit id="email.subscription" resname="email.subscription">
-				<source>Newsletter subscription</source>
-				<target>Newsletter-Anmeldung</target>
-			</trans-unit>
-			<trans-unit id="email.pleaseVerify" resname="email.pleaseVerify">
-				<source>you need to click at the verify link to verify your email-address:</source>
-				<target>um sich zu unserem Newsletter anzumelden, müssen Sie Ihre E-Mail-Adresse mit Klick auf diesen Link verifizieren:</target>
-			</trans-unit>
-			<trans-unit id="email.alternative" resname="email.alternative">
-				<source>Alternatively, you can also click on this button</source>
-				<target>Alternativ können Sie auch auf diesen Button klicken</target>
-			</trans-unit>
-			<trans-unit id="email.bestRegards" resname="email.bestRegards">
-				<source>Best regards</source>
-				<target>Mit freundlichen Grüßen</target>
-			</trans-unit>
-			<trans-unit id="email.unsubscription" resname="email.unsubscription">
-				<source>Newsletter unsubscription</source>
-				<target>Newsletter-Abmeldung</target>
-			</trans-unit>
-			<trans-unit id="email.pleaseVerifyUnsubscription" resname="email.pleaseVerifyUnsubscription">
-				<source>you need to click at the verify link to verify your unsubscription:</source>
-				<target>um sich von unserem Newsletter abzumelden, müssen Sie Ihre E-Mail-Adresse mit Klick auf diesen Link verifizieren:</target>
-			</trans-unit>
-			<trans-unit id="email.subscribedSuccess" resname="email.subscribedSuccess">
-				<source>You have just successfully registered for our newsletter.</source>
-				<target>Sie haben sich soeben erfolgreich zu unserem Newsletter angemeldet.</target>
-			</trans-unit>
-			<trans-unit id="email.unsubscribedSuccess" resname="email.unsubscribedSuccess">
-				<source>you are now unsubscribed from our newsletter.</source>
-				<target>Sie haben sich nun erfolgreich von unserem Newsletter abgemeldet.</target>
-			</trans-unit>
-			<trans-unit id="email.usedEmail" resname="email.usedEmail">
-				<source>Used email-address:</source>
-				<target>Verwendete E-Mail-Adresse:</target>
-			</trans-unit>
-			<trans-unit id="email.name" resname="email.name">
-				<source>Name:</source>
-				<target>Name:</target>
-			</trans-unit>
-			<trans-unit id="email.toAdminWantsTo" resname="email.toAdminWantsTo">
-				<source>This user wants to subscribe or to unsubscribe:</source>
-				<target>dieser User möchte sich gerne an- oder abmelden:</target>
-			</trans-unit>
-			<trans-unit id="email.toAdminSubscribed" resname="email.toAdminSubscribed">
-				<source>This user has just subscribed to the newsletter:</source>
-				<target>dieser User hat sich gerade zum Newsletter angemeldet:</target>
-			</trans-unit>
-			<trans-unit id="email.toAdminUnsubscribed" resname="email.toAdminUnsubscribed">
-				<source>This user has just unsubscribed from the newsletter:</source>
-				<target>dieser User hat sich gerade vom Newsletter abgemeldet:</target>
 			</trans-unit>
 		</body>
 	</file>
