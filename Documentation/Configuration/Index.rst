@@ -11,7 +11,7 @@
 Configuration Reference
 =======================
 
-Here you find all configuration possibilities.
+Here you find all configuration (settings) possibilities.
 
 
 .. _configuration-typoscript:
@@ -33,7 +33,7 @@ Property                          Data type   Description                       
 table                             string      tt_address, fe_users or none (empty value) supported                  tt_address
 optionalFields                    string      Optional fields: see below                                            gender,firstname,lastname
 optionalFieldsRequired            string      Optional required* fields: see below
-doubleOptOut                      boolean     Enable double out out unsubscription?                                 0
+doubleOptOut                      boolean     Enable double out out unsubscription?                                 1
 disableErrorMsg                   boolean     Disable some error messages (e.g. already/not subscribed)?            0
 enableUnsubscribeForm             boolean     Enable unsubscribe form at the subscribe page?**                      0
 enableUnsubscribeGdprAsHidden     boolean     Do not show the gdpr-checkbox at unsubscribe form?                    0
@@ -54,7 +54,7 @@ languageMode                      integer     0: uses -1 if L>0; 1: uses the sys
 dmUnsubscribeMode                 integer     0: direct unsubscription with link from direct_mail; 1: show form.    0
 module_sys_dmail_html             integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1
 module_sys_dmail_category         string      List of categories (uid) from sys_dmail_category or fe_groups°°
-password                          string      Password for the fe_users table. Every user will have the same pw!    joh316
+password                          string      Password for the fe_users table. random creates a random password.    random
 reCAPTCHA_site_key                string      Website-key for Google reCaptcha v3. curl needed!
 reCAPTCHA_secret_key              string      Secret key for Google reCaptcha v3
 mathCAPTCHA                       integer     Show a mathematical captcha? 0: no; 1: with 1 digit; 2: with 2 digits 0

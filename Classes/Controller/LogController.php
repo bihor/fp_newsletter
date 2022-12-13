@@ -117,7 +117,7 @@ class LogController extends ActionController
      *            Error-Code
      * @return void
      */
-    public function newAction(Log $log = null, $error = 0)
+    public function newAction(Log $log = null, int $error = 0)
     {
         $genders = [
             "0" => $this->settings['gender']['please'],
@@ -140,6 +140,13 @@ class LogController extends ActionController
             $tmp = explode(',', $requiredFields);
             foreach ($tmp as $field) {
                 $required[trim($field)] = 1;
+            }
+        }
+        if ($log) {
+            $securityhash = $this->request->hasArgument('securityhash') ? $this->request->getArgument('securityhash') : '';
+            if (empty($securityhash) || !is_string($securityhash) || !hash_equals($log->getSecurityhash(), $securityhash)) {
+                $error = 1;
+                $log = NULL;
             }
         }
         if (! $log) {
@@ -334,7 +341,8 @@ class LogController extends ActionController
         } else if ($error >= 8) {
             $this->redirect('new', null, null, [
                 'log' => $log,
-                'error' => $error
+                'error' => $error,
+                'securityhash' => $log->getSecurityhash()
             ]);
         }
         if ($this->settings['disableErrorMsg'] && ($error == 5 || $error == 6)) {
@@ -354,8 +362,10 @@ class LogController extends ActionController
     /**
      * action unsubscribe with form
      *
-     * @param Log|null $log Log-Entry
-     * @param int $error Error-Code
+     * @param Log|null $log
+     *            Log-Entry
+     * @param int $error
+     *            Error-Code
      * @return void
      * @throws \Exception
      */
@@ -363,6 +373,13 @@ class LogController extends ActionController
     {
         $storagePidsArray = $this->logRepository->getStoragePids();
         $pid = intval($storagePidsArray[0]);
+        if ($log) {
+            $securityhash = $this->request->hasArgument('securityhash') ? $this->request->getArgument('securityhash') : '';
+            if (empty($securityhash) || !is_string($securityhash) || !hash_equals($log->getSecurityhash(), $securityhash)) {
+                $error = 1;
+                $log = NULL;
+            }
+        }
         if (! $log) {
             $log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
             $log->setPid($pid);
@@ -413,7 +430,7 @@ class LogController extends ActionController
             $user = $this->logRepository->getUserFromExternal($u, $t);
             // zum testen: echo GeneralUtility::stdAuthCode($user, 'uid');
             if (is_array($user) && isset($user['email'])) {
-                if (preg_match('/^[0-9a-f]{8}$/', $a) && ($a == GeneralUtility::stdAuthCode($user, 'uid'))) {
+                if ($this->helpersUtility->checkDirectmailAuthCode($user, $a)) {
                     if ($this->settings['dmUnsubscribeMode'] == 1) {
                         $this->redirect('unsubscribe', null, null, [
                             'defaultEmail' => $user['email']
@@ -441,8 +458,8 @@ class LogController extends ActionController
     /**
      * action delete a user from the DB: unsubscribe him from the newsletter
      *
-     * @param Log $log
-     * @param array $user
+     * @param Log|null $log
+     * @param array $user tt_address oder fe_users Daten
      * @return void
      */
     public function deleteAction(Log $log = null, array $user = [])
@@ -450,112 +467,130 @@ class LogController extends ActionController
         $error = 0;
         $messageUid = 0;
         $skipCaptchaTest = false;
+        $checkSession = false;
         $storagePidsArray = $this->logRepository->getStoragePids();
-        if (! $log && isset($user['email'])) {
+        if ($log) {
+            // if we come from new/unsubscribeAction: an email must be present, but no UID!
+            if ($log->getUid() || !$log->getEmail()) {
+              $error = 1;
+            }
+        } elseif (isset($user['email'])) {
+            // we came from unsubscribeDMAction: an email must be present too!
             $log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
             $log->setEmail($user['email']);
             $log->setPid($user['pid']);
+            $checkSession = true;
         }
-        $email = $log->getEmail();
-        $pid = $log->getPid();
-        if (! $pid) {
-            $pid = intval($storagePidsArray[0]);
-        }
-        // zum testen: var_dump ($storagePidsArray);
-        $hash = md5(uniqid($log->getEmail(), true));
-        $log->setSecurityhash($hash);
-        $dbuidext = 0;
-        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
-        $sys_language_uid = intval($languageAspect->getId());
-        if ($sys_language_uid > 0 && ! $this->settings['languageMode']) {
-            $log->set_languageUid(-1);
-        } else {
-            $log->set_languageUid($sys_language_uid);
-        }
+        if ($error == 0) {
+            $email = $log->getEmail();
+            $pid = $log->getPid();
+            if (! $pid) {
+                $pid = intval($storagePidsArray[0]);
+            }
+            // zum testen: var_dump ($storagePidsArray);
+            $hash = md5(uniqid($log->getEmail(), true));
+            $log->setSecurityhash($hash);
+            $dbuidext = 0;
+            $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+            $sys_language_uid = intval($languageAspect->getId());
+            if ($sys_language_uid > 0 && !$this->settings['languageMode']) {
+                $log->set_languageUid(-1);
+            } else {
+                $log->set_languageUid($sys_language_uid);
+            }
 
-        if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
-            if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
-                if ($this->settings['searchPidMode'] == 1) {
-                    $dbuidext = $this->logRepository->getUidFromExternal($email, $storagePidsArray, $this->settings['table']);
-                } else {
-                    $dbuidext = $this->logRepository->getUidFromExternal($email, $pid, $this->settings['table']);
+            if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
+                if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
+                    if ($this->settings['searchPidMode'] == 1) {
+                        $dbuidext = $this->logRepository->getUidFromExternal($email, $storagePidsArray, $this->settings['table']);
+                    } else {
+                        $dbuidext = $this->logRepository->getUidFromExternal($email, $pid, $this->settings['table']);
+                    }
+                    // zum testen: echo "uid $dbuidext mit $email, $pid";
+                    if ($dbuidext > 0) {
+                        $extAddress = $this->logRepository->getUserFromExternal($dbuidext, $this->settings['table']);
+                        $log->setLastname($extAddress['last_name']);
+                        $log->setFirstname($extAddress['first_name']);
+                        $log->setTitle($extAddress['title']);
+                        if ($this->settings['table'] == 'tt_address' && $extAddress['gender']) {
+                            $gender = 0;
+                            if ($extAddress['gender'] == 'f') $gender = 1;
+                            elseif ($extAddress['gender'] == 'm') $gender = 2;
+                            elseif ($extAddress['gender'] == 'v') $gender = 3;
+                            $log->setGender($gender);
+                        }
+                    }
                 }
-                // zum testen: echo "uid $dbuidext mit $email, $pid";
-                if ($dbuidext > 0) {
-                    $extAddress = $this->logRepository->getUserFromExternal($dbuidext,$this->settings['table']);
-                    $log->setLastname($extAddress['last_name']);
-                    $log->setFirstname($extAddress['first_name']);
-                    $log->setTitle($extAddress['title']);
-                    if ($this->settings['table']=='tt_address' && $extAddress['gender']) {
-                        $gender = 0;
-                        if ($extAddress['gender']=='f') $gender = 1;
-                        elseif ($extAddress['gender']=='m') $gender = 2;
-                        elseif ($extAddress['gender']=='v') $gender = 3;
-                        $log->setGender($gender);
+            } else {
+                $error = 8;
+            }
+            if ($this->settings['table'] && ($dbuidext == 0)) {
+                $error = 7;
+            }
+            if ($checkSession) {
+                // wenn man von unsubscribeDM kommt, muss die Session noch überprüft werden
+                $a = $GLOBALS['TSFE']->fe_user->getKey('ses', 'authDM');
+                if ($a) {
+                    // authCode von unsubscribeDM ist vorhanden!
+                    $GLOBALS['TSFE']->fe_user->setKey('ses', 'authDM', '');
+                    $GLOBALS['TSFE']->fe_user->storeSessionData();
+                    if ($this->helpersUtility->checkDirectmailAuthCode($user, $a)) {
+                        $skipCaptchaTest = true;
+                    } else {
+                        $error = 1;
+                    }
+                }
+                if (!$a) {
+                    $error = 1;
+                }
+            }
+            if (!$skipCaptchaTest) {
+                if ($this->settings['reCAPTCHA_site_key'] && $this->settings['reCAPTCHA_secret_key']) {
+                    $requestFactory = GeneralUtility::makeInstance(RequestFactory::class);
+
+                    $url = "https://www.google.com/recaptcha/api/siteverify";
+                    $additionalOptions = [
+                        'form_params' => [
+                            'secret' => $this->settings['reCAPTCHA_secret_key'],
+                            'response' => $log->getRetoken()
+                        ]
+                    ];
+
+                    $request = $requestFactory->request($url, 'POST', $additionalOptions);
+
+                    if ($request->getStatusCode() === 200) {
+                        $resultBody = json_decode($request->getBody()->getContents(), true);
+                        if (!$resultBody['success'])
+                            $error = 9;
+
+                    } else {
+                        $error = 9;
+                    }
+                }
+                if ($this->settings['mathCAPTCHA']) {
+                    $tmp_error = $this->helpersUtility->checkMathCaptcha(intval($log->getMathcaptcha()));
+                    if ($tmp_error > 0) {
+                        $error = $tmp_error;
                     }
                 }
             }
-        } else {
-            $error = 8;
-        }
-        if ($this->settings['table'] && ($dbuidext == 0)) {
-            $error = 7;
-        }
-        $a = $GLOBALS['TSFE']->fe_user->getKey('ses', 'authDM');
-        if ($a) {
-            // authCode von unsubscribeDM ist vorhanden!
-            $GLOBALS['TSFE']->fe_user->setKey('ses', 'authDM', '');
-            $GLOBALS['TSFE']->fe_user->storeSessionData();
-            if (preg_match('/^[0-9a-f]{8}$/', $a) && ($a == GeneralUtility::stdAuthCode($user, 'uid'))) {
-                $skipCaptchaTest = true;
+            if ($this->settings['honeypot'] && $log->getExtras()) {
+                // Der Honigtopf ist gefüllt
+                $error = 10;
             }
-        }
-        if (! $skipCaptchaTest) {
-            if ($this->settings['reCAPTCHA_site_key'] && $this->settings['reCAPTCHA_secret_key']) {
-                $requestFactory = GeneralUtility::makeInstance(RequestFactory::class);
-
-                $url = "https://www.google.com/recaptcha/api/siteverify";
-                $additionalOptions = [
-                    'form_params' => [
-                        'secret' => $this->settings['reCAPTCHA_secret_key'],
-                        'response' => $log->getRetoken()
-                    ]
-                ];
-
-                $request = $requestFactory->request($url, 'POST', $additionalOptions);
-
-                if ($request->getStatusCode() === 200) {
-                    $resultBody = json_decode($request->getBody()->getContents(), true);
-                    if (!$resultBody['success'])
-                        $error = 9;
-
-                } else {
-                    $error = 9;
-                }
+            if ($error == 7) {
+                $log->setStatus(8);
+            } else {
+                $log->setStatus(0);
             }
-            if ($this->settings['mathCAPTCHA']) {
-                $tmp_error = $this->helpersUtility->checkMathCaptcha(intval($log->getMathcaptcha()));
-                if ($tmp_error > 0) {
-                    $error = $tmp_error;
-                }
+            if ($log->getUid() > 0) {
+                $this->logRepository->update($log);
+            } else {
+                $this->logRepository->add($log);
             }
+            $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+            $persistenceManager->persistAll();
         }
-        if ($this->settings['honeypot'] && $log->getExtras()) {
-            // Der Honigtopf ist gefüllt
-            $error = 10;
-        }
-        if ($error == 7) {
-            $log->setStatus(8);
-        } else {
-            $log->setStatus(0);
-        }
-        if ($log->getUid() > 0) {
-            $this->logRepository->update($log);
-        } else {
-            $this->logRepository->add($log);
-        }
-        $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
-        $persistenceManager->persistAll();
 
         if (! $error) {
             if ($this->settings['doubleOptOut']) {
@@ -586,7 +621,8 @@ class LogController extends ActionController
         } else if ($error >= 8) {
             $this->redirect('unsubscribe', null, null, [
                 'log' => $log,
-                'error' => $error
+                'error' => $error,
+                'securityhash' => $log->getSecurityhash()
             ]);
         }
         if ($this->settings['disableErrorMsg'] && ($error == 7)) {
@@ -670,6 +706,9 @@ class LogController extends ActionController
                             } else if ($this->settings['table'] == 'fe_users' && $this->settings['password']) {
                                 $frontendUser = new \TYPO3\CMS\Extbase\Domain\Model\FrontendUser();
                                 $password = $this->settings['password'];
+                                if ($password == 'random') {
+                                    $password = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\Random::class)->generateRandomBytes(20);
+                                }
                                 $hashInstance = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory::class)->getDefaultHashInstance('FE');
                                 $hashedPassword = $hashInstance->getHashedPassword($password);
                                 $frontendUser->setUsername($dbemail);
@@ -810,7 +849,8 @@ class LogController extends ActionController
      *
      * @param int $uid uid of the user
      */
-    protected function deleteThisUser($uid) {
+    protected function deleteThisUser($uid)
+    {
         if ($this->settings['table'] == 'tt_address') {
             if ($this->settings['module_sys_dmail_category']) {
                 $dmail_cats = str_replace(' ', '', $this->settings['module_sys_dmail_category']);

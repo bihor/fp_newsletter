@@ -5,6 +5,9 @@
 <f:flashMessages />
 </div>
 <f:if condition="{error} > 0">
+	<f:if condition="{error} == 1">
+		<p class="alert alert-danger">{f:translate(key: 'wrong_parameters', default: 'wrong parameters')}</p>
+	</f:if>
 	<f:if condition="{error} == 8">
 		<p class="alert alert-danger">{f:translate(key: 'wrong_email', default: 'ivalid email')}</p>
 	</f:if>

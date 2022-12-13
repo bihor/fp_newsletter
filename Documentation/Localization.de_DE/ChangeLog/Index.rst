@@ -101,6 +101,11 @@ Wichtig: Layout angepasst an Bootstrap 4.
 IDs im Abmeldeformular geändert.
 Backend: Vorschau hinzugefügt.
 
-Version 3.2.5: Switch von cURL zu RequestFactory.
-Mathematical-captcha-check erweitert.
-Bugfix #59: no categories added in tt_address
+Version 3.2.6: Switch von cURL zu RequestFactory.
+Bugfix: no categories added in tt_address.
+PHP-E-Mail-Validierung hinzugefügt.
+Security fix: das Standard-Passwort für fe_users durch ein Zufallspasswort ersetzt.
+Security fix: mathematical-captcha-check erweitert (man konnte bisher mogeln).
+Security fix: settings.doubleOptOut von 0 auf 1 gesetzt. Kann man auf 0 setzen, wenn man kein double opt out beim abmelden haben will.
+Security fix: einen weiteren Check zur Abmelde-Funktion hinzugefügt (man konnte bisher alle Empfänger abmelden).
+Security fix: "Information Disclosure" in der  new- und unsubscribe-action.

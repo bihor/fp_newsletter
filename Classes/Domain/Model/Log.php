@@ -65,6 +65,7 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * E-Mail
      * 
      * @Extbase\Validate("NotEmpty")
+     * @Extbase\Validate("EmailAddress")
      * @var string
      */
     protected $email = '';

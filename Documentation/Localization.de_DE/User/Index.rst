@@ -11,7 +11,7 @@
 Benutzerhandbuch
 ================
 
-Die Extension kann über TypoScript und FlexForms konfuguriert werden.
+Die Extension kann über TypoScript und FlexForms konfiguriert werden.
 Benutzer werden eher die FlexForms benutzen. Hier ein Beispiel der FlexForm-Einstellungen:
 
 .. figure:: ../../Images/UserManual/BackendView.png

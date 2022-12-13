@@ -50,6 +50,12 @@ Man kann folgende keys in den E-Mail-Templates benutzen:
 email.dear-gender-first-and-last-name, email.dear-first-and-last-name, email.dear-first-name, email.dear,
 email.gender-first-and-last-name, email.first-and-last-name und email.first-name.
 
+Beachte
+~~~~~~~
+
+Standardmässig wird neben der E-Mail-Adresse auch Anrede und Name in den E-Mails verwendet.
+Es wird empfohlen, diese zu highlighten, um Spam/Pishing-Emails vorzubeugen.
+
 
 .. _admin-fluid-page-template:
 
@@ -95,6 +101,25 @@ Die 3 Werte ###USER_uid###, ###SYS_TABLE_NAME### und ###SYS_AUTHCODE### wird dir
 Du musst nur den Link mit deinem Abmeldelink ersetzen.
 Die Extension fp_newsletter wird die Parameter überprüfen und den angegebenen Benutzer sofort abmelden.
 Achtung: bei der Zielseite muss dabei das Template "Newsletter: Abmeldung via Link" ausgewählt sein.
+
+
+.. _admin-security:
+
+Sicherheitshinweis zu Version 3.2.6
+-----------------------------------
+
+Falls du eine ältere Version benutzt, solltest du folgendes über die behobenen Fixes wissen:
+
+1. Man konnte bisher alle Newsletter-Empfänger abmelden.
+
+2. Der TypoScript-Wert für plugin.tx_fpnewsletter.settings.doubleOptOut wurde auf 1 gesetzt.
+  Du könntest diesen Wert auch auf 1 setzen, falls nichts gegen double-opt-out bei der Abmeldung spricht.
+
+3. Es war möglich, beim mathematischen Captcha-Check zu mogeln.
+
+4. Es war möglich, Daten über andere Newsletter-Empfänger bei der An- oder Abmeldung zu erfahren.
+
+Deshalb sollte man unbedingt updaten!
 
 
 .. _admin-faq:

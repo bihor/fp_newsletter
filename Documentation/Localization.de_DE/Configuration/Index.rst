@@ -11,8 +11,8 @@
 Konfiguration
 =============
 
-Hier sieht man, welche TypoScript-Einstellungen vorgenommen werden können. Es gibt mehr TypoScript-Einstellungen
-als FlexForm-Einstellungen, was bedeutet, dass man nicht alles per FlexForms einstellen kann.
+Hier sieht man, welche TypoScript-Einstellungen (settings) vorgenommen werden können. Es gibt mehr
+TypoScript-Einstellungen als FlexForm-Einstellungen, was bedeutet, dass man nicht alles per FlexForms einstellen kann.
 
 
 .. _configuration-typoscript:
@@ -34,7 +34,7 @@ Feld                              Typ         Beschreibung                      
 table                             string      tt_address, fe_users oder keine Tabelle (leerer Wert) möglich         tt_address
 optionalFields                    string      Optionale Werte: siehe weiter unten                                   gender,firstname,lastname
 optionalFieldsRequired            string      Optionale erforderliche* Werte: siehe weiter unten
-doubleOptOut                      boolean     Double opt out Abmeldung einschalten?                                 0
+doubleOptOut                      boolean     Double opt out Abmeldung einschalten?                                 1
 disableErrorMsg                   boolean     Manche Fehlermeldungen ignorieren (z.B. bereits/nicht angemeldet)?    0
 enableUnsubscribeForm             boolean     Abmeldeformular auf der Anmeldeseite mit ausgeben?**                  0
 enableUnsubscribeGdprAsHidden     boolean     DSGVO-Checkbox beim Abmeldeformular verbergen?                        0
@@ -55,7 +55,7 @@ languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte 
 dmUnsubscribeMode                 integer     0: Sofort-Abmeldung durch Link aus direct_mail; 1: zeige Abmeldeform. 0
 module_sys_dmail_html             integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1
 module_sys_dmail_category         string      Liste von Kategorien (uid) aus sys_dmail_category oder fe_groups°°
-password                          string      Passwort für die fe_users Tabelle. Jeder hat das selbe Passwort!      joh316
+password                          string      Passwort für die fe_users Tabelle. random erzeugt ein zufälliges Pw.  random
 reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3. curl wird benötigt!
 reCAPTCHA_secret_key              string      Geheimer Schlüssel für Google reCaptcha v3
 mathCAPTCHA                       integer     Zeige ein mathematisches Captcha? 0: nein; 1, 2: ja, mit 1-2 Ziffern  0

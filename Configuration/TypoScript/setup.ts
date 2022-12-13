@@ -13,16 +13,12 @@ plugin.tx_fpnewsletter {
   }
   features {
     skipDefaultArguments = 1
-    requireCHashArgumentForActionArguments = 0
-  }
-  mvc {
-    #callDefaultActionIfActionCantBeResolved = 1
   }
   settings {
 	table = tt_address
 	optionalFields = gender,firstname,lastname
 	optionalFieldsRequired =
-	doubleOptOut = 0
+	doubleOptOut = 1
 	disableErrorMsg = 0
 	enableUnsubscribeForm = 0
 	enableUnsubscribeGdprAsHidden = 0
@@ -43,7 +39,7 @@ plugin.tx_fpnewsletter {
 	languageMode = 0
 	module_sys_dmail_html = 1
 	module_sys_dmail_category =
-	password = joh316
+	password = random
 	reCAPTCHA_site_key =
 	reCAPTCHA_secret_key =
 	mathCAPTCHA = 0

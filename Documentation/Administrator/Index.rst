@@ -48,6 +48,12 @@ You can use this translate keys in the email templates:
 email.dear-gender-first-and-last-name, email.dear-first-and-last-name, email.dear-first-name, email.dear,
 email.gender-first-and-last-name, email.first-and-last-name and email.first-name.
 
+Note
+~~~~
+
+By default the gender and name is used in emails too and thereby the values of the first- and lastname field should be
+highlighted as user input in email templates to prevent potential spam-/phishing emails.
+
 
 .. _admin-fluid-page-template:
 
@@ -93,6 +99,25 @@ The 3 values ###USER_uid###, ###SYS_TABLE_NAME### and ###SYS_AUTHCODE### will be
 Replace the link with the link to your unsubscribe page.
 The extension fp_newsletter will check the parameters and will unsubscribe the given user directly.
 Note: at the target page you need to set the template "Newsletter: unsubscribe via link" in this extension.
+
+
+.. _admin-security:
+
+Security-notice to version 3.2.6
+--------------------------------
+
+If you use older versions, you should know this information about the fixed security issues:
+
+1. It was possible to unsubscribe all users.
+
+2. The TypoScript value for plugin.tx_fpnewsletter.settings.doubleOptOut was set to 1 by default.
+  You can set it to 1 too if you want to enable double opt out for the unsubscription.
+
+3. It was possible to cheat at the mathematical captcha check.
+
+4. It was possible to get user data at the new- and unsubscribe-action.
+
+Therefore you should update the extension!
 
 
 .. _admin-faq:
