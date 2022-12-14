@@ -56,7 +56,7 @@ dmUnsubscribeMode                 integer     0: Sofort-Abmeldung durch Link aus
 module_sys_dmail_html             integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1
 module_sys_dmail_category         string      Liste von Kategorien (uid) aus sys_dmail_category oder fe_groups°°
 password                          string      Passwort für die fe_users Tabelle. random erzeugt ein zufälliges Pw.  random
-reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3. curl wird benötigt!
+reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3.
 reCAPTCHA_secret_key              string      Geheimer Schlüssel für Google reCaptcha v3
 mathCAPTCHA                       integer     Zeige ein mathematisches Captcha? 0: nein; 1, 2: ja, mit 1-2 Ziffern  0
 honeypot                          boolean     Einen Honigtopf (honeypot) gegen Spam einschalten?                    0
@@ -103,12 +103,26 @@ Beispiele
 Sprachen
 ^^^^^^^^
 
-Man kann die Texte für andere Sprachen so überschreiben::
+Man kann die Texte für andere Sprachen so überschreiben (falls preferXlfFile=0, sonst siehe letzte Zeile)::
 
   [siteLanguage("languageId") == "1"]
   plugin.tx_fpnewsletter.settings.company = Your company
-  plugin.tx_fpnewsletter._LOCAL_LANG.de.email.pleaseVerify = Bitte verifiziere deine E-Mail-Adresse durch Klick auf diesen Link:
+  plugin.tx_fpnewsletter.settings.gender.please = Please select your gender
+  plugin.tx_fpnewsletter.settings.gender.mr = Mr.
+  plugin.tx_fpnewsletter.settings.gender.mrs = Mrs.
+  plugin.tx_fpnewsletter.settings.email.senderMail = example@test.com
+  plugin.tx_fpnewsletter.settings.email.senderName = Sender-name
+  plugin.tx_fpnewsletter.settings.email.subscribeVerifySubject = Please verify your email
+  plugin.tx_fpnewsletter.settings.email.unsubscribeVerifySubject = Please verify your email
+  plugin.tx_fpnewsletter.settings.email.adminSubscribeSubject = New newsletter-subscription
+  plugin.tx_fpnewsletter.settings.email.adminUnsubscribeSubject = New newsletter-unsubscription
+  plugin.tx_fpnewsletter.settings.email.subscribedSubject = Newsletter-subscription confirmation
+  plugin.tx_fpnewsletter.settings.email.unsubscribedSubject = Newsletter-unsubscription confirmation
   [END]
+  plugin.tx_fpnewsletter._LOCAL_LANG.de.email.pleaseVerify = Bitte verifiziere deine E-Mail-Adresse durch Klick auf diesen Link:
+
+Achtung: wenn man den Text der Standardsprache überschreiben will, entfernt man die beiden Zeilen:
+[siteLanguage("languageId") == "1"] und [END].
 
 Achtung: wenn man andere Sprachen in den Emails verwenden will, sollte man das Kapitel "Administrator-Handbuch" lesen.
 Bei settings.email.dontAppendL=0  ist die Standardsprache deutsch. Diese Templates enden ab Version 3.0.0 mit 0.html.

@@ -119,12 +119,7 @@ class LogController extends ActionController
      */
     public function newAction(Log $log = null, int $error = 0)
     {
-        $genders = [
-            "0" => $this->settings['gender']['please'],
-            "1" => $this->settings['gender']['mrs'],
-            "2" => $this->settings['gender']['mr'],
-            "3" => $this->settings['gender']['divers']
-        ];
+        $genders = $this->helpersUtility->getGenders($this->settings['preferXlfFile'], $this->settings['gender']);
         $optional = [];
         $required = [];
         $optionalFields = $this->settings['optionalFields'];
@@ -143,7 +138,7 @@ class LogController extends ActionController
             }
         }
         if ($log) {
-            $securityhash = $this->request->hasArgument('securityhash') ? $this->request->getArgument('securityhash') : '';
+			$securityhash = $this->request->hasArgument('securityhash') ? $this->request->getArgument('securityhash') : '';
             if (empty($securityhash) || !is_string($securityhash) || !hash_equals($log->getSecurityhash(), $securityhash)) {
                 $error = 1;
                 $log = NULL;
@@ -190,6 +185,37 @@ class LogController extends ActionController
     }
 
     /**
+     * action form, cachable
+     *
+     * @return void
+     */
+    public function formAction()
+    {
+        $genders = $this->helpersUtility->getGenders($this->settings['preferXlfFile'], $this->settings['gender']);
+        $optional = [];
+        $required = [];
+        $optionalFields = $this->settings['optionalFields'];
+        $requiredFields = $this->settings['optionalFieldsRequired'];
+        if ($optionalFields) {
+            $tmp = explode(',', $optionalFields);
+            foreach ($tmp as $field) {
+                $optional[trim($field)] = 1;
+                $required[trim($field)] = 0;
+            }
+        }
+        if ($requiredFields) {
+            $tmp = explode(',', $requiredFields);
+            foreach ($tmp as $field) {
+                $required[trim($field)] = 1;
+            }
+        }
+        $this->settings['mathCAPTCHA'] = 0;
+        $this->view->assign('genders', $genders);
+        $this->view->assign('optional', $optional);
+        $this->view->assign('required', $required);
+    }
+
+    /**
      * action resend
      *
      * @return void
@@ -210,7 +236,7 @@ class LogController extends ActionController
                 $log = $this->logRepository->getByEmailAndPid($email, $storagePidsArray, 0, $maxDate);
             }
             if ($log) {
-                $this->prepareEmail($log, true, false, true, false, $log->getSecurityhash(), $subscribeVerifyUid);
+                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, true, false, $log->getSecurityhash(), $subscribeVerifyUid);
             }
         }
         $this->view->assign('email', $email);
@@ -333,11 +359,11 @@ class LogController extends ActionController
             $persistenceManager->persistAll();
         }
         if (! $error) {
-            $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
-            $this->prepareEmail($log, true, false, true, $toAdmin, $hash, $subscribeVerifyUid);
             $log->setStatus(1);
             $this->logRepository->update($log);
             $persistenceManager->persistAll();
+            $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
+            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, true, $toAdmin, $hash, $subscribeVerifyUid);
         } else if ($error >= 8) {
             $this->redirect('new', null, null, [
                 'log' => $log,
@@ -374,7 +400,7 @@ class LogController extends ActionController
         $storagePidsArray = $this->logRepository->getStoragePids();
         $pid = intval($storagePidsArray[0]);
         if ($log) {
-            $securityhash = $this->request->hasArgument('securityhash') ? $this->request->getArgument('securityhash') : '';
+			$securityhash = $this->request->hasArgument('securityhash') ? $this->request->getArgument('securityhash') : '';
             if (empty($securityhash) || !is_string($securityhash) || !hash_equals($log->getSecurityhash(), $securityhash)) {
                 $error = 1;
                 $log = NULL;
@@ -456,6 +482,74 @@ class LogController extends ActionController
     }
 
     /**
+     * action unsubscribe with Luxletter link
+     *
+     * @return void
+     */
+    public function unsubscribeLuxAction()
+    {
+        $error = 0;
+        $luxletterParams = $_GET['tx_luxletter_fe'];
+        if (!is_array($luxletterParams)) {
+            $error = 10;
+        } else {
+            $user = $luxletterParams['user'];
+            $newsletter = $luxletterParams['newsletter'];
+            $hash = $luxletterParams['hash'];
+            if (!$user || !$newsletter || !$hash) {
+                $error = 10;
+            } else {
+                $userArray = $this->logRepository->getUserFromExternal($user, 'fe_users');
+                $newsletterArray = $this->logRepository->getUserFromExternal($newsletter, 'tx_luxletter_domain_model_newsletter');
+                if (is_array($userArray) && isset($userArray['email']) && isset($userArray['usergroup']) &&
+                    is_array($newsletterArray) && isset($newsletterArray['receivers'])) {
+                    // ist user in versendeter newsletter-Gruppe?
+                    $match = false;
+                    $usergroups = explode(",", $userArray['usergroup']);
+                    $receivers = explode(",", $newsletterArray['receivers']);
+                    foreach ($usergroups as $group) {
+                        foreach ($receivers as $receiver) {
+                            if ($group == $receiver) {
+                                $match = true;
+                                break;
+                            }
+                        }
+                    }
+                    if ($match) {
+                        // stimmt der angegebene hash überein?
+                        if ($this->helpersUtility->checkLuxletterHash($userArray, $hash)) {
+                            // Abmeldung kann beginnen!
+                            if ($this->settings['dmUnsubscribeMode'] == 1) {
+                                $this->redirect('unsubscribe', null, null, [
+                                    'defaultEmail' => $userArray['email']
+                                ]);
+                            } else {
+                                // unsubscribe user now
+                                $GLOBALS['TSFE']->fe_user->setKey('ses', 'authLux', $hash);
+                                $GLOBALS['TSFE']->fe_user->storeSessionData();
+                                $this->redirect('delete', null, null, [
+                                    'user' => $userArray
+                                ]);
+                            }
+                        } else {
+                            $error = 10;
+                        }
+                    } else {
+                        $error = 11;
+                    }
+                } else {
+                    if (!isset($userArray['email'])) {
+                        $error = 11;
+                    } else {
+                        $error = 10;
+                    }
+                }
+            }
+        }
+        $this->view->assign('error', $error);
+    }
+
+    /**
      * action delete a user from the DB: unsubscribe him from the newsletter
      *
      * @param Log|null $log
@@ -472,10 +566,10 @@ class LogController extends ActionController
         if ($log) {
             // if we come from new/unsubscribeAction: an email must be present, but no UID!
             if ($log->getUid() || !$log->getEmail()) {
-              $error = 1;
+                $error = 1;
             }
         } elseif (isset($user['email'])) {
-            // we came from unsubscribeDMAction: an email must be present too!
+            // we came from unsubscribeDMAction or unsubscribeLuxAction: an email and session must be present too!
             $log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
             $log->setEmail($user['email']);
             $log->setPid($user['pid']);
@@ -528,7 +622,7 @@ class LogController extends ActionController
                 $error = 7;
             }
             if ($checkSession) {
-                // wenn man von unsubscribeDM kommt, muss die Session noch überprüft werden
+                // wenn man von unsubscribeDM oder unsubscribeLux kommt, muss die Session noch überprüft werden
                 $a = $GLOBALS['TSFE']->fe_user->getKey('ses', 'authDM');
                 if ($a) {
                     // authCode von unsubscribeDM ist vorhanden!
@@ -538,6 +632,18 @@ class LogController extends ActionController
                         $skipCaptchaTest = true;
                     } else {
                         $error = 1;
+                    }
+                } else {
+                    $a = $GLOBALS['TSFE']->fe_user->getKey('ses', 'authLux');
+                    if ($a) {
+                        // hash von unsubscribeLux ist vorhanden!
+                        $GLOBALS['TSFE']->fe_user->setKey('ses', 'authLux', '');
+                        $GLOBALS['TSFE']->fe_user->storeSessionData();
+                        if ($this->helpersUtility->checkLuxletterHash($user, $a)) {
+                            $skipCaptchaTest = true;
+                        } else {
+                            $error = 1;
+                        }
                     }
                 }
                 if (!$a) {
@@ -599,24 +705,24 @@ class LogController extends ActionController
                     // Fallback
                     $unsubscribeVerifyUid = intval($GLOBALS["TSFE"]->id);
                 }
-                $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
-                $this->prepareEmail($log, false, false, true, $toAdmin, $hash, $unsubscribeVerifyUid);
-                $messageUid = $this->settings['unsubscribeMessageUid'];
                 $log->setStatus(3);
                 $this->logRepository->update($log);
                 $persistenceManager->persistAll();
+                $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
+                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, true, $toAdmin, $hash, $unsubscribeVerifyUid);
+                $messageUid = $this->settings['unsubscribeMessageUid'];
             } else {
                 if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
                     $this->deleteThisUser($dbuidext);
                 }
-                if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
-                    $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                    $this->prepareEmail($log, false, true, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
-                }
-                $messageUid = $this->settings['unsubscribeVerifyMessageUid'];
                 $log->setStatus(7);
                 $this->logRepository->update($log);
                 $persistenceManager->persistAll();
+                if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
+                    $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
+                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
+                }
+                $messageUid = $this->settings['unsubscribeVerifyMessageUid'];
             }
         } else if ($error >= 8) {
             $this->redirect('unsubscribe', null, null, [
@@ -706,7 +812,7 @@ class LogController extends ActionController
                             } else if ($this->settings['table'] == 'fe_users' && $this->settings['password']) {
                                 $frontendUser = new \TYPO3\CMS\Extbase\Domain\Model\FrontendUser();
                                 $password = $this->settings['password'];
-                                if ($password == 'random') {
+								if ($password == 'random') {
                                     $password = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\Random::class)->generateRandomBytes(20);
                                 }
                                 $hashInstance = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory::class)->getDefaultHashInstance('FE');
@@ -739,7 +845,7 @@ class LogController extends ActionController
                                 $error = 8;
                             } elseif (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || $this->settings['email']['enableConfirmationMails']) {
                                 $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                                $this->prepareEmail($address, true, true, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
+                                $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), true, true, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
                             }
                         }
                     }
@@ -823,7 +929,7 @@ class LogController extends ActionController
                             }
                             if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                                 $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                                $this->prepareEmail($address, false, true, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
+                                $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), false, true, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
                             }
                         }
                     }
@@ -865,191 +971,11 @@ class LogController extends ActionController
     }
 
     /**
-     * Prepare Array for emails and trigger sending of emails
-     *
-     * @param Log $log
-     * @param boolean $isSubscribe
-     *            Subscription or unsubscription?
-     * @param boolean $isConfirmation
-     *            verfify or confirmation?
-     * @param boolean $toUser
-     *            email to user?
-     * @param boolean $toAdmin
-     *            email to admin?
-     * @param string $hash
-     *            hash
-     * @param integer $verifyUid
-     *            UID of the verification page
+     * Get the view array
      */
-    protected function prepareEmail(Log &$log, $isSubscribe = true, $isConfirmation = false, $toUser = false, $toAdmin = false, $hash = '', $verifyUid = 0)
+    protected function getViewArray(): array
     {
-        $genders = [
-            "0" => '',
-            "1" => $this->settings['gender']['mrs'],
-            "2" => $this->settings['gender']['mr'],
-            "3" => $this->settings['gender']['divers']
-        ];
-        $email = $log->getEmail();
-        $from = trim($log->getFirstname() . ' ' . $log->getLastname());
-        if (! $from) {
-            $from = 'Subscriber';
-        }
-        $dataArray = [];
-        $dataArray['uid'] = $log->getUid();
-        $dataArray['sys_language_uid'] = $log->get_languageUid();
-        $dataArray['gender_id'] = $log->getGender();
-        $dataArray['gender'] = $genders[$log->getGender()];
-        $dataArray['title'] = $log->getTitle();
-        $dataArray['firstname'] = $log->getFirstname();
-        $dataArray['lastname'] = $log->getLastname();
-        $dataArray['email'] = $email;
-        $dataArray['address'] = $log->getAddress();
-        $dataArray['zip'] = $log->getZip();
-        $dataArray['city'] = $log->getCity();
-        $dataArray['region'] = $log->getRegion();
-        $dataArray['country'] = $log->getCountry();
-        $dataArray['phone'] = $log->getPhone();
-        $dataArray['mobile'] = $log->getMobile();
-        $dataArray['fax'] = $log->getFax();
-        $dataArray['www'] = $log->getWww();
-        $dataArray['position'] = $log->getPosition();
-        $dataArray['company'] = $log->getCompany();
-        $dataArray['hash'] = $hash;
-        if ($verifyUid) {
-            if ($isSubscribe) {
-                $dataArray['subscribeVerifyUid'] = $verifyUid;
-            } else {
-                $dataArray['unsubscribeVerifyUid'] = $verifyUid;
-            }
-        }
-        $dataArray['settings'] = $this->settings;
-        if ($toUser) {
-            if ($isSubscribe) {
-                if ($isConfirmation) {
-                    $subject = $this->settings['email']['subscribedSubject'];
-                    $template = 'Subscribed';
-                } else {
-                    $subject = $this->settings['email']['subscribeVerifySubject'];
-                    $template = 'SubscribeVerify';
-                }
-            } else {
-                if ($isConfirmation) {
-                    $subject = $this->settings['email']['unsubscribedSubject'];
-                    $template = 'Unsubscribed';
-                } else {
-                    $subject = $this->settings['email']['unsubscribeVerifySubject'];
-                    $template = 'UnsubscribeVerify';
-                }
-            }
-            $this->sendTemplateEmail(
-                array($email => $from),
-                array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
-                $subject,
-                $template,
-                $dataArray,
-                false);
-        }
-        if ($toAdmin) {
-            if ($isSubscribe) {
-                if ($isConfirmation) {
-                    $subject = $this->settings['email']['adminSubscribeSubject'];
-                    $template = 'SubscribeToAdmin';
-                } else {
-                    $subject = $this->settings['email']['adminSubscribeSubject'];
-                    $template = 'UserToAdmin';
-                }
-            } else {
-                if ($isConfirmation) {
-                    $subject = $this->settings['email']['adminUnsubscribeSubject'];
-                    $template = 'UnsubscribeToAdmin';
-                } else {
-                    $subject = $this->settings['email']['adminUnsubscribeSubject'];
-                    $template = 'UserToAdmin';
-                }
-            }
-            $this->sendTemplateEmail(
-                array($this->settings['email']['adminMail'] => $this->settings['email']['adminName']),
-                array($this->settings['email']['senderMail'] => $this->settings['email']['senderName']),
-                $subject,
-                $template,
-                $dataArray,
-                true);
-        }
-    }
-
-    /**
-     * Send an email
-     *
-     * @param array $recipient
-     *            recipient of the email in the format array('recipient@domain.tld' => 'Recipient Name')
-     * @param array $sender
-     *            sender of the email in the format array('sender@domain.tld' => 'Sender Name')
-     * @param string $subject
-     *            subject of the email
-     * @param string $templateName
-     *            template name (UpperCamelCase)
-     * @param array $variables
-     *            variables to be passed to the Fluid view
-     * @param boolean $toAdmin
-     *            email to the admin?
-     * @return boolean TRUE on success, otherwise false
-     */
-    protected function sendTemplateEmail(array $recipient, array $sender, $subject, $templateName, array $variables = array(), $toAdmin = false)
-    {
-        // Alternative: http://lbrmedia.net/codebase/Eintrag/extbase-60-standalone-template-renderer/
-        // Das hier ist von hier: http://wiki.typo3.org/How_to_use_the_Fluid_Standalone_view_to_render_template_based_emails
-        // und https://wiki.typo3.org/How_to_use_the_Fluid_Standalone_view_to_render_template_based_emails
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
-        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
-        $sys_language_uid = intval($languageAspect->getId());
-        if (!$toAdmin && !$this->settings['email']['dontAppendL']) {
-            $templateName .= $sys_language_uid;
-        }
-        $extensionName = $this->request->getControllerExtensionName();
-
-        /** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailView */
-        $emailViewHtml = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
-        $emailViewHtml->getRequest()->setControllerExtensionName($extensionName); // make sure f:translate() knows where to find the LLL file
-        $emailViewHtml->setTemplateRootPaths($extbaseFrameworkConfiguration['view']['templateRootPaths']);
-        $emailViewHtml->setLayoutRootPaths($extbaseFrameworkConfiguration['view']['layoutRootPaths']);
-        $emailViewHtml->setPartialRootPaths($extbaseFrameworkConfiguration['view']['partialRootPaths']);
-        $emailViewHtml->setTemplate('Email/' . $templateName . '.html');
-        $emailViewHtml->setFormat('html');
-        $emailViewHtml->assignMultiple($variables);
-        $emailBodyHtml = $emailViewHtml->render();
-
-        /** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailView */
-        $emailViewText = $this->objectManager->get('TYPO3\\CMS\\Fluid\\View\\StandaloneView');
-        $emailViewText->getRequest()->setControllerExtensionName($extensionName); // make sure f:translate() knows where to find the LLL file
-        $emailViewText->setTemplateRootPaths($extbaseFrameworkConfiguration['view']['templateRootPaths']);
-        $emailViewText->setLayoutRootPaths($extbaseFrameworkConfiguration['view']['layoutRootPaths']);
-        $emailViewText->setPartialRootPaths($extbaseFrameworkConfiguration['view']['partialRootPaths']);
-        $emailViewText->setTemplate('Email/' . $templateName . '.txt');
-        $emailViewText->setFormat('txt');
-        $emailViewText->assignMultiple($variables);
-        $emailBodyText = $emailViewText->render();
-        if ($this->settings['debug']) {
-            echo "###" . $emailBodyText . '###';
-            echo "###" . $emailBodyHtml . '###';
-            return;
-        }
-
-        /** @var $message \TYPO3\CMS\Core\Mail\MailMessage */
-        $message = $this->objectManager->get('TYPO3\\CMS\\Core\\Mail\\MailMessage');
-        foreach ($recipient as $key => $value) {
-            $email = $key;
-            $name = $value;
-        }
-        $message->to(new \Symfony\Component\Mime\Address($email, $name));
-        foreach ($sender as $key => $value) {
-            $email = $key;
-            $name = $value;
-        }
-        $message->from(new \Symfony\Component\Mime\Address($email, $name));
-        $message->subject($subject);
-        $message->text($emailBodyText);
-        $message->html($emailBodyHtml);
-        $message->send();
-        return $message->isSent();
+        return $extbaseFrameworkConfiguration['view'];
     }
 }

@@ -6,3 +6,9 @@ services:
 
   Fixpunkt\FpNewsletter\:
     resource: '../Classes/*'
+
+  Fixpunkt\FpNewsletter\Command\ImportFEUsersScheduler:
+    tags:
+      - name: "console.command"
+        command: "fp_newsletter:importfeusers"
+        description: "Import newsletter-subscriber from tt_address for Luxletter"

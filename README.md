@@ -1,6 +1,6 @@
 # fp_newsletter
 
-version 3.2.6
+version 4.0.0
 
 The TYPO3 extension fp_newsletter is designed to provide a newsletter subscription and unsubscription service for the 
 table tt_address which can be used by the extension direct_mail OR for the table fe_users which can be used by luxletter. 
@@ -16,30 +16,20 @@ https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/en-us/
 Es gibt auch eine deutsche Anleitung/Dokumentation zu dieser Erweiterung:
 https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/de-de/
 
-Version 3.0.0:
-Breaking change: default value of email.dontAppendL changed from 0 to 1.
-The email-templates without a number as ending uses now translated texts.
-If email.dontAppendL=0 even 0 will now be added to the template name.
-French emails now possible too.
-Bugfix: form replaced with a normal button in the emails.
-
-Version 3.1.0:
-Salutation in emails moved to a partial. Gender divers will now be ignored in the emails.
-The name is now available in the email to the admin on unsubscription.
-A second dashboard widget added: status diagram.
-Bugfix: retoken column was too small.
-
 Version 3.2.0:
 module_sys_dmail_category now in FlexForms too.
 Important: Layout optimized for Bootstrap 4.
 IDs in unsubscribe form changed.
 Backend: preview added.
 
-Version 3.2.6:
+Version 3.2.5:
 
 Switch from cURL to RequestFactory.
 
 Bugfix: no categories added in tt_address.
+
+
+Version 3.2.6:
 
 PHP email validation added.
 
@@ -52,3 +42,14 @@ Security fix: settings.doubleOptOut set from 0 to 1. You can set it to 0 if you 
 Security fix: additional check added to the delete-action (it was possible to unsubscribe all users).
 
 Security fix: Information Disclosure in the  new- and unsubscribe-action.
+
+
+Version 4.0.0:
+
+Breaking: default TypoScript values for sys_language_uid 1 removed!
+
+New actions: unsubscribe from Luxletter and cacheable form for subscription.
+
+New task: import newsletter-subscribers from tt_address to fe_users.
+
+Setting preferXlfFile added. If 1, genders and email subjects will come from the xlf file instead of the settings.

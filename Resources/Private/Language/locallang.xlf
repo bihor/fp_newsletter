@@ -21,6 +21,18 @@
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gender" resname="tx_fpnewsletter_domain_model_log.gender">
 				<source>Gender</source>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.please" resname="tx_fpnewsletter_domain_model_log.gender.please">
+				<source>Please select your gender</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mr" resname="tx_fpnewsletter_domain_model_log.gender.mr">
+				<source>Mr.</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mrs" resname="tx_fpnewsletter_domain_model_log.gender.mrs">
+				<source>Mrs.</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.divers" resname="tx_fpnewsletter_domain_model_log.gender.divers">
+				<source>Diverse</source>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.title" resname="tx_fpnewsletter_domain_model_log.title">
 				<source>Title</source>
 			</trans-unit>
@@ -115,10 +127,10 @@
 				<source>go back</source>
 			</trans-unit>
 			<trans-unit id="email_send1" resname="email_send1">
-				<source>An email has been send to you. Please verify your email-address for the newsletter subscription.</source>
+				<source>An email has been sent to you. Please verify your email-address for the newsletter subscription.</source>
 			</trans-unit>
 			<trans-unit id="email_send2" resname="email_send2">
-				<source>An email has been send to you. Please verify your email-address for the newsletter unsubscription.</source>
+				<source>An email has been sent to you. Please verify your email-address for the newsletter unsubscription.</source>
 			</trans-unit>
 			<trans-unit id="email_verified" resname="email_verified">
 				<source>Your email-address is now verified. You are now subscribed to our newsletter with:</source>
@@ -257,6 +269,24 @@
 			</trans-unit>
 			<trans-unit id="email.toAdminUnsubscribed" resname="email.toAdminUnsubscribed">
 				<source>this user has just unsubscribed from the newsletter:</source>
+			</trans-unit>
+			<trans-unit id="email.subscribeVerifySubject" resname="email.subscribeVerifySubject">
+				<source>Please verify your email</source>
+			</trans-unit>
+			<trans-unit id="email.unsubscribeVerifySubject" resname="email.unsubscribeVerifySubject">
+				<source>Please verify your email</source>
+			</trans-unit>
+			<trans-unit id="email.adminSubscribeSubject" resname="email.adminSubscribeSubject">
+				<source>New newsletter-subscription</source>
+			</trans-unit>
+			<trans-unit id="email.adminUnsubscribeSubject" resname="email.adminUnsubscribeSubject">
+				<source>New newsletter-unsubscription</source>
+			</trans-unit>
+			<trans-unit id="email.subscribedSubject" resname="email.subscribedSubject">
+				<source>Newsletter-subscription confirmation</source>
+			</trans-unit>
+			<trans-unit id="email.unsubscribedSubject" resname="email.unsubscribedSubject">
+				<source>Newsletter-unsubscription confirmation</source>
 			</trans-unit>
 		</body>
 	</file>

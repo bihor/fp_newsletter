@@ -218,7 +218,7 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      */
     protected $gdpr = false;
 
-    
+
     /**
      * Returns the tstamp
      *

@@ -31,6 +31,14 @@ Es gibt auch ein Widget fürs Dashboard.
 Verfügbare Sprachen: englisch, deutsch, französisch und italienisch.
 Die Standard-Sprache ist deutsch, aber man kann auch andere Sprachen benutzen.
 
+Achtung!
+^^^^^^^^
+
+Diese Extension wurde nicht für multiple Newsletter-Kategorien designed. Man kann sich zwar zu mehreren Kategorien
+anmelden, aber es ist nicht möglich, sich nur von speziellen Kategorien abzumelden! Der komplette Abonnent wird
+bei der Abmeldung gelöscht, sodass man sich nicht nur von einem speziellen Newsletter abmelden kann.
+Aus dem Grund ist auch eine Bearbeitung der Newsletter-Anmeldung z.Z. nicht möglich!
+
 
 .. _screenshots:
 
@@ -49,5 +57,5 @@ Danke an ...
 ^^^^^^^^^^^^
 
 Diese Extension wurde programmiert von der
-`fixpunkt werbeagentur gmbh, Bonn <https://www.fixpunkt.com/webentwicklung/typo3/typo3-extensions/>`_
+`fixpunkt für digitales GmbH, Bonn <https://www.fixpunkt.com/webentwicklung/typo3/typo3-extensions/>`_
 und fixpunkt stellt sie der TYPO3-Community zur Verfügung.

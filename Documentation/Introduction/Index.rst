@@ -30,6 +30,14 @@ There is a widget for the dashboard available.
 Available languages: english, german/deutsch, french/français and italian/italiano.
 The standard language is german, but english texts are also available.
 
+Attention!
+^^^^^^^^^^
+
+This extension is not designed for multiple newsletter-categories! It is possible to subscribe to more than one
+category, but it is not possible to unsubscribe only from a specific category. The whole user will be deleted at
+an unsubscription so it is not possible to unsubscribe only from category/newsletter X. Therefore it is currently
+neither possible to edit an newsletter subscription!
+
 
 .. _screenshots:
 
@@ -48,7 +56,7 @@ Thanks to ...
 ^^^^^^^^^^^^^
 
 Thanks to the
-`fixpunkt werbeagentur gmbh, Bonn <https://www.fixpunkt.com/webentwicklung/typo3>`_
+`fixpunkt für digitales GmbH, Bonn <https://www.fixpunkt.com/webentwicklung/typo3>`_
 for giving me the possibility to realize
 `this extension <https://www.fixpunkt.com/webentwicklung/typo3/typo3-programmierung>`_
 and share it with the TYPO3 community.

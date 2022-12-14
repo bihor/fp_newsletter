@@ -18,6 +18,9 @@
 			<trans-unit id="template.new" resname="template.new">
 				<source>Newsletter: subscribe (and unsubscribe)</source>
 			</trans-unit>
+			<trans-unit id="template.form" resname="template.form">
+				<source>Newsletter: only a cacheable subscribe form</source>
+			</trans-unit>
 			<trans-unit id="template.subscribeExtern" resname="template.subscribeExtern">
 				<source>Newsletter: subscribe via external extension</source>
 			</trans-unit>
@@ -28,7 +31,10 @@
 				<source>Newsletter: unsubscribe via form</source>
 			</trans-unit>
 			<trans-unit id="template.unsubscribeDM" resname="template.unsubscribeDM">
-				<source>Newsletter: unsubscribe via link</source>
+				<source>Newsletter: unsubscribe via direct_mail-link</source>
+			</trans-unit>
+			<trans-unit id="template.unsubscribeLux" resname="template.unsubscribeLux">
+				<source>Newsletter: unsubscribe via Luxletter-link</source>
 			</trans-unit>
 			<trans-unit id="template.unsubscribeVerify" resname="template.unsubscribeVerify">
 				<source>Newsletter: verify unsubscription</source>

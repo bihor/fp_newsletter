@@ -57,18 +57,19 @@ Standardmässig wird neben der E-Mail-Adresse auch Anrede und Name in den E-Mail
 Es wird empfohlen, diese zu highlighten, um Spam/Pishing-Emails vorzubeugen.
 
 
-.. _admin-fluid-page-template:
+.. _admin-Anmeldeformular:
 
-Fluid Page Template
--------------------
+Anmeldeformular auf jeder Seite
+-------------------------------
 
 Du willst ein Anmeldeformular in dein Seiten-Template einbauen? Z.B. auf jeder Seite in den Footer?
 Da gibt es 2 Möglichkeiten.
 
-1. Möglichkeit: füge ein statisches Formular in dein Footer-Template ein. Diese Extension kann die Parameter aus diesem Formular auslesen.
+Erste Möglichkeit: füge ein statisches Formular in dein Footer-Template ein. Diese Extension kann die Parameter aus diesem
+Formular auslesen.
 Lies das Kapitel "Konfiguration -> Externe Felder" für mehr Details dazu.
 
-2. Möglichkeit: du kannst ein Plugin via f:cObject typoscriptObjectPath in dein Template einbauen. Beispiel::
+Zweite Möglichkeit: du kannst ein Plugin via f:cObject typoscriptObjectPath in dein Template einbauen. Beispiel::
 
   <f:cObject typoscriptObjectPath="lib.nlsubscriptionContent" />
 
@@ -85,12 +86,15 @@ Dafür musst du lib.nlsubscriptionContent in deinem TypoScript-Template wie folg
   }
 
 Ersetze 0 und 22 durch die colPos und page-uid, welche du benutzt hast auf der Seite mit dem Anmelde-Plugin.
- 
+Falls du das Anmelde-Plugin von fp_newsletter benutzt, solltest du das cachable Anmelde-Formular dort auswählen.
+In dem Fall muss noch eine Seite für die Anmeldung definiert werden, wohin das Formular umleiten soll.
+Ein mathematisches Captcha ist bei diesem cachable Anmelde-Formular nicht möglich!
 
-.. _admin-newsletter:
 
-Newsletter
-----------
+.. _admin-direct_mail:
+
+Direct_mail
+-----------
 
 Wenn du einen Newsletter verschickt, soll darin sicherlich auch ein Abmeldelink drin stehen. Das kann man so machen, wenn man direct_mail benutzt::
 
@@ -100,7 +104,24 @@ Wenn du einen Newsletter verschickt, soll darin sicherlich auch ein Abmeldelink 
 Die 3 Werte ###USER_uid###, ###SYS_TABLE_NAME### und ###SYS_AUTHCODE### wird direct_mail ersetzen.
 Du musst nur den Link mit deinem Abmeldelink ersetzen.
 Die Extension fp_newsletter wird die Parameter überprüfen und den angegebenen Benutzer sofort abmelden.
-Achtung: bei der Zielseite muss dabei das Template "Newsletter: Abmeldung via Link" ausgewählt sein.
+Achtung: bei der Zielseite muss dabei das Template "Newsletter: Abmeldung via direct_mail-Link" ausgewählt sein.
+Nachteil: man kann sich mit fp_newsletter nicht nur von einem speziellen Newsletter abmelden.
+Man wird von allen abonnierten Newslettern eines Ordners abgemeldet.
+
+
+.. _admin-luxletter:
+
+Luxletter
+---------
+
+Luxletter bietet auch einen Abmeldelink an. Zusätzlich bietet Luxletter ein Plugin, mit dem man sich aus dem
+Newsletter austragen kann. Wenn man das Plugin benutzt, wird kein Log-Eintrag von fp_newsletter geändert. Der Status
+ändert sich also nicht. Zudem wird nur die fe_groups Kategorie beim Abonnenten gelöscht.
+
+Einen ganzen anderen Weg beschreitet fp_newsletter, wenn man auf der Zielseite "Newsletter: Abmeldung via luxletter-Link"
+benutzt. In diesem Fall wird der Log-Eintrag aktuell gehalten und weiterhin wird nicht nur eine Kategorie beim
+Abonnenten entfernt, sondern der ganze fe_users-Eintrag wird gelöscht. Nachteil: man kann sich mit fp_newsletter
+nicht nur von einem speziellen Newsletter abmelden. Man wird von allen abonnierten Newslettern eines Ordners abgemeldet.
 
 
 .. _admin-security:
@@ -141,13 +162,13 @@ FAQ
 
   Als username wird die E-Mail-Adresse verwendet. Das Standard-Passwort ist joh316. Die Kategorie setzt man mittels module_sys_dmail_category.
 
-- Ich benutzt die fe_users Tabelle, aber es passiert nichts.
+- Ich benutzte die fe_users Tabelle, aber es passiert nichts.
 
   Hast du auch settings.module_sys_dmail_category gesetzt?
 
-- Wie kann man sich bei luxletter abmelden?
+- Ich benutzte die tt_address Tabelle, aber kein direct_mail und es passiert nichts.
 
-  Im Luxletter-Template ist ein Link drin. Damit kann man jedoch noch nicht den Status eines Log-Eintrags ändern!
+  Hast du auch settings.module_sys_dmail_html=-1 gesetzt? Für das HTML-Feld wird nämlich direct_mail benötigt.
 
 - Ich brauche / will keine Log-Einträge. Kann man das ausschalten?
 

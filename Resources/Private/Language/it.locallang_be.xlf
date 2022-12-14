@@ -23,6 +23,10 @@
 				<source>Newsletter: subscribe (and unsubscribe)</source>
 				<target>Newsletter: iscrizione (e revoca)</target>
 			</trans-unit>
+			<trans-unit id="template.form" resname="template.form">
+				<source>Newsletter: only a cacheable subscribe form</source>
+				<target>Infolettre: solo un modulo di iscrizione memorizzabile nella cache</target>
+			</trans-unit>
 			<trans-unit id="template.subscribeExtern" resname="template.subscribeExtern">
 				<source>Newsletter: subscribe via external extension</source>
 				<target>Newsletter: iscrizione via estensione esterna</target>
@@ -36,8 +40,12 @@
 				<target>Newsletter: revoca della iscrizione via form</target>
 			</trans-unit>
 			<trans-unit id="template.unsubscribeDM" resname="template.unsubscribeDM">
-				<source>Newsletter: unsubscribe via link</source>
-				<target>Newsletter: revoca della iscrizione via link</target>
+				<source>Newsletter: unsubscribe via direct_mail-link</source>
+				<target>Newsletter: revoca della iscrizione via direct_mail-link</target>
+			</trans-unit>
+			<trans-unit id="template.unsubscribeLux" resname="template.unsubscribeLux">
+				<source>Newsletter: unsubscribe via luxletter-link</source>
+				<target>Newsletter: revoca della iscrizione via luxletter-link</target>
 			</trans-unit>
 			<trans-unit id="template.unsubscribeVerify" resname="template.unsubscribeVerify">
 				<source>Newsletter: verify unsubscription</source>

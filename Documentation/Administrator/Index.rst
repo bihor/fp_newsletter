@@ -55,10 +55,10 @@ By default the gender and name is used in emails too and thereby the values of t
 highlighted as user input in email templates to prevent potential spam-/phishing emails.
 
 
-.. _admin-fluid-page-template:
+.. _admin-subscription_form:
 
-Fluid Page Template
--------------------
+Subscription form on every page
+-------------------------------
 
 You want to insert a newsletter subscription form to your fluid page template? E.g. in the footer of every page?
 Then you have 2 possibilities.
@@ -83,12 +83,15 @@ Therefore you need to define lib.nlsubscriptionContent like this::
   }
 
 Replace the 0 and 22 with your used colPos and page-uid at the page with your subscription form.
+If you use the plugin from fp_newsletter for a subscription form, you should select the cacheable subscription form.
+In this case you must define a page for the subscription too. The form will have that page as target.
+Note: you can not use a mathematical captcha on the cacheable subscription form.
  
 
-.. _admin-newsletter:
+.. _admin-direct_mail:
 
-Newsletter
-----------
+Direct_mail
+-----------
 
 When you send a newsletter you want to add an unsubscription link to your newsletter. If you are using direct_mail, you can do that this way::
 
@@ -99,6 +102,23 @@ The 3 values ###USER_uid###, ###SYS_TABLE_NAME### and ###SYS_AUTHCODE### will be
 Replace the link with the link to your unsubscribe page.
 The extension fp_newsletter will check the parameters and will unsubscribe the given user directly.
 Note: at the target page you need to set the template "Newsletter: unsubscribe via link" in this extension.
+Disadvantage: it is not possible to unsubscribe only from a specific newsletter in a folder. The whole tt_address entry
+will be deleted!
+
+
+.. _admin-luxletter:
+
+Luxletter
+---------
+
+There is a unsubscribe link in the luxletter template. If you use the Luxletter-plugin at the target page,
+it is not possible to change the status of a Log entry. Furthermore Luxletter removes only the fe_groups category
+of a fe_users entry. The user remains present.
+
+An completely other ways uses fp_newsletter, if you use "Newsletter: unsubscribe via luxletter-link" of fp_newsletter.
+In this case, a fp_newsletter log is created and the subscriber will be removed from fe_users.
+Disadvantage: it is not possible to unsubscribe only from a specific newsletter in a folder. The whole fe_users entry
+will be deleted!
 
 
 .. _admin-security:
@@ -142,12 +162,11 @@ FAQ
 
 - I use fe_users but nothing happens.
 
-  Have you set the setting module_sys_dmail_category?
+  Have you set the setting module_sys_dmail_category? You must define a category.
 
-- How can I unsubscribe via luxletter?
+- I use tt_address but not direct_mail and nothing happens.
 
-  There is a unsubscribe link in the luxletter template. Currently it is not possible to change the status of a
-  Log entry via luxletter.
+  Have you set the setting module_sys_dmail_html to -1? For the HTML-option-field direct_mail is required.
 
 - I don´t want/need a log entry. Can I avoid that?
 

@@ -19,11 +19,15 @@
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.new</numIndex>
                 <numIndex index="1">Log->new;Log->create;Log->verify</numIndex>
             </numIndex>
-            <numIndex index="1">
+			  <numIndex index="1">
+				  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.form</numIndex>
+				  <numIndex index="1">Log->form</numIndex>
+			  </numIndex>
+            <numIndex index="2">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.subscribeExtern</numIndex>
                 <numIndex index="1">Log->subscribeExt;Log->create;Log->verify</numIndex>
             </numIndex>
-            <numIndex index="2">
+            <numIndex index="3">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.subscribeVerify</numIndex>
                 <numIndex index="1">Log->verify</numIndex>
             </numIndex>
@@ -35,15 +39,19 @@
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeDM</numIndex>
                 <numIndex index="1">Log->unsubscribeDM;Log->unsubscribe;Log->delete;Log->verifyUnsubscribe</numIndex>
             </numIndex>
-            <numIndex index="7">
+			  <numIndex index="7">
+				  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeLux</numIndex>
+				  <numIndex index="1">Log->unsubscribeLux;Log->unsubscribe;Log->delete;Log->verifyUnsubscribe</numIndex>
+			  </numIndex>
+            <numIndex index="8">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeVerify</numIndex>
                 <numIndex index="1">Log->verifyUnsubscribe</numIndex>
             </numIndex>
-			  <numIndex index="8">
+			  <numIndex index="9">
 				  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.resend</numIndex>
 				  <numIndex index="1">Log->resend;Log->verify</numIndex>
 			  </numIndex>
-            <numIndex index="9">
+            <numIndex index="10">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.list</numIndex>
                 <numIndex index="1">Log->list</numIndex>
             </numIndex>

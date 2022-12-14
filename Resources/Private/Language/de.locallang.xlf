@@ -27,6 +27,22 @@
 				<source>Gender</source>
 				<target>Anrede</target>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.please" resname="tx_fpnewsletter_domain_model_log.gender.please">
+				<source>Please select your gender</source>
+				<target>Bitte auswählen</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mr" resname="tx_fpnewsletter_domain_model_log.gender.mr">
+				<source>Mr.</source>
+				<target>Herr</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.mrs" resname="tx_fpnewsletter_domain_model_log.gender.mrs">
+				<source>Mrs.</source>
+				<target>Frau</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.gender.divers" resname="tx_fpnewsletter_domain_model_log.gender.divers">
+				<source>Divers</source>
+				<target>Divers</target>
+			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.title" resname="tx_fpnewsletter_domain_model_log.title">
 				<source>Title</source>
 				<target>Titel</target>
@@ -193,7 +209,7 @@
 			</trans-unit>
 			<trans-unit id="wrong_hash" resname="wrong_hash">
 				<source>Error: the given hash in the link is wrong.</source>
-				<target>Fehler - Der Link konnte nicht verarbeitet werden.</target>
+				<target>Fehler - Der Link konnte nicht verarbeitet werden, da der Hash falsch ist.</target>
 			</trans-unit>
 			<trans-unit id="wrong_expired" resname="wrong_expired">
 				<source>Error: the link is expired!</source>
@@ -342,6 +358,30 @@
 			<trans-unit id="email.toAdminUnsubscribed" resname="email.toAdminUnsubscribed">
 				<source>This user has just unsubscribed from the newsletter:</source>
 				<target>dieser User hat sich gerade vom Newsletter abgemeldet:</target>
+			</trans-unit>
+			<trans-unit id="email.subscribeVerifySubject" resname="email.subscribeVerifySubject">
+				<source>Please verify your email</source>
+				<target>Bitte verifizieren Sie Ihre E-Mail-Adresse</target>
+			</trans-unit>
+			<trans-unit id="email.unsubscribeVerifySubject" resname="email.unsubscribeVerifySubject">
+				<source>Please verify your email</source>
+				<target>Bitte verifizieren Sie Ihre E-Mail-Adresse</target>
+			</trans-unit>
+			<trans-unit id="email.adminSubscribeSubject" resname="email.adminSubscribeSubject">
+				<source>New newsletter-subscription</source>
+				<target>Neue Newsletter-Anmeldung</target>
+			</trans-unit>
+			<trans-unit id="email.adminUnsubscribeSubject" resname="email.adminUnsubscribeSubject">
+				<source>New newsletter-unsubscription</source>
+				<target>Neue Newsletter-Abmeldung</target>
+			</trans-unit>
+			<trans-unit id="email.subscribedSubject" resname="email.subscribedSubject">
+				<source>Newsletter-subscription confirmation</source>
+				<target>Bestätigung Newsletter-Anmeldung</target>
+			</trans-unit>
+			<trans-unit id="email.unsubscribedSubject" resname="email.unsubscribedSubject">
+				<source>Newsletter-unsubscription confirmation</source>
+				<target>Bestätigung Newsletter-Abmeldung</target>
 			</trans-unit>
 		</body>
 	</file>

@@ -55,7 +55,7 @@ dmUnsubscribeMode                 integer     0: direct unsubscription with link
 module_sys_dmail_html             integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1
 module_sys_dmail_category         string      List of categories (uid) from sys_dmail_category or fe_groups°°
 password                          string      Password for the fe_users table. random creates a random password.    random
-reCAPTCHA_site_key                string      Website-key for Google reCaptcha v3. curl needed!
+reCAPTCHA_site_key                string      Website-key for Google reCaptcha v3.
 reCAPTCHA_secret_key              string      Secret key for Google reCaptcha v3
 mathCAPTCHA                       integer     Show a mathematical captcha? 0: no; 1: with 1 digit; 2: with 2 digits 0
 honeypot                          boolean     Enable a honeypot against spam?                                       0
@@ -103,14 +103,29 @@ Property details / examples
 Languages
 ^^^^^^^^^
 
-You can overwrite the text for other languages like this::
+You can overwrite the text for other languages like this (if preferXlfFile=0, else see last line)::
 
   [siteLanguage("languageId") == "1"]
   plugin.tx_fpnewsletter.settings.company = Your company
-  plugin.tx_fpnewsletter._LOCAL_LANG.en.email.pleaseVerify = Please verify your email-address by clicking here:
+  plugin.tx_fpnewsletter.settings.gender.please = Please select your gender
+  plugin.tx_fpnewsletter.settings.gender.mr = Mr.
+  plugin.tx_fpnewsletter.settings.gender.mrs = Mrs.
+  plugin.tx_fpnewsletter.settings.email.senderMail = example@test.com
+  plugin.tx_fpnewsletter.settings.email.senderName = Sender-name
+  plugin.tx_fpnewsletter.settings.email.subscribeVerifySubject = Please verify your email
+  plugin.tx_fpnewsletter.settings.email.unsubscribeVerifySubject = Please verify your email
+  plugin.tx_fpnewsletter.settings.email.adminSubscribeSubject = New newsletter-subscription
+  plugin.tx_fpnewsletter.settings.email.adminUnsubscribeSubject = New newsletter-unsubscription
+  plugin.tx_fpnewsletter.settings.email.subscribedSubject = Newsletter-subscription confirmation
+  plugin.tx_fpnewsletter.settings.email.unsubscribedSubject = Newsletter-unsubscription confirmation
   [END]
+  plugin.tx_fpnewsletter._LOCAL_LANG.en.email.pleaseVerify = Please verify your email-address by clicking here:
 
-Note: the default language of the email-templates is german if settings.email.dontAppendL=0! You find the english version in the files that end with 1.html.
+Note: if you want to overwrite the text for the default language, remove this lines: [siteLanguage("languageId") == "1"]
+and [END].
+
+Note: the default language of the email-templates is german if settings.email.dontAppendL=0!
+You find the english version in the files that end with 1.html.
 You should copy the files and modify the path to the templates via TypoScript. See chapter "Administrator manual".
 Otherwise set settings.email.dontAppendL=1.
 Note: till version 3.0.0, the default language is german even when settings.email.dontAppendL=1.
@@ -138,17 +153,20 @@ Only parameters of this format are possible. If they are there, a forward will b
 Captchas
 ^^^^^^^^
 
-You can use 2 different captchas. If you want to use the Google reCaptcha v3 you need to provide the website key and the secret key.
+You can use 2 different captchas. If you want to use the Google reCaptcha v3 you need to provide the website key and the
+secret key.
 If you want to use a mathematical captcha, you can use 1 or 2 digits. The maximum value for 2 digits is 19. Example::
 
   plugin.tx_fpnewsletter.settings.mathCAPTCHA = 2
 
-Optional and requiered fields
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Optional and required fields
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-Only email and gdpr are mandatory fields in the model. If you need more mandatory fields, you can make them only via TypoScript and the templates required.
-There are the following optional fields awailable: gender, title, firstname, lastname, address, zip, city, region, country, phone, mobile, fax, www, position, company.
-You can make all this fields required. Here an example to enable some of this fields in the subscription form via TypoScript setup::
+Only email and gdpr are mandatory fields in the model. If you need more mandatory fields, you can make them only via
+TypoScript and the templates required.
+There are the following optional fields available: gender, title, firstname, lastname, address, zip, city, region, country, phone, mobile, fax, www, position, company.
+You can make all this fields required. Here an example to enable some of this fields in the subscription form via
+TypoScript setup::
 
   plugin.tx_fpnewsletter.settings.optionalFields = gender,title,firstname,lastname,www,position,company
   plugin.tx_fpnewsletter.settings.optionalFieldsRequired = firstname,lastname,company
@@ -156,15 +174,17 @@ You can make all this fields required. Here an example to enable some of this fi
 Using of categories
 ^^^^^^^^^^^^^^^^^^^
 
-The table module_sys_dmail_category contains categories for direct_mail. This extension uses that categories instaed of the categories from sys_category.
-If you use them like this::
+The table module_sys_dmail_category contains categories for direct_mail. This extension uses that categories installed
+of the categories from sys_category. If you use them like this::
 
   plugin.tx_fpnewsletter.settings.module_sys_dmail_category = 1,3
 
-Then this extension will do the same like the direct_mail_subscription extension. It will make two entires into sys_dmail_ttaddress_category_mm
-and it will set module_sys_dmail_category in tt_address (after the verification). Do you expect something else?
+Then this extension will do the same like the direct_mail_subscription extension.
+It will make two entires into sys_dmail_ttaddress_category_mm and it will set module_sys_dmail_category in tt_address
+(after the verification). Do you expect something else?
 
-The categories are as hidden-field in the template. You could add checkboxes and copy the checked values by jQuery to the hidden-field if you need a more flexible solution.
+The categories are as hidden-field in the template. You could add checkboxes and copy the checked values by jQuery to
+the hidden-field if you need a more flexible solution.
 
 Changing the labels
 ^^^^^^^^^^^^^^^^^^^
