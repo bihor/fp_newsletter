@@ -123,7 +123,7 @@ Security fix: einen weiteren Check zur Abmelde-Funktion hinzugefügt (man konnte
 Security fix: "Information Disclosure" in der  new- und unsubscribe-action.
 
 
-Version 4.0.0:
+Version 4.0.0/1:
 
 Achtung: das default TypoScript für die Sprache sys_language_uid 1 wurde entfernt!
 

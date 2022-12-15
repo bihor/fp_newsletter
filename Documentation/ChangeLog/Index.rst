@@ -122,7 +122,7 @@ Security fix: additional check added to the delete-action (it was possible to un
 Security fix: Information Disclosure in the  new- and unsubscribe-action.
 
 
-Version 4.0.0:
+Version 4.0.0/1:
 
 Breaking: default TypoScript values for sys_language_uid 1 removed!
 

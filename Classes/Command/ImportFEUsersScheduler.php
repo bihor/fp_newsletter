@@ -36,7 +36,7 @@ class ImportFEUsersScheduler extends Command
                 'password',
                 InputArgument::OPTIONAL,
                 'Password for fe_users-subscribers',
-                'joh316'
+                'random'
             );
     }
 
@@ -54,6 +54,9 @@ class ImportFEUsersScheduler extends Command
         $pid = intval($input->getArgument('pid'));
         $group = intval($input->getArgument('group'));
         $password = $input->getArgument('password');
+        if ($password == 'random') {
+            $password = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\Random::class)->generateRandomBytes(20);
+        }
         $hashInstance = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory::class)->getDefaultHashInstance('FE');
         $hashedPassword = $hashInstance->getHashedPassword($password);
         $addresses = [];
@@ -80,9 +83,9 @@ class ImportFEUsersScheduler extends Command
                 $affectedRows = $queryBuilder
                     ->insert('fe_users')
                     ->values([
-                        'name' => trim($address['name']),
-                        'first_name' => trim($address['first_name']),
-                        'last_name' => trim($address['last_name']),
+                        'name' => (($address['name']) ? trim($address['name']) : ''),
+                        'first_name' => (($address['first_name']) ? trim($address['first_name']) : ''),
+                        'last_name' => (($address['last_name']) ? trim($address['last_name']) : ''),
                         'email' => $address['email'],
                         'username' => $address['email'],
                         'password' => $hashedPassword,
