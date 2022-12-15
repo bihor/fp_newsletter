@@ -124,7 +124,7 @@ Man kann die Texte für andere Sprachen so überschreiben (falls preferXlfFile=0
 Achtung: wenn man den Text der Standardsprache überschreiben will, entfernt man die beiden Zeilen:
 [siteLanguage("languageId") == "1"] und [END].
 
-Falls man die Setting preferXlfFile=1 setzt, kann man die Texte so überschreiben::
+Falls man die Setting preferXlfFile=1 setzt, kann man die Texte (bis auf company) so überschreiben::
 
   plugin.tx_fpnewsletter._LOCAL_LANG.en.email.subscribedSubject = Your newsletter subscription is now confirmed
   plugin.tx_fpnewsletter._LOCAL_LANG.de.email.subscribedSubject = Deine Newsletter-Anmeldung ist nun bestätigt
@@ -203,3 +203,59 @@ settings.table kann leer, tt_address oder fe_users sein. Bei tt_address wird auc
 settings.module_sys_dmail_html oder settings.module_sys_dmail_category verwendet. Die Überprüfung kann man ausschalten::
 
   plugin.tx_fpnewslettersettings.checkForRequiredExtensions = 0
+
+Komplettes Beispiel
+^^^^^^^^^^^^^^^^^^^
+
+Hier ein komplettes Beispiel für Luxletter und 2 Sprachen::
+
+    plugin.tx_fpnewsletter.view.templateRootPaths.10 = EXT:example/Resources/Private/Ext/fp_newsletter/Templates/
+    plugin.tx_fpnewsletter.view.partialRootPaths.10 = EXT:example/Resources/Private/Ext/fp_newsletter/Partials/
+    plugin.tx_fpnewsletter.settings {
+        table = fe_users
+        optionalFields =
+        doubleOptOut = 0
+        enableUnsubscribeGdprAsHidden = 1
+        honeypot = 1
+        preferXlfFile = 1
+        gdprUid = 1138
+        subscribeUid = 1167
+        unsubscribeUid = 1002
+        subscribeVerifyUid = 1001
+        module_sys_dmail_category = 19
+        company = Ihre Online-Redaktion von „Test“
+    }
+    plugin.tx_fpnewsletter._LOCAL_LANG.de {
+        subscribe = Absenden
+        tx_fpnewsletter_domain_model_log.email = E-Mail-Adresse
+        tx_fpnewsletter_domain_model_log.gdpr_desc1 = Ich habe die
+        tx_fpnewsletter_domain_model_log.gdpr_link_text = Datenschutzerklärung
+        tx_fpnewsletter_domain_model_log.gdpr_desc2 = zur Kenntnis genommen und bin damit einverstanden, dass meine Daten unter Beachtung der gesetzlichen Bestimmungen satzungsgemäß verwendet und automatisiert verarbeitet werden.
+        unsubscribe_it = Newsletter abbestellen
+        email_send1 = Vielen Dank für Ihr Interesse.<br>Eine Bestätigungs-E-Mail wurde Ihnen zugesandt.
+        email_verified = Ihre E-Mail-Adresse wurde erfolgreich aufgenommen.
+        email_removed = Sie haben sich erfolgreich von unserem Newsletter abgemeldet.
+        email.pleaseVerify = Sie haben sich für unseren Newsletter angemeldet.
+        email.pleaseVerify2 = Um die Anmeldung zu bestätigen, klicken Sie bitte auf folgenden Link:
+        email.subscribeVerifySubject = Anmeldung zum Newsletter bei www.test.de
+    }
+    plugin.tx_fpnewsletter._LOCAL_LANG.en {
+        subscribe = Send
+        required = required
+        tx_fpnewsletter_domain_model_log.email = E-mail address
+        tx_fpnewsletter_domain_model_log.gdpr_desc1 = I have noted the
+        tx_fpnewsletter_domain_model_log.gdpr_link_text = privacy policy
+        tx_fpnewsletter_domain_model_log.gdpr_desc2 = and I agree that my data will be used in accordance with the statutory provisions and processed automatically.
+        unsubscribe_it = Unsubscribe newsletter
+        email_send1 = Thank you for your interest.<br>A confirmation email has been sent to you.
+        email_verified = Your email address has been successfully added.
+        email_removed = You have successfully unsubscribed from our newsletter.
+        email.pleaseVerify = You've signed up for our newsletter.
+        email.pleaseVerify2 = To confirm the registration, please click on the following link:
+        email.subscribeVerifySubject = Registration for the newsletter at www.test.com
+    }
+    [siteLanguage("languageId") == 1]
+        plugin.tx_fpnewsletter.settings.company = Your online editors of “Test”
+    [END]
+
+Wie man sehen kann, kann man auch eigene Variablen definieren und verwenden. Hier z.B.: unsubscribe_it.

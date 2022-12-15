@@ -124,7 +124,7 @@ You can overwrite the text for other languages like this (if preferXlfFile=0, el
 Note: if you want to overwrite the text for the default language, remove this lines: [siteLanguage("languageId") == "1"]
 and [END].
 
-If you enable the setting preferXlfFile, then you can overwrite the text like this::
+If you enable the setting preferXlfFile, then you can overwrite the text (except company) like this::
 
   plugin.tx_fpnewsletter._LOCAL_LANG.en.email.subscribedSubject = Your newsletter subscription is now confirmed
   plugin.tx_fpnewsletter._LOCAL_LANG.de.email.subscribedSubject = Deine Newsletter-Anmeldung ist nun bestätigt
@@ -209,3 +209,59 @@ settings.table can be empty, tt_address or fe_users. When tt_address, direct_mai
 settings.module_sys_dmail_html or settings.module_sys_dmail_category. You can disable this check::
 
   plugin.tx_fpnewslettersettings.checkForRequiredExtensions = 0
+
+Full working example
+^^^^^^^^^^^^^^^^^^^^
+
+Here an full example for luxletter and 2 languages::
+
+    plugin.tx_fpnewsletter.view.templateRootPaths.10 = EXT:example/Resources/Private/Ext/fp_newsletter/Templates/
+    plugin.tx_fpnewsletter.view.partialRootPaths.10 = EXT:example/Resources/Private/Ext/fp_newsletter/Partials/
+    plugin.tx_fpnewsletter.settings {
+        table = fe_users
+        optionalFields =
+        doubleOptOut = 0
+        enableUnsubscribeGdprAsHidden = 1
+        honeypot = 1
+        preferXlfFile = 1
+        gdprUid = 1138
+        subscribeUid = 1167
+        unsubscribeUid = 1002
+        subscribeVerifyUid = 1001
+        module_sys_dmail_category = 19
+        company = Ihre Online-Redaktion von „Test“
+    }
+    plugin.tx_fpnewsletter._LOCAL_LANG.de {
+        subscribe = Absenden
+        tx_fpnewsletter_domain_model_log.email = E-Mail-Adresse
+        tx_fpnewsletter_domain_model_log.gdpr_desc1 = Ich habe die
+        tx_fpnewsletter_domain_model_log.gdpr_link_text = Datenschutzerklärung
+        tx_fpnewsletter_domain_model_log.gdpr_desc2 = zur Kenntnis genommen und bin damit einverstanden, dass meine Daten unter Beachtung der gesetzlichen Bestimmungen satzungsgemäß verwendet und automatisiert verarbeitet werden.
+        unsubscribe_it = Newsletter abbestellen
+        email_send1 = Vielen Dank für Ihr Interesse.<br>Eine Bestätigungs-E-Mail wurde Ihnen zugesandt.
+        email_verified = Ihre E-Mail-Adresse wurde erfolgreich aufgenommen.
+        email_removed = Sie haben sich erfolgreich von unserem Newsletter abgemeldet.
+        email.pleaseVerify = Sie haben sich für unseren Newsletter angemeldet.
+        email.pleaseVerify2 = Um die Anmeldung zu bestätigen, klicken Sie bitte auf folgenden Link:
+        email.subscribeVerifySubject = Anmeldung zum Newsletter bei www.test.de
+    }
+    plugin.tx_fpnewsletter._LOCAL_LANG.en {
+        subscribe = Send
+        required = required
+        tx_fpnewsletter_domain_model_log.email = E-mail address
+        tx_fpnewsletter_domain_model_log.gdpr_desc1 = I have noted the
+        tx_fpnewsletter_domain_model_log.gdpr_link_text = privacy policy
+        tx_fpnewsletter_domain_model_log.gdpr_desc2 = and I agree that my data will be used in accordance with the statutory provisions and processed automatically.
+        unsubscribe_it = Unsubscribe newsletter
+        email_send1 = Thank you for your interest.<br>A confirmation email has been sent to you.
+        email_verified = Your email address has been successfully added.
+        email_removed = You have successfully unsubscribed from our newsletter.
+        email.pleaseVerify = You've signed up for our newsletter.
+        email.pleaseVerify2 = To confirm the registration, please click on the following link:
+        email.subscribeVerifySubject = Registration for the newsletter at www.test.com
+    }
+    [siteLanguage("languageId") == 1]
+        plugin.tx_fpnewsletter.settings.company = Your online editors of “Test”
+    [END]
+
+As you can see, you can even define own variables and use then. Example from here: unsubscribe_it.
