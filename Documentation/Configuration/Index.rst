@@ -124,6 +124,11 @@ You can overwrite the text for other languages like this (if preferXlfFile=0, el
 Note: if you want to overwrite the text for the default language, remove this lines: [siteLanguage("languageId") == "1"]
 and [END].
 
+If you enable the setting preferXlfFile, then you can overwrite the text like this::
+
+  plugin.tx_fpnewsletter._LOCAL_LANG.en.email.subscribedSubject = Your newsletter subscription is now confirmed
+  plugin.tx_fpnewsletter._LOCAL_LANG.de.email.subscribedSubject = Deine Newsletter-Anmeldung ist nun bestätigt
+
 Note: the default language of the email-templates is german if settings.email.dontAppendL=0!
 You find the english version in the files that end with 1.html.
 You should copy the files and modify the path to the templates via TypoScript. See chapter "Administrator manual".
