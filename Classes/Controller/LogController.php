@@ -449,9 +449,15 @@ class LogController extends ActionController
             't' => 'tt_address',
             'f' => 'fe_users'
         ];
-        $t = $tables[$_GET['t']];
-        $u = intval($_GET['u']);
-        $a = $_GET['a'];
+        if (isset($_GET['t']) && isset($_GET['u']) && isset($_GET['a'])) {
+            $t = $tables[$_GET['t']];
+            $u = intval($_GET['u']);
+            $a = $_GET['a'];
+        } else {
+            $t = null;
+            $u = null;
+            $a = null;
+        }
         if ($t && $t == $this->settings['table'] && $u && $a) {
             $user = $this->logRepository->getUserFromExternal($u, $t);
             // zum testen: echo GeneralUtility::stdAuthCode($user, 'uid');
@@ -489,7 +495,11 @@ class LogController extends ActionController
     public function unsubscribeLuxAction()
     {
         $error = 0;
-        $luxletterParams = $_GET['tx_luxletter_fe'];
+        if (isset($_GET['tx_luxletter_fe'])) {
+            $luxletterParams = $_GET['tx_luxletter_fe'];
+        } else {
+            $luxletterParams = null;
+        }
         if (!is_array($luxletterParams)) {
             $error = 10;
         } else {
