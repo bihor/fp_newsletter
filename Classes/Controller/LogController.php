@@ -574,6 +574,8 @@ class LogController extends ActionController
             $log->setEmail($user['email']);
             $log->setPid($user['pid']);
             $checkSession = true;
+        } else {
+            $error = 1;
         }
         if ($error == 0) {
             $email = $log->getEmail();
