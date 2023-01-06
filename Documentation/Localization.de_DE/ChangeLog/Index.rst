@@ -132,3 +132,8 @@ Neue Actions: Abmeldung via Luxletter und cachebares Formular für die Anmeldung
 Neuer Task: importiere Newsletter-Abonnenten von tt_address nach fe_users.
 
 Setting preferXlfFile hinzugefügt. Anreden und E-Mail-Betreff kommen aus der xlf-Datei anstatt aus den Settings, wenn 1.
+
+
+Version 4.0.2:
+
+Bugfix: PHP 8 und delete-action.

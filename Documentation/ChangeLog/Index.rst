@@ -131,3 +131,8 @@ New actions: unsubscribe from Luxletter and cacheable form for subscription.
 New task: import newsletter-subscribers from tt_address to fe_users.
 
 Setting preferXlfFile added. If 1, genders and email subjects will come from the xlf file instead of the settings.
+
+
+Version 4.0.2:
+
+Bugfix: PHP 8 and delete-action.

@@ -1,5 +1,4 @@
 <?php
-
 declare(strict_types=1);
 
 namespace Fixpunkt\FpNewsletter\Hooks;
@@ -69,7 +68,7 @@ class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
     {
         $settings = $this->getFlexFormData($row['pi_flexform'] ?? '');
         if ($settings) {
-            if ($settings['switchableControllerActions']) {
+            if (isset($settings['switchableControllerActions'])) {
                 $row['_computed']['displayMode'] = $settings['switchableControllerActions'];
             }
         }
@@ -78,13 +77,15 @@ class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
             $row['_computed']['startingPoint'] = $pagesOut[0] ?: [];
         }
         foreach ($this->recordMapping as $fieldName => $fieldConfiguration) {
-            if ($settings['settings'][$fieldName]) {
+            if (isset($settings['settings'][$fieldName])) {
                 $records = $this->getRecords($fieldConfiguration['table'], $settings['settings'][$fieldName]);
 
                 if ($fieldConfiguration['multiValue']) {
                     $row['_computed'][$fieldName] = $records;
+                } elseif (isset($records[0])) {
+                    $row['_computed'][$fieldName] = $records[0];
                 } else {
-                    $row['_computed'][$fieldName] = $records[0] ?: [];
+                    $row['_computed'][$fieldName] = [];
                 }
             }
         }
