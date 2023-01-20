@@ -120,7 +120,7 @@ Security fix: settings.doubleOptOut von 0 auf 1 gesetzt. Kann man auf 0 setzen, 
 
 Security fix: einen weiteren Check zur Abmelde-Funktion hinzugefügt (man konnte bisher alle Empfänger abmelden).
 
-Security fix: "Information Disclosure" in der  new- und unsubscribe-action.
+Security fix: "Information Disclosure" in der new- und unsubscribe-action.
 
 
 Version 4.0.0/1:
@@ -134,6 +134,8 @@ Neuer Task: importiere Newsletter-Abonnenten von tt_address nach fe_users.
 Setting preferXlfFile hinzugefügt. Anreden und E-Mail-Betreff kommen aus der xlf-Datei anstatt aus den Settings, wenn 1.
 
 
-Version 4.0.2:
+Version 4.0.3:
+
+Compatibility to direct_mail 11 added.
 
 Bugfix: PHP 8 und delete-action.

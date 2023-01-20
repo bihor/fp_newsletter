@@ -83,8 +83,13 @@ class HelpersUtility
      */
     public function checkDirectmailAuthCode(array $user, string $authCode): bool
     {
-        return (preg_match('/^[0-9a-f]{40}$/', $authCode) &&
-            ($authCode == \DirectMailTeam\DirectMail\Utility\AuthCodeUtility::getHmac($user, 'uid')));
+        if (strlen($authCode) == 8) {
+            return (preg_match('/^[0-9a-f]{8}$/', $authCode) &&
+                ($authCode == GeneralUtility::stdAuthCode($user, 'uid')));
+        } else {
+            return (preg_match('/^[0-9a-f]{40}$/', $authCode) &&
+                ($authCode == \DirectMailTeam\DirectMail\Utility\AuthCodeUtility::getHmac($user, 'uid')));
+        }
     }
 
     /**
