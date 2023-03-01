@@ -37,6 +37,7 @@ doubleOptOut                      boolean     Enable double out out unsubscripti
 disableErrorMsg                   boolean     Disable some error messages (e.g. already/not subscribed)?            0
 enableUnsubscribeForm             boolean     Enable unsubscribe form at the subscribe page?**                      0
 enableUnsubscribeGdprAsHidden     boolean     Do not show the gdpr-checkbox at unsubscribe form?                    0
+enableEditForm                    boolean     Enable edit form at the subscribe page?**                             0
 subscribeUid                      integer     Page for the subscription                                             1
 subscribeMessageUid               integer     Optional page for the redirect after subscription
 subscribeVerifyUid                integer     Page for the subscription-verification
@@ -46,11 +47,14 @@ unsubscribeMessageUid             integer     Optional page for the redirect aft
 unsubscribeVerifyUid              integer     Page for the unsubscription-verification
 unsubscribeVerifyMessageUid       integer     Optional page for the redirect after unsubscription-verification***
 resendVerificationUid             integer     Page, where a user can request the verification-email again
+editUid                           integer     Page, where a user can edit his subscription
 gdprUid                           integer     Page with the GDPR text                                               1
 daysExpire                        integer     The link expires after X days                                         2
 searchPidMode                     integer     Search in tt_address: 0: only in the 1. folder; 1: in all folders°    0
 deleteMode                        integer     1: set deletion flag; 2: delete entry                                 1
 languageMode                      integer     0: uses -1 if L>0; 1: uses the sys_language_uid from pages            0
+categoryMode                      integer     0: only cat./groups specified in module_sys_dmail_category; 1: all    1
+categoryOrderBy                   string      category order by: title, sorting or uid                              title
 dmUnsubscribeMode                 integer     0: direct unsubscription with link from direct_mail; 1: show form.    0
 module_sys_dmail_html             integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1
 module_sys_dmail_category         string      List of categories (uid) from sys_dmail_category or fe_groups°°
@@ -78,6 +82,7 @@ email.adminUnsubscribeSubject     string      Subject of the admin email (unsubs
 email.adminMailBeforeVerification boolean     0: send email to admin after verification; 1: before verification     0
 email.subscribedSubject           string      Subject of the confirmation email (subscription)                      Bestätigung Newsletter-Anmeldung
 email.unsubscribedSubject         string      Subject of the confirmation email (unsubscription)                    Bestätigung Newsletter-Abmeldung
+email.editSubject                 string      Subject to the edit email                                             Ändern Sie Ihr Newsletter-Abo...
 email.enableConfirmationMails     boolean     Send confirmation email to the user after verification? 0: no; 1: yes 0
 email.dontAppendL                 boolean     Append the language UID to a template (when L>0)? 0: yes; 1: no°°°    1
 overrideFlexformSettingsIfEmpty   string      Empty FlexForms should be overwritten by TypoScript                   all uid settings
@@ -85,13 +90,13 @@ overrideFlexformSettingsIfEmpty   string      Empty FlexForms should be overwrit
 
 Note*: only a check via browser is made for the optional required fields.
 
-Note**: you need an own page for the unsubscription! unsubscribeUid should be defined therefore.
+Note**: you need an own page for the unsubscription/edit! unsubscribeUid/editUid should be defined therefore.
 
 Note***: this page is used too, if doubleOptOut=0. unsubscribeMessageUid is not used if doubleOptOut=0.
 
 Note°: this works only at the unsubscription.
 
-Note°°: comma separated list. E.g. 1,3. Without space.
+Note°°: comma separated list. E.g. 1,3. Without space. Required!
 
 Note°°°: the default value was changed from 0 to 1 in version 3.0.0 and even when L=0 0 will be added from version 3.0.0
 to the email-templates when email.dontAppendL=0.

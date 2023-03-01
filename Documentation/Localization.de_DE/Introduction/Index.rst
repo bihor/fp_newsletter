@@ -35,9 +35,10 @@ Achtung!
 ^^^^^^^^
 
 Diese Extension wurde nicht für multiple Newsletter-Kategorien designed. Man kann sich zwar zu mehreren Kategorien
-anmelden, aber es ist nicht möglich, sich nur von speziellen Kategorien abzumelden! Der komplette Abonnent wird
-bei der Abmeldung gelöscht, sodass man sich nicht nur von einem speziellen Newsletter abmelden kann.
-Aus dem Grund ist auch eine Bearbeitung der Newsletter-Anmeldung z.Z. nicht möglich!
+anmelden, aber es ist nicht möglich, sich nur von speziellen Kategorien abzumelden (bei der Abmeldung)!
+Der komplette Abonnent wird bei der Abmeldung gelöscht, sodass man sich nicht nur von einem speziellen Newsletter abmelden kann.
+Allerdings ist seit Version 4.1.0 eine Bearbeitung der Newsletter-Daten möglich! Im Bearbeiten-Formular stehen alle
+möglichen Kategorien zur Auswahl verfügbar.
 
 
 .. _screenshots:

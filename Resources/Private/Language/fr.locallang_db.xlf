@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="fr" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf" date="2022-04-25T08:08:08Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="fr" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf" date="2023-01-27T15:11:44Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
@@ -9,7 +9,7 @@
 			</trans-unit>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description" resname="tx_fp_newsletter_domain_model_pi1.description">
 				<source>Privacy compliant plugin for newsletter subscription and unsubscription (for direct_mail via tt_address/luxletter via fe_users).</source>
-				<target>Plugin respectant la confidentialité pour l'abonnement et le désabonnement aux newsletter (pour direct_mail via tt_address/luxletter via fe_users) .</target>
+				<target>Plugin respectant la confidentialité pour l&#039;abonnement et le désabonnement aux newsletter (pour direct_mail via tt_address/luxletter via fe_users) .</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log" resname="tx_fpnewsletter_domain_model_log">
 				<source>Log</source>
@@ -101,7 +101,7 @@
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.categories" resname="tx_fpnewsletter_domain_model_log.categories">
 				<source>Categories (comma separated)</source>
-				<target>Catégories (séparées par des virgules ',')</target>
+				<target>Catégories (séparées par des virgules &#039;,&#039;)</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status" resname="tx_fpnewsletter_domain_model_log.status">
 				<source>Status</source>
@@ -164,8 +164,16 @@
 				<target>désinscrit</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status.8" resname="tx_fpnewsletter_domain_model_log.status.8">
-				<source>Email not found</source>
+				<source>email-address not found</source>
 				<target>Email non trouvé</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.10" resname="tx_fpnewsletter_domain_model_log.status.10">
+				<source>edit request</source>
+				<target>modifier la demande</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.11" resname="tx_fpnewsletter_domain_model_log.status.11">
+				<source>subscription changed</source>
+				<target>abonnement modifié</target>
 			</trans-unit>
 		</body>
 	</file>

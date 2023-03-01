@@ -51,6 +51,10 @@ class PageLayoutViewHook implements PageLayoutViewDrawItemHookInterface
             'table' => 'pages',
             'multiValue' => false,
         ],
+        'editUid' => [
+            'table' => 'pages',
+            'multiValue' => false,
+        ],
         'gdprUid' => [
             'table' => 'pages',
             'multiValue' => false,

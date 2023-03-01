@@ -102,40 +102,27 @@ IDs im Abmeldeformular geändert.
 Backend: Vorschau hinzugefügt.
 
 Version 3.2.5:
-
-Switch von cURL zu RequestFactory.
-
-Bugfix: no categories added in tt_address.
-
+- Switch von cURL zu RequestFactory.
+- Bugfix: no categories added in tt_address.
 
 Version 3.2.6:
-
-PHP-E-Mail-Validierung hinzugefügt.
-
-Security fix: das Standard-Passwort für fe_users durch ein Zufallspasswort ersetzt.
-
-Security fix: mathematical-captcha-check erweitert (man konnte bisher mogeln).
-
-Security fix: settings.doubleOptOut von 0 auf 1 gesetzt. Kann man auf 0 setzen, wenn man kein double opt out beim abmelden haben will.
-
-Security fix: einen weiteren Check zur Abmelde-Funktion hinzugefügt (man konnte bisher alle Empfänger abmelden).
-
-Security fix: "Information Disclosure" in der new- und unsubscribe-action.
-
+- PHP-E-Mail-Validierung hinzugefügt.
+- Security fix: das Standard-Passwort für fe_users durch ein Zufallspasswort ersetzt.
+- Security fix: mathematical-captcha-check erweitert (man konnte bisher mogeln).
+- Security fix: settings.doubleOptOut von 0 auf 1 gesetzt. Kann man auf 0 setzen, wenn man kein double opt out beim abmelden haben will.
+- Security fix: einen weiteren Check zur Abmelde-Funktion hinzugefügt (man konnte bisher alle Empfänger abmelden).
+- Security fix: "Information Disclosure" in der new- und unsubscribe-action.
 
 Version 4.0.0/1:
-
-Achtung: das default TypoScript für die Sprache sys_language_uid 1 wurde entfernt!
-
-Neue Actions: Abmeldung via Luxletter und cachebares Formular für die Anmeldung.
-
-Neuer Task: importiere Newsletter-Abonnenten von tt_address nach fe_users.
-
-Setting preferXlfFile hinzugefügt. Anreden und E-Mail-Betreff kommen aus der xlf-Datei anstatt aus den Settings, wenn 1.
-
+- Achtung: das default TypoScript für die Sprache sys_language_uid 1 wurde entfernt!
+- Neue Actions: Abmeldung via Luxletter und cachebares Formular für die Anmeldung.
+- Neuer Task: importiere Newsletter-Abonnenten von tt_address nach fe_users.
+- Setting preferXlfFile hinzugefügt. Anreden und E-Mail-Betreff kommen aus der xlf-Datei anstatt aus den Settings, wenn 1.
 
 Version 4.0.3:
+- Compatibility to direct_mail 11 added.
+- Bugfix: PHP 8 und delete-action.
 
-Compatibility to direct_mail 11 added.
-
-Bugfix: PHP 8 und delete-action.
+Version 4.1.0:
+- Edit/Update-Action hinzugefügt.
+- Neue TypoScript-Variablen: enableEditForm, editUid, categoryMode und editSubject.

@@ -38,6 +38,7 @@ doubleOptOut                      boolean     Double opt out Abmeldung einschalt
 disableErrorMsg                   boolean     Manche Fehlermeldungen ignorieren (z.B. bereits/nicht angemeldet)?    0
 enableUnsubscribeForm             boolean     Abmeldeformular auf der Anmeldeseite mit ausgeben?**                  0
 enableUnsubscribeGdprAsHidden     boolean     DSGVO-Checkbox beim Abmeldeformular verbergen?                        0
+enableEditForm                    boolean     Bearbeiten-Formular auf der Anmeldeseite mit ausgeben?**              0
 subscribeUid                      integer     Seite für die Anmeldung                                               1
 subscribeMessageUid               integer     Optionale Seite für einen Redirect nach der Anmeldung
 subscribeVerifyUid                integer     Seite für die Anmelde-Verifikation
@@ -47,11 +48,13 @@ unsubscribeMessageUid             integer     Optionale Seite für den Redirect 
 unsubscribeVerifyUid              integer     Seite für die Abmelde-Verifikation (demnächst)
 unsubscribeVerifyMessageUid       integer     Optionale Seite für den Redirect nach der Abmelde-Verifikation***
 resendVerificationUid             integer     Seite, auf der man die Verifizierungsemail erneut anfordern kann
+editUid                           integer     Seite, auf der man seit Abonnement bearbeiten kann
 gdprUid                           integer     Seite mit den DSGVO-Texten                                            1
 daysExpire                        integer     Der Verifikations-Link wird ungültig nach X Tagen                     2
 searchPidMode                     integer     Suche in tt_address: 0: nur im 1. Ordner; 1: in allen Ordners°        0
 deleteMode                        integer     1: setze delete-Flag; 2: lösche endgültig                             1
 languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
+categoryMode                      integer     0: nur Kat./Gruppen aus module_sys_dmail_category erlauben; 1: alle   1
 dmUnsubscribeMode                 integer     0: Sofort-Abmeldung durch Link aus direct_mail; 1: zeige Abmeldeform. 0
 module_sys_dmail_html             integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1
 module_sys_dmail_category         string      Liste von Kategorien (uid) aus sys_dmail_category oder fe_groups°°
@@ -79,6 +82,7 @@ email.adminUnsubscribeSubject     string      Betreff der Admin-E-Mail (Abmeldun
 email.adminMailBeforeVerification boolean     0: sende die E-Mail nach der Verifikation; 1: vor der Verifikation    0
 email.subscribedSubject           string      Betreff der Bestätigungsmail (Anmeldung)                              Bestätigung Newsletter-Anmeldung
 email.unsubscribedSubject         string      Betreff der Bestätigungsmail (Abmeldung)                              Bestätigung Newsletter-Abmeldung
+email.editSubject                 string      Betreff der Bearbeiten-Email                                          Ändern Sie Ihr Newsletter-Abo...
 email.enableConfirmationMails     boolean     Sende eine Bestätigungs-E-Mail an den Benutzer? 0: nein; 1: ja        0
 email.dontAppendL                 boolean     Hänge die Sprach-UID an Templates an (wenn L>0)? 0: ja; 1: nein°°°    1
 overrideFlexformSettingsIfEmpty   string      Leere Flexforms sollen durch TypoScript überschrieben werden          alle uid-Variablen
@@ -86,13 +90,13 @@ overrideFlexformSettingsIfEmpty   string      Leere Flexforms sollen durch TypoS
 
 Achtung*: die optional erforderlichen Werte werden nur per Browser geprüft.
 
-Achtung**: man braucht eine eigene Seite für die Abmeldung. unsubscribeUid muss also angegebenen werden.
+Achtung**: man braucht eine eigene Seite für die Abmeldung/Bearbeitung. unsubscribeUid/editUid muss also angegebenen werden.
 
 Achtung***: diese Seite wird auch dann benutzt, wenn doubleOptOut=0. unsubscribeMessageUid wird dann nicht benutzt.
 
 Achtung°: dies funktioniert nur bei der Abmeldung.
 
-Achtung°°: Kommaseparierte Liste. Beispiel: 1,3. Also ohne Leerzeichen dazwischen.
+Achtung°°: Kommaseparierte Liste. Beispiel: 1,3. Also ohne Leerzeichen dazwischen. Erforderlich!
 
 Achtung°°°: der Default-Wert wurde von 0 auf 1 geändert in Version 3.0.0 und selbst wenn L=0 wird ab Version 3.0.0
 0 an den E-Mail-Template-Namen angehangen wenn email.dontAppendL=0.

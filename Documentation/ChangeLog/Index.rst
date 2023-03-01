@@ -101,40 +101,27 @@ IDs in unsubscribe form changed.
 Backend: preview added.
 
 Version 3.2.5:
-
-Switch from cURL to RequestFactory.
-
-Bugfix: no categories added in tt_address.
-
+- Switch from cURL to RequestFactory.
+- Bugfix: no categories added in tt_address.
 
 Version 3.2.6:
-
-PHP email validation added.
-
-Security fix: default password for fe_users set to a random password.
-
-Security fix: mathematical captcha check enhanced (it was possible to cheat).
-
-Security fix: settings.doubleOptOut set from 0 to 1. You can set it to 0 if you don´t want a double opt out subscription.
-
-Security fix: additional check added to the delete-action (it was possible to unsubscribe all users).
-
-Security fix: Information Disclosure in the new- and unsubscribe-action.
-
+- PHP email validation added.
+- Security fix: default password for fe_users set to a random password.
+- Security fix: mathematical captcha check enhanced (it was possible to cheat).
+- Security fix: settings.doubleOptOut set from 0 to 1. You can set it to 0 if you don´t want a double opt out subscription.
+- Security fix: additional check added to the delete-action (it was possible to unsubscribe all users).
+- Security fix: Information Disclosure in the new- and unsubscribe-action.
 
 Version 4.0.0/1:
-
-Breaking: default TypoScript values for sys_language_uid 1 removed!
-
-New actions: unsubscribe from Luxletter and cacheable form for subscription.
-
-New task: import newsletter-subscribers from tt_address to fe_users.
-
-Setting preferXlfFile added. If 1, genders and email subjects will come from the xlf file instead of the settings.
-
+- Breaking: default TypoScript values for sys_language_uid 1 removed!
+- New actions: unsubscribe from Luxletter and cacheable form for subscription.
+- New task: import newsletter-subscribers from tt_address to fe_users.
+- Setting preferXlfFile added. If 1, genders and email subjects will come from the xlf file instead of the settings.
 
 Version 4.0.3:
+- Compatibility to direct_mail 11 added.
+- Bugfix: PHP 8 and delete-action.
 
-Compatibility to direct_mail 11 added.
-
-Bugfix: PHP 8 and delete-action.
+Version 4.1.0:
+- Edit/update-action added.
+- New TypoScript settings: enableEditForm, editUid, categoryMode, categoryOrderBy and editSubject.

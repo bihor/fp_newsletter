@@ -137,7 +137,8 @@ class LogController extends ActionController
                 $required[trim($field)] = 1;
             }
         }
-        if ($log) {
+        if ($log && $log->getUid()) {
+            // wenn man von "create" her kommt, muss der Eintrag validiert werden
 			$securityhash = $this->request->hasArgument('securityhash') ? $this->request->getArgument('securityhash') : '';
             if (empty($securityhash) || !is_string($securityhash) || !hash_equals($log->getSecurityhash(), $securityhash)) {
                 $error = 1;
@@ -147,7 +148,7 @@ class LogController extends ActionController
         if (! $log) {
             $log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
         }
-        if ($this->settings['parameters']['email']) {
+        if (!$log->getEmail() && $this->settings['parameters']['email']) {
             $email = isset($_GET[$this->settings['parameters']['email']]) ? $_GET[$this->settings['parameters']['email']] : '';
             if (! $email) {
                 $email = isset($_POST[$this->settings['parameters']['email']]) ? $_POST[$this->settings['parameters']['email']] : '';
@@ -236,10 +237,219 @@ class LogController extends ActionController
                 $log = $this->logRepository->getByEmailAndPid($email, $storagePidsArray, 0, $maxDate);
             }
             if ($log) {
-                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, true, false, $log->getSecurityhash(), $subscribeVerifyUid);
+                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, false, $log->getSecurityhash(), $subscribeVerifyUid);
             }
         }
         $this->view->assign('email', $email);
+        $this->view->assign('log', $log);
+    }
+
+    /**
+     * action editEmail: request email for edit data
+     *
+     * @return void
+     */
+    public function editEmailAction()
+    {
+        $log = null;
+        $error = 0;
+        $email = $this->request->hasArgument('email') ? $this->request->getArgument('email') : '';
+        if ($email) {
+            // send email with a link to an edit page
+            $dbuidext = 0;
+            if (GeneralUtility::validEmail($email)) {
+                $storagePidsArray = $this->logRepository->getStoragePids();
+                $pid = intval($storagePidsArray[0]);
+                if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
+                    $dbuidext = $this->logRepository->getUidFromExternal($email, $pid, $this->settings['table']);
+                }
+                if (!$dbuidext) {
+                    $error = 7;
+                } else {
+                    $log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+                    $log->setPid($pid);
+                    $log->setEmail($email);
+                    $hash = $this->helpersUtility->setHashAndLanguage($log, $this->settings['languageMode']);
+                    $log->setStatus(10);
+                    $this->logRepository->add($log);
+                    $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+                    $persistenceManager->persistAll();
+                    $error = 51;
+                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, true,true, false, $hash, $this->settings['editUid']);
+                    // reset log entry
+                    $log = null;
+                }
+                if ($this->settings['disableErrorMsg'] && ($error == 7)) {
+                    $error = 51;
+                }
+            } else {
+                $error = 8;
+            }
+        }
+        $this->view->assign('log', $log);
+        $this->view->assign('error', $error);
+    }
+
+    /**
+     * action edit data
+     *
+     * @return void
+     */
+    public function editAction()
+    {
+        $genders = $this->helpersUtility->getGenders($this->settings['preferXlfFile'], $this->settings['gender']);
+        $optional = [];
+        $required = [];
+        $optionalFields = $this->settings['optionalFields'];
+        $requiredFields = $this->settings['optionalFieldsRequired'];
+        if ($optionalFields) {
+            $tmp = explode(',', $optionalFields);
+            foreach ($tmp as $field) {
+                $optional[trim($field)] = 1;
+                $required[trim($field)] = 0;
+            }
+        }
+        if ($requiredFields) {
+            $tmp = explode(',', $requiredFields);
+            foreach ($tmp as $field) {
+                $required[trim($field)] = 1;
+            }
+        }
+        $catOrderBy = ($this->settings['categoryOrderBy'] == 'title') ? 'title' : '';
+        if (!$catOrderBy) {
+            $catOrderBy = ($this->settings['categoryOrderBy'] == 'sorting') ? 'sorting' : 'uid';
+        }
+        $log = null;
+        $error = 0;
+        $dbuid = 0;
+        $table = $this->settings['table'];
+        $groups = [];
+        $uid = intval($this->request->hasArgument('uid')) ? $this->request->getArgument('uid') : 0;
+        $hash = ($this->request->hasArgument('hash')) ? $this->request->getArgument('hash') : '';
+        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+        $sys_language_uid = intval($languageAspect->getId());
+        if (! $uid || ! $hash) {
+            $this->view->assign('error', 1);
+        } else {
+            if ($sys_language_uid > 0 && $this->settings['languageMode']) {
+                $log = $this->logRepository->findAnotherByUid($uid, $sys_language_uid);
+            } else {
+                $log = $this->logRepository->findOneByUid($uid);
+            }
+            if ($log) {
+                $dbuid = $log->getUid();
+                $dbemail = $log->getEmail();
+            }
+            if (!$dbuid) {
+                $error = 2;
+            } elseif ($log->getStatus() < 10) {
+                $error = 2;
+            } else {
+                $error = $this->helpersUtility->checkIfValid($log, $hash, $this->settings['daysExpire']);
+                if (!$error) {
+                    $dbuidext = $this->logRepository->getExternalUid($dbemail, $log->getPid(), $table, $this->settings['searchPidMode']);
+                    if ($dbuidext) {
+                        $user = $this->logRepository->getUserFromExternal($dbuidext, $table);
+                        $log->setTitle($user['title']);
+                        $log->setFirstname($user['first_name']);
+                        $log->setLastname($user['last_name']);
+                        $log->setAddress($user['address']);
+                        $log->setZip($user['zip']);
+                        $log->setCity($user['city']);
+                        $log->setCountry($user['country']);
+                        $log->setFax($user['fax']);
+                        $log->setWww($user['www']);
+                        $log->setCompany($user['company']);
+                        if ($table == 'tt_address') {
+                            $log->setRegion($user['region']);
+                            $log->setPhone($user['phone']);
+                            $log->setMobile($user['mobile']);
+                            $log->setPosition($user['position']);
+                            $gender = 0;
+                            if ($user['gender'] == 'f') $gender = 1;
+                            elseif ($user['gender'] == 'm') $gender = 2;
+                            elseif ($user['gender'] == 'v') $gender = 3;
+                            $log->setGender($gender);
+                            $groups = $this->logRepository->getAllCats($catOrderBy);
+                            $own_groups_tmp = $this->logRepository->getOwnCats($dbuidext);
+                            foreach ($own_groups_tmp as $tmp) {
+                                $own_groups[] = $tmp['uid_foreign'];
+                            }
+                        } elseif ($table == 'fe_users') {
+                            $log->setPhone($user['telephone']);
+                            $groups = $this->logRepository->getAllGroups($catOrderBy);
+                            $own_groups = explode(',', $user['usergroup']);
+                        }
+                        if (!$this->settings['categoryMode']) {
+                            // nur angegebene Kategorien erlauben
+                            $dmCat = str_replace(' ', '', $this->settings['module_sys_dmail_category']);
+                            $dmCatArr = explode(',', $dmCat);
+                            foreach ($groups as $key => $array) {
+                                if (!in_array($array['uid'], $dmCatArr)) {
+                                    unset($groups[$key]);
+                                }
+                            }
+                        }
+                        foreach ($groups as $key => $array) {
+                            if (in_array($array['uid'], $own_groups)) {
+                                $groups[$key]['own'] = true;
+                            }
+                        }
+                    } else {
+                        $error = 1;
+                    }
+                }
+            }
+        }
+        $this->view->assign('genders', $genders);
+        $this->view->assign('optional', $optional);
+        $this->view->assign('required', $required);
+        $this->view->assign('groups', $groups);
+        $this->view->assign('log', $log);
+        $this->view->assign('error', $error);
+    }
+
+    /**
+     * action update
+     *
+     * @param Log $log
+     * @return void
+     */
+    public function updateAction(Log $log)
+    {
+        $error = 0;
+        $table = $this->settings['table'];
+        $categories = ($this->request->hasArgument('categories')) ? $this->request->getArgument('categories') : '';
+        $securityhash = $this->request->hasArgument('hash') ? $this->request->getArgument('hash') : '';
+        if (empty($securityhash) || !is_string($securityhash) || !hash_equals($log->getSecurityhash(), $securityhash)) {
+            $error = 3;
+        } else {
+            $new_categories = [];
+            if (is_array($categories)) {
+                foreach ($categories as $key => $value) {
+                    if ($value) {
+                        $new_categories[] = $value;
+                    }
+                }
+            } else {
+                $new_categories[] = $categories;
+            }
+            $log->setCategories(implode(",", $new_categories));
+            $log->setStatus(11);
+            $this->logRepository->update($log);
+            $dbemail = $log->getEmail();
+            $dbuidext = $this->logRepository->getExternalUid($dbemail, $log->getPid(), $table, $this->settings['searchPidMode']);
+            if ($dbuidext) {
+                if ($table == 'tt_address') {
+                    $this->logRepository->updateInTtAddress($log, $dbuidext);
+                } elseif ($table == 'fe_users') {
+                    $this->logRepository->updateInFeUsers($log, $dbuidext);
+                }
+            } else {
+                $error = 1;
+            }
+        }
+        $this->view->assign('error', $error);
         $this->view->assign('log', $log);
     }
 
@@ -286,16 +496,7 @@ class LogController extends ActionController
             $this -> addFlashMessage("Missing Log entry!", "", AbstractMessage::ERROR);
             $this -> redirect('new');
         }
-        $hash = md5(uniqid($log->getEmail(), true));
-        $log->setSecurityhash($hash);
-        // Sprachsetzung sollte eigentlich automatisch passieren, tut es wohl aber nicht.
-        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
-        $sys_language_uid = intval($languageAspect->getId());
-        if ($sys_language_uid > 0 && ! $this->settings['languageMode']) {
-            $log->set_languageUid(-1);
-        } else {
-            $log->set_languageUid($sys_language_uid);
-        }
+        $hash = $this->helpersUtility->setHashAndLanguage($log, $this->settings['languageMode']);
         $log->setStatus(0);
         if ($log->getUid() > 0) {
             $this->logRepository->update($log);
@@ -313,7 +514,7 @@ class LogController extends ActionController
         }
         $email = $log->getEmail();
         $dbuidext = 0;
-        if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
+        if (GeneralUtility::validEmail($email)) {
             if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
                 $dbuidext = $this->logRepository->getUidFromExternal($email, $log->getPid(), $this->settings['table']);
             }
@@ -363,7 +564,7 @@ class LogController extends ActionController
             $this->logRepository->update($log);
             $persistenceManager->persistAll();
             $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
-            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, true, $toAdmin, $hash, $subscribeVerifyUid);
+            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, $toAdmin, $hash, $subscribeVerifyUid);
         } else if ($error >= 8) {
             $this->redirect('new', null, null, [
                 'log' => $log,
@@ -572,6 +773,7 @@ class LogController extends ActionController
         $messageUid = 0;
         $skipCaptchaTest = false;
         $checkSession = false;
+        $hash = '';
         $storagePidsArray = $this->logRepository->getStoragePids();
         if ($log) {
             // if we come from new/unsubscribeAction: an email must be present, but no UID!
@@ -594,37 +796,23 @@ class LogController extends ActionController
                 $pid = intval($storagePidsArray[0]);
             }
             // zum testen: var_dump ($storagePidsArray);
-            $hash = md5(uniqid($log->getEmail(), true));
-            $log->setSecurityhash($hash);
+            $hash = $this->helpersUtility->setHashAndLanguage($log, $this->settings['languageMode']);
             $dbuidext = 0;
-            $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
-            $sys_language_uid = intval($languageAspect->getId());
-            if ($sys_language_uid > 0 && !$this->settings['languageMode']) {
-                $log->set_languageUid(-1);
-            } else {
-                $log->set_languageUid($sys_language_uid);
-            }
 
-            if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($email)) {
-                if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
-                    if ($this->settings['searchPidMode'] == 1) {
-                        $dbuidext = $this->logRepository->getUidFromExternal($email, $storagePidsArray, $this->settings['table']);
-                    } else {
-                        $dbuidext = $this->logRepository->getUidFromExternal($email, $pid, $this->settings['table']);
-                    }
-                    // zum testen: echo "uid $dbuidext mit $email, $pid";
-                    if ($dbuidext > 0) {
-                        $extAddress = $this->logRepository->getUserFromExternal($dbuidext, $this->settings['table']);
-                        $log->setLastname($extAddress['last_name']);
-                        $log->setFirstname($extAddress['first_name']);
-                        $log->setTitle($extAddress['title']);
-                        if ($this->settings['table'] == 'tt_address' && $extAddress['gender']) {
-                            $gender = 0;
-                            if ($extAddress['gender'] == 'f') $gender = 1;
-                            elseif ($extAddress['gender'] == 'm') $gender = 2;
-                            elseif ($extAddress['gender'] == 'v') $gender = 3;
-                            $log->setGender($gender);
-                        }
+            if (GeneralUtility::validEmail($email)) {
+                $dbuidext = $this->logRepository->getExternalUid($email, $pid, $this->settings['table'], $this->settings['searchPidMode']);
+                // zum testen: echo "uid $dbuidext mit $email, $pid";
+                if ($dbuidext > 0) {
+                    $extAddress = $this->logRepository->getUserFromExternal($dbuidext, $this->settings['table']);
+                    $log->setLastname($extAddress['last_name']);
+                    $log->setFirstname($extAddress['first_name']);
+                    $log->setTitle($extAddress['title']);
+                    if ($this->settings['table'] == 'tt_address' && $extAddress['gender']) {
+                        $gender = 0;
+                        if ($extAddress['gender'] == 'f') $gender = 1;
+                        elseif ($extAddress['gender'] == 'm') $gender = 2;
+                        elseif ($extAddress['gender'] == 'v') $gender = 3;
+                        $log->setGender($gender);
                     }
                 }
             } else {
@@ -721,7 +909,7 @@ class LogController extends ActionController
                 $this->logRepository->update($log);
                 $persistenceManager->persistAll();
                 $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
-                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, true, $toAdmin, $hash, $unsubscribeVerifyUid);
+                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, false, true, $toAdmin, $hash, $unsubscribeVerifyUid);
                 $messageUid = $this->settings['unsubscribeMessageUid'];
             } else {
                 if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
@@ -732,7 +920,7 @@ class LogController extends ActionController
                 $persistenceManager->persistAll();
                 if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                     $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
+                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, false, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
                 }
                 $messageUid = $this->settings['unsubscribeVerifyMessageUid'];
             }
@@ -789,76 +977,66 @@ class LogController extends ActionController
             } elseif ($address->getStatus() == 2) {
                 $error = 5;
             } else {
-                $dbhash = $address->getSecurityhash();
-                if ($hash != $dbhash) {
-                    $error = 3;
-                } else {
+                $error = $this->helpersUtility->checkIfValid($address, $hash, $this->settings['daysExpire']);
+                if (!$error) {
                     // $dbstatus = $address->getStatus();
                     $dbemail = $address->getEmail();
-                    $now = new \DateTime();
-                    $diff = $now->diff($address->getTstamp())->days;
-                    if ($diff > $this->settings['daysExpire']) {
-                        $error = 4;
+                    $dbuidext = 0;
+                    if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
+                        $dbuidext = $this->logRepository->getUidFromExternal($dbemail, $address->getPid(), $this->settings['table']);
+                    }
+                    if ($dbuidext > 0) {
+                        $error = 6;
                     } else {
-                        $dbuidext = 0;
-                        if (GeneralUtility::validEmail($dbemail)) {
-                            if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
-                                $dbuidext = $this->logRepository->getUidFromExternal($dbemail, $address->getPid(), $this->settings['table']);
+                        $address->setStatus(2);
+                        $this->logRepository->update($address);
+                        $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+                        $persistenceManager->persistAll();
+                        $success = 0;
+                        if ($this->settings['table'] == 'tt_address') {
+                            if ($dmCat) {
+                                $dmCatArr = explode(',', $dmCat);
+                            } else {
+                                $dmCatArr = [];
                             }
+                            $success = $this->logRepository->insertInTtAddress($address, $html, $dmCatArr);
+                        } else if ($this->settings['table'] == 'fe_users' && $this->settings['password']) {
+                            $frontendUser = new \TYPO3\CMS\Extbase\Domain\Model\FrontendUser();
+                            $password = $this->settings['password'];
+                            if ($password == 'random') {
+                                $password = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\Random::class)->generateRandomBytes(20);
+                            }
+                            $hashInstance = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory::class)->getDefaultHashInstance('FE');
+                            $hashedPassword = $hashInstance->getHashedPassword($password);
+                            $frontendUser->setUsername($dbemail);
+                            $frontendUser->setPassword($hashedPassword);
+                            $frontendUser->setPid(intval($address->getPid()));
+                            $frontendUser->setEmail($dbemail);
+                            if ($address->getFirstName() || $address->getLastName()) {
+                                $frontendUser->setFirstName($address->getFirstName());
+                                $frontendUser->setLastName($address->getLastName());
+                                $frontendUser->setName(trim($address->getFirstName() . ' ' . $address->getLastName()));
+                            }
+                            $frontendUser->setAddress($address->getAddress());
+                            $frontendUser->setZip($address->getZip());
+                            $frontendUser->setCity($address->getCity());
+                            $frontendUser->setCountry($address->getCountry());
+                            $frontendUser->setTelephone($address->getPhone());
+                            $frontendUser->setFax($address->getFax());
+                            $frontendUser->setCompany($address->getCompany());
+                            if ($dmCat) {
+                                $frontendUser->_setProperty('usergroup', $dmCat);
+                                //$frontendUser->addUserGroup($this->frontendUserGroupRepository->findByUid($this->settings['frontendUserGroup']));
+                            }
+                            $frontendUserRepository = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserRepository');
+                            $frontendUserRepository->add($frontendUser);
+                            $success = 1;
                         }
-                        if ($dbuidext > 0) {
-                            $error = 6;
-                        } else {
-                            $address->setStatus(2);
-                            $this->logRepository->update($address);
-                            $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
-                            $persistenceManager->persistAll();
-                            $success = 0;
-                            if ($this->settings['table'] == 'tt_address') {
-                                if ($dmCat) {
-                                    $dmCatArr = explode(',', $dmCat);
-                                } else {
-                                    $dmCatArr = [];
-                                }
-                                $success = $this->logRepository->insertInTtAddress($address, $html, $dmCatArr);
-                            } else if ($this->settings['table'] == 'fe_users' && $this->settings['password']) {
-                                $frontendUser = new \TYPO3\CMS\Extbase\Domain\Model\FrontendUser();
-                                $password = $this->settings['password'];
-								if ($password == 'random') {
-                                    $password = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\Random::class)->generateRandomBytes(20);
-                                }
-                                $hashInstance = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory::class)->getDefaultHashInstance('FE');
-                                $hashedPassword = $hashInstance->getHashedPassword($password);
-                                $frontendUser->setUsername($dbemail);
-                                $frontendUser->setPassword($hashedPassword);
-                                $frontendUser->setPid(intval($address->getPid()));
-                                $frontendUser->setEmail($dbemail);
-                                if ($address->getFirstName() || $address->getLastName()) {
-                                    $frontendUser->setFirstName($address->getFirstName());
-                                    $frontendUser->setLastName($address->getLastName());
-                                    $frontendUser->setName(trim($address->getFirstName() . ' ' . $address->getLastName()));
-                                }
-                                $frontendUser->setAddress($address->getAddress());
-                                $frontendUser->setZip($address->getZip());
-                                $frontendUser->setCity($address->getCity());
-                                $frontendUser->setCountry($address->getCountry());
-                                $frontendUser->setTelephone($address->getPhone());
-                                $frontendUser->setFax($address->getFax());
-                                $frontendUser->setCompany($address->getCompany());
-                                if ($dmCat) {
-                                    $frontendUser->_setProperty('usergroup', $dmCat);
-                                    //$frontendUser->addUserGroup($this->frontendUserGroupRepository->findByUid($this->settings['frontendUserGroup']));
-                                }
-                                $frontendUserRepository = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserRepository');
-                                $frontendUserRepository->add($frontendUser);
-                                $success = 1;
-                            }
-                            if ($this->settings['table'] && $success < 1) {
-                                $error = 8;
-                            } elseif (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || $this->settings['email']['enableConfirmationMails']) {
-                                $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                                $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), true, true, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
-                            }
+                        if ($this->settings['table'] && $success < 1) {
+                            $error = 8;
+                        } elseif (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || $this->settings['email']['enableConfirmationMails']) {
+                            $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
+                            $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), true, true, false, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
                         }
                     }
                 }
@@ -908,41 +1086,24 @@ class LogController extends ActionController
             } elseif ($address->getStatus() == 4) {
                 $error = 5;
             } else {
-                $dbhash = $address->getSecurityhash();
-                if ($hash != $dbhash) {
-                    $error = 3;
-                } else {
+                $error = $this->helpersUtility->checkIfValid($address, $hash, $this->settings['daysExpire']);
+                if (!$error) {
                     $dbemail = $address->getEmail();
-                    $now = new \DateTime();
-                    $diff = $now->diff($address->getTstamp())->days;
-                    if ($diff > $this->settings['daysExpire']) {
-                        $error = 4;
+                    $dbuidext = $this->logRepository->getExternalUid($dbemail, $address->getPid(), $this->settings['table'], $this->settings['searchPidMode']);
+                    if ($this->settings['table'] && ! $dbuidext) {
+                        $error = 6;
                     } else {
-                        $dbuidext = 0;
-                        if (\TYPO3\CMS\Core\Utility\GeneralUtility::validEmail($dbemail)) {
-                            if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
-                                if ($this->settings['searchPidMode'] == 1) {
-                                    $dbuidext = $this->logRepository->getUidFromExternal($dbemail, $this->logRepository->getStoragePids(), $this->settings['table']);
-                                } else {
-                                    $dbuidext = $this->logRepository->getUidFromExternal($dbemail, $address->getPid(), $this->settings['table']);
-                                }
-                            }
-                        }
-                        if ($this->settings['table'] && ! $dbuidext) {
-                            $error = 6;
-                        } else {
-                            $address->setStatus(4);
-                            $this->logRepository->update($address);
-                            $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
-                            $persistenceManager->persistAll();
+                        $address->setStatus(4);
+                        $this->logRepository->update($address);
+                        $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+                        $persistenceManager->persistAll();
 
-                            if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
-                                $this->deleteThisUser($dbuidext);
-                            }
-                            if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
-                                $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                                $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), false, true, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
-                            }
+                        if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
+                            $this->deleteThisUser($dbuidext);
+                        }
+                        if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
+                            $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
+                            $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), false, true, false, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
                         }
                     }
                 }

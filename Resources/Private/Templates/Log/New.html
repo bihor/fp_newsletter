@@ -1,53 +1,88 @@
 <html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
-<f:layout name="Default" />
+<f:layout name="Default"/>
 <f:section name="main">
-	<div style="display:none;"><f:flashMessages /></div>
-	<f:if condition="{error} > 0">
-		<f:if condition="{error} == 1">
-			<p class="alert alert-danger">{f:translate(key: 'wrong_parameters', default: 'wrong parameters')}</p>
-		</f:if>
-		<f:if condition="{error} == 8">
-			<p class="alert alert-danger">{f:translate(key: 'wrong_email', default: 'ivalid email')}</p>
-		</f:if>
-		<f:if condition="{error} == 9">
-			<p class="alert alert-danger">{f:translate(key: 'wrong_captcha', default: 'ivalid captcha')}</p>
-		</f:if>
-		<f:if condition="{error} == 10">
-			<p class="alert alert-danger">{f:translate(key: 'wrong_honeypot', default: 'spam detected')}</p>
-		</f:if>
-		<f:if condition="{error} == 20">
-			<p class="alert alert-danger">{f:translate(key: 'missing_tt_address', default: 'missing tt_address')}</p>
-		</f:if>
-		<f:if condition="{error} == 21">
-			<p class="alert alert-danger">{f:translate(key: 'missing_direct_mail', default: 'missing direct_mail')}</p>
-		</f:if>
-	</f:if>
+    <div style="display:none;">
+        <f:flashMessages/>
+    </div>
+    <f:if condition="{error} > 0">
+        <f:if condition="{error} == 1">
+            <p class="alert alert-danger">{f:translate(key: 'wrong_parameters', default: 'wrong parameters')}</p>
+        </f:if>
+        <f:if condition="{error} == 7">
+            <p class="alert alert-danger">{f:translate(key: 'wrong_unsubscribed', default: 'you are not subscribed')}</p>
+        </f:if>
+        <f:if condition="{error} == 8">
+            <p class="alert alert-danger">{f:translate(key: 'wrong_email', default: 'ivalid email')}</p>
+        </f:if>
+        <f:if condition="{error} == 9">
+            <p class="alert alert-danger">{f:translate(key: 'wrong_captcha', default: 'ivalid captcha')}</p>
+        </f:if>
+        <f:if condition="{error} == 10">
+            <p class="alert alert-danger">{f:translate(key: 'wrong_honeypot', default: 'spam detected')}</p>
+        </f:if>
+        <f:if condition="{error} == 20">
+            <p class="alert alert-danger">{f:translate(key: 'missing_tt_address', default: 'missing tt_address')}</p>
+        </f:if>
+        <f:if condition="{error} == 21">
+            <p class="alert alert-danger">{f:translate(key: 'missing_direct_mail', default: 'missing direct_mail')}</p>
+        </f:if>
+    </f:if>
 
-	<f:render partial="FormErrors" arguments="{object:Log}" />
-	<f:if condition="{settings.reCAPTCHA_site_key}">
-	  <script src="https://www.google.com/recaptcha/api.js?render={settings.reCAPTCHA_site_key}"></script>
-	</f:if>
+    <f:render partial="FormErrors" arguments="{object:Log}"/>
+    <f:if condition="{settings.reCAPTCHA_site_key}">
+        <script src="https://www.google.com/recaptcha/api.js?render={settings.reCAPTCHA_site_key}"></script>
+    </f:if>
 
-	<f:form action="create" name="log" object="{log}">
-		<f:render partial="Log/FormFields" arguments="{_all}" />
-		<f:form.submit value="{f:translate(key: 'subscribe', default: 'subscribe')}" class="btn btn-sm btn-secondary" />
-	</f:form>
+    <f:form action="create" name="log" object="{log}">
+        <f:render partial="Log/FormFields" arguments="{_all}"/>
+        <f:form.submit value="{f:translate(key: 'subscribe', default: 'subscribe')}" class="btn btn-sm btn-secondary"/>
+    </f:form>
 
-	<f:if condition="{settings.resendVerificationUid}">
-		<br/><p><f:link.page pageUid="{settings.resendVerificationUid}">{f:translate(key: 'resendLink', default: 'resend')}</f:link.page></p>
-	</f:if>
+    <f:if condition="{settings.resendVerificationUid}">
+        <br/>
+        <p>
+            <f:link.page pageUid="{settings.resendVerificationUid}">{f:translate(key: 'resendLink', default: 'resend')}</f:link.page>
+        </p>
+    </f:if>
 
-	<f:if condition="{settings.enableUnsubscribeForm} == 1">
-	<f:then>
-	<br>
-	<h3>{f:translate(key: 'unsubscribe_head', default: 'subscribe')}</h3>
-	<f:form pageUid="{settings.unsubscribeUid}" action="delete" name="log" object="{log}">
-		<f:render partial="Log/FormFieldsOut" arguments="{_all}" />
-		<f:form.submit value="{f:translate(key: 'unsubscribe', default: 'unsubscribe')}" class="btn btn-sm btn-primary" />
-	</f:form>
-	</f:then>
-	</f:if>
-	<br>
-	<p>*) {f:translate(key: 'required', default: 'required')}</p>
+    <f:if condition="({settings.enableEditForm} == 2) && {settings.editUid}">
+        <br/>
+        <p>
+            <f:link.action pageUid="{settings.editUid}" action="editEmail">{f:translate(key: 'editLink', default: 'edit link')}</f:link.action>
+        </p>
+    </f:if>
+
+    <f:if condition="{settings.enableUnsubscribeForm} == 1">
+        <f:then>
+            <br>
+            <h3>{f:translate(key: 'unsubscribe_head', default: 'unsubscribe')}</h3>
+            <f:form pageUid="{settings.unsubscribeUid}" action="delete" name="log" object="{log}">
+                <f:render partial="Log/FormFieldsOut" arguments="{_all}"/>
+                <f:form.submit value="{f:translate(key: 'unsubscribe', default: 'unsubscribe')}"
+                               class="btn btn-sm btn-primary"/>
+            </f:form>
+        </f:then>
+    </f:if>
+
+    <f:if condition="{settings.enableEditForm} == 1">
+        <f:then>
+            <f:if condition="{settings.editUid}">
+                <f:then>
+                    <br>
+                    <h3>{f:translate(key: 'edit_head', default: 'edit')}</h3>
+                    <f:form pageUid="{settings.editUid}" action="editEmail" name="log">
+                        <f:render partial="Log/FormFieldsEditEmail" arguments="{_all}"/>
+                        <f:form.submit value="{f:translate(key: 'edit_entry', default: 'edit')}"
+                                       class="btn btn-sm btn-primary"/>
+                    </f:form>
+                </f:then>
+                <f:else>
+                    <p class="alert alert-danger">{f:translate(key: 'missing_edit_uid', default: 'missing setting edit uid')}</p>
+                </f:else>
+            </f:if>
+        </f:then>
+    </f:if>
+    <br>
+    <p>*) {f:translate(key: 'required', default: 'required')}</p>
 </f:section>
 </html>

@@ -31,27 +31,35 @@
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.subscribeVerify</numIndex>
                 <numIndex index="1">Log->verify</numIndex>
             </numIndex>
-            <numIndex index="5">
+			  <numIndex index="4">
+				  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.editEmail</numIndex>
+				  <numIndex index="1">Log->editEmail</numIndex>
+			  </numIndex>
+			  <numIndex index="5">
+				  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.edit</numIndex>
+				  <numIndex index="1">Log->edit;Log->update;Log->editEmail</numIndex>
+			  </numIndex>
+            <numIndex index="6">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribe</numIndex>
                 <numIndex index="1">Log->unsubscribe;Log->delete;Log->verifyUnsubscribe</numIndex>
             </numIndex>
-            <numIndex index="6">
+            <numIndex index="7">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeDM</numIndex>
                 <numIndex index="1">Log->unsubscribeDM;Log->unsubscribe;Log->delete;Log->verifyUnsubscribe</numIndex>
             </numIndex>
-			  <numIndex index="7">
+			  <numIndex index="8">
 				  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeLux</numIndex>
 				  <numIndex index="1">Log->unsubscribeLux;Log->unsubscribe;Log->delete;Log->verifyUnsubscribe</numIndex>
 			  </numIndex>
-            <numIndex index="8">
+            <numIndex index="9">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeVerify</numIndex>
                 <numIndex index="1">Log->verifyUnsubscribe</numIndex>
             </numIndex>
-			  <numIndex index="9">
+			  <numIndex index="10">
 				  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.resend</numIndex>
 				  <numIndex index="1">Log->resend;Log->verify</numIndex>
 			  </numIndex>
-            <numIndex index="10">
+            <numIndex index="11">
                 <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.list</numIndex>
                 <numIndex index="1">Log->list</numIndex>
             </numIndex>
@@ -115,6 +123,20 @@
 					</config>
 				</TCEforms>
 			</settings.unsubscribeVerifyUid>
+			<settings.editUid>
+				<TCEforms>
+					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:editUid</label>
+					<config>
+						<type>group</type>
+						<internal_type>db</internal_type>
+						<allowed>pages</allowed>
+						<size>1</size>
+						<maxitems>1</maxitems>
+						<minitems>0</minitems>
+						<show_thumbs>0</show_thumbs>
+					</config>
+				</TCEforms>
+			</settings.editUid>
 			<settings.gdprUid>
 				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:gdprUid</label>
@@ -134,8 +156,8 @@
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.module_sys_dmail_category</label>
 					<config>
 						<type>input</type>
-						<size>5</size>
-						<max>5</max>
+						<size>10</size>
+						<max>25</max>
 						<eval>trim</eval>
 					</config>
 				</TCEforms>
@@ -222,6 +244,28 @@
 					</config>
 				</TCEforms>
 			</settings.enableUnsubscribeGdprAsHidden>
+			  <settings.enableEditForm>
+				  <TCEforms>
+					  <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.enableEditForm</label>
+					  <config>
+						  <type>radio</type>
+						  <items type="array">
+							  <numIndex index="0" type="array">
+								  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.no</numIndex>
+								  <numIndex index="1">0</numIndex>
+							  </numIndex>
+							  <numIndex index="1" type="array">
+								  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.enableEditForm.1</numIndex>
+								  <numIndex index="1">1</numIndex>
+							  </numIndex>
+							  <numIndex index="2" type="array">
+								  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.enableEditForm.2</numIndex>
+								  <numIndex index="1">2</numIndex>
+							  </numIndex>
+						  </items>
+					  </config>
+				  </TCEforms>
+			  </settings.enableEditForm>
 			<settings.mathCAPTCHA>
 				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.mathCAPTCHA</label>

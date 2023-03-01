@@ -22,6 +22,7 @@ plugin.tx_fpnewsletter {
 	disableErrorMsg = 0
 	enableUnsubscribeForm = 0
 	enableUnsubscribeGdprAsHidden = 0
+	enableEditForm = 0
 	subscribeUid = 1
 	subscribeMessageUid =
 	subscribeVerifyUid =
@@ -31,12 +32,15 @@ plugin.tx_fpnewsletter {
 	unsubscribeVerifyUid =
 	unsubscribeVerifyMessageUid =
 	resendVerificationUid =
+	editUid =
 	gdprUid = 1
 	daysExpire = 2
 	dmUnsubscribeMode = 0
 	searchPidMode = 0
 	deleteMode = 1
 	languageMode = 0
+    categoryMode = 1
+	categoryOrderBy = title
 	module_sys_dmail_html = 1
 	module_sys_dmail_category =
 	password = random
@@ -71,8 +75,9 @@ plugin.tx_fpnewsletter {
 		unsubscribeVerifySubject = Bitte verifizieren Sie Ihre E-Mail-Adresse
 		subscribedSubject = Bestätigung Newsletter-Anmeldung
 		unsubscribedSubject = Bestätigung Newsletter-Abmeldung
+		editSubject = Ändern Sie Ihr Newsletter-Abonnement
 	}
-	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,gdprUid,parameters.active,parameters.email,module_sys_dmail_category
+	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,editUid,gdprUid,parameters.active,parameters.email,module_sys_dmail_category
 	debug = 0
   }
 }

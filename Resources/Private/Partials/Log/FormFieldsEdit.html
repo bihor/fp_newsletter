@@ -1,0 +1,201 @@
+<html xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+<f:comment>
+edit form.
+you could use prependOptionLabel="-" prependOptionValue="0" for a select too.
+</f:comment>
+<f:if condition="{optional.gender} == 1">
+	<div class="form-group">
+		<label for="fp_gender"><f:translate key="tx_fpnewsletter_domain_model_log.gender" /> <f:if condition="{required.gender} == 1"><span class="required">*</span></f:if></label>
+		<f:if condition="{required.gender} == 1"><f:then>
+			<f:form.select class="form-control" property="gender" id="fp_gender" options="{genders}" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.select class="form-control" property="gender" id="fp_gender" options="{genders}" />
+		</f:else></f:if>
+	</div>
+</f:if>
+<f:if condition="{optional.title} == 1">
+	<div class="form-group">
+		<label for="fp_title"><f:translate key="tx_fpnewsletter_domain_model_log.title" /> <f:if condition="{required.title} == 1"><span class="required">*</span></f:if></label>
+		<f:if condition="{required.title} == 1"><f:then>
+			<f:form.textfield class="form-control" property="title" id="fp_title" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.textfield class="form-control" id="fp_title" property="title" />
+		</f:else></f:if>
+	</div>
+</f:if>
+<f:if condition="{optional.firstname} == 1">
+	<div class="form-group">
+		<label for="fp_firstname"><f:translate key="tx_fpnewsletter_domain_model_log.firstname" /> <f:if condition="{required.firstname} == 1"><span class="required">*</span></f:if></label>
+		<f:if condition="{required.firstname} == 1"><f:then>
+			<f:form.textfield class="form-control" id="fp_firstname" property="firstname" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.textfield class="form-control" id="fp_firstname" property="firstname" />
+		</f:else></f:if>
+	</div>
+</f:if>
+<f:if condition="{optional.lastname} == 1">
+	<div class="form-group">
+		<label for="fp_lastname"><f:translate key="tx_fpnewsletter_domain_model_log.lastname" /> <f:if condition="{required.lastname} == 1"><span class="required">*</span></f:if></label>
+		<f:if condition="{required.lastname} == 1"><f:then>
+			<f:form.textfield class="form-control" id="fp_lastname" property="lastname" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.textfield class="form-control" id="fp_lastname" property="lastname" />
+		</f:else></f:if>
+	</div>
+</f:if>
+<div class="form-group">
+	<label for="fp_email"><f:translate key="tx_fpnewsletter_domain_model_log.email" /> <span class="required">*</span></label>
+	<f:form.textfield class="form-control" type="email" property="email" id="fp_email" readonly="true" additionalAttributes="{required : 'required'}" />
+</div>
+
+<f:if condition="{optional.address} == 1">
+	<div class="form-group">
+		<label for="fp_address">
+			<f:translate key="tx_fpnewsletter_domain_model_log.address" /><f:if condition="{required.address} == 1"> <span class="required">*</span></f:if>
+		</label>
+		<f:if condition="{required.address} == 1"><f:then>
+			<f:form.textfield class="form-control" id="fp_address" property="address" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.textfield class="form-control" id="fp_address" property="address" />
+		</f:else></f:if>
+	</div>
+</f:if>
+<f:if condition="{optional.zip} == 1">
+	<div class="form-group">
+		<label for="fp_zip">
+			<f:translate key="tx_fpnewsletter_domain_model_log.zip" /><f:if condition="{required.zip} == 1"> <span class="required">*</span></f:if>
+		</label>
+		<f:if condition="{required.zip} == 1"><f:then>
+			<f:form.textfield class="form-control" id="fp_zip" property="zip" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.textfield class="form-control" id="fp_zip" property="zip" />
+		</f:else></f:if>
+	</div>
+</f:if>
+<f:if condition="{optional.city} == 1">
+	<div class="form-group">
+		<label for="fp_city">
+			<f:translate key="tx_fpnewsletter_domain_model_log.city" /><f:if condition="{required.city} == 1"> <span class="required">*</span></f:if>
+		</label>
+		<f:if condition="{required.city} == 1"><f:then>
+			<f:form.textfield class="form-control" id="fp_city" property="city" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.textfield class="form-control" id="fp_city" property="city" />
+		</f:else></f:if>
+	</div>
+</f:if>
+<f:if condition="{optional.region} == 1">
+	<div class="form-group">
+		<label for="fp_region">
+			<f:translate key="tx_fpnewsletter_domain_model_log.region" /><f:if condition="{required.region} == 1"> <span class="required">*</span></f:if>
+		</label>
+		<f:if condition="{required.region} == 1"><f:then>
+			<f:form.textfield class="form-control" id="fp_region" property="region" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.textfield class="form-control" id="fp_region" property="region" />
+		</f:else></f:if>
+	</div>
+</f:if>
+<f:if condition="{optional.country} == 1">
+	<div class="form-group">
+		<label for="fp_country">
+			<f:translate key="tx_fpnewsletter_domain_model_log.country" /><f:if condition="{required.country} == 1"> <span class="required">*</span></f:if>
+		</label>
+		<f:if condition="{required.country} == 1"><f:then>
+			<f:form.textfield class="form-control" id="fp_country" property="country" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.textfield class="form-control" id="fp_country" property="country" />
+		</f:else></f:if>
+	</div>
+</f:if>
+<f:if condition="{optional.phone} == 1">
+	<div class="form-group">
+		<label for="fp_phone">
+			<f:translate key="tx_fpnewsletter_domain_model_log.phone" /><f:if condition="{required.phone} == 1"> <span class="required">*</span></f:if>
+		</label>
+		<f:if condition="{required.phone} == 1"><f:then>
+			<f:form.textfield class="form-control" id="fp_phone" property="phone" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.textfield class="form-control" id="fp_phone" property="phone" />
+		</f:else></f:if>
+	</div>
+</f:if>
+<f:if condition="{optional.mobile} == 1">
+	<div class="form-group">
+		<label for="fp_mobile">
+			<f:translate key="tx_fpnewsletter_domain_model_log.mobile" /><f:if condition="{required.mobile} == 1"> <span class="required">*</span></f:if>
+		</label>
+		<f:if condition="{required.mobile} == 1"><f:then>
+			<f:form.textfield class="form-control" id="fp_mobile" property="mobile" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.textfield class="form-control" id="fp_mobile" property="mobile" />
+		</f:else></f:if>
+	</div>
+</f:if>
+<f:if condition="{optional.fax} == 1">
+	<div class="form-group">
+		<label for="fp_fax">
+			<f:translate key="tx_fpnewsletter_domain_model_log.fax" /><f:if condition="{required.fax} == 1"> <span class="required">*</span></f:if>
+		</label>
+		<f:if condition="{required.fax} == 1"><f:then>
+			<f:form.textfield class="form-control" id="fp_fax" property="fax" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.textfield class="form-control" id="fp_fax" property="fax" />
+		</f:else></f:if>
+	</div>
+</f:if>
+<f:if condition="{optional.www} == 1">
+	<div class="form-group">
+		<label for="fp_www">
+			<f:translate key="tx_fpnewsletter_domain_model_log.www" /><f:if condition="{required.www} == 1"> <span class="required">*</span></f:if>
+		</label>
+		<f:if condition="{required.www} == 1"><f:then>
+			<f:form.textfield class="form-control" id="fp_www" property="www" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.textfield class="form-control" id="fp_www" property="www" />
+		</f:else></f:if>
+	</div>
+</f:if>
+<f:if condition="{optional.position} == 1">
+	<div class="form-group">
+		<label for="fp_position">
+			<f:translate key="tx_fpnewsletter_domain_model_log.position" /><f:if condition="{required.position} == 1"> <span class="required">*</span></f:if>
+		</label>
+		<f:if condition="{required.position} == 1"><f:then>
+			<f:form.textfield class="form-control" id="fp_position" property="position" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.textfield class="form-control" id="fp_position" property="position" />
+		</f:else></f:if>
+	</div>
+</f:if>
+<f:if condition="{optional.company} == 1">
+	<div class="form-group">
+		<label for="fp_company">
+			<f:translate key="tx_fpnewsletter_domain_model_log.company" /><f:if condition="{required.company} == 1"> <span class="required">*</span></f:if>
+		</label>
+		<f:if condition="{required.company} == 1"><f:then>
+			<f:form.textfield class="form-control" id="fp_company" property="company" additionalAttributes="{required : 'required'}" />
+		</f:then><f:else>
+			<f:form.textfield class="form-control" id="fp_company" property="company" />
+		</f:else></f:if>
+	</div>
+</f:if>
+
+<f:if condition="{settings.module_sys_dmail_category}">
+  <f:then>
+	  <f:if condition="{groups -> f:count()} > 1"><f:then>
+		  <div class="form-group">
+			  <label for="fp_categories">
+				  <f:translate key="subscribed_themes" />
+			  </label>
+			  <f:for each="{groups}" as="group">
+				<br><f:form.checkbox name="categories[{group.uid}]" value="{group.uid}" checked="{group.own}" /> {group.title}
+			  </f:for>
+		  </div>
+	  </f:then><f:else>
+		  <f:form.hidden name="categories" value="{settings.module_sys_dmail_category}" id="fp_categories" />
+	  </f:else></f:if>
+  </f:then>
+</f:if>
+
+</html>

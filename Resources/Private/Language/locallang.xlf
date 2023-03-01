@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2022-03-31T15:09:18Z" product-name="fp_newsletter">
+	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang.xlf" date="2023-02-15T13:05:17Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
@@ -108,11 +108,20 @@
 			<trans-unit id="tx_fpnewsletter_domain_model_log.gdpr_desc2" resname="tx_fpnewsletter_domain_model_log.gdpr_desc2">
 				<source>applies, which also includes other information about how to correct, delete and block my data.</source>
 			</trans-unit>
+			<trans-unit id="subscribed_themes" resname="subscribed_themes">
+				<source>Subscription themes</source>
+			</trans-unit>
 			<trans-unit id="subscribe" resname="subscribe">
 				<source>Subscribe</source>
 			</trans-unit>
 			<trans-unit id="unsubscribe" resname="unsubscribe">
 				<source>Unsubscribe</source>
+			</trans-unit>
+			<trans-unit id="save" resname="save">
+				<source>Save</source>
+			</trans-unit>
+			<trans-unit id="saved" resname="saved">
+				<source>Your changes have been saved.</source>
 			</trans-unit>
 			<trans-unit id="unsubscribe_head" resname="unsubscribe_head">
 				<source>Unsubscribe from the newsletter</source>
@@ -123,8 +132,20 @@
 			<trans-unit id="resendButton" resname="resendButton">
 				<source>Resend the verification email</source>
 			</trans-unit>
+			<trans-unit id="editLink" resname="editLink">
+				<source>Edit my subscription data</source>
+			</trans-unit>
+			<trans-unit id="edit_head" resname="edit_head">
+				<source>Edit my settings</source>
+			</trans-unit>
+			<trans-unit id="edit_entry" resname="edit_entry">
+				<source>Edit entry</source>
+			</trans-unit>
 			<trans-unit id="go_back" resname="go_back">
 				<source>go back</source>
+			</trans-unit>
+			<trans-unit id="email_edit_sent" resname="email_edit_sent">
+				<source>An email has been sent to you. Please click in your email at the link to edit your data.</source>
 			</trans-unit>
 			<trans-unit id="email_send1" resname="email_send1">
 				<source>An email has been sent to you. Please verify your email-address for the newsletter subscription.</source>
@@ -204,6 +225,9 @@
 			<trans-unit id="error_not_here" resname="error_not_here">
 				<source>Error: this point should not be reached!</source>
 			</trans-unit>
+			<trans-unit id="missing_edit_uid" resname="missing_edit_uid">
+				<source>Error: the settings.editUid is not set!</source>
+			</trans-unit>
 			<trans-unit id="missing_tt_address" resname="missing_tt_address">
 				<source>Error: the extension tt_address is required if you use settings.table=tt_address!</source>
 			</trans-unit>
@@ -236,6 +260,9 @@
 			</trans-unit>
 			<trans-unit id="email.pleaseVerify" resname="email.pleaseVerify">
 				<source>you need to click on the verify link to verify your email-address:</source>
+			</trans-unit>
+			<trans-unit id="email.pleaseEdit" resname="email.pleaseEdit">
+				<source>click at this link to modify your newsletter subscription:</source>
 			</trans-unit>
 			<trans-unit id="email.alternative" resname="email.alternative">
 				<source>Alternatively, you can also click on this button</source>
@@ -287,6 +314,9 @@
 			</trans-unit>
 			<trans-unit id="email.unsubscribedSubject" resname="email.unsubscribedSubject">
 				<source>Newsletter-unsubscription confirmation</source>
+			</trans-unit>
+			<trans-unit id="email.editSubject" resname="email.editSubject">
+				<source>Modify your newsletter-subscription</source>
 			</trans-unit>
 		</body>
 	</file>

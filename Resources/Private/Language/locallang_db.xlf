@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf" date="2022-04-25T08:08:26Z" product-name="fp_newsletter">
+	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf" date="2023-01-27T15:11:44Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
@@ -125,6 +125,12 @@
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status.8" resname="tx_fpnewsletter_domain_model_log.status.8">
 				<source>email-address not found</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.10" resname="tx_fpnewsletter_domain_model_log.status.10">
+				<source>edit request</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.11" resname="tx_fpnewsletter_domain_model_log.status.11">
+				<source>subscription changed</source>
 			</trans-unit>
 		</body>
 	</file>

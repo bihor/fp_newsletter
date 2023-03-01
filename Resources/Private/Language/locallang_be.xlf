@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-07-26T16:03:45Z" product-name="fp_newsletter">
+	<file source-language="en" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2023-02-15T13:11:49Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
@@ -20,6 +20,12 @@
 			</trans-unit>
 			<trans-unit id="template.form" resname="template.form">
 				<source>Newsletter: only a cacheable subscribe form</source>
+			</trans-unit>
+			<trans-unit id="template.editEmail" resname="template.editEmail">
+				<source>Newsletter: request edit email (part 1)</source>
+			</trans-unit>
+			<trans-unit id="template.edit" resname="template.edit">
+				<source>Newsletter: edit form (part 2)</source>
 			</trans-unit>
 			<trans-unit id="template.subscribeExtern" resname="template.subscribeExtern">
 				<source>Newsletter: subscribe via external extension</source>
@@ -57,6 +63,9 @@
 			<trans-unit id="unsubscribeVerifyUid" resname="unsubscribeVerifyUid">
 				<source>Page to verify email-address for unsubscription</source>
 			</trans-unit>
+			<trans-unit id="editUid" resname="editUid">
+				<source>Page where a subscription ca be edited</source>
+			</trans-unit>
 			<trans-unit id="gdprUid" resname="gdprUid">
 				<source>Page with the GDPR</source>
 			</trans-unit>
@@ -89,6 +98,15 @@
 			</trans-unit>
 			<trans-unit id="settings.enableUnsubscribeGdprAsHidden" resname="settings.enableUnsubscribeGdprAsHidden">
 				<source>Set the GDPR-checkbox to hidden on the unsubscription form?</source>
+			</trans-unit>
+			<trans-unit id="settings.enableEditForm" resname="settings.enableEditForm">
+				<source>Enable an edit form too?</source>
+			</trans-unit>
+			<trans-unit id="settings.enableEditForm.1" resname="settings.enableEditForm.1">
+				<source>Yes, under the subscription form</source>
+			</trans-unit>
+			<trans-unit id="settings.enableEditForm.2" resname="settings.enableEditForm.2">
+				<source>Yes, but only a link to a new page</source>
 			</trans-unit>
 			<trans-unit id="settings.mathCAPTCHA" resname="settings.mathCAPTCHA">
 				<source>Show a mathematical captcha?</source>

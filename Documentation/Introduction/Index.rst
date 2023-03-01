@@ -34,9 +34,9 @@ Attention!
 ^^^^^^^^^^
 
 This extension is not designed for multiple newsletter-categories! It is possible to subscribe to more than one
-category, but it is not possible to unsubscribe only from a specific category. The whole user will be deleted at
-an unsubscription so it is not possible to unsubscribe only from category/newsletter X. Therefore it is currently
-neither possible to edit an newsletter subscription!
+category, but it is not possible to unsubscribe only from a specific category (at the unsubscribe-form).
+The whole user will be deleted at an unsubscription so it is not possible to unsubscribe only from category/newsletter X.
+But from version 4.1.0 it is possible to edit an newsletter subscription!
 
 
 .. _screenshots:

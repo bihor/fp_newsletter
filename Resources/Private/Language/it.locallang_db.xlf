@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="it" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf" date="2022-04-25T08:07:47Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="it" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf" date="2023-01-27T15:10:18Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
@@ -9,7 +9,7 @@
 			</trans-unit>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description" resname="tx_fp_newsletter_domain_model_pi1.description">
 				<source>Privacy compliant plugin for newsletter subscription and unsubscription (for direct_mail via tt_address/luxletter via fe_users).</source>
-				<target>Plugin per l'iscrizione e revoca alla newsletter gestita da direct_mail</target>
+				<target>Plugin per l&#039;iscrizione e revoca alla newsletter gestita da direct_mail</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log" resname="tx_fpnewsletter_domain_model_log">
 				<source>Log</source>
@@ -164,8 +164,16 @@
 				<target>disiscritto</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status.8" resname="tx_fpnewsletter_domain_model_log.status.8">
-				<source>Email not found</source>
+				<source>email-address not found</source>
 				<target>E-mail non trovata</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.10" resname="tx_fpnewsletter_domain_model_log.status.10">
+				<source>edit request</source>
+				<target>richiesta di modifica</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.11" resname="tx_fpnewsletter_domain_model_log.status.11">
+				<source>subscription changed</source>
+				<target>abbonamento cambiato</target>
 			</trans-unit>
 		</body>
 	</file>

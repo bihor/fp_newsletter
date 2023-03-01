@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf" date="2022-04-25T08:08:26Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="de" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf" date="2023-01-27T10:54:55Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1" resname="tx_fp_newsletter_domain_model_pi1">
@@ -164,8 +164,16 @@
 				<target>abgemeldet</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status.8" resname="tx_fpnewsletter_domain_model_log.status.8">
-				<source>Email not found</source>
+				<source>email-address not found</source>
 				<target>die E-Mail-Adresse wurde nicht gefunden</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.10" resname="tx_fpnewsletter_domain_model_log.status.10">
+				<source>edit request</source>
+				<target>Bearbeiten-Anfrage</target>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.status.11" resname="tx_fpnewsletter_domain_model_log.status.11">
+				<source>changed</source>
+				<target>Anmeldedaten bearbeitet</target>
 			</trans-unit>
 		</body>
 	</file>

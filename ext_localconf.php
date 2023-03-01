@@ -8,10 +8,10 @@ call_user_func(
             'FpNewsletter',
             'Pi1',
             [
-                \Fixpunkt\FpNewsletter\Controller\LogController::class => 'new, create, resend, subscribeExt, unsubscribe, unsubscribeDM, unsubscribeLux, delete, verify, verifyUnsubscribe, form, list'
+                \Fixpunkt\FpNewsletter\Controller\LogController::class => 'new, create, editEmail, edit, update, resend, subscribeExt, unsubscribe, unsubscribeDM, unsubscribeLux, delete, verify, verifyUnsubscribe, form, list'
             ],
             [
-                \Fixpunkt\FpNewsletter\Controller\LogController::class => 'new, create, resend, subscribeExt, unsubscribe, unsubscribeDM, unsubscribeLux, delete, verify, verifyUnsubscribe'
+                \Fixpunkt\FpNewsletter\Controller\LogController::class => 'new, create, editEmail, edit, update, resend, subscribeExt, unsubscribe, unsubscribeDM, unsubscribeLux, delete, verify, verifyUnsubscribe'
             ]
         );
 

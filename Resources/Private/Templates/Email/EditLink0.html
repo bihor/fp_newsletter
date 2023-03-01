@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Ändern Sie Ihr Newsletter-Abonnement</title>
+</head>
+<body>
+<f:render partial="Email/Salutation" arguments="{_all}" />
+<p>klicken Sie bitte auf diesen Link, um Ihr Newsletter-Abonnement zu ändern:</p>
+<p><f:link.action pageUid="{editUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="edit"
+                  arguments="{uid: uid, hash: hash}" absolute="1"><f:format.raw><f:uri.action pageUid="{editUid}"
+                  extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="edit" arguments="{uid: uid, hash: hash}"
+                  absolute="1" /></f:format.raw></f:link.action></p>
+<p><f:link.action pageUid="{editUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="edit"
+                  arguments="{uid: uid, hash: hash}" absolute="1" style="border:1px solid #000;border-radius:3px;padding:2px 10px;"><f:translate key="email.alternative" /></f:link.action></p>
+<p>Mit freundlichen Grüßen<br>
+{settings.company}</p>
+</body>
+</html>

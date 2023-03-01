@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xliff version="1.2" xmlns="urn:oasis:names:tc:xliff:document:1.2">
-	<file source-language="en" target-language="fr" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2022-07-26T16:03:45Z" product-name="fp_newsletter">
+	<file source-language="en" target-language="fr" datatype="plaintext" original="EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf" date="2023-02-15T13:11:07Z" product-name="fp_newsletter">
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
 				<source>Newsletter-subscriber-settings</source>
-				<target>Paramètre de l'inscription à l'infolettre</target>
+				<target>Paramètre de l&#039;inscription à l&#039;infolettre</target>
 			</trans-unit>
 			<trans-unit id="startingPoint" resname="startingPoint">
 				<source>Startingpoint</source>
@@ -25,7 +25,15 @@
 			</trans-unit>
 			<trans-unit id="template.form" resname="template.form">
 				<source>Newsletter: only a cacheable subscribe form</source>
-				<target>Infolettre: seulement un formulaire d'inscription pouvant être mis en cache</target>
+				<target>Infolettre: seulement un formulaire d&#039;inscription pouvant être mis en cache</target>
+			</trans-unit>
+			<trans-unit id="template.editEmail" resname="template.editEmail">
+				<source>Newsletter: request edit email (part 1)</source>
+				<target>Newsletter : demande de modification de l&#039;e-mail (partie 1)</target>
+			</trans-unit>
+			<trans-unit id="template.edit" resname="template.edit">
+				<source>Newsletter: edit form (part 2)</source>
+				<target>Infolettre: modifier le formulaire (partie 2)</target>
 			</trans-unit>
 			<trans-unit id="template.subscribeExtern" resname="template.subscribeExtern">
 				<source>Newsletter: subscribe via external extension</source>
@@ -33,7 +41,7 @@
 			</trans-unit>
 			<trans-unit id="template.subscribeVerify" resname="template.subscribeVerify">
 				<source>Newsletter: verify subscription</source>
-				<target>Infolettre: Validation de l'inscription</target>
+				<target>Infolettre: Validation de l&#039;inscription</target>
 			</trans-unit>
 			<trans-unit id="template.unsubscribe" resname="template.unsubscribe">
 				<source>Newsletter: unsubscribe via form</source>
@@ -53,7 +61,7 @@
 			</trans-unit>
 			<trans-unit id="template.resend" resname="template.resend">
 				<source>Newsletter: resend verification email</source>
-				<target>Infolettre: renvoyer l'e-mail de vérification</target>
+				<target>Infolettre: renvoyer l&#039;e-mail de vérification</target>
 			</trans-unit>
 			<trans-unit id="template.list" resname="template.list">
 				<source>List view: all actions</source>
@@ -61,11 +69,11 @@
 			</trans-unit>
 			<trans-unit id="subscribeUid" resname="subscribeUid">
 				<source>Page for the subscription</source>
-				<target>Page d'inscription</target>
+				<target>Page d&#039;inscription</target>
 			</trans-unit>
 			<trans-unit id="subscribeVerifyUid" resname="subscribeVerifyUid">
 				<source>Page to verify email-address for subscription</source>
-				<target>Page de validation de l'adresse courriel</target>
+				<target>Page de validation de l&#039;adresse courriel</target>
 			</trans-unit>
 			<trans-unit id="unsubscribeUid" resname="unsubscribeUid">
 				<source>Page for the unsubscription</source>
@@ -73,7 +81,11 @@
 			</trans-unit>
 			<trans-unit id="unsubscribeVerifyUid" resname="unsubscribeVerifyUid">
 				<source>Page to verify email-address for unsubscription</source>
-				<target>Page de validation de l'adresse courriel pour la désinscription</target>
+				<target>Page de validation de l&#039;adresse courriel pour la désinscription</target>
+			</trans-unit>
+			<trans-unit id="editUid" resname="editUid">
+				<source>Page where a subscription ca be edited</source>
+				<target>Page où un abonnement peut être modifié</target>
 			</trans-unit>
 			<trans-unit id="gdprUid" resname="gdprUid">
 				<source>Page with the GDPR</source>
@@ -109,15 +121,27 @@
 			</trans-unit>
 			<trans-unit id="settings.disableErrorMsg" resname="settings.disableErrorMsg">
 				<source>Disable some error messages (e.g. already/not subscribed)?</source>
-				<target>Désactiver certains messages d'erreur (ex. déjà/pas encore inscrit)?</target>
+				<target>Désactiver certains messages d&#039;erreur (ex. déjà/pas encore inscrit)?</target>
 			</trans-unit>
 			<trans-unit id="settings.enableUnsubscribeForm" resname="settings.enableUnsubscribeForm">
 				<source>Enable unsubscription form under the subscription form too?</source>
-				<target>Afficher le formulaire de désinscription sous le formulaire d'inscription ?</target>
+				<target>Afficher le formulaire de désinscription sous le formulaire d&#039;inscription ?</target>
 			</trans-unit>
 			<trans-unit id="settings.enableUnsubscribeGdprAsHidden" resname="settings.enableUnsubscribeGdprAsHidden">
 				<source>Set the GDPR-checkbox to hidden on the unsubscription form?</source>
 				<target>Masquer la case RGPD dans le formulaire de désinscription ?</target>
+			</trans-unit>
+			<trans-unit id="settings.enableEditForm" resname="settings.enableEditForm">
+				<source>Enable an edit form too?</source>
+				<target>Activer également un formulaire d&#039;édition ?</target>
+			</trans-unit>
+			<trans-unit id="settings.enableEditForm.1" resname="settings.enableEditForm.1">
+				<source>Yes, under the subscription form</source>
+				<target>Oui, sous le formulaire d&#039;abonnement</target>
+			</trans-unit>
+			<trans-unit id="settings.enableEditForm.2" resname="settings.enableEditForm.2">
+				<source>Yes, but only a link to a new page</source>
+				<target>Oui, mais seulement un lien vers une nouvelle page</target>
 			</trans-unit>
 			<trans-unit id="settings.mathCAPTCHA" resname="settings.mathCAPTCHA">
 				<source>Show a mathematical captcha?</source>
@@ -129,7 +153,7 @@
 			</trans-unit>
 			<trans-unit id="settings.searchPidMode" resname="settings.searchPidMode">
 				<source>Search address (in tt_address/fe_users) in all specified folders?</source>
-				<target>Recherche l'adresse courriel (tt_address/fe_users) dans tous les dossiers spécifiés ?</target>
+				<target>Recherche l&#039;adresse courriel (tt_address/fe_users) dans tous les dossiers spécifiés ?</target>
 			</trans-unit>
 			<trans-unit id="settings.deleteMode" resname="settings.deleteMode">
 				<source>Hard or soft delete mode?</source>
@@ -157,11 +181,11 @@
 			</trans-unit>
 			<trans-unit id="settings.enableConfirmationMails" resname="settings.enableConfirmationMails">
 				<source>Enable confirmation emails to the user?</source>
-				<target>Activer les emails de confirmations pour l'utilisateur ?</target>
+				<target>Activer les emails de confirmations pour l&#039;utilisateur ?</target>
 			</trans-unit>
 			<trans-unit id="settings.dontAppendL" resname="settings.dontAppendL">
 				<source>Add language UID to email templates?</source>
-				<target>Ajouter l'UID de la langue aux templates d'email ?</target>
+				<target>Ajouter l&#039;UID de la langue aux templates d&#039;email ?</target>
 			</trans-unit>
 			<trans-unit id="settings.dmUnsubscribeMode" resname="settings.dmUnsubscribeMode">
 				<source>Direct mail unsubscribe mode: direct unsubscribe (no) or go to the unsubscribe page (yes)?</source>
@@ -181,11 +205,11 @@
 			</trans-unit>
 			<trans-unit id="settings.parameters.active" resname="settings.parameters.active">
 				<source>Checkbox name for the newsletter-subscription (e.g. tx_myshop_pi1|newBestellung|newsletter)</source>
-				<target>Attribut name de la case à coche du formulaire d'inscription (ex. tx_myshop_pi1|newBestellung|newsletter)</target>
+				<target>Attribut name de la case à coche du formulaire d&#039;inscription (ex. tx_myshop_pi1|newBestellung|newsletter)</target>
 			</trans-unit>
 			<trans-unit id="settings.parameters.email" resname="settings.parameters.email">
 				<source>Input-field name for the email-address (e.g. tx_myshop_pi1|newBestellung|email)</source>
-				<target>Attribut name du champs de l'adresse courriel (ex. tx_myshop_pi1|newBestellung|email)</target>
+				<target>Attribut name du champs de l&#039;adresse courriel (ex. tx_myshop_pi1|newBestellung|email)</target>
 			</trans-unit>
 			<trans-unit id="dashboard.widget.fixpunktRecentLogEntries.title" resname="dashboard.widget.fixpunktRecentLogEntries.title">
 				<source>fp_newsletter: recent 7 log entries</source>
@@ -197,7 +221,7 @@
 			</trans-unit>
 			<trans-unit id="dashboard.widget.fixpunktLogStatus.title" resname="dashboard.widget.fixpunktLogStatus.title">
 				<source>fp_newsletter: status diagram</source>
-				<target>fp_newsletter: diagramme d'état</target>
+				<target>fp_newsletter: diagramme d&#039;état</target>
 			</trans-unit>
 			<trans-unit id="dashboard.widget.fixpunktLogStatus.description" resname="dashboard.widget.fixpunktLogStatus.description">
 				<source>Shows how often a status occurs</source>

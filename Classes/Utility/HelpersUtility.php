@@ -93,6 +93,56 @@ class HelpersUtility
     }
 
     /**
+     * Set a hash and the language to a new log-entry
+     *
+     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log
+     * @param int $languageMode
+     * @return string
+     */
+    public function setHashAndLanguage(
+        \Fixpunkt\FpNewsletter\Domain\Model\Log &$log,
+        int $languageMode): string {
+        $hash = md5(uniqid($log->getEmail(), true));
+        $log->setSecurityhash($hash);
+        // Sprachsetzung sollte eigentlich automatisch passieren, tut es wohl aber nicht.
+        $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
+        $sys_language_uid = intval($languageAspect->getId());
+        if ($sys_language_uid > 0 && ! $languageMode) {
+            $log->set_languageUid(-1);
+        } else {
+            $log->set_languageUid($sys_language_uid);
+        }
+        return $hash;
+    }
+
+    /**
+     * Check if a given log entry is valid
+     *
+     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log
+     * @param string $hash
+     * @param string $daysExpire
+     * @return int
+     */
+    public function checkIfValid(
+        \Fixpunkt\FpNewsletter\Domain\Model\Log &$log,
+        string $hash, string $daysExpire): int
+    {
+        $dbhash = $log->getSecurityhash();
+        if ($hash != $dbhash) {
+           return 3;
+        } else {
+            $now = new \DateTime();
+            $diff = $now->diff($log->getTstamp())->days;
+            if ($diff > $daysExpire) {
+                return 4;
+            } elseif (!GeneralUtility::validEmail($log->getEmail())) {
+                return 8;
+            }
+        }
+        return 0;
+    }
+
+    /**
      * Returns an array with genders
      *
      * @param bool $useXlf xlf-file oder settings-array?
@@ -129,6 +179,7 @@ class HelpersUtility
      * @param array   $view           view
      * @param boolean $isSubscribe    Subscription or unsubscription?
      * @param boolean $isConfirmation verify or confirmation?
+     * @param boolean $isEdit         edit mode?
      * @param boolean $toUser         email to user?
      * @param boolean $toAdmin        email to admin?
      * @param string  $hash           hash
@@ -140,6 +191,7 @@ class HelpersUtility
         array $view,
         bool $isSubscribe = true,
         bool $isConfirmation = false,
+        bool $isEdit = false,
         bool $toUser = false,
         bool $toAdmin = false,
         string $hash = '',
@@ -177,6 +229,7 @@ class HelpersUtility
                 $dataArray['subscribeVerifyUid'] = $verifyUid;
             } else {
                 $dataArray['unsubscribeVerifyUid'] = $verifyUid;
+                $dataArray['editUid'] = $verifyUid;
             }
         }
         $dataArray['settings'] = $settings;
@@ -200,10 +253,17 @@ class HelpersUtility
                         $settings['email']['unsubscribedSubject']);
                     $template = 'Unsubscribed';
                 } else {
-                    $subject = (($settings['preferXlfFile']) ?
-                        LocalizationUtility::translate('email.unsubscribeVerifySubject', 'fp_newsletter') :
-                        $settings['email']['unsubscribeVerifySubject']);
-                    $template = 'UnsubscribeVerify';
+                    if ($isEdit) {
+                        $subject = (($settings['preferXlfFile']) ?
+                            LocalizationUtility::translate('email.editSubject', 'fp_newsletter') :
+                            $settings['email']['editSubject']);
+                        $template = 'EditLink';
+                    } else {
+                        $subject = (($settings['preferXlfFile']) ?
+                            LocalizationUtility::translate('email.unsubscribeVerifySubject', 'fp_newsletter') :
+                            $settings['email']['unsubscribeVerifySubject']);
+                        $template = 'UnsubscribeVerify';
+                    }
                 }
             }
             $this->sendTemplateEmail(
