@@ -64,7 +64,7 @@ You want to insert a newsletter subscription form to your fluid page template? E
 Then you have 2 possibilities.
 
 First way: insert a static form in your template. This extension can read this variables if you provide the used form elements.
-Read the chapter "Configuration -> External fields" for more informations about this way.
+Read the chapter "Configuration -> External fields" for more information about this way.
 
 Second way: you can load the plugin via f:cObject typoscriptObjectPath in your page template like this::
 
@@ -85,8 +85,16 @@ Therefore you need to define lib.nlsubscriptionContent like this::
 Replace the 0 and 22 with your used colPos and page-uid at the page with your subscription form.
 If you use the plugin from fp_newsletter for a subscription form, you should select the cacheable subscription form.
 In this case you must define a page for the subscription too. The form will have that page as target.
+
 Note: you can not use a mathematical captcha on the cacheable subscription form.
- 
+
+Note: you must remove a non-static form on pages that uses the fp_newsletter plugin. E.g. use this on pages that have
+a verification or delete plugin::
+
+  lib.nlsubscriptionContent >
+  lib.nlsubscriptionContent = TEXT
+  lib.nlsubscriptionContent.value =
+
 
 .. _admin-direct_mail:
 
