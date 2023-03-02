@@ -176,6 +176,11 @@ FAQ
 
   Have you set the setting module_sys_dmail_html to -1? For the HTML-option-field direct_mail is required.
 
+- I get the error 'The action "xyz" is not allowed by this plugin.' Whats wrong?
+
+  Maybe you have 2 fp_newsletter plugins on one page. That don´t work. You find a solution for
+  "Subscription form on every page" further up.
+
 - I don´t want/need a log entry. Can I avoid that?
 
   Not at all. You can add a task to your scheduler: select the task Scheduler / Table garbage collection.

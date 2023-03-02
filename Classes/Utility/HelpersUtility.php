@@ -153,12 +153,12 @@ class HelpersUtility
     public function getGenders(bool $useXlf, array $settings, bool $please = true): array
     {
         if ($useXlf) {
-            $pleaseText = ($please) ? LocalizationUtility::translate('tx_fpnewsletter_domain_model_log.gender.please', 'fp_newsletter') : '';
+            $pleaseText = ($please) ? LocalizationUtility::translate('tx_fpnewsletter_domain_model_log.gender.please', 'FpNewsletter') : '';
             return [
                 "0" => $pleaseText,
-                "1" => LocalizationUtility::translate('tx_fpnewsletter_domain_model_log.gender.mrs', 'fp_newsletter'),
-                "2" => LocalizationUtility::translate('tx_fpnewsletter_domain_model_log.gender.mr', 'fp_newsletter'),
-                "3" => LocalizationUtility::translate('tx_fpnewsletter_domain_model_log.gender.divers', 'fp_newsletter')
+                "1" => LocalizationUtility::translate('tx_fpnewsletter_domain_model_log.gender.mrs', 'FpNewsletter'),
+                "2" => LocalizationUtility::translate('tx_fpnewsletter_domain_model_log.gender.mr', 'FpNewsletter'),
+                "3" => LocalizationUtility::translate('tx_fpnewsletter_domain_model_log.gender.divers', 'FpNewsletter')
             ];
         } else {
             $pleaseText = ($please) ? $settings['please'] : '';
@@ -237,30 +237,30 @@ class HelpersUtility
             if ($isSubscribe) {
                 if ($isConfirmation) {
                     $subject = (($settings['preferXlfFile']) ?
-                        LocalizationUtility::translate('email.subscribedSubject', 'fp_newsletter') :
+                        LocalizationUtility::translate('email.subscribedSubject', 'FpNewsletter') :
                         $settings['email']['subscribedSubject']);
                     $template = 'Subscribed';
                 } else {
                     $subject = (($settings['preferXlfFile']) ?
-                        LocalizationUtility::translate('email.subscribeVerifySubject', 'fp_newsletter') :
+                        LocalizationUtility::translate('email.subscribeVerifySubject', 'FpNewsletter') :
                         $settings['email']['subscribeVerifySubject']);
                     $template = 'SubscribeVerify';
                 }
             } else {
                 if ($isConfirmation) {
                     $subject = (($settings['preferXlfFile']) ?
-                        LocalizationUtility::translate('email.unsubscribedSubject', 'fp_newsletter') :
+                        LocalizationUtility::translate('email.unsubscribedSubject', 'FpNewsletter') :
                         $settings['email']['unsubscribedSubject']);
                     $template = 'Unsubscribed';
                 } else {
                     if ($isEdit) {
                         $subject = (($settings['preferXlfFile']) ?
-                            LocalizationUtility::translate('email.editSubject', 'fp_newsletter') :
+                            LocalizationUtility::translate('email.editSubject', 'FpNewsletter') :
                             $settings['email']['editSubject']);
                         $template = 'EditLink';
                     } else {
                         $subject = (($settings['preferXlfFile']) ?
-                            LocalizationUtility::translate('email.unsubscribeVerifySubject', 'fp_newsletter') :
+                            LocalizationUtility::translate('email.unsubscribeVerifySubject', 'FpNewsletter') :
                             $settings['email']['unsubscribeVerifySubject']);
                         $template = 'UnsubscribeVerify';
                     }
@@ -278,7 +278,7 @@ class HelpersUtility
         if ($toAdmin) {
             if ($isSubscribe) {
                 $subject = (($settings['preferXlfFile']) ?
-                    LocalizationUtility::translate('email.adminSubscribeSubject', 'fp_newsletter') :
+                    LocalizationUtility::translate('email.adminSubscribeSubject', 'FpNewsletter') :
                     $settings['email']['adminSubscribeSubject']);
                 if ($isConfirmation) {
                     $template = 'SubscribeToAdmin';
@@ -287,7 +287,7 @@ class HelpersUtility
                 }
             } else {
                 $subject = (($settings['preferXlfFile']) ?
-                    LocalizationUtility::translate('email.adminUnsubscribeSubject', 'fp_newsletter') :
+                    LocalizationUtility::translate('email.adminUnsubscribeSubject', 'FpNewsletter') :
                     $settings['email']['adminUnsubscribeSubject']);
                 if ($isConfirmation) {
                     $template = 'UnsubscribeToAdmin';
@@ -363,7 +363,8 @@ class HelpersUtility
         $emailViewText->assignMultiple($variables);
         $emailBodyText = $emailViewText->render();
         if ($variables['settings']['debug']) {
-            echo "###" . $emailBodyText . '###';
+            echo "#" . $subject . '#';
+            echo "##" . $emailBodyText . '##';
             echo "###" . $emailBodyHtml . '###';
             return;
         }

@@ -196,15 +196,18 @@ It will make two entires into sys_dmail_ttaddress_category_mm and it will set mo
 The categories are as hidden-field in the template. You could add checkboxes and copy the checked values by jQuery to
 the hidden-field if you need a more flexible solution.
 
+Note: this setting is used for groups of fe_users too! If you use fe_users, here you can set the fe_groups.
+
 Changing the labels
 ^^^^^^^^^^^^^^^^^^^
 
-Like in every extension, you can change the labels via TypoScript. Here 2 examples::
+Like in every extension, you can change the labels and other messages via TypoScript. Here 2 examples::
 
   plugin.tx_fpnewsletter._LOCAL_LANG.de.tx_fpnewsletter_domain_model_log.email = Email
   plugin.tx_fpnewsletter._LOCAL_LANG.de.tx_fpnewsletter_domain_model_log.gdpr_desc2 = Ich bin damit einverstanden, dass die von mir angegebenen Daten elektronisch erhoben und gespeichert werden.
 
 You find the designations in the templates used in f:translate key.
+Note: _LOCAL_LANG.en. does´t work anymore. You need to use .default instead of .en for english text.
 
 Required extensions
 ^^^^^^^^^^^^^^^^^^^
@@ -250,7 +253,7 @@ Here an full example for luxletter and 2 languages::
         email.pleaseVerify2 = Um die Anmeldung zu bestätigen, klicken Sie bitte auf folgenden Link:
         email.subscribeVerifySubject = Anmeldung zum Newsletter bei www.test.de
     }
-    plugin.tx_fpnewsletter._LOCAL_LANG.en {
+    plugin.tx_fpnewsletter._LOCAL_LANG.default {
         subscribe = Send
         required = required
         tx_fpnewsletter_domain_model_log.email = E-mail address
@@ -269,4 +272,4 @@ Here an full example for luxletter and 2 languages::
         plugin.tx_fpnewsletter.settings.company = Your online editors of “Test”
     [END]
 
-As you can see, you can even define own variables and use then. Example from here: unsubscribe_it.
+As you can see, you can even define own variables and use them. (Example from here: unsubscribe_it.)

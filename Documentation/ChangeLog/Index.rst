@@ -125,3 +125,6 @@ Version 4.0.3:
 Version 4.1.0:
 - Edit/update-action added.
 - New TypoScript settings: enableEditForm, editUid, categoryMode, categoryOrderBy and editSubject.
+
+Version 4.1.1:
+- Bugfix for translated text when using preferXlfFile=1.
