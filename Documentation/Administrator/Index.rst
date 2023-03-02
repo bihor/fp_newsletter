@@ -139,7 +139,7 @@ If you use older versions, you should know this information about the fixed secu
 1. It was possible to unsubscribe all users.
 
 2. The TypoScript value for plugin.tx_fpnewsletter.settings.doubleOptOut was set to 1 by default.
-  You can set it to 1 too if you want to enable double opt out for the unsubscription.
+   You can set it to 1 too if you want to enable double opt out for the unsubscription.
 
 3. It was possible to cheat at the mathematical captcha check.
 

@@ -124,7 +124,7 @@ You can overwrite the text for other languages like this (if preferXlfFile=0, el
   plugin.tx_fpnewsletter.settings.email.subscribedSubject = Newsletter-subscription confirmation
   plugin.tx_fpnewsletter.settings.email.unsubscribedSubject = Newsletter-unsubscription confirmation
   [END]
-  plugin.tx_fpnewsletter._LOCAL_LANG.en.email.pleaseVerify = Please verify your email-address by clicking here:
+  plugin.tx_fpnewsletter._LOCAL_LANG.default.email.pleaseVerify = Please verify your email-address by clicking here:
 
 Note: if you want to overwrite the text for the default language, remove this lines: [siteLanguage("languageId") == "1"]
 and [END].
