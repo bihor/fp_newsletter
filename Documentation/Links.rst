@@ -21,4 +21,4 @@ Links
 	https://github.com/bihor/fp_newsletter
 
 :Contact:
-	`k.gusbeth@fixpunkt.com <https://www.fixpunkt.com/webentwicklung/typo3/typo3-extensions/>`__
+	`fixpunkt für digitales GmbH <https://www.fixpunkt.com/webentwicklung/typo3/typo3-extensions/>`__
