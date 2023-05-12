@@ -1,6 +1,10 @@
 <?php
+
+declare(strict_types=1);
+
 namespace Fixpunkt\FpNewsletter\Controller;
 
+use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Context\Context;
@@ -9,6 +13,8 @@ use TYPO3\CMS\Core\Messaging\AbstractMessage;
 use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use Fixpunkt\FpNewsletter\Domain\Model\Log;
+use Fixpunkt\FpNewsletter\Domain\Repository\LogRepository;
+use Fixpunkt\FpNewsletter\Utility\HelpersUtility;
 
 /**
  *
@@ -27,12 +33,9 @@ use Fixpunkt\FpNewsletter\Domain\Model\Log;
 class LogController extends ActionController
 {
 
-    /**
-     * logRepository
-     *
-     * @var \Fixpunkt\FpNewsletter\Domain\Repository\LogRepository
-     */
-    protected $logRepository = null;
+    protected LogRepository $logRepository;
+
+    protected HelpersUtility $helpersUtility;
 
     /**
      *
@@ -40,25 +43,31 @@ class LogController extends ActionController
      */
     protected $configurationManager;
 
-    /**
-     * Helpers
-     *
-     * @var \Fixpunkt\FpNewsletter\Utility\HelpersUtility
+    /*
+     * Constructor
+     * @param LogRepository $logRepository
+     * @param HelpersUtility $helpersUtility
      */
-    protected $helpersUtility;
+    public function __construct(
+        LogRepository $logRepository,
+        HelpersUtility $helpersUtility
+    ) {
+        $this->logRepository = $logRepository;
+        $this->helpersUtility = $helpersUtility;
+    }
 
     /**
-     * Injects the Configuration Manager and is initializing the framework settings: wird doppelt aufgerufen!
-     *
-     * @param \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager
-     *            Instance of the Configuration Manager
+     * Initializes the current action
      */
-    public function injectConfigurationManager(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface $configurationManager)
+    public function initializeAction()
     {
-        $this->configurationManager = $configurationManager;
-        $tsSettings = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT);
+        $tsSettings = $this->configurationManager->getConfiguration(
+            \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
+        );
         $tsSettings = $tsSettings['plugin.']['tx_fpnewsletter.']['settings.'];
-        $originalSettings = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS);
+        $originalSettings = $this->configurationManager->getConfiguration(
+            \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
+        );
         // if flexform setting is empty and value is available in TS
         $overrideFlexformFields = GeneralUtility::trimExplode(',', $tsSettings['overrideFlexformSettingsIfEmpty'], true);
         foreach ($overrideFlexformFields as $fieldName) {
@@ -76,48 +85,29 @@ class LogController extends ActionController
         $this->settings = $originalSettings;
     }
 
-    /**
-     * Injects the content-Repository
-     *
-     * @param \Fixpunkt\FpNewsletter\Domain\Repository\LogRepository $logRepository
-     */
-    public function injectLogRepository(\Fixpunkt\FpNewsletter\Domain\Repository\LogRepository $logRepository)
-    {
-        $this->logRepository = $logRepository;
-    }
-
-    /**
-     * Injects the helpers utility
-     *
-     * @param \Fixpunkt\FpNewsletter\Utility\HelpersUtility $helpersUtility
-     */
-    public function injectHelpersUtility(\Fixpunkt\FpNewsletter\Utility\HelpersUtility $helpersUtility)
-    {
-        $this->helpersUtility = $helpersUtility;
-    }
-
 
     /**
      * action list
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function listAction()
+    public function listAction(): ResponseInterface
     {
         $logs = $this->logRepository->findAll();
         $this->view->assign('logs', $logs);
+        return $this->htmlResponse();
     }
 
     /**
      * action new
      *
-     * @param Log $log
+     * @param Log|null $log
      *            Log-Entry
-     * @param int $error
+     * @param int|null $error
      *            Error-Code
-     * @return void
+     * @return ResponseInterface
      */
-    public function newAction(Log $log = null, int $error = 0)
+    public function newAction(Log $log = null, int $error = 0): ResponseInterface
     {
         $genders = $this->helpersUtility->getGenders($this->settings['preferXlfFile'], $this->settings['gender']);
         $optional = [];
@@ -146,7 +136,7 @@ class LogController extends ActionController
             }
         }
         if (! $log) {
-            $log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+            $log = GeneralUtility::makeInstance('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
         }
         if (!$log->getEmail() && $this->settings['parameters']['email']) {
             $email = isset($_GET[$this->settings['parameters']['email']]) ? $_GET[$this->settings['parameters']['email']] : '';
@@ -183,14 +173,15 @@ class LogController extends ActionController
         $this->view->assign('required', $required);
         $this->view->assign('error', $error);
         $this->view->assign('log', $log);
+        return $this->htmlResponse();
     }
 
     /**
      * action form, cachable
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function formAction()
+    public function formAction(): ResponseInterface
     {
         $genders = $this->helpersUtility->getGenders($this->settings['preferXlfFile'], $this->settings['gender']);
         $optional = [];
@@ -214,14 +205,15 @@ class LogController extends ActionController
         $this->view->assign('genders', $genders);
         $this->view->assign('optional', $optional);
         $this->view->assign('required', $required);
+        return $this->htmlResponse();
     }
 
     /**
      * action resend
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function resendAction()
+    public function resendAction(): ResponseInterface
     {
         $log = null;
         $subscribeVerifyUid = $this->settings['subscribeVerifyUid'];
@@ -242,14 +234,15 @@ class LogController extends ActionController
         }
         $this->view->assign('email', $email);
         $this->view->assign('log', $log);
+        return $this->htmlResponse();
     }
 
     /**
      * action editEmail: request email for edit data
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function editEmailAction()
+    public function editEmailAction(): ResponseInterface
     {
         $log = null;
         $error = 0;
@@ -266,10 +259,10 @@ class LogController extends ActionController
                 if (!$dbuidext) {
                     $error = 7;
                 } else {
-                    $log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+                    $log = GeneralUtility::makeInstance('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
                     $log->setPid($pid);
                     $log->setEmail($email);
-                    $hash = $this->helpersUtility->setHashAndLanguage($log, $this->settings['languageMode']);
+                    $hash = $this->helpersUtility->setHashAndLanguage($log, intval($this->settings['languageMode']));
                     $log->setStatus(10);
                     $this->logRepository->add($log);
                     $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
@@ -288,14 +281,15 @@ class LogController extends ActionController
         }
         $this->view->assign('log', $log);
         $this->view->assign('error', $error);
+        return $this->htmlResponse();
     }
 
     /**
      * action edit data
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function editAction()
+    public function editAction(): ResponseInterface
     {
         $genders = $this->helpersUtility->getGenders($this->settings['preferXlfFile'], $this->settings['gender']);
         $optional = [];
@@ -407,15 +401,16 @@ class LogController extends ActionController
         $this->view->assign('groups', $groups);
         $this->view->assign('log', $log);
         $this->view->assign('error', $error);
+        return $this->htmlResponse();
     }
 
     /**
      * action update
      *
      * @param Log $log
-     * @return void
+     * @return ResponseInterface
      */
-    public function updateAction(Log $log)
+    public function updateAction(Log $log): ResponseInterface
     {
         $error = 0;
         $table = $this->settings['table'];
@@ -451,14 +446,15 @@ class LogController extends ActionController
         }
         $this->view->assign('error', $error);
         $this->view->assign('log', $log);
+        return $this->htmlResponse();
     }
 
     /**
      * action subscribeExt
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function subscribeExtAction()
+    public function subscribeExtAction(): ResponseInterface
     {
         if ($this->settings['parameters']['active'] && $this->settings['parameters']['email']) {
             $pactive = explode('|', $this->settings['parameters']['active']);
@@ -470,33 +466,35 @@ class LogController extends ActionController
                 if ($email) {
                     $storagePidsArray = $this->logRepository->getStoragePids();
                     $pid = intval($storagePidsArray[0]);
-                    $log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+                    $log = GeneralUtility::makeInstance('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
                     $log->setPid($pid);
                     $log->setEmail($email);
                     $log->setGdpr(true);
-                    $this->forward('create', null, null, [
-                        'log' => $log
-                    ]);
+					return (new \TYPO3\CMS\Extbase\Http\ForwardResponse('create'))
+					->withControllerName('Log')
+					->withExtensionName('fp_newsletter')
+					->withArguments(['log' => $log]);
                 }
             }
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action create
      *
      * @param Log|null $log
-     * @return void
+     * @return ResponseInterface
      * @throws StopActionException
      * @throws SiteNotFoundException
      */
-    public function createAction(Log $log = null)
+    public function createAction(Log $log = null): ResponseInterface
     {
         if (!$log) {
             $this -> addFlashMessage("Missing Log entry!", "", AbstractMessage::ERROR);
             $this -> redirect('new');
         }
-        $hash = $this->helpersUtility->setHashAndLanguage($log, $this->settings['languageMode']);
+        $hash = $this->helpersUtility->setHashAndLanguage($log, intval($this->settings['languageMode']));
         $log->setStatus(0);
         if ($log->getUid() > 0) {
             $this->logRepository->update($log);
@@ -584,6 +582,7 @@ class LogController extends ActionController
         } else {
             $this->view->assign('error', $error);
         }
+        return $this->htmlResponse();
     }
 
     /**
@@ -593,10 +592,10 @@ class LogController extends ActionController
      *            Log-Entry
      * @param int $error
      *            Error-Code
-     * @return void
+     * @return ResponseInterface
      * @throws \Exception
      */
-    public function unsubscribeAction(Log $log = null, int $error = 0)
+    public function unsubscribeAction(Log $log = null, int $error = 0): ResponseInterface
     {
         $storagePidsArray = $this->logRepository->getStoragePids();
         $pid = intval($storagePidsArray[0]);
@@ -608,7 +607,7 @@ class LogController extends ActionController
             }
         }
         if (! $log) {
-            $log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+            $log = GeneralUtility::makeInstance('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
             $log->setPid($pid);
             // default E-Mail holen, falls log noch nicht definiert ist; default email from unsubscribeDMAction
             $email = $this->request->hasArgument('defaultEmail') ? $this->request->getArgument('defaultEmail') : '';
@@ -636,14 +635,15 @@ class LogController extends ActionController
         }
         $this->view->assign('log', $log);
         $this->view->assign('error', $error);
+        return $this->htmlResponse();
     }
 
     /**
      * action unsubscribe with direct_mail link
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function unsubscribeDMAction()
+    public function unsubscribeDMAction(): ResponseInterface
     {
         $error = 0;
         $tables = [
@@ -686,14 +686,15 @@ class LogController extends ActionController
             $error = 10;
         }
         $this->view->assign('error', $error);
+        return $this->htmlResponse();
     }
 
     /**
      * action unsubscribe with Luxletter link
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function unsubscribeLuxAction()
+    public function unsubscribeLuxAction(): ResponseInterface
     {
         $error = 0;
         if (isset($_GET['tx_luxletter_fe'])) {
@@ -758,6 +759,7 @@ class LogController extends ActionController
             }
         }
         $this->view->assign('error', $error);
+        return $this->htmlResponse();
     }
 
     /**
@@ -765,9 +767,9 @@ class LogController extends ActionController
      *
      * @param Log|null $log
      * @param array $user tt_address oder fe_users Daten
-     * @return void
+     * @return ResponseInterface
      */
-    public function deleteAction(Log $log = null, array $user = [])
+    public function deleteAction(Log $log = null, array $user = []): ResponseInterface
     {
         $error = 0;
         $messageUid = 0;
@@ -782,7 +784,7 @@ class LogController extends ActionController
             }
         } elseif (isset($user['email'])) {
             // we came from unsubscribeDMAction or unsubscribeLuxAction: an email and session must be present too!
-            $log = $this->objectManager->get('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+            $log = GeneralUtility::makeInstance('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
             $log->setEmail($user['email']);
             $log->setPid($user['pid']);
             $checkSession = true;
@@ -796,7 +798,7 @@ class LogController extends ActionController
                 $pid = intval($storagePidsArray[0]);
             }
             // zum testen: var_dump ($storagePidsArray);
-            $hash = $this->helpersUtility->setHashAndLanguage($log, $this->settings['languageMode']);
+            $hash = $this->helpersUtility->setHashAndLanguage($log, intval($this->settings['languageMode']));
             $dbuidext = 0;
 
             if (GeneralUtility::validEmail($email)) {
@@ -943,14 +945,15 @@ class LogController extends ActionController
         } else {
             $this->view->assign('error', $error);
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action verify Anmeldung
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function verifyAction()
+    public function verifyAction(): ResponseInterface
     {
         $error = 0;
         $dbuid = 0;
@@ -1054,14 +1057,15 @@ class LogController extends ActionController
                 $this->view->assign('error', $error);
             }
         }
+        return $this->htmlResponse();
     }
 
     /**
      * action verifyUnsubscribe Abmeldung
      *
-     * @return void
+     * @return ResponseInterface
      */
-    public function verifyUnsubscribeAction()
+    public function verifyUnsubscribeAction(): ResponseInterface
     {
         $error = 0;
         $dbuid = 0;
@@ -1121,6 +1125,7 @@ class LogController extends ActionController
                 $this->view->assign('error', $error);
             }
         }
+        return $this->htmlResponse();
     }
 
     /**

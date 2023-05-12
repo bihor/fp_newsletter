@@ -1,6 +1,6 @@
 <f:render partial="Email/Salutation.txt" arguments="{_all}" />
-<f:translate key="email.subscribedSuccess" />
-<f:translate key="email.usedEmail" /> {email}
+<f:translate key="email.subscribedSuccess" extensionName="FpNewsletter" />
+<f:translate key="email.usedEmail" extensionName="FpNewsletter" /> {email}
 
-<f:translate key="email.bestRegards" />
+<f:translate key="email.bestRegards" extensionName="FpNewsletter" />
 {settings.company}

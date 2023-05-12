@@ -24,11 +24,11 @@
 				  <numIndex index="1">Log->form</numIndex>
 			  </numIndex>
             <numIndex index="2">
-                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.subscribeExtern</numIndex>
+                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.subscribeExt</numIndex>
                 <numIndex index="1">Log->subscribeExt;Log->create;Log->verify</numIndex>
             </numIndex>
             <numIndex index="3">
-                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.subscribeVerify</numIndex>
+                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.verify</numIndex>
                 <numIndex index="1">Log->verify</numIndex>
             </numIndex>
 			  <numIndex index="4">
@@ -52,7 +52,7 @@
 				  <numIndex index="1">Log->unsubscribeLux;Log->unsubscribe;Log->delete;Log->verifyUnsubscribe</numIndex>
 			  </numIndex>
             <numIndex index="9">
-                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeVerify</numIndex>
+                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.verifyUnsubscribe</numIndex>
                 <numIndex index="1">Log->verifyUnsubscribe</numIndex>
             </numIndex>
 			  <numIndex index="10">

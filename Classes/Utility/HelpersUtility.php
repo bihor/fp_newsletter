@@ -84,6 +84,7 @@ class HelpersUtility
     public function checkDirectmailAuthCode(array $user, string $authCode): bool
     {
         if (strlen($authCode) == 8) {
+            // dies funktioniert in TYPO3 12 garantiert nicht mehr!
             return (preg_match('/^[0-9a-f]{8}$/', $authCode) &&
                 ($authCode == GeneralUtility::stdAuthCode($user, 'uid')));
         } else {
@@ -101,7 +102,8 @@ class HelpersUtility
      */
     public function setHashAndLanguage(
         \Fixpunkt\FpNewsletter\Domain\Model\Log &$log,
-        int $languageMode): string {
+        int $languageMode): string
+    {
         $hash = md5(uniqid($log->getEmail(), true));
         $log->setSecurityhash($hash);
         // Sprachsetzung sollte eigentlich automatisch passieren, tut es wohl aber nicht.
@@ -145,12 +147,12 @@ class HelpersUtility
     /**
      * Returns an array with genders
      *
-     * @param bool $useXlf xlf-file oder settings-array?
+     * @param bool|string $useXlf xlf-file oder settings-array?
      * @param array $settings Gender-Array from settings
      * @param bool $please with please select?
      * @return array
      */
-    public function getGenders(bool $useXlf, array $settings, bool $please = true): array
+    public function getGenders(bool|string $useXlf, array $settings, bool $please = true): array
     {
         if ($useXlf) {
             $pleaseText = ($please) ? LocalizationUtility::translate('tx_fpnewsletter_domain_model_log.gender.please', 'FpNewsletter') : '';
@@ -195,7 +197,7 @@ class HelpersUtility
         bool $toUser = false,
         bool $toAdmin = false,
         string $hash = '',
-        int $verifyUid = 0)
+        int $verifyUid = 0): void
     {
         $genders = $this->getGenders($settings['preferXlfFile'], $settings['gender'], false);
         $email = $log->getEmail();
@@ -331,7 +333,7 @@ class HelpersUtility
         string $subject,
         string $templateName,
         array $variables = array(),
-        bool $toAdmin = false)
+        bool $toAdmin = false): bool
     {
         // Das hier ist von hier: https://wiki.typo3.org/How_to_use_the_Fluid_Standalone_view_to_render_template_based_emails
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
@@ -343,7 +345,8 @@ class HelpersUtility
 
         /** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailView */
         $emailViewHtml = GeneralUtility::makeInstance(\TYPO3\CMS\Fluid\View\StandaloneView::class);
-        $emailViewHtml->getRequest()->setControllerExtensionName($extensionName); // make sure f:translate() knows where to find the LLL file
+        // geht in TYPO3 12 nicht mehr:
+        //$emailViewHtml->getRequest()->setControllerExtensionName($extensionName); // make sure f:translate() knows where to find the LLL file
         $emailViewHtml->setTemplateRootPaths($view['templateRootPaths']);
         $emailViewHtml->setLayoutRootPaths($view['layoutRootPaths']);
         $emailViewHtml->setPartialRootPaths($view['partialRootPaths']);
@@ -354,7 +357,8 @@ class HelpersUtility
 
         /** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailView */
         $emailViewText = GeneralUtility::makeInstance(\TYPO3\CMS\Fluid\View\StandaloneView::class);
-        $emailViewText->getRequest()->setControllerExtensionName($extensionName); // make sure f:translate() knows where to find the LLL file
+        // geht in TYPO3 12 nicht mehr:
+        //$emailViewText->getRequest()->setControllerExtensionName($extensionName); // make sure f:translate() knows where to find the LLL file
         $emailViewText->setTemplateRootPaths($view['templateRootPaths']);
         $emailViewText->setLayoutRootPaths($view['layoutRootPaths']);
         $emailViewText->setPartialRootPaths($view['partialRootPaths']);
@@ -366,7 +370,7 @@ class HelpersUtility
             echo "#" . $subject . '#';
             echo "##" . $emailBodyText . '##';
             echo "###" . $emailBodyHtml . '###';
-            return;
+            return false;
         }
 
         /** @var $message \TYPO3\CMS\Core\Mail\MailMessage */

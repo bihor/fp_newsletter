@@ -1,11 +1,17 @@
 services:
   _defaults:
-    autowire: false
-    autoconfigure: false
+    autowire: true
+    autoconfigure: true
     public: false
 
   Fixpunkt\FpNewsletter\:
     resource: '../Classes/*'
+    exclude: '../Classes/Domain/{Domain/Model,Utility}'
+
+  Fixpunkt\FpNewsletter\Backend\EventListener\PreviewEventListener:
+    tags:
+      - name: "event.listener"
+        identifier: 'fp_newsletter/preview-rendering'
 
   Fixpunkt\FpNewsletter\Command\ImportFEUsersScheduler:
     tags:

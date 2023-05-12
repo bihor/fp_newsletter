@@ -27,10 +27,10 @@
 			<trans-unit id="template.edit" resname="template.edit">
 				<source>Newsletter: edit form (part 2)</source>
 			</trans-unit>
-			<trans-unit id="template.subscribeExtern" resname="template.subscribeExtern">
+			<trans-unit id="template.subscribeExt" resname="template.subscribeExt">
 				<source>Newsletter: subscribe via external extension</source>
 			</trans-unit>
-			<trans-unit id="template.subscribeVerify" resname="template.subscribeVerify">
+			<trans-unit id="template.verify" resname="template.verify">
 				<source>Newsletter: verify subscription</source>
 			</trans-unit>
 			<trans-unit id="template.unsubscribe" resname="template.unsubscribe">
@@ -42,7 +42,7 @@
 			<trans-unit id="template.unsubscribeLux" resname="template.unsubscribeLux">
 				<source>Newsletter: unsubscribe via Luxletter-link</source>
 			</trans-unit>
-			<trans-unit id="template.unsubscribeVerify" resname="template.unsubscribeVerify">
+			<trans-unit id="template.verifyUnsubscribe" resname="template.verifyUnsubscribe">
 				<source>Newsletter: verify unsubscription</source>
 			</trans-unit>
 			<trans-unit id="template.resend" resname="template.resend">
@@ -173,6 +173,12 @@
 			</trans-unit>
 			<trans-unit id="dashboard.widget.fixpunktLogStatus.label" resname="dashboard.widget.fixpunktLogStatus.label">
 				<source>Status code, count</source>
+			</trans-unit>
+			<trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve">
+				<source>Page with uid &quot;%s&quot; is not available anymore!</source>
+			</trans-unit>
+			<trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve">
+				<source>Record with uid "%s" is not available anymore!</source>
 			</trans-unit>
 		</body>
 	</file>

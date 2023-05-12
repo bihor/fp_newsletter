@@ -1,6 +1,6 @@
 <f:render partial="Email/Salutation.txt" arguments="{_all}" />
-<f:translate key="email.pleaseVerifyUnsubscription" />
+<f:translate key="email.pleaseVerifyUnsubscription" extensionName="FpNewsletter" />
 <f:format.raw><f:uri.action pageUid="{unsubscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verifyUnsubscribe" arguments="{uid: uid, hash: hash}" absolute="1" /></f:format.raw>
 
-<f:translate key="email.bestRegards" />
+<f:translate key="email.bestRegards" extensionName="FpNewsletter" />
 {settings.company}

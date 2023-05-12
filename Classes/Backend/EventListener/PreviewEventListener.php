@@ -1,0 +1,289 @@
+<?php
+declare(strict_types=1);
+
+namespace Fixpunkt\FpNewsletter\Backend\EventListener;
+
+use TYPO3\CMS\Backend\Utility\BackendUtility as BackendUtilityCore;
+use TYPO3\CMS\Core\Imaging\Icon;
+use TYPO3\CMS\Core\Imaging\IconFactory;
+use TYPO3\CMS\Core\Type\Bitmask\Permission;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3\CMS\Fluid\View\StandaloneView;
+use TYPO3\CMS\Backend\View\Event\PageContentPreviewRenderingEvent;
+
+final class PreviewEventListener
+{
+    /**
+     * Extension key
+     *
+     * @var string
+     */
+    const KEY = 'fpnewsletter';
+
+    /**
+     * Path to the locallang file
+     *
+     * @var string
+     */
+    const LLPATH = 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:';
+
+    /**
+     * Max shown settings
+     */
+    const SETTINGS_IN_PREVIEW = 10;
+
+    protected $recordMapping = [
+        'subscribeUid' => [
+            'table' => 'pages',
+            'multiValue' => false,
+        ],
+        'subscribeMessageUid' => [
+            'table' => 'pages',
+            'multiValue' => false,
+        ],
+        'subscribeVerifyUid' => [
+            'table' => 'pages',
+            'multiValue' => false,
+        ],
+        'subscribeVerifyMessageUid' => [
+            'table' => 'pages',
+            'multiValue' => false,
+        ],
+        'unsubscribeUid' => [
+            'table' => 'pages',
+            'multiValue' => false,
+        ],
+        'unsubscribeMessageUid' => [
+            'table' => 'pages',
+            'multiValue' => false,
+        ],
+        'unsubscribeVerifyUid' => [
+            'table' => 'pages',
+            'multiValue' => false,
+        ],
+        'unsubscribeVerifyMessageUid' => [
+            'table' => 'pages',
+            'multiValue' => false,
+        ],
+        'resendVerificationUid' => [
+            'table' => 'pages',
+            'multiValue' => false,
+        ],
+        'editUid' => [
+            'table' => 'pages',
+            'multiValue' => false,
+        ],
+        'gdprUid' => [
+            'table' => 'pages',
+            'multiValue' => false,
+        ],
+    ];
+
+    /**
+     * Table information
+     *
+     * @var array
+     */
+    protected $tableData = [];
+
+    /**
+     * Flexform information
+     *
+     * @var array
+     */
+    protected $flexformData = [];
+
+    /**
+     * @var IconFactory
+     */
+    protected $iconFactory;
+
+    public function __construct()
+    {
+        $this->iconFactory = GeneralUtility::makeInstance(IconFactory::class);
+    }
+
+    public function __invoke(PageContentPreviewRenderingEvent $event): void
+    {
+        if ($event->getTable() !== 'tt_content') {
+            return;
+        }
+
+        if ($event->getRecord()['CType'] === 'list' && $event->getRecord()['list_type'] === 'fpnewsletter_pi1') {
+            $actionTranslationKey = $result = '';
+
+            $header = '<strong>' . htmlspecialchars($this->getLanguageService()->sL(self::LLPATH . 'title')) . '</strong>';
+
+            $this->flexformData = GeneralUtility::xml2array($event->getRecord()['pi_flexform']);
+
+            // if flexform data is found
+            $actions = $this->getFieldFromFlexform('switchableControllerActions');
+            if (!empty($actions)) {
+                $actionList = GeneralUtility::trimExplode(';', $actions);
+                $actionList2 = GeneralUtility::trimExplode('>', $actionList[0]);
+
+                // 1. action
+                $actionTranslationKey = $actionList2[1];
+                $actionTranslation = $this->getLanguageService()->sL(self::LLPATH . 'template.' . $actionTranslationKey);
+                $actionTranslation = ($actionTranslation) ? htmlspecialchars($actionTranslation) : $actionTranslationKey;
+
+                $th = $this->getLanguageService()->sL(self::LLPATH . 'template');
+                $td = $actionTranslation;
+            } else {
+                $th = $this->generateCallout($this->getLanguageService()->sL(self::LLPATH . 'template.not_configured'));
+                $td = '';
+            }
+            $this->tableData[] = [
+                $th,
+                $td
+            ];
+            $this->getStartingPoint($event->getRecord()['pages']);
+
+            if (is_array($this->flexformData)) {
+                foreach ($this->recordMapping as $fieldName => $fieldConfiguration) {
+                    $value = $this->getFieldFromFlexform('settings.' . $fieldName);
+                    if (isset($value) && $value) {
+                        $content = $this->getRecordData($value, $fieldConfiguration['table']);
+                        $this->tableData[] = [
+                            $this->getLanguageService()->sL(self::LLPATH . $fieldName),
+                            $content
+                        ];
+                    }
+                }
+            }
+            $event->setPreviewContent($this->renderSettingsAsTable($header, $event->getRecord()['uid']));
+        }
+    }
+
+
+    /**
+     * Get the rendered page title including onclick menu
+     *
+     * @param int $id
+     * @param string $table
+     * @return string
+     */
+    public function getRecordData($id, $table = 'pages')
+    {
+        $record = BackendUtilityCore::getRecord($table, $id);
+
+        if (is_array($record)) {
+            $data = '<span data-toggle="tooltip" data-placement="top" data-title="id=' . $record['uid'] . '">'
+                . $this->iconFactory->getIconForRecord($table, $record, Icon::SIZE_SMALL)->render()
+                . '</span> ';
+            $content = BackendUtilityCore::wrapClickMenuOnIcon($data, $table, $record['uid'], true, '',
+                '+info,edit,history');
+            $content .= htmlspecialchars(BackendUtilityCore::getRecordTitle($table, $record));
+        } else {
+            $text = sprintf($this->getLanguageService()->sL(self::LLPATH . 'pagemodule.pageNotAvailable'),
+                $id);
+            $content = $this->generateCallout($text);
+        }
+
+        return $content;
+    }
+
+    /**
+     * Get the startingpoint
+     *
+     * @param string $pids
+     * @return void
+     */
+    public function getStartingPoint($pids)
+    {
+        if (!empty($pids)) {
+            $pageIds = GeneralUtility::intExplode(',', $pids, true);
+            $pagesOut = [];
+
+            foreach ($pageIds as $id) {
+                $pagesOut[] = $this->getRecordData($id, 'pages');
+            }
+
+            $recursiveLevel = (int)$this->getFieldFromFlexform('settings.recursive');
+            $recursiveLevelText = '';
+            if ($recursiveLevel === 250) {
+                $recursiveLevelText = $this->getLanguageService()->sL('LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.5');
+            } elseif ($recursiveLevel > 0) {
+                $recursiveLevelText = $this->getLanguageService()->sL('LLL:EXT:frontend/Resources/Private/Language/locallang_ttc.xlf:recursive.I.' . $recursiveLevel);
+            }
+
+            if (!empty($recursiveLevelText)) {
+                $recursiveLevelText = '<br />' .
+                    $this->getLanguageService()->sL(self::LLPATH . 'recursive') . ' ' .  $recursiveLevelText;
+            }
+
+            $this->tableData[] = [
+                $this->getLanguageService()->sL(self::LLPATH . 'startingPoint'),
+                implode(', ', $pagesOut) . $recursiveLevelText
+            ];
+        }
+    }
+
+    /**
+     * Render an alert box
+     *
+     * @param string $text
+     * @return string
+     */
+    protected function generateCallout($text)
+    {
+        return '<div class="alert alert-warning">' . htmlspecialchars($text) . '</div>';
+    }
+
+    /**
+     * Render the settings as table for Web>Page module
+     * System settings are displayed in mono font
+     *
+     * @param string $header
+     * @param int $recordUid
+     * @return string
+     */
+    protected function renderSettingsAsTable($header = '', $recordUid = 0)
+    {
+        $view = GeneralUtility::makeInstance(StandaloneView::class);
+        $view->setTemplatePathAndFilename(GeneralUtility::getFileAbsFileName('EXT:fp_newsletter/Resources/Private/Templates/Backend/PluginPreview.html'));
+        $view->assignMultiple([
+            'header' => $header,
+            'rows' => [
+                'above' => array_slice($this->tableData, 0, self::SETTINGS_IN_PREVIEW),
+                'below' => array_slice($this->tableData, self::SETTINGS_IN_PREVIEW)
+            ],
+            'id' => $recordUid
+        ]);
+
+        return $view->render();
+    }
+
+    /**
+     * Get field value from flexform configuration,
+     * including checks if flexform configuration is available
+     *
+     * @param string $key name of the key
+     * @param string $sheet name of the sheet
+     * @return string|NULL if nothing found, value if found
+     */
+    public function getFieldFromFlexform($key, $sheet = 'sDEF')
+    {
+        $flexform = $this->flexformData;
+        if (isset($flexform['data'])) {
+            $flexform = $flexform['data'];
+            if (isset($flexform) && isset($flexform[$sheet]) && isset($flexform[$sheet]['lDEF'])
+                && isset($flexform[$sheet]['lDEF'][$key]) && isset($flexform[$sheet]['lDEF'][$key]['vDEF'])
+            ) {
+                return $flexform[$sheet]['lDEF'][$key]['vDEF'];
+            }
+        }
+
+        return null;
+    }
+
+    /**
+     * Return language service instance
+     *
+     * @return \TYPO3\CMS\Lang\LanguageService
+     */
+    public function getLanguageService()
+    {
+        return $GLOBALS['LANG'];
+    }
+}
