@@ -1,6 +1,6 @@
 <f:render partial="Email/Salutation.txt" arguments="{_all}" />
-<f:translate key="email.pleaseVerify" extensionName="FpNewsletter" />
-<f:format.raw>f:uri.page pageUid="{subscribeVerifyUid}" additionalParams="{uid: uid, hash: hash, fpnewsletter_pi1: {controller: 'Log', action: 'verify'}}" absolute="1" /></f:format.raw>
+<f:translate key="email.pleaseVerify" />
+<f:format.raw><f:uri.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" arguments="{uid: uid, hash: hash}" absolute="1" /></f:format.raw>
 
-<f:translate key="email.bestRegards" extensionName="FpNewsletter" />
+<f:translate key="email.bestRegards" />
 {settings.company}

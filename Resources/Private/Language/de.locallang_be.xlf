@@ -35,11 +35,11 @@
 				<source>Newsletter: edit form (part 2)</source>
 				<target>Newsletter: Bearbeitung der Daten (Teil 2)</target>
 			</trans-unit>
-			<trans-unit id="template.subscribeExt" resname="template.subscribeExt">
+			<trans-unit id="template.subscribeExtern" resname="template.subscribeExtern">
 				<source>Newsletter: subscribe via external extension</source>
 				<target>Newsletter: Anmeldung über externe Extension</target>
 			</trans-unit>
-			<trans-unit id="template.verify" resname="template.verify">
+			<trans-unit id="template.subscribeVerify" resname="template.subscribeVerify">
 				<source>Newsletter: verify subscription</source>
 				<target>Newsletter: Anmeldung verifizieren</target>
 			</trans-unit>
@@ -55,7 +55,7 @@
 				<source>Newsletter: unsubscribe via Luxletter-link</source>
 				<target>Newsletter: Abmeldung via Luxletter-Link</target>
 			</trans-unit>
-			<trans-unit id="template.verifyUnsubscribe" resname="template.verifyUnsubscribe">
+			<trans-unit id="template.unsubscribeVerify" resname="template.unsubscribeVerify">
 				<source>Newsletter: verify unsubscription</source>
 				<target>Newsletter: Abmeldung verifizieren</target>
 			</trans-unit>
@@ -230,14 +230,6 @@
 			<trans-unit id="dashboard.widget.fixpunktLogStatus.label" resname="dashboard.widget.fixpunktLogStatus.label">
 				<source>Status code, count</source>
 				<target>Anzahl</target>
-			</trans-unit>
-			<trans-unit id="pagemodule.pageNotAvailable" xml:space="preserve">
-				<source>Page with uid &quot;%s&quot; is not available anymore!</source>
-				<target>Seite mit uid &quot;%s&quot; ist nicht mehr verfügbar!</target>
-			</trans-unit>
-			<trans-unit id="pagemodule.recordNotAvailable" xml:space="preserve">
-				<source>Record with uid "%s" is not available anymore!</source>
-				<source>Datensatz mit uid "%s" ist nicht mehr verfügbar!</source>
 			</trans-unit>
 		</body>
 	</file>

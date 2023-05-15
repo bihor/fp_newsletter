@@ -58,9 +58,4 @@ class RecentLogEntriesWidget implements WidgetInterface
         ]);
         return $this->view->render();
     }
-
-    public function getOptions(): array
-    {
-        return $this->options;
-    }
 }

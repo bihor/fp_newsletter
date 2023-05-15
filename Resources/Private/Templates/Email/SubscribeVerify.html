@@ -2,18 +2,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><f:translate key="email.subscription" extensionName="FpNewsletter" /></title>
+<title><f:translate key="email.subscription" /></title>
 </head>
 <body>
 <f:render partial="Email/Salutation" arguments="{_all}" />
-<p><f:translate key="email.pleaseVerify" extensionName="FpNewsletter" /></p>
-<f:link.external uri="https://www.typo3.org" target="_blank">external link</f:link.external>
-<!-- p>f:link.page pageUid="{subscribeVerifyUid}" absolute="1"
-                additionalParams="{uid: uid, hash: hash, fpnewsletter_pi1: {controller: 'Log', action: 'verify'}}"><f:format.raw>f:uri.page pageUid="{subscribeVerifyUid}"
-                additionalParams="{uid: uid, hash: hash, fpnewsletter_pi1: {controller: 'Log', action: 'verify'}}" absolute="1" /></f:format.raw>/f:link.page></p>
-<p>f:link.page pageUid="{subscribeVerifyUid}" absolute="1" style="border:1px solid #000;border-radius:3px;padding:2px 10px;"
-                additionalParams="{uid: uid, hash: hash, fpnewsletter_pi1: {controller: 'Log', action: 'verify'}}"><f:translate key="email.alternative" extensionName="FpNewsletter" />/f:link.page></p -->
-<p><f:translate key="email.bestRegards" extensionName="FpNewsletter" /><br>
+<p><f:translate key="email.pleaseVerify" /></p>
+<p><f:link.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify"
+                  arguments="{uid: uid, hash: hash}" absolute="1"><f:format.raw><f:uri.action pageUid="{subscribeVerifyUid}"
+                  extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify" arguments="{uid: uid, hash: hash}"
+                  absolute="1" /></f:format.raw></f:link.action></p>
+<p><f:link.action pageUid="{subscribeVerifyUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="verify"
+                  arguments="{uid: uid, hash: hash}" absolute="1" style="border:1px solid #000;border-radius:3px;padding:2px 10px;"><f:translate key="email.alternative" /></f:link.action></p>
+<p><f:translate key="email.bestRegards" /><br>
 {settings.company}</p>
 </body>
 </html>

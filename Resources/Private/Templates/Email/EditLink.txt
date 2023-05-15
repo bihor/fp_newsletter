@@ -1,6 +1,6 @@
 <f:render partial="Email/Salutation.txt" arguments="{_all}" />
-<f:translate key="email.pleaseEdit" extensionName="FpNewsletter" />
+<f:translate key="email.pleaseEdit" />
 <f:format.raw><f:uri.action pageUid="{editUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="edit" arguments="{uid: uid, hash: hash}" absolute="1" /></f:format.raw>
 
-<f:translate key="email.bestRegards" extensionName="FpNewsletter" />
+<f:translate key="email.bestRegards" />
 {settings.company}

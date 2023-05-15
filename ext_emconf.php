@@ -18,10 +18,10 @@ $EM_CONF[$_EXTKEY] = [
     'author_company' => 'fixpunkt werbeagentur gmbh',
     'state' => 'stable',
     'clearCacheOnLoad' => 0,
-    'version' => '5.0.0',
+    'version' => '4.1.1',
     'constraints' => [
         'depends' => [
-        	'typo3' => '12.0.0-12.4.99'
+        	'typo3' => '10.4.6-11.5.99'
         ],
         'conflicts' => [],
         'suggests' => [],

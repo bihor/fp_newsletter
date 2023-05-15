@@ -29,9 +29,9 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Language
      *
-     * @var int<-1, max>|null The uid of the language of the object. This is the id of the corresponding sing language.
+     * @var int
      */
-    protected int|null $_languageUid = null;
+    protected $_languageUid = 0;
     
     /**
      * Anrede
@@ -243,7 +243,7 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Returns the sys_language_uid
      *
-     * @return int|null $sys_language_uid
+     * @return int $sys_language_uid
      */
     public function get_languageUid()
     {
@@ -253,7 +253,7 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     /**
      * Sets the sys_language_uid
      *
-     * @param int|null $sys_language_uid
+     * @param int $sys_language_uid
      * @return void
      */
     public function set_languageUid($sys_language_uid)

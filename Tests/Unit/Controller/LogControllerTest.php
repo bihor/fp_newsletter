@@ -44,12 +44,10 @@ class LogControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
         $logRepository->expects(self::once())->method('findAll')->will(self::returnValue($allLogs));
         $this->inject($this->subject, 'logRepository', $logRepository);
 
-        // TODO
-        /*
         $view = $this->getMockBuilder(\TYPO3\CMS\Extbase\Mvc\View\ViewInterface::class)->getMock();
         $view->expects(self::once())->method('assign')->with('logs', $allLogs);
         $this->inject($this->subject, 'view', $view);
-        */
+
         $this->subject->listAction();
     }
 
