@@ -3,7 +3,7 @@
 #
 CREATE TABLE tx_fpnewsletter_domain_model_log (
 
-	uid int(11) NOT NULL auto_increment,
+	uid int(11) DEFAULT '0' NOT NULL auto_increment,
 	pid int(11) DEFAULT '0' NOT NULL,
 
 	gender int(11) DEFAULT '0' NOT NULL,

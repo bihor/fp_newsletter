@@ -27,7 +27,7 @@
 
     <f:render partial="FormErrors" arguments="{object:Log}"/>
 
-    <f:form action="update" name="log" object="{log}">
+    <f:form action="update" name="log" pluginName="edit" object="{log}">
         <f:render partial="Log/FormFieldsEdit" arguments="{_all}"/>
         <f:form.hidden name="hash" value="{log.securityhash}"/>
         <f:form.hidden name="log[gdpr]" value="1" />

@@ -1,0 +1,54 @@
+<?php
+
+declare(strict_types=1);
+namespace Fixpunkt\FpNewsletter\ViewHelpers;
+
+use Throwable;
+use TYPO3\CMS\Core\Site\SiteFinder;
+use TYPO3\CMS\Core\Utility\GeneralUtility;
+use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+
+/**
+ * Class GetActionUrlViewHelper
+ * @noinspection PhpUnused
+ */
+class GetActionUrlViewHelper extends AbstractViewHelper
+{
+    /**
+     * @return void
+     */
+    public function initializeArguments(): void
+    {
+        parent::initializeArguments();
+        $this->registerArgument('pageUid', 'string', 'target page uid', true);
+        $this->registerArgument('pi', 'string', 'pi', true);
+        $this->registerArgument('action', 'string', 'action', true);
+        $this->registerArgument('uid', 'string', 'uid', true);
+        $this->registerArgument('hash', 'string', 'hash', true);
+    }
+
+    /**
+     * @return string
+     * @throws MisconfigurationException
+     */
+    public function render(): string
+    {
+        try {
+            $site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId($this->arguments['pageUid']);
+            $uri = $site->getRouter()->generateUri($this->arguments['pageUid'], [
+                'tx_fpnewsletter_' . $this->arguments['pi'] => [
+                    'controller' => 'Log',
+                    'action' => $this->arguments['action'],
+                    'uid' => $this->arguments['uid'],
+                    'hash' => $this->arguments['hash']
+                ],
+            ]);
+            return $uri->__tostring();
+        } catch (Throwable $exception) {
+            throw new MisconfigurationException(
+                'Could not build a valid URL to a fp_newsletter page with PID "' . $this->arguments['pageUid'] . '"',
+                5588995474
+            );
+        }
+    }
+}

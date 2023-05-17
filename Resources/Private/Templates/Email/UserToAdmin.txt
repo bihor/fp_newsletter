@@ -1,8 +1,8 @@
-<f:translate key="email.dear" />
+<f:translate key="email.dear" extensionName="FpNewsletter" />
 
-<f:translate key="email.toAdminWantsTo" />
-<f:translate key="email.name" /> {gender} {title} {firstname} {lastname}
-<f:translate key="email.usedEmail" /> {email}
+<f:translate key="email.toAdminWantsTo" extensionName="FpNewsletter" />
+<f:translate key="email.name" extensionName="FpNewsletter" /> {gender} {title} {firstname} {lastname}
+<f:translate key="email.usedEmail" extensionName="FpNewsletter" /> {email}
 
-<f:translate key="email.bestRegards" />
+<f:translate key="email.bestRegards" extensionName="FpNewsletter" />
 {settings.company}

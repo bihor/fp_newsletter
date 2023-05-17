@@ -5,11 +5,11 @@
 <title>Newsletter</title>
 </head>
 <body>
-<h3><f:translate key="email.dear" /></h3>
-<p><f:translate key="email.toAdminUnsubscribed" /></p>
-<p><f:translate key="email.name" /> <b>{gender} {title} {firstname} {lastname}</b></p>
-<p><f:translate key="email.usedEmail" /> <b><a href="mailto:{email}">{email}</a></b></p>
-<p><f:translate key="email.bestRegards" /><br>
+<h3><f:translate key="email.dear" extensionName="FpNewsletter" /></h3>
+<p><f:translate key="email.toAdminUnsubscribed" extensionName="FpNewsletter" /></p>
+<p><f:translate key="email.name" extensionName="FpNewsletter" /> <b>{gender} {title} {firstname} {lastname}</b></p>
+<p><f:translate key="email.usedEmail" extensionName="FpNewsletter" /> <b><a href="mailto:{email}">{email}</a></b></p>
+<p><f:translate key="email.bestRegards" extensionName="FpNewsletter" /><br>
 {settings.company}</p>
 </body>
 </html>

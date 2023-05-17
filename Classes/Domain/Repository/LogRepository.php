@@ -8,7 +8,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 /***
  *
- * This file is part of the "Newsletter managment" Extension for TYPO3 CMS.
+ * This file is part of the "Newsletter management" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
@@ -26,7 +26,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * getByEmailAndPid: find user entry
      * @param   string $email: email
-     * @param	array $pid: PIDs
+     * @param	array $pids: PIDs
      * @param	int $sys_language_uid: language
      * @param	int $maxDate: x days ago
      * @return	array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface

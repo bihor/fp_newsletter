@@ -8,65 +8,6 @@
         </TCEforms>
         <type>array</type>
         <el>
-          <switchableControllerActions>
-          <TCEforms>
-          <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template</label>
-          <config>
-          <type>select</type>
-          <renderType>selectSingle</renderType>
-          <items>
-            <numIndex index="0">
-                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.new</numIndex>
-                <numIndex index="1">Log->new;Log->create;Log->verify</numIndex>
-            </numIndex>
-			  <numIndex index="1">
-				  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.form</numIndex>
-				  <numIndex index="1">Log->form</numIndex>
-			  </numIndex>
-            <numIndex index="2">
-                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.subscribeExtern</numIndex>
-                <numIndex index="1">Log->subscribeExt;Log->create;Log->verify</numIndex>
-            </numIndex>
-            <numIndex index="3">
-                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.subscribeVerify</numIndex>
-                <numIndex index="1">Log->verify</numIndex>
-            </numIndex>
-			  <numIndex index="4">
-				  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.editEmail</numIndex>
-				  <numIndex index="1">Log->editEmail</numIndex>
-			  </numIndex>
-			  <numIndex index="5">
-				  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.edit</numIndex>
-				  <numIndex index="1">Log->edit;Log->update;Log->editEmail</numIndex>
-			  </numIndex>
-            <numIndex index="6">
-                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribe</numIndex>
-                <numIndex index="1">Log->unsubscribe;Log->delete;Log->verifyUnsubscribe</numIndex>
-            </numIndex>
-            <numIndex index="7">
-                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeDM</numIndex>
-                <numIndex index="1">Log->unsubscribeDM;Log->unsubscribe;Log->delete;Log->verifyUnsubscribe</numIndex>
-            </numIndex>
-			  <numIndex index="8">
-				  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeLux</numIndex>
-				  <numIndex index="1">Log->unsubscribeLux;Log->unsubscribe;Log->delete;Log->verifyUnsubscribe</numIndex>
-			  </numIndex>
-            <numIndex index="9">
-                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribeVerify</numIndex>
-                <numIndex index="1">Log->verifyUnsubscribe</numIndex>
-            </numIndex>
-			  <numIndex index="10">
-				  <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.resend</numIndex>
-				  <numIndex index="1">Log->resend;Log->verify</numIndex>
-			  </numIndex>
-            <numIndex index="11">
-                <numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.list</numIndex>
-                <numIndex index="1">Log->list</numIndex>
-            </numIndex>
-            </items>
-          </config>
-          </TCEforms>
-          </switchableControllerActions>
 			<settings.subscribeUid>
 				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:subscribeUid</label>
@@ -443,7 +384,6 @@
       <ROOT>
     	<TCEforms>
           <sheetTitle>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:parameters</sheetTitle>
-		  <displayCond><![CDATA[FIELD:sDEF.switchableControllerActions:=:Log->subscribeExt;Log->create;Log->verify]]></displayCond>
         </TCEforms>
         <type>array</type>
     	  <el>

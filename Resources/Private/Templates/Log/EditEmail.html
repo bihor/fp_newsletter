@@ -21,7 +21,7 @@
 
     <f:if condition="{error} != 51">
         <h3>{f:translate(key: 'edit_head', default: 'edit')}</h3>
-        <f:form action="editEmail" name="log">
+        <f:form action="editEmail" pluginName="editmail" name="log">
             <f:render partial="Log/FormFieldsEditEmail" arguments="{_all}"/>
             <f:form.submit value="{f:translate(key: 'edit_entry', default: 'edit')}" class="btn btn-sm btn-primary"/>
         </f:form>
