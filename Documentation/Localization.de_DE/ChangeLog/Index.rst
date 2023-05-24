@@ -128,4 +128,7 @@ Version 4.1.0:
 - Neue TypoScript-Variablen: enableEditForm, editUid, categoryMode und editSubject.
 
 Version 5.0.0:
-- Überarbeitet für TYPO3 12.
+- Überarbeitet für TYPO3 12 LTS.
+- Breaking: die Email-Templates und -Partials müssen angepasst werden! extensionName="FpNewsletter" muss zu jedem f:translate hinzugefügt werden.
+- Breaking: in Template-Formularen muss das Argument pluginName angegeben werden! Man findet den nötigen Wert in den Templates der Extension.
+- Breaking: alle Plugins müssen via ein Update-Skript (im Install-Tool) geändert werden!

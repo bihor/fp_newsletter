@@ -131,3 +131,6 @@ Version 4.1.1:
 
 Version 5.0.0:
 - Refactored for TYPO3 12 LTS.
+- Breaking: the email-templates and -partials must be changed! Add extensionName="FpNewsletter" to every f:translate.
+- Breaking: in template-forms the argument pluginName must be specified! You find them in the templates of this extension.
+- Breaking: all plugins must be changed via an update-script (in the install-tool)!
