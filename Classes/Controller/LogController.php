@@ -14,6 +14,7 @@ use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
 use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use Fixpunkt\FpNewsletter\Domain\Model\Log;
 use Fixpunkt\FpNewsletter\Domain\Repository\LogRepository;
+use Fixpunkt\FpNewsletter\Domain\Repository\FrontendUserRepository;
 use Fixpunkt\FpNewsletter\Utility\HelpersUtility;
 
 /**
@@ -33,6 +34,8 @@ use Fixpunkt\FpNewsletter\Utility\HelpersUtility;
 class LogController extends ActionController
 {
 
+    protected FrontendUserRepository $frontendUserRepository;
+
     protected LogRepository $logRepository;
 
     protected HelpersUtility $helpersUtility;
@@ -45,13 +48,16 @@ class LogController extends ActionController
 
     /*
      * Constructor
+     * @param FrontendUserRepository $frontendUserRepository
      * @param LogRepository $logRepository
      * @param HelpersUtility $helpersUtility
      */
     public function __construct(
+        FrontendUserRepository $frontendUserRepository,
         LogRepository $logRepository,
         HelpersUtility $helpersUtility
     ) {
+        $this->frontendUserRepository = $frontendUserRepository;
         $this->logRepository = $logRepository;
         $this->helpersUtility = $helpersUtility;
     }
@@ -229,7 +235,7 @@ class LogController extends ActionController
                 $log = $this->logRepository->getByEmailAndPid($email, $storagePidsArray, 0, $maxDate);
             }
             if ($log) {
-                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, false, $log->getSecurityhash(), $subscribeVerifyUid);
+                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, false, $log->getSecurityhash(), intval($subscribeVerifyUid));
             }
         }
         $this->view->assign('email', $email);
@@ -268,7 +274,7 @@ class LogController extends ActionController
                     $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
                     $persistenceManager->persistAll();
                     $error = 51;
-                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, true,true, false, $hash, $this->settings['editUid']);
+                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, true,true, false, $hash, intval($this->settings['editUid']));
                     // reset log entry
                     $log = null;
                 }
@@ -911,7 +917,7 @@ class LogController extends ActionController
                 $this->logRepository->update($log);
                 $persistenceManager->persistAll();
                 $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
-                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, false, true, $toAdmin, $hash, $unsubscribeVerifyUid);
+                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, false, true, $toAdmin, $hash, intval($unsubscribeVerifyUid));
                 $messageUid = $this->settings['unsubscribeMessageUid'];
             } else {
                 if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
@@ -1004,7 +1010,7 @@ class LogController extends ActionController
                             }
                             $success = $this->logRepository->insertInTtAddress($address, $html, $dmCatArr);
                         } else if ($this->settings['table'] == 'fe_users' && $this->settings['password']) {
-                            $frontendUser = new \TYPO3\CMS\Extbase\Domain\Model\FrontendUser();
+                            $frontendUser = new \Fixpunkt\FpNewsletter\Domain\Model\FrontendUser();
                             $password = $this->settings['password'];
                             if ($password == 'random') {
                                 $password = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\Random::class)->generateRandomBytes(20);
@@ -1028,11 +1034,10 @@ class LogController extends ActionController
                             $frontendUser->setFax($address->getFax());
                             $frontendUser->setCompany($address->getCompany());
                             if ($dmCat) {
-                                $frontendUser->_setProperty('usergroup', $dmCat);
+                                $frontendUser->setUsergroup($dmCat);
                                 //$frontendUser->addUserGroup($this->frontendUserGroupRepository->findByUid($this->settings['frontendUserGroup']));
                             }
-                            $frontendUserRepository = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Domain\\Repository\\FrontendUserRepository');
-                            $frontendUserRepository->add($frontendUser);
+                            $this->frontendUserRepository->add($frontendUser);
                             $success = 1;
                         }
                         if ($this->settings['table'] && $success < 1) {

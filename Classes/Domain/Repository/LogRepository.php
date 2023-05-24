@@ -76,8 +76,8 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 					->andWhere(
 						$queryBuilder->expr()->eq('email', $queryBuilder->createNamedParameter($email))
 					)
-					->execute();
-		while ($row = $statement->fetch()) {
+					->executeQuery();
+		while ($row = $statement->fetchAssociative()) {
 			$dbuid = intval($row['uid']);
             break;
 		}		
@@ -120,9 +120,9 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		->where(
 			$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
 		)
-		->execute();
+		->executeQuery();
 		//echo $queryBuilder->getSQL();
-		return $statement->fetch();
+		return $statement->fetchAssociative();
 	}
 
     /**
@@ -137,8 +137,8 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->select('uid', 'category AS title')
             ->from('sys_dmail_category')
             ->orderBy($catOrderBy)
-            ->execute();
-        return $statement->fetchAll();
+            ->executeQuery();
+        return $statement->fetchAllAssociative();
     }
 
     /**
@@ -154,8 +154,8 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->where(
                 $queryBuilder->expr()->eq('uid_local', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
             )
-            ->execute();
-        return $statement->fetchAll();
+            ->executeQuery();
+        return $statement->fetchAllAssociative();
     }
 
     /**
@@ -173,8 +173,8 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 $queryBuilder->expr()->eq('luxletter_receiver', 1)
             )
             ->orderBy($groupsOrderBy)
-            ->execute();
-        return $statement->fetchAll();
+            ->executeQuery();
+        return $statement->fetchAllAssociative();
     }
 
     /**
@@ -199,7 +199,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                             'tablenames' => '',		// unklar, ob da tt_address stehen sollte
                             'sorting' => $count
                         ])
-                        ->execute();
+                        ->executeStatement();
                 }
             }
         }
@@ -218,7 +218,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->where(
                 $queryBuilder->expr()->eq('uid_local', $queryBuilder->createNamedParameter($tableUid, \PDO::PARAM_INT))
             )
-            ->execute();
+            ->executeStatement();
     }
 
     /**
@@ -274,7 +274,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		$queryBuilder
 			->insert('tt_address')
 			->values($insert)
-			->execute();
+			->executeStatement();
 		$tableUid = $queryBuilder->getConnection()->lastInsertId();
 		$this->insertInSysDmail($tableUid, $dmCatArr);
 		return $tableUid;
@@ -322,7 +322,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->set('company', $address->getCompany())
             ->set('gender', $gender)
             ->set('module_sys_dmail_category', count($dmCatArr))
-            ->execute();
+            ->executeStatement();
         $this->deleteInSysDmail($tableUid);
         $this->insertInSysDmail($tableUid, $dmCatArr);
         return $tableUid;
@@ -355,7 +355,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->set('fax', $address->getFax())
             ->set('company', $address->getCompany())
             ->set('usergroup', $address->getCategories())
-            ->execute();
+            ->executeStatement();
         return $tableUid;
     }
 
@@ -375,7 +375,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 ->where(
                     $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
                 )
-                ->execute();
+                ->executeStatement();
         } else {
             $queryBuilder
                 ->update($table)
@@ -384,7 +384,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 )
                 ->set('deleted', '1')
                 ->set('tstamp', time())
-                ->execute();
+                ->executeStatement();
         }
         if (($table == 'tt_address') && is_array($dmCatArr) && count($dmCatArr)>0) {
             $this->deleteInSysDmail($uid);

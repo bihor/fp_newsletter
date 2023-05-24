@@ -7,12 +7,10 @@
 <body>
 <f:render partial="Email/Salutation" arguments="{_all}" />
 <p><f:translate key="email.pleaseEdit" extensionName="FpNewsletter" /></p>
-<p><f:link.action pageUid="{editUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="edit"
-                  arguments="{uid: uid, hash: hash}" absolute="1"><f:format.raw><f:uri.action pageUid="{editUid}"
-                  extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="edit" arguments="{uid: uid, hash: hash}"
-                  absolute="1" /></f:format.raw></f:link.action></p>
-<p><f:link.action pageUid="{editUid}" extensionName="fpnewsletter" pluginName="pi1" controller="Log" action="edit"
-                  arguments="{uid: uid, hash: hash}" absolute="1" style="border:1px solid #000;border-radius:3px;padding:2px 10px;"><f:translate key="email.alternative" extensionName="FpNewsletter" /></f:link.action></p>
+<p><f:link.external uri="{fpnl:getActionUrl(pageUid:editUid, pi:'edit', action:'edit', uid:uid, hash:hash)}"
+                    target="_blank"><f:format.raw><f:uri.external uri="{fpnl:getActionUrl(pageUid:editUid, pi:'edit', action:'edit', uid:uid, hash:hash)}" /></f:format.raw></f:link.external></p>
+<p><f:link.external uri="{fpnl:getActionUrl(pageUid:editUid, pi:'edit', action:'edit', uid:uid, hash:hash)}"
+                    target="_blank" style="border:1px solid #000;border-radius:3px;padding:2px 10px;"><f:translate key="email.alternative" extensionName="FpNewsletter" /></f:link.external></p>
 <p><f:translate key="email.bestRegards" extensionName="FpNewsletter" /><br>
 {settings.company}</p>
 </body>

@@ -130,4 +130,4 @@ Version 4.1.1:
 - Bugfix for translated text when using preferXlfFile=1.
 
 Version 5.0.0:
-- First beta release for TYPO3 12 LTS.
+- Refactored for TYPO3 12 LTS.

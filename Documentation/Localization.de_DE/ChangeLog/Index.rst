@@ -126,3 +126,6 @@ Version 4.0.3:
 Version 4.1.0:
 - Edit/Update-Action hinzugefügt.
 - Neue TypoScript-Variablen: enableEditForm, editUid, categoryMode und editSubject.
+
+Version 5.0.0:
+- Überarbeitet für TYPO3 12.

@@ -4,7 +4,7 @@ declare(strict_types=1);
 use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\DependencyInjection\Reference;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Backend\View\BackendViewFactory;
 use TYPO3\CMS\Dashboard\Widgets\BarChartWidget;
 use Fixpunkt\FpNewsletter\Widgets\RecentLogEntriesWidget;
 
@@ -29,10 +29,8 @@ return function (ContainerConfigurator $configurator, ContainerBuilder $containe
                 ]
             );
 
-        $services->set('dashboard.widget.fixpunktLogStatus')
+        $configuration = $services->set('dashboard.widget.fixpunktLogStatus')
             ->class(BarChartWidget::class)
-            ->arg('$dataProvider', new Reference(\Fixpunkt\FpNewsletter\Widgets\Provider\StatusDataProvider::class))
-            ->arg('$view', new Reference('dashboard.views.widget'))
             ->tag(
                 'dashboard.widget',
                 [
@@ -44,6 +42,14 @@ return function (ContainerConfigurator $configurator, ContainerBuilder $containe
                     'height' => 'medium',
                     'width' => 'medium'
                 ]
-            );
+            )
+            ->arg('$dataProvider', new Reference(\Fixpunkt\FpNewsletter\Widgets\Provider\StatusDataProvider::class));
+        if ($containerBuilder->hasDefinition(BackendViewFactory::class)) {
+            // TYPO3 12
+            $configuration->arg('$backendViewFactory', new Reference(BackendViewFactory::class));
+        } else {
+            // Todo: Can be removed when TYPO3 11 support will be dropped
+            $configuration->arg('$view', new Reference('dashboard.views.widget'));
+        }
     }
 };

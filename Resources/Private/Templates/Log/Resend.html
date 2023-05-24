@@ -13,7 +13,7 @@
 		</f:if>
 	</f:if>
 	<f:if condition="{settings.subscribeVerifyUid}"><f:then>
-		<f:form action="resend" name="log">
+		<f:form action="resend" pluginName="resend" name="log">
 			<label for="fp_email"><f:translate key="tx_fpnewsletter_domain_model_log.email" />:</label>
 			<f:form.textfield type="email" name="email" id="fp_email" placeholder="{f:translate(key: 'tx_fpnewsletter_domain_model_log.email')}" additionalAttributes="{required : 'required'}" /><br />
 
