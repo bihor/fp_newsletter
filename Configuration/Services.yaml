@@ -6,7 +6,7 @@ services:
 
   Fixpunkt\FpNewsletter\:
     resource: '../Classes/*'
-    exclude: '../Classes/Domain/{Domain/Model,Utility}'
+    exclude: '../Classes/Domain/Model/*'
 
   Fixpunkt\FpNewsletter\Backend\EventListener\PreviewEventListener:
     tags:

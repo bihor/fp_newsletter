@@ -1,6 +1,6 @@
 # fp_newsletter
 
-version 5.0.0 beta
+version 5.0.1
 
 The TYPO3 extension fp_newsletter is designed to provide a newsletter subscription and unsubscription service for the 
 table tt_address which can be used by the extension direct_mail OR for the table fe_users which can be used by luxletter. 
@@ -17,7 +17,7 @@ Es gibt auch eine deutsche Anleitung/Dokumentation zu dieser Erweiterung:
 https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/de-de/
 
 
-Version 5.0.0:
+Version 5.0:
 
 First beta release for TYPO3 12.
 
