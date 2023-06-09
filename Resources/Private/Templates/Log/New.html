@@ -48,7 +48,7 @@
     <f:if condition="({settings.enableEditForm} == 2) && {settings.editUid}">
         <br/>
         <p>
-            <f:link.action pageUid="{settings.editUid}" action="editEmail">{f:translate(key: 'editLink', default: 'edit link')}</f:link.action>
+            <f:link.action pageUid="{settings.editUid}" action="editEmail" pluginName="edit">{f:translate(key: 'editLink', default: 'edit link')}</f:link.action>
         </p>
     </f:if>
 
