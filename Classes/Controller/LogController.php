@@ -556,6 +556,7 @@ class LogController extends ActionController
             $error = 10;
         }
 
+        $error_msg = '';
 	    $customValidatorEvent = GeneralUtility::makeInstance(ValidateEvent::class);
 		if(!$customValidatorEvent->isValid()) {
 			$error = 901;
