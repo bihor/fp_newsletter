@@ -498,8 +498,9 @@ class LogController extends ActionController
     public function createAction(Log $log = null): ResponseInterface
     {
         if (!$log) {
-            $this -> addFlashMessage("Missing Log entry!", "", AbstractMessage::ERROR);
-            $this -> redirect('new');
+            $uri = $this->uriBuilder->uriFor('new', ['error_msg' => 'Missing Log entry! / Log-Parameter fehlt!']);
+            return $this->responseFactory->createResponse(307)
+                ->withHeader('Location', $uri);
         }
         $hash = $this->helpersUtility->setHashAndLanguage($log, intval($this->settings['languageMode']));
         $log->setStatus(0);
