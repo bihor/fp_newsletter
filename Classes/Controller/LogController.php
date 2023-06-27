@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Fixpunkt\FpNewsletter\Controller;
 
+use Fixpunkt\FpNewsletter\Events\ValidateEvent;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -107,13 +108,12 @@ class LogController extends ActionController
     /**
      * action new
      *
-     * @param Log|null $log
-     *            Log-Entry
-     * @param int|null $error
-     *            Error-Code
+     * @param Log|null $log            Log-Entry
+     * @param int|null $error          Error-Code
+     * @param string|null $error_msg   Error-Message
      * @return ResponseInterface
      */
-    public function newAction(Log $log = null, int $error = 0): ResponseInterface
+    public function newAction(Log $log = null, int $error = 0, string $error_msg = null): ResponseInterface
     {
         $genders = $this->helpersUtility->getGenders($this->settings['preferXlfFile'], $this->settings['gender']);
         $optional = [];
@@ -178,6 +178,7 @@ class LogController extends ActionController
         $this->view->assign('optional', $optional);
         $this->view->assign('required', $required);
         $this->view->assign('error', $error);
+        $this->view->assign('error_msg', $error_msg);
         $this->view->assign('log', $log);
         return $this->htmlResponse();
     }
@@ -557,6 +558,12 @@ class LogController extends ActionController
             // Der Honigtopf ist gefüllt
             $error = 10;
         }
+        $error_msg = '';
+        $customValidatorEvent = GeneralUtility::makeInstance(ValidateEvent::class);
+        if(!$customValidatorEvent->isValid()) {
+            $error = 901;
+            $error_msg = $customValidatorEvent->getMessage();
+        }
         if ($dbuidext > 0) {
             $error = 6;
             $log->setStatus(6);
@@ -570,11 +577,14 @@ class LogController extends ActionController
             $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
             $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, $toAdmin, $hash, intval($subscribeVerifyUid));
         } else if ($error >= 8) {
-            $this->redirect('new', null, null, [
+            $uri = $this->uriBuilder->uriFor('new', [
                 'log' => $log,
                 'error' => $error,
+                'error_msg' => $error_msg,
                 'securityhash' => $log->getSecurityhash()
             ]);
+            return $this->responseFactory->createResponse(307)
+                ->withHeader('Location', $uri);
         }
         if ($this->settings['disableErrorMsg'] && ($error == 5 || $error == 6)) {
             $error = 0;
