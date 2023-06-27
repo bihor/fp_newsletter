@@ -4,28 +4,37 @@
     <div style="display:none;">
         <f:flashMessages/>
     </div>
-    <f:if condition="{error} > 0">
-        <f:if condition="{error} == 1">
-            <p class="alert alert-danger">{f:translate(key: 'wrong_parameters', default: 'wrong parameters')}</p>
-        </f:if>
-        <f:if condition="{error} == 7">
-            <p class="alert alert-danger">{f:translate(key: 'wrong_unsubscribed', default: 'you are not subscribed')}</p>
-        </f:if>
-        <f:if condition="{error} == 8">
-            <p class="alert alert-danger">{f:translate(key: 'wrong_email', default: 'ivalid email')}</p>
-        </f:if>
-        <f:if condition="{error} == 9">
-            <p class="alert alert-danger">{f:translate(key: 'wrong_captcha', default: 'ivalid captcha')}</p>
-        </f:if>
-        <f:if condition="{error} == 10">
-            <p class="alert alert-danger">{f:translate(key: 'wrong_honeypot', default: 'spam detected')}</p>
-        </f:if>
-        <f:if condition="{error} == 20">
-            <p class="alert alert-danger">{f:translate(key: 'missing_tt_address', default: 'missing tt_address')}</p>
-        </f:if>
-        <f:if condition="{error} == 21">
-            <p class="alert alert-danger">{f:translate(key: 'missing_direct_mail', default: 'missing direct_mail')}</p>
-        </f:if>
+    <f:if condition="{error_msg}">
+        <f:then>
+            <p class="alert alert-danger">{f:translate(key: error_msg, default: error_msg)}</p>
+        </f:then>
+        <f:else>
+            <f:switch expression="{error}">
+                <f:case value="0"></f:case>
+                <f:case value="1">
+                    <p class="alert alert-danger">{f:translate(key: 'wrong_parameters', default: 'wrong parameters')}</p>
+                </f:case>
+                <f:case value="7">
+                    <p class="alert alert-danger">{f:translate(key: 'wrong_unsubscribed', default: 'you are not subscribed')}</p>
+                </f:case>
+                <f:case value="8">
+                    <p class="alert alert-danger">{f:translate(key: 'wrong_email', default: 'ivalid email')}</p>
+                </f:case>
+                <f:case value="9">
+                    <p class="alert alert-danger">{f:translate(key: 'wrong_captcha', default: 'ivalid captcha')}</p>
+                </f:case>
+                <f:case value="10">
+                    <p class="alert alert-danger">{f:translate(key: 'wrong_honeypot', default: 'spam detected')}</p>
+                </f:case>
+                <f:case value="20">
+                    <p class="alert alert-danger">{f:translate(key: 'missing_tt_address', default: 'missing tt_address')}</p>
+                </f:case>
+                <f:case value="21">
+                    <p class="alert alert-danger">{f:translate(key: 'missing_direct_mail', default: 'missing direct_mail')}</p>
+                </f:case>
+                <f:defaultCase></f:defaultCase>
+            </f:switch>
+        </f:else>
     </f:if>
 
     <f:render partial="FormErrors" arguments="{object:Log}"/>
