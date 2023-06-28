@@ -682,16 +682,36 @@ class LogController extends ActionController
             if (is_array($user) && isset($user['email'])) {
                 if ($this->helpersUtility->checkDirectmailAuthCode($user, $a)) {
                     if ($this->settings['dmUnsubscribeMode'] == 1) {
-                        $this->redirect('unsubscribe', null, null, [
-                            'defaultEmail' => $user['email']
-                        ]);
+                        $this->redirectToURI(
+                            $this->uriBuilder->reset()
+                                ->uriFor(
+                                    'unsubscribe',
+                                    [
+                                        'defaultEmail' => $user['email']
+                                    ],
+                                    'Log',
+                                    null,
+                                    'unsubscribedm'
+                                )
+                                ->build()
+                        );
                     } else {
                         // unsubscribe user now
                         $GLOBALS['TSFE']->fe_user->setKey('ses', 'authDM', $a);
                         $GLOBALS['TSFE']->fe_user->storeSessionData();
-                        $this->redirect('delete', null, null, [
-                            'user' => $user
-                        ]);
+                        $this->redirectToURI(
+                            $this->uriBuilder->reset()
+                                ->uriFor(
+                                    'delete',
+                                    [
+                                        'user' => $user
+                                    ],
+                                    'Log',
+                                    null,
+                                    'unsubscribedm'
+                                )
+                                ->build()
+                        );
                     }
                 } else {
                     $error = 10;
@@ -749,16 +769,36 @@ class LogController extends ActionController
                         if ($this->helpersUtility->checkLuxletterHash($userArray, $hash)) {
                             // Abmeldung kann beginnen!
                             if ($this->settings['dmUnsubscribeMode'] == 1) {
-                                $this->redirect('unsubscribe', null, null, [
-                                    'defaultEmail' => $userArray['email']
-                                ]);
+                                $this->redirectToURI(
+                                    $this->uriBuilder->reset()
+                                        ->uriFor(
+                                            'unsubscribe',
+                                            [
+                                                'defaultEmail' => $userArray['email']
+                                            ],
+                                            'Log',
+                                            null,
+                                            'unsubscribelux'
+                                        )
+                                        ->build()
+                                );
                             } else {
                                 // unsubscribe user now
                                 $GLOBALS['TSFE']->fe_user->setKey('ses', 'authLux', $hash);
                                 $GLOBALS['TSFE']->fe_user->storeSessionData();
-                                $this->redirect('delete', null, null, [
-                                    'user' => $userArray
-                                ]);
+                                $this->redirectToURI(
+                                    $this->uriBuilder->reset()
+                                        ->uriFor(
+                                            'delete',
+                                            [
+                                                'user' => $userArray
+                                            ],
+                                            'Log',
+                                            null,
+                                            'unsubscribelux'
+                                        )
+                                        ->build()
+                                );
                             }
                         } else {
                             $error = 10;
@@ -944,11 +984,18 @@ class LogController extends ActionController
                 $messageUid = $this->settings['unsubscribeVerifyMessageUid'];
             }
         } else if ($error >= 8) {
-            $this->redirect('unsubscribe', null, null, [
-                'log' => $log,
-                'error' => $error,
-                'securityhash' => $log->getSecurityhash()
-            ]);
+            $this->redirectToURI(
+                $this->uriBuilder->reset()
+                    ->uriFor(
+                        'unsubscribe',
+                        [
+                            'log' => $log,
+                            'error' => $error,
+                            'securityhash' => $log->getSecurityhash()
+                        ]
+                    )
+                    ->build()
+            );
         }
         if ($this->settings['disableErrorMsg'] && ($error == 7)) {
             $error = 0;
