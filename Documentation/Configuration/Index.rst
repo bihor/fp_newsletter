@@ -163,11 +163,13 @@ Only parameters of this format are possible. If they are there, a forward will b
 Captchas
 ^^^^^^^^
 
-You can use 2 different captchas. If you want to use the Google reCaptcha v3 you need to provide the website key and the
-secret key.
+You can use 3 different captcha methods.
+If you want to use the Google reCaptcha v3 you need to provide the website key and the secret key.
 If you want to use a mathematical captcha, you can use 1 or 2 digits. The maximum value for 2 digits is 19. Example::
 
   plugin.tx_fpnewsletter.settings.mathCAPTCHA = 2
+
+You can even use an custom captcha like "Friendly Captcha". Read the chapter "Administrator" for more information.
 
 Optional and required fields
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^

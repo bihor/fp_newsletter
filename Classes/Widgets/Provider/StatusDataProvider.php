@@ -64,8 +64,8 @@ class StatusDataProvider implements ChartDataProviderInterface
             ->from('tx_fpnewsletter_domain_model_log')
             ->orderBy('status', 'ASC')
             ->groupBy('status')
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()
+            ->fetchAllAssociative();
 
         foreach ($entries as $entry) {
             $this->labels[] = $this->getLanguageService()->sL('LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.status.'.$entry['status']);

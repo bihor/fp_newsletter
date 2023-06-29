@@ -62,8 +62,8 @@ class LogDataProvider implements ChartDataProviderInterface
             ->from('tx_fpnewsletter_domain_model_log')
             ->orderBy('tstamp', 'DESC')
             ->setMaxResults(7)
-            ->execute()
-            ->fetchAll();
+            ->executeQuery()
+            ->fetchAllAssociative();
     }
 
     protected function getLanguageService(): LanguageService

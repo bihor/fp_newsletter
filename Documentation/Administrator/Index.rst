@@ -129,6 +129,86 @@ Disadvantage: it is not possible to unsubscribe only from a specific newsletter 
 will be deleted!
 
 
+.. _admin-captchas:
+
+Captchas
+--------
+
+You can use 3 different captchas. 2 of them can be configured via TypoScript settings. See chapter "Configuration".
+The third method is a custom captcha validator and requires PHP acknowledgment, because you will need a second extension.
+And maybe a third one, e.g. a "friendly captcha" extension.
+
+This extension provides a validate event. If you want to use this validator, add some lines to the New.html template of
+this extension::
+
+  <html xmlns:fp="http://typo3.org/ns/YourVendor/YourExtension/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    ...
+    <f:form action="create" name="log" pluginName="new" object="{log}">
+		<f:render partial="Log/FormFields" arguments="{_all}" />
+		<fp:form.friendlyCaptcha name="captcha_solution">
+			<div class="frc-captcha" data-sitekey="{settings.site_key}" data-solution-field-name="{name}" data-start="focus"></div>
+		</fp:form.friendlyCaptcha>
+		<div class="text-right">
+			<f:form.submit value="{f:translate(key: 'subscribe', default: 'subscribe')}" class="btn btn-primary" />
+		</div>
+	</f:form>
+    ...
+  </html>
+
+  Add xmlns:fp="http://typo3.org/ns/YourVendor/YourExtension/ViewHelpers" and replace YourVendor and YourExtension.
+  Add <fp:form.friendlyCaptcha name="captcha_solution">...</fp:form.friendlyCaptcha>
+  and adapt it to your custom captcha extension. And set the TypoScript settings "site_key".
+  Note: the lines about shows you only an example for a "friendly captcha" solution.
+
+  Furthermore you need an event listener in your custom captcha extension. It may look like this::
+
+    use YourVendor\YourExtension\Services\CaptchaService;
+    use Fixpunkt\FpNewsletter\Events\ValidateEvent;
+    use Psr\Http\Message\ServerRequestInterface;
+
+    class NewsletterValidationListener
+    {
+
+        /** @var CaptchaService  */
+        protected CaptchaService $captchaService;
+
+        /**
+         * @param CaptchaService $captchaService
+         */
+        public function __construct(CaptchaService $captchaService) {
+            $this -> captchaService = $captchaService;
+        }
+
+        /**
+         * Checks if the captcha was solved correctly.
+         * @param ValidateEvent $event
+         * @return void
+         */
+        public function __invoke(ValidateEvent $event) : void {
+            /** @var ServerRequestInterface $request */
+            $request = $GLOBALS['TYPO3_REQUEST'];
+
+            $pluginName = "tx_fpnewsletter_pi1";
+
+            // see if data was provided
+            if(!key_exists($pluginName, $request -> getParsedBody()) || !is_array($request -> getParsedBody()[$pluginName])) {
+                $event -> setValid(false);
+                return;
+            }
+
+            [...]
+
+            // validate solution
+            $solution = $request -> getParsedBody()[$pluginName]["captcha_solution"];
+            $valid = $this -> captchaService -> validate($solution);
+            if(!$valid["verified"]) {
+                $event -> setValid(false);
+                $event -> setMessage("Captcha not valid");
+            }
+        }
+    }
+
+
 .. _admin-security:
 
 Security-notice to version 3.2.6

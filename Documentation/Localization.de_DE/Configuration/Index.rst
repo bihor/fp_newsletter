@@ -159,10 +159,14 @@ Wenn beide Parameter gesetzt sind, wird zur Action create weitergeleitet.
 Captchas
 ^^^^^^^^
 
-Man kann 2 verschiedene Captchas benutzen. Wenn man das Google reCaptcha v3 benutzen will, muss man nur den website key und den secret key angeben.
+Man kann 3 verschiedene Captcha-Typen benutzen.
+Wenn man das Google reCaptcha v3 benutzen will, muss man nur den website key und den secret key angeben.
 Wenn man stattdessen ein mathematisches Captcha benutzen will, kann man 1 oder 2 Ziffern verwenden. Der maximale Wert bei 2 Ziffern ist 19. Beispiel::
 
   plugin.tx_fpnewsletter.settings.mathCAPTCHA = 2
+
+Als 3. Option kann man auch ein ganz anderes Captcha benutzen, z.B. Friendly Captcha. Eine Anleitung dazu findet man
+im Kapitel "Administration".
 
 Optionale und erforderliche Felder
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

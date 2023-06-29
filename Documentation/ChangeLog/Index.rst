@@ -134,3 +134,7 @@ Version 5.0.0:
 - Breaking: the email-templates and -partials must be changed! Add extensionName="FpNewsletter" to every f:translate.
 - Breaking: in template-forms the argument pluginName must be specified! You find them in the templates of this extension.
 - Breaking: all plugins must be changed via an update-script (in the install-tool)!
+
+Version 5.1.0:
+- Custom validator added which can be used for other captcha solutions.
+- Bugfix for TYPO3 12.

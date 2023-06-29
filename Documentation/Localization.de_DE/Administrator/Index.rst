@@ -124,6 +124,87 @@ Abonnenten entfernt, sondern der ganze fe_users-Eintrag wird gelöscht. Nachteil
 nicht nur von einem speziellen Newsletter abmelden. Man wird von allen abonnierten Newslettern eines Ordners abgemeldet.
 
 
+.. _admin-captchas:
+
+Captchas
+--------
+
+Man kann 3 verschiedene Captcha-Methoden benutzen. 2 davon kann man via TypoScript-Einstellungen konfigurieren.
+Siehe Kapitel "Configuration". Die 3. Methode ist eine spezielle Lösung, die PHP-Kenntnisse voraussetzt, weil man
+noch 1-2 weitere Extensions dafür benötigt.
+
+Diese Extension stellt ein Validate-Event zur Verfügung, welches im New.html Template dieser Extension wie folgt
+benutzt werden kann::
+
+  <html xmlns:fp="http://typo3.org/ns/YourVendor/YourExtension/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+    ...
+    <f:form action="create" name="log" pluginName="new" object="{log}">
+		<f:render partial="Log/FormFields" arguments="{_all}" />
+		<fp:form.friendlyCaptcha name="captcha_solution">
+			<div class="frc-captcha" data-sitekey="{settings.site_key}" data-solution-field-name="{name}" data-start="focus"></div>
+		</fp:form.friendlyCaptcha>
+		<div class="text-right">
+			<f:form.submit value="{f:translate(key: 'subscribe', default: 'subscribe')}" class="btn btn-primary" />
+		</div>
+	</f:form>
+    ...
+  </html>
+
+  Füge xmlns:fp="http://typo3.org/ns/YourVendor/YourExtension/ViewHelpers" hinzu und ersetzte YourVendor und YourExtension.
+  Füge <fp:form.friendlyCaptcha name="captcha_solution">...</fp:form.friendlyCaptcha>
+  hinzu und passe es an deine Extension an. Füge die TypoScript settings "site_key" hinzu.
+  Bemerkung: diese Zeilen zeigen nur ein Beispiel für eine "friendly captcha" Lösung.
+
+  Weiterhin braucht man einen Event-Listener in der eigenen Captcha-Extension. Er sollte so in etwa aussehen::
+
+    use YourVendor\YourExtension\Services\CaptchaService;
+    use Fixpunkt\FpNewsletter\Events\ValidateEvent;
+    use TYPO3\CMS\Extbase\Utility\DebuggerUtility;
+    use Psr\Http\Message\ServerRequestInterface;
+
+    class NewsletterValidationListener
+    {
+
+        /** @var CaptchaService  */
+        protected CaptchaService $captchaService;
+
+        /**
+         * @param CaptchaService $captchaService
+         */
+        public function __construct(CaptchaService $captchaService) {
+            $this -> captchaService = $captchaService;
+        }
+
+        /**
+         * Checks if the captcha was solved correctly.
+         * @param ValidateEvent $event
+         * @return void
+         */
+        public function __invoke(ValidateEvent $event) : void {
+            /** @var ServerRequestInterface $request */
+            $request = $GLOBALS['TYPO3_REQUEST'];
+
+            $pluginName = "tx_fpnewsletter_pi1";
+
+            // see if data was provided
+            if(!key_exists($pluginName, $request -> getParsedBody()) || !is_array($request -> getParsedBody()[$pluginName])) {
+                $event -> setValid(false);
+                return;
+            }
+
+            [...]
+
+            // validate solution
+            $solution = $request -> getParsedBody()[$pluginName]["captcha_solution"];
+            $valid = $this -> captchaService -> validate($solution);
+            if(!$valid["verified"]) {
+                $event -> setValid(false);
+                $event -> setMessage("Captcha not valid");
+            }
+        }
+    }
+
+
 .. _admin-security:
 
 Sicherheitshinweis zu Version 3.2.6
