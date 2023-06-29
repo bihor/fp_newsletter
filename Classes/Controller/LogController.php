@@ -595,7 +595,8 @@ class LogController extends ActionController
             $uri = $this->uriBuilder->reset()
                 ->setTargetPageUid($this->settings['subscribeMessageUid'])
                 ->build();
-            $this->redirectToURI($uri); // oder: $this->forward($this->settings['subscribeMessageUid']);
+            return $this->responseFactory->createResponse(307)
+                ->withHeader('Location', $uri);
         } else {
             $this->view->assign('error', $error);
         }
@@ -682,36 +683,34 @@ class LogController extends ActionController
             if (is_array($user) && isset($user['email'])) {
                 if ($this->helpersUtility->checkDirectmailAuthCode($user, $a)) {
                     if ($this->settings['dmUnsubscribeMode'] == 1) {
-                        $this->redirectToURI(
-                            $this->uriBuilder->reset()
-                                ->uriFor(
-                                    'unsubscribe',
-                                    [
-                                        'defaultEmail' => $user['email']
-                                    ],
-                                    'Log',
-                                    null,
-                                    'unsubscribedm'
-                                )
-                                ->build()
-                        );
+                        $uri = $this->uriBuilder->reset()
+                            ->uriFor(
+                                'unsubscribe',
+                                [
+                                    'defaultEmail' => $user['email']
+                                ],
+                                'Log',
+                                null,
+                                'unsubscribedm'
+                            );
+                        return $this->responseFactory->createResponse(307)
+                            ->withHeader('Location', $uri);
                     } else {
                         // unsubscribe user now
                         $GLOBALS['TSFE']->fe_user->setKey('ses', 'authDM', $a);
                         $GLOBALS['TSFE']->fe_user->storeSessionData();
-                        $this->redirectToURI(
-                            $this->uriBuilder->reset()
-                                ->uriFor(
-                                    'delete',
-                                    [
-                                        'user' => $user
-                                    ],
-                                    'Log',
-                                    null,
-                                    'unsubscribedm'
-                                )
-                                ->build()
-                        );
+                        $uri = $this->uriBuilder->reset()
+                            ->uriFor(
+                                'delete',
+                                [
+                                    'user' => $user
+                                ],
+                                'Log',
+                                null,
+                                'unsubscribedm'
+                            );
+                        return $this->responseFactory->createResponse(307)
+                            ->withHeader('Location', $uri);
                     }
                 } else {
                     $error = 10;
@@ -769,36 +768,34 @@ class LogController extends ActionController
                         if ($this->helpersUtility->checkLuxletterHash($userArray, $hash)) {
                             // Abmeldung kann beginnen!
                             if ($this->settings['dmUnsubscribeMode'] == 1) {
-                                $this->redirectToURI(
-                                    $this->uriBuilder->reset()
-                                        ->uriFor(
-                                            'unsubscribe',
-                                            [
-                                                'defaultEmail' => $userArray['email']
-                                            ],
-                                            'Log',
-                                            null,
-                                            'unsubscribelux'
-                                        )
-                                        ->build()
-                                );
+                                $uri = $this->uriBuilder->reset()
+                                    ->uriFor(
+                                        'unsubscribe',
+                                        [
+                                            'defaultEmail' => $userArray['email']
+                                        ],
+                                        'Log',
+                                        null,
+                                        'unsubscribelux'
+                                    );
+                                return $this->responseFactory->createResponse(307)
+                                    ->withHeader('Location', $uri);
                             } else {
                                 // unsubscribe user now
                                 $GLOBALS['TSFE']->fe_user->setKey('ses', 'authLux', $hash);
                                 $GLOBALS['TSFE']->fe_user->storeSessionData();
-                                $this->redirectToURI(
-                                    $this->uriBuilder->reset()
-                                        ->uriFor(
-                                            'delete',
-                                            [
-                                                'user' => $userArray
-                                            ],
-                                            'Log',
-                                            null,
-                                            'unsubscribelux'
-                                        )
-                                        ->build()
-                                );
+                                $uri = $this->uriBuilder->reset()
+                                    ->uriFor(
+                                        'delete',
+                                        [
+                                            'user' => $userArray
+                                        ],
+                                        'Log',
+                                        null,
+                                        'unsubscribelux'
+                                    );
+                                return $this->responseFactory->createResponse(307)
+                                    ->withHeader('Location', $uri);
                             }
                         } else {
                             $error = 10;
@@ -843,7 +840,7 @@ class LogController extends ActionController
             // we came from unsubscribeDMAction or unsubscribeLuxAction: an email and session must be present too!
             $log = GeneralUtility::makeInstance('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
             $log->setEmail($user['email']);
-            $log->setPid($user['pid']);
+            $log->setPid(intval($user['pid']));
             $checkSession = true;
         } else {
             $error = 1;
@@ -984,18 +981,17 @@ class LogController extends ActionController
                 $messageUid = $this->settings['unsubscribeVerifyMessageUid'];
             }
         } else if ($error >= 8) {
-            $this->redirectToURI(
-                $this->uriBuilder->reset()
-                    ->uriFor(
-                        'unsubscribe',
-                        [
-                            'log' => $log,
-                            'error' => $error,
-                            'securityhash' => $log->getSecurityhash()
-                        ]
-                    )
-                    ->build()
-            );
+            $uri = $this->uriBuilder->reset()
+                ->uriFor(
+                    'unsubscribe',
+                    [
+                        'log' => $log,
+                        'error' => $error,
+                        'securityhash' => $log->getSecurityhash()
+                    ]
+                );
+            return $this->responseFactory->createResponse(307)
+                ->withHeader('Location', $uri);
         }
         if ($this->settings['disableErrorMsg'] && ($error == 7)) {
             $error = 0;
@@ -1005,7 +1001,8 @@ class LogController extends ActionController
             $uri = $this->uriBuilder->reset()
                 ->setTargetPageUid($messageUid)
                 ->build();
-            $this->redirectToURI($uri); // oder: $this->forward($this->settings['subscribeMessageUid']);
+            return $this->responseFactory->createResponse(307)
+                ->withHeader('Location', $uri);
         } else {
             $this->view->assign('error', $error);
         }
@@ -1115,7 +1112,8 @@ class LogController extends ActionController
                 $uri = $this->uriBuilder->reset()
                     ->setTargetPageUid($this->settings['subscribeVerifyMessageUid'])
                     ->build();
-                $this->redirectToURI($uri); // oder: $this->forward($this->settings['subscribeMessageUid']);
+                return $this->responseFactory->createResponse(307)
+                    ->withHeader('Location', $uri);
             } else {
                 $this->view->assign('error', $error);
             }
@@ -1183,7 +1181,8 @@ class LogController extends ActionController
                 $uri = $this->uriBuilder->reset()
                     ->setTargetPageUid($this->settings['unsubscribeVerifyMessageUid'])
                     ->build();
-                $this->redirectToURI($uri); // oder: $this->forward($this->settings['unsubscribeMessageUid']);
+                return $this->responseFactory->createResponse(307)
+                    ->withHeader('Location', $uri);
             } else {
                 $this->view->assign('error', $error);
             }
