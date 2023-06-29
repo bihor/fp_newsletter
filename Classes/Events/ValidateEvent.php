@@ -7,6 +7,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 
 class ValidateEvent {
 	protected $valid = true;
+
 	/** @var string  */
 	protected $message = "";
 
