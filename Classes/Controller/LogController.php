@@ -593,7 +593,7 @@ class LogController extends ActionController
 
         if (($error == 0) && ($this->settings['subscribeMessageUid'])) {
             $uri = $this->uriBuilder->reset()
-                ->setTargetPageUid($this->settings['subscribeMessageUid'])
+                ->setTargetPageUid((int) $this->settings['subscribeMessageUid'])
                 ->build();
             return $this->responseFactory->createResponse(307)
                 ->withHeader('Location', $uri);
@@ -966,7 +966,7 @@ class LogController extends ActionController
                 $persistenceManager->persistAll();
                 $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
                 $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, false, true, $toAdmin, $hash, intval($unsubscribeVerifyUid));
-                $messageUid = $this->settings['unsubscribeMessageUid'];
+                $messageUid = (int) $this->settings['unsubscribeMessageUid'];
             } else {
                 if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
                     $this->deleteThisUser($dbuidext);
@@ -978,7 +978,7 @@ class LogController extends ActionController
                     $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
                     $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, false, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
                 }
-                $messageUid = $this->settings['unsubscribeVerifyMessageUid'];
+                $messageUid = (int) $this->settings['unsubscribeVerifyMessageUid'];
             }
         } else if ($error >= 8) {
             $uri = $this->uriBuilder->reset()
@@ -1110,7 +1110,7 @@ class LogController extends ActionController
 
             if (($error == 0) && ($this->settings['subscribeVerifyMessageUid'])) {
                 $uri = $this->uriBuilder->reset()
-                    ->setTargetPageUid($this->settings['subscribeVerifyMessageUid'])
+                    ->setTargetPageUid((int) $this->settings['subscribeVerifyMessageUid'])
                     ->build();
                 return $this->responseFactory->createResponse(307)
                     ->withHeader('Location', $uri);
@@ -1179,7 +1179,7 @@ class LogController extends ActionController
 
             if (($error == 0) && ($this->settings['unsubscribeVerifyMessageUid'])) {
                 $uri = $this->uriBuilder->reset()
-                    ->setTargetPageUid($this->settings['unsubscribeVerifyMessageUid'])
+                    ->setTargetPageUid((int) $this->settings['unsubscribeVerifyMessageUid'])
                     ->build();
                 return $this->responseFactory->createResponse(307)
                     ->withHeader('Location', $uri);
