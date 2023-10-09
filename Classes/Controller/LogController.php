@@ -976,7 +976,7 @@ class LogController extends ActionController
                 $persistenceManager->persistAll();
                 if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                     $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, false, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
+                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0);
                 }
                 $messageUid = (int) $this->settings['unsubscribeVerifyMessageUid'];
             }
@@ -1099,7 +1099,7 @@ class LogController extends ActionController
                             $error = 8;
                         } elseif (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || $this->settings['email']['enableConfirmationMails']) {
                             $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                            $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), true, true, false, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
+                            $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), true, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0);
                         }
                     }
                 }
@@ -1168,7 +1168,7 @@ class LogController extends ActionController
                         }
                         if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                             $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                            $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), false, true, false, $this->settings['email']['enableConfirmationMails'], $toAdmin, $hash, 0);
+                            $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0);
                         }
                     }
                 }
