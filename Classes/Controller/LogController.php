@@ -630,8 +630,10 @@ class LogController extends ActionController
             // default E-Mail holen, falls log noch nicht definiert ist; default email from unsubscribeDMAction
             $email = $this->request->hasArgument('defaultEmail') ? $this->request->getArgument('defaultEmail') : '';
             if (! $email && $this->settings['parameters']['email']) {
-                $email = $_GET[$this->settings['parameters']['email']];
-                if (! $email) {
+                if (isset($_GET[$this->settings['parameters']['email']])) {
+                    $email = $_GET[$this->settings['parameters']['email']];
+                }
+                if (! $email && isset($_POST[$this->settings['parameters']['email']])) {
                     $email = $_POST[$this->settings['parameters']['email']];
                 }
             }

@@ -54,6 +54,12 @@ Note
 By default the gender and name is used in emails too and thereby the values of the first- and lastname field should be
 highlighted as user input in email templates to prevent potential spam-/phishing emails.
 
+Important
+~~~~~~~~~
+
+Since version 5.x there is not only one plugin name (pi1). In some cases therefore you need to change the template
+and add or delete the pi-parameter at a f:link.external. E.g. at the unsubscribe-page without a verify unsubscribe page.
+
 
 .. _admin-subscription_form:
 

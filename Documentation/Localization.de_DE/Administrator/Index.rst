@@ -56,6 +56,13 @@ Beachte
 Standardmässig wird neben der E-Mail-Adresse auch Anrede und Name in den E-Mails verwendet.
 Es wird empfohlen, diese zu highlighten, um Spam/Pishing-Emails vorzubeugen.
 
+Wichtig
+~~~~~~~
+
+Seit Version 5.x wird nicht nur ein Plugin-Name verwendet. In manchen Fällen muss man deshalb leider die Templates
+anpassen und entweder den pi-Parameter hinzufügen oder entfernen! Beispielsweise bei der Abmeldeseite ohne
+Verifizierungs-Seite.
+
 
 .. _admin-Anmeldeformular:
 
