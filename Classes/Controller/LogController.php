@@ -958,16 +958,21 @@ class LogController extends ActionController
 
         if (! $error) {
             if ($this->settings['doubleOptOut']) {
-                $unsubscribeVerifyUid = $this->settings['unsubscribeVerifyUid'];
+                $unsubscribeVerifyUid = intval($this->settings['unsubscribeVerifyUid']);
                 if (! $unsubscribeVerifyUid) {
                     // Fallback
                     $unsubscribeVerifyUid = intval($GLOBALS["TSFE"]->id);
+                }
+                if ($unsubscribeVerifyUid == intval($GLOBALS["TSFE"]->id)) {
+                    $pi = 'unsubscribe';
+                } else {
+                    $pi = 'verifyunsubscribe';
                 }
                 $log->setStatus(3);
                 $this->logRepository->update($log);
                 $persistenceManager->persistAll();
                 $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
-                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, false, true, $toAdmin, $hash, intval($unsubscribeVerifyUid));
+                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, false, true, $toAdmin, $hash, $unsubscribeVerifyUid, $pi);
                 $messageUid = (int) $this->settings['unsubscribeMessageUid'];
             } else {
                 if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
@@ -978,7 +983,7 @@ class LogController extends ActionController
                 $persistenceManager->persistAll();
                 if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                     $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0);
+                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
                 }
                 $messageUid = (int) $this->settings['unsubscribeVerifyMessageUid'];
             }

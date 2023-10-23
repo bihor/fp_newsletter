@@ -186,6 +186,7 @@ class HelpersUtility
      * @param boolean $toAdmin        email to admin?
      * @param string  $hash           hash
      * @param integer $verifyUid      UID of the verification page
+     * @param string  $pi             plugin name
      */
     public function prepareEmail(
         \Fixpunkt\FpNewsletter\Domain\Model\Log &$log,
@@ -197,7 +198,8 @@ class HelpersUtility
         bool $toUser = false,
         bool $toAdmin = false,
         string $hash = '',
-        int $verifyUid = 0): void
+        int $verifyUid = 0,
+        string $pi = ''): void
     {
         $genders = $this->getGenders($settings['preferXlfFile'], $settings['gender'], false);
         $email = $log->getEmail();
@@ -226,6 +228,7 @@ class HelpersUtility
         $dataArray['position'] = $log->getPosition();
         $dataArray['company'] = $log->getCompany();
         $dataArray['hash'] = $hash;
+        $dataArray['pi'] = $pi;
         if ($verifyUid) {
             if ($isSubscribe) {
                 $dataArray['subscribeVerifyUid'] = $verifyUid;
