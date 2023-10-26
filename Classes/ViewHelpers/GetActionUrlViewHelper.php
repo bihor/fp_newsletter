@@ -7,6 +7,7 @@ use Throwable;
 use TYPO3\CMS\Core\Site\SiteFinder;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3Fluid\Fluid\Core\ViewHelper\AbstractViewHelper;
+use TYPO3\CMS\Core\Controller\ErrorPageController;
 
 /**
  * Class GetActionUrlViewHelper
@@ -45,8 +46,8 @@ class GetActionUrlViewHelper extends AbstractViewHelper
             ]);
             return $uri->__tostring();
         } catch (Throwable $exception) {
-            throw new MisconfigurationException(
-                'Could not build a valid URL to a fp_newsletter page with PID "' . $this->arguments['pageUid'] . '"',
+            throw new \RuntimeException(
+                'Could not build a valid URL to a fp_newsletter page with target page uid "' . $this->arguments['pageUid'] . '"',
                 5588995474
             );
         }

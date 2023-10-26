@@ -28,8 +28,8 @@
 				<target>Newsletter: E-Mail zur Bearbeitung anfordern (Teil 1)</target>
 			</trans-unit>
 			<trans-unit id="template.edit" resname="template.edit">
-				<source>Newsletter: edit form (part 2)</source>
-				<target>Newsletter: Bearbeitung der Daten (Teil 2)</target>
+				<source>Newsletter: edit form (part 1 and 2)</source>
+				<target>Newsletter: Bearbeitung der Daten (Teil 1 und 2)</target>
 			</trans-unit>
 			<trans-unit id="template.subscribeext" resname="template.subscribeext">
 				<source>Newsletter: subscribe via external extension</source>

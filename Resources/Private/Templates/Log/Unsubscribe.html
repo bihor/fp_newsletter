@@ -24,7 +24,7 @@
   <script src="https://www.google.com/recaptcha/api.js?render={settings.reCAPTCHA_site_key}"></script>
 </f:if>
 
-<f:form pageUid="{settings.unsubscribeUid}" pluginName="unsubscribe" action="delete" name="log" object="{log}">
+<f:form pageUid="{settings.unsubscribeUid}" pluginName="{plugin}" action="delete" name="log" object="{log}">
 	<f:render partial="Log/FormFieldsOut" arguments="{_all}" />
 	<f:form.submit value="{f:translate(key: 'unsubscribe', default: 'unsubscribe')}" class="btn btn-sm btn-primary" />
 </f:form>

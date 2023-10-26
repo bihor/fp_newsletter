@@ -1,6 +1,6 @@
 <f:render partial="Email/Salutation.txt" arguments="{_all}" />
 you need to click at the verify link to verify your unsubscription:
-<f:format.raw><f:uri.external uri="{fpnl:getActionUrl(pageUid:unsubscribeVerifyUid, pi:'verifyunsubscribe', action:'verifyUnsubscribe', uid:uid, hash:hash)}" /></f:format.raw>
+<f:format.raw><f:uri.external uri="{fpnl:getActionUrl(pageUid:unsubscribeVerifyUid, pi:pi, action:'verifyUnsubscribe', uid:uid, hash:hash)}" /></f:format.raw>
 
 Best regards
 {settings.company}

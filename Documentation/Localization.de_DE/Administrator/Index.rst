@@ -125,10 +125,16 @@ Luxletter bietet auch einen Abmeldelink an. Zusätzlich bietet Luxletter ein Plu
 Newsletter austragen kann. Wenn man das Plugin benutzt, wird kein Log-Eintrag von fp_newsletter geändert. Der Status
 ändert sich also nicht. Zudem wird nur die fe_groups Kategorie beim Abonnenten gelöscht.
 
-Einen ganzen anderen Weg beschreitet fp_newsletter, wenn man auf der Zielseite "Newsletter: Abmeldung via luxletter-Link"
+Einen ganz anderen Weg beschreitet fp_newsletter, wenn man auf der Zielseite "Newsletter: Abmeldung via luxletter-Link"
 benutzt. In diesem Fall wird der Log-Eintrag aktuell gehalten und weiterhin wird nicht nur eine Kategorie beim
 Abonnenten entfernt, sondern der ganze fe_users-Eintrag wird gelöscht. Nachteil: man kann sich mit fp_newsletter
 nicht nur von einem speziellen Newsletter abmelden. Man wird von allen abonnierten Newslettern eines Ordners abgemeldet.
+
+Beispiel für einen Abmelde-Link::
+
+  <f:link.external uri="{luxletter:mail.getUnsubscribeUrl(newsletter:newsletter,user:user,site:site)}" additionalAttributes="{data-luxletter-parselink:'false'}" target="_blank" style="font-family:'FiraSans-Light', 'Helvetica Neue', Arial, sans-serif;">
+    Newsletter abbestellen
+  </f:link.external>
 
 
 .. _admin-captchas:

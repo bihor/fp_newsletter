@@ -249,11 +249,11 @@
 			</trans-unit>
 			<trans-unit id="wrong_subscribed" resname="wrong_subscribed">
 				<source>Error: you are already subscribed to our newsletter!</source>
-				<target>Fehler - Die E-Mailadresse ist bereits für den Newsletter registriert.</target>
+				<target>Fehler - Die E-Mail-Adresse ist bereits für den Newsletter registriert.</target>
 			</trans-unit>
 			<trans-unit id="wrong_unsubscribed" resname="wrong_unsubscribed">
 				<source>Error: you are not subscribed, so you can not be unsubscribed!</source>
-				<target>Fehler - Die E-Mailadresse ist nicht vorhanden.</target>
+				<target>Fehler - Die E-Mail-Adresse ist nicht vorhanden.</target>
 			</trans-unit>
 			<trans-unit id="wrong_unsubscribed_parameters" resname="wrong_unsubscribed_parameters">
 				<source>Error: missing or wrong parameters for unsubcription!</source>

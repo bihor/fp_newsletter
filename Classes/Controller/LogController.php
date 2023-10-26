@@ -224,6 +224,10 @@ class LogController extends ActionController
     {
         $log = null;
         $subscribeVerifyUid = $this->settings['subscribeVerifyUid'];
+        if (! $subscribeVerifyUid) {
+            // Fallback
+            $subscribeVerifyUid = intval($GLOBALS["TSFE"]->id);
+        }
         $email = $this->request->hasArgument('email') ? $this->request->getArgument('email') : '';
         if ($email && $subscribeVerifyUid) {
             $maxDate = time() - 86400 * $this->settings['daysExpire'];
@@ -236,7 +240,12 @@ class LogController extends ActionController
                 $log = $this->logRepository->getByEmailAndPid($email, $storagePidsArray, 0, $maxDate);
             }
             if ($log) {
-                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, false, $log->getSecurityhash(), intval($subscribeVerifyUid));
+                if (intval($subscribeVerifyUid) == intval($GLOBALS["TSFE"]->id)) {
+                    $pi = strtolower($this->request->getPluginName());  // z.B. 'resend';
+                } else {
+                    $pi = 'verify';
+                }
+                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, false, $log->getSecurityhash(), intval($subscribeVerifyUid), $pi);
             }
         }
         $this->view->assign('email', $email);
@@ -275,7 +284,7 @@ class LogController extends ActionController
                     $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
                     $persistenceManager->persistAll();
                     $error = 51;
-                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, true,true, false, $hash, intval($this->settings['editUid']));
+                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, true,true, false, $hash, intval($this->settings['editUid']), 'email');
                     // reset log entry
                     $log = null;
                 }
@@ -286,6 +295,17 @@ class LogController extends ActionController
                 $error = 8;
             }
         }
+        $editUid = intval($this->settings['editUid']);
+        if (! $editUid) {
+            // Fallback
+            $editUid = intval($GLOBALS["TSFE"]->id);
+        }
+        if ($editUid == intval($GLOBALS["TSFE"]->id)) {
+            $pi = strtolower($this->request->getPluginName());  // z.B. 'editemail' oder 'edit;
+        } else {
+            $pi = 'email';
+        }
+        $this->view->assign('pi', $pi);
         $this->view->assign('log', $log);
         $this->view->assign('error', $error);
         return $this->htmlResponse();
@@ -576,7 +596,12 @@ class LogController extends ActionController
             $this->logRepository->update($log);
             $persistenceManager->persistAll();
             $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
-            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, $toAdmin, $hash, intval($subscribeVerifyUid));
+            if (intval($subscribeVerifyUid) == intval($GLOBALS["TSFE"]->id)) {
+                $pi = strtolower($this->request->getPluginName());  // z.B. 'new';
+            } else {
+                $pi = 'verify';
+            }
+            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, $toAdmin, $hash, intval($subscribeVerifyUid), $pi);
         } else if ($error >= 8) {
             $uri = $this->uriBuilder->uriFor('new', [
                 'log' => $log,
@@ -653,6 +678,12 @@ class LogController extends ActionController
             $GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptchaop', $operator);
             $GLOBALS['TSFE']->fe_user->storeSessionData();
         }
+        if (intval($this->settings['unsubscribeUid']) == intval($GLOBALS["TSFE"]->id)) {
+            $pi = strtolower($this->request->getPluginName());  // z.B. 'unsubscribelux';
+        } else {
+            $pi = 'unsubscribe';
+        }
+        $this->view->assign('plugin', $pi);
         $this->view->assign('log', $log);
         $this->view->assign('error', $error);
         return $this->htmlResponse();
@@ -859,12 +890,16 @@ class LogController extends ActionController
 
             if (GeneralUtility::validEmail($email)) {
                 $dbuidext = $this->logRepository->getExternalUid($email, $pid, $this->settings['table'], $this->settings['searchPidMode']);
-                // zum testen: echo "uid $dbuidext mit $email, $pid";
+                // echo "uid $dbuidext mit $email, $pid (".$this->settings['searchPidMode'].") in " . $this->settings['table'];
                 if ($dbuidext > 0) {
                     $extAddress = $this->logRepository->getUserFromExternal($dbuidext, $this->settings['table']);
                     $log->setLastname($extAddress['last_name']);
                     $log->setFirstname($extAddress['first_name']);
                     $log->setTitle($extAddress['title']);
+                    if (intval($log->getPid()) != intval($extAddress['pid'])) {
+                        // wenn $storagePidsArray[0] falsch war, dann jetzt korrigieren
+                        $log->setPid(intval($extAddress['pid']));
+                    }
                     if ($this->settings['table'] == 'tt_address' && $extAddress['gender']) {
                         $gender = 0;
                         if ($extAddress['gender'] == 'f') $gender = 1;
@@ -964,7 +999,7 @@ class LogController extends ActionController
                     $unsubscribeVerifyUid = intval($GLOBALS["TSFE"]->id);
                 }
                 if ($unsubscribeVerifyUid == intval($GLOBALS["TSFE"]->id)) {
-                    $pi = 'unsubscribe';
+                    $pi = strtolower($this->request->getPluginName());  // z.B. 'unsubscribe' oder 'unsubscribelux';
                 } else {
                     $pi = 'verifyunsubscribe';
                 }
@@ -1106,7 +1141,7 @@ class LogController extends ActionController
                             $error = 8;
                         } elseif (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || $this->settings['email']['enableConfirmationMails']) {
                             $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                            $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), true, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0);
+                            $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), true, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
                         }
                     }
                 }
@@ -1175,7 +1210,7 @@ class LogController extends ActionController
                         }
                         if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                             $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                            $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0);
+                            $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
                         }
                     }
                 }

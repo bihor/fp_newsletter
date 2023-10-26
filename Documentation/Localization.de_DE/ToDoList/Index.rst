@@ -12,3 +12,7 @@ To-Do-Liste
 ===========
 
 - Probleme mit weiteren Sprachen beheben.
+
+- {lang}-Dateien ausbauen.
+
+- direct_mail-Support ausbauen.

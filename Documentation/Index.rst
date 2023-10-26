@@ -29,7 +29,7 @@ Newsletter subscriber management
 		newsletter,subscription,unsubscription,verify,gdpr
 
 	:Copyright:
-		2022
+		2023
 
 	:Author:
 		Kurt Gusbeth

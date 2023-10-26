@@ -57,6 +57,11 @@
     <f:if condition="({settings.enableEditForm} == 2) && {settings.editUid}">
         <br/>
         <p>
+            <f:comment>
+                IMPORTANT: if you link here to a page where you have selected edit page 1, you need to remove this:
+                WICHTIG: wenn man hier auf eine Seite verlinkt, wo Bearbeiten Teil 1 ausgewählt ist, muss man das hier entfernen:
+                action="editEmail" pluginName="edit"
+            </f:comment>
             <f:link.action pageUid="{settings.editUid}" action="editEmail" pluginName="edit">{f:translate(key: 'editLink', default: 'edit link')}</f:link.action>
         </p>
     </f:if>
@@ -79,6 +84,11 @@
                 <f:then>
                     <br>
                     <h3>{f:translate(key: 'edit_head', default: 'edit')}</h3>
+                    <f:comment>
+                        IMPORTANT: if you link here to a page where you have selected edit page 1, you need to change the pluginName:
+                        WICHTIG: wenn man hier auf eine Seite verlinkt, wo Bearbeiten Teil 1 ausgewählt ist, muss man den pluginName ändern:
+                        pluginName="editemail"
+                    </f:comment>
                     <f:form pageUid="{settings.editUid}" action="editEmail" pluginName="edit" name="log">
                         <f:render partial="Log/FormFieldsEditEmail" arguments="{_all}"/>
                         <f:form.submit value="{f:translate(key: 'edit_entry', default: 'edit')}"

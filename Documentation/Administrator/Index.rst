@@ -134,6 +134,12 @@ In this case, a fp_newsletter log is created and the subscriber will be removed 
 Disadvantage: it is not possible to unsubscribe only from a specific newsletter in a folder. The whole fe_users entry
 will be deleted!
 
+Example for an unsubscribe-link::
+
+  <f:link.external uri="{luxletter:mail.getUnsubscribeUrl(newsletter:newsletter,user:user,site:site)}" additionalAttributes="{data-luxletter-parselink:'false'}" target="_blank" style="font-family:'FiraSans-Light', 'Helvetica Neue', Arial, sans-serif;">
+    Unsubscribe from this newsletter abbestellen
+  </f:link.external>
+
 
 .. _admin-captchas:
 

@@ -127,12 +127,16 @@ Version 4.1.0:
 - Edit/Update-Action hinzugefügt.
 - Neue TypoScript-Variablen: enableEditForm, editUid, categoryMode und editSubject.
 
-Version 5.0.0:
+Version 5.0:
 - Überarbeitet für TYPO3 12 LTS.
 - Breaking: die Email-Templates und -Partials müssen angepasst werden! extensionName="FpNewsletter" muss zu jedem f:translate hinzugefügt werden.
 - Breaking: in Template-Formularen muss das Argument pluginName angegeben werden! Man findet den nötigen Wert in den Templates der Extension.
 - Breaking: alle Plugins müssen via ein Update-Skript (im Install-Tool) geändert werden!
 
-Version 5.1.0:
+Version 5.1:
 - "Custom validator" hinzugefügt, welcher für andere Captcha-Lösungen benutzt werden kann.
 - Bugfix für TYPO3 12.
+
+Version 5.2:
+- Es wird nun automatisch der passende PluginName in Templates gesetzt.
+- PHP-Bugfix.
