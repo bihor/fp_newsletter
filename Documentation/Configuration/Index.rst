@@ -53,11 +53,11 @@ daysExpire                        integer     The link expires after X days     
 searchPidMode                     integer     Search in tt_address: 0: only in the 1. folder; 1: in all folders°    0
 deleteMode                        integer     1: set deletion flag; 2: delete entry                                 1
 languageMode                      integer     0: uses -1 if L>0; 1: uses the sys_language_uid from pages            0
-categoryMode                      integer     0: only cat./groups specified in module_sys_dmail_category; 1: all    1
+categoryMode                      integer     0: only categories/groups specified in categoryOrGroup; 1: all        1
 categoryOrderBy                   string      category order by: title, sorting or uid                              title
-dmUnsubscribeMode                 integer     0: direct unsubscription with link from direct_mail; 1: show form.    0
-module_sys_dmail_html             integer     0: only TEXT; 1: TEXT and HTML; -1: ignore this field in tt_address   1
-module_sys_dmail_category         string      List of categories (uid) from sys_dmail_category or fe_groups°°
+unsubscribeMode                   integer     0: direct unsubscription with a link from Luxletter; 1: show a form   0
+categoryOrGroup                   string      List of categories/groups (uid) from sys_category or fe_groups°°
+html                              integer     0: only TEXT; 1: TEXT and HTML; -1: ignore mail-fields in tt_address  1
 password                          string      Password for the fe_users table. random creates a random password.    random
 reCAPTCHA_site_key                string      Website-key for Google reCaptcha v3.
 reCAPTCHA_secret_key              string      Secret key for Google reCaptcha v3
@@ -215,8 +215,8 @@ Required extensions
 ^^^^^^^^^^^^^^^^^^^
 
 This extensions checks in the new action (subscription form) if required extensions are installed.
-settings.table can be empty, tt_address or fe_users. When tt_address, direct_mail is required too, if you use
-settings.module_sys_dmail_html or settings.module_sys_dmail_category. You can disable this check::
+settings.table can be empty, tt_address or fe_users. When it is tt_address, mail is required too, if you use
+settings.html or settings.categoryOrGroup. You can disable this check::
 
   plugin.tx_fpnewslettersettings.checkForRequiredExtensions = 0
 
@@ -238,7 +238,7 @@ Here an full example for luxletter and 2 languages::
         subscribeUid = 1167
         unsubscribeUid = 1002
         subscribeVerifyUid = 1001
-        module_sys_dmail_category = 19
+        categoryOrGroup = 19
         company = Ihre Online-Redaktion von „Test“
     }
     plugin.tx_fpnewsletter._LOCAL_LANG.de {

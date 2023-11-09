@@ -61,7 +61,7 @@ Wichtig
 
 Seit Version 5.x wird nicht nur ein Plugin-Name verwendet. In manchen Fällen muss man deshalb leider die Templates
 anpassen und entweder den pi-Parameter hinzufügen oder entfernen! Beispielsweise bei der Abmeldeseite ohne
-Verifizierungs-Seite.
+Verifizierung-Seite.
 
 
 .. _admin-Anmeldeformular:
@@ -98,28 +98,33 @@ In dem Fall muss noch eine Seite für die Anmeldung definiert werden, wohin das 
 Ein mathematisches Captcha ist bei diesem cachable Anmelde-Formular nicht möglich!
 
 
-.. _admin-direct_mail:
+.. _admin-mail:
 
-Direct_mail
------------
+Abmelden via Mail-Extension
+---------------------------
 
-Wenn du einen Newsletter verschickt, soll darin sicherlich auch ein Abmeldelink drin stehen. Das kann man so machen, wenn man direct_mail benutzt::
+Wenn du einen Newsletter verschickst, soll darin sicherlich auch ein Abmeldelink drin stehen. Das kann man so machen,
+wenn man mail benutzt::
 
   Newsletter abbestellen:
-  http://www.domain.de/newsletter/abmelden.html?u=###USER_uid###&t=###SYS_TABLE_NAME###&a=###SYS_AUTHCODE###
+  https://www.domain.de/newsletter/abmelden.html?email=###USER_email###
 
-Die 3 Werte ###USER_uid###, ###SYS_TABLE_NAME### und ###SYS_AUTHCODE### wird direct_mail ersetzen.
-Du musst nur den Link mit deinem Abmeldelink ersetzen.
-Die Extension fp_newsletter wird die Parameter überprüfen und den angegebenen Benutzer sofort abmelden.
-Achtung: bei der Zielseite muss dabei das Template "Newsletter: Abmeldung via direct_mail-Link" ausgewählt sein.
+Ersetze den Link durch deine Abmeldeseite und füge ihn in dein Newsletter-Template oder den Newsletter-Inhalt ein.
+###USER_email### wird von mail automatisch ersetzt. Der email-Parameter kann so geändert werden via TypoScript::
+
+  plugin.tx_fpnewsletter.settings.parameters.email = email
+
+Die Extension fp_newsletter wird den Parameter lesen und als Default-E-Mail-Adresse setzen.
+Achtung: bei der Zielseite muss dabei das Plugin "Newsletter: Abmeldung via Formular" ausgewählt sein.
+Eine direkte/sofortige Abmeldung ist nicht möglich, so wie sie bei direct_mail oder Luxletter möglich ist.
 Nachteil: man kann sich mit fp_newsletter nicht nur von einem speziellen Newsletter abmelden.
 Man wird von allen abonnierten Newslettern eines Ordners abgemeldet.
 
 
 .. _admin-luxletter:
 
-Luxletter
----------
+Abmelden via Luxletter-Extension
+--------------------------------
 
 Luxletter bietet auch einen Abmeldelink an. Zusätzlich bietet Luxletter ein Plugin, mit dem man sich aus dem
 Newsletter austragen kann. Wenn man das Plugin benutzt, wird kein Log-Eintrag von fp_newsletter geändert. Der Status
@@ -127,7 +132,7 @@ Newsletter austragen kann. Wenn man das Plugin benutzt, wird kein Log-Eintrag vo
 
 Einen ganz anderen Weg beschreitet fp_newsletter, wenn man auf der Zielseite "Newsletter: Abmeldung via luxletter-Link"
 benutzt. In diesem Fall wird der Log-Eintrag aktuell gehalten und weiterhin wird nicht nur eine Kategorie beim
-Abonnenten entfernt, sondern der ganze fe_users-Eintrag wird gelöscht. Nachteil: man kann sich mit fp_newsletter
+Abonnenten entfernt, sondern der ganze fe_users-Eintrag wird gleich gelöscht. Nachteil: man kann sich mit fp_newsletter
 nicht nur von einem speziellen Newsletter abmelden. Man wird von allen abonnierten Newslettern eines Ordners abgemeldet.
 
 Beispiel für einen Abmelde-Link::
@@ -135,6 +140,8 @@ Beispiel für einen Abmelde-Link::
   <f:link.external uri="{luxletter:mail.getUnsubscribeUrl(newsletter:newsletter,user:user,site:site)}" additionalAttributes="{data-luxletter-parselink:'false'}" target="_blank" style="font-family:'FiraSans-Light', 'Helvetica Neue', Arial, sans-serif;">
     Newsletter abbestellen
   </f:link.external>
+
+Setze plugin.tx_fpnewsletter.settings.unsubscribeMode = 1 wenn stattdessen erst das Abmeldeformular gezeigt werden soll.
 
 
 .. _admin-captchas:
@@ -149,7 +156,7 @@ noch 1-2 weitere Extensions dafür benötigt.
 Diese Extension stellt ein Validate-Event zur Verfügung, welches im New.html Template dieser Extension wie folgt
 benutzt werden kann::
 
-  <html xmlns:fp="http://typo3.org/ns/YourVendor/YourExtension/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+  <html xmlns:fp="https://typo3.org/ns/YourVendor/YourExtension/ViewHelpers" xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
     ...
     <f:form action="create" name="log" pluginName="new" object="{log}">
 		<f:render partial="Log/FormFields" arguments="{_all}" />
@@ -163,7 +170,7 @@ benutzt werden kann::
     ...
   </html>
 
-  Füge xmlns:fp="http://typo3.org/ns/YourVendor/YourExtension/ViewHelpers" hinzu und ersetzte YourVendor und YourExtension.
+  Füge xmlns:fp="https://typo3.org/ns/YourVendor/YourExtension/ViewHelpers" hinzu und ersetzte YourVendor und YourExtension.
   Füge <fp:form.friendlyCaptcha name="captcha_solution">...</fp:form.friendlyCaptcha>
   hinzu und passe es an deine Extension an. Füge die TypoScript settings "site_key" hinzu.
   Bemerkung: diese Zeilen zeigen nur ein Beispiel für eine "friendly captcha" Lösung.
@@ -237,6 +244,25 @@ Falls du eine ältere Version benutzt, solltest du folgendes über die behobenen
 Deshalb sollte man unbedingt updaten!
 
 
+.. _version_6:
+
+Updaten auf Version 6.x
+-----------------------
+
+Weil der Support für die Extension direct_mail in Version 6.0.0 entfernt wurde, wurden auch manch TypoScript-Variablen
+umbenannt! Leider gibt es aber kein Update-Skript, dass die alten Variablen umbenennt.
+Du musst nun also selber im TypoScript-Setup, in FlexForms und HTML-Templates Anpassungen vornehmen. Das heißt, du
+musst gesetzte TypoScript-Variablen selber umbenennen, FlexForms neu speichern und in eigenen HTML-Dateien
+(FormFields.html und FormFieldsEdit.html) Felder umbenennen.
+Betroffen sind diese 3 TypoScript-Settings:
+
+1. "dmUnsubscribeMode" wurde umbenannt zu "unsubscribeMode".
+
+2. "module_sys_dmail_html" wurde umbenannt zu "html".
+
+3. "module_sys_dmail_category" wurde umbenannt zu "categoryOrGroup".
+
+
 .. _admin-faq:
 
 FAQ
@@ -246,6 +272,11 @@ FAQ
 
   Möglicherweise muss man die storagePID doppelt angeben: via Plugin und via TypoScript.
   Beachte, dass man für die Abmeldung eine eigene Seite braucht!
+
+- Ein Link funktioniert nicht so wie er sollte. Was ist falsch?
+
+  Seit Version 5.x gibt es mehr als nur ein Plugin (pi1). Vielleicht ist ein falsches Plugin im Link?
+  Siehe Kapitel "Wichtig" weiter oben.
 
 - Die Domain fehlt im Link in der E-Mail. Wieso?
 
@@ -258,11 +289,11 @@ FAQ
 
 - Ich benutzte die fe_users Tabelle, aber es passiert nichts.
 
-  Hast du auch settings.module_sys_dmail_category gesetzt?
+  Hast du auch settings.categoryOrGroup gesetzt?
 
 - Ich benutzte die tt_address Tabelle, aber kein direct_mail und es passiert nichts.
 
-  Hast du auch settings.module_sys_dmail_html=-1 gesetzt? Für das HTML-Feld wird nämlich direct_mail benötigt.
+  Hast du auch settings.html=-1 gesetzt? Für das HTML-Feld wird nämlich direct_mail/mail benötigt.
 
 - Ich brauche / will keine Log-Einträge. Kann man das ausschalten?
 

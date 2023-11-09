@@ -2,7 +2,7 @@
 /**
  * Register plugins, flexform and remove unused fields
  */
-foreach (['new', 'form', 'subscribeext', 'verify', 'editemail', 'edit', 'unsubscribe', 'unsubscribedm', 'unsubscribelux', 'verifyunsubscribe', 'resend', 'list'] as $plugin) {
+foreach (['new', 'form', 'subscribeext', 'verify', 'editemail', 'edit', 'unsubscribe', 'unsubscribelux', 'verifyunsubscribe', 'resend', 'list'] as $plugin) {
     \TYPO3\CMS\Extbase\Utility\ExtensionUtility::registerPlugin(
         'FpNewsletter',
         ucfirst($plugin),

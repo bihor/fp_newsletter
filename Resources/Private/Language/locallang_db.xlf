@@ -76,7 +76,7 @@
 				<source>Company</source>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.categories" resname="tx_fpnewsletter_domain_model_log.categories">
-				<source>Categories (comma separated)</source>
+				<source>Categories/groups (comma separated)</source>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status" resname="tx_fpnewsletter_domain_model_log.status">
 				<source>Status</source>

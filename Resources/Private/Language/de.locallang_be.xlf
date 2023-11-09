@@ -43,10 +43,6 @@
 				<source>Newsletter: unsubscribe via form</source>
 				<target>Newsletter: Abmeldung via Formular</target>
 			</trans-unit>
-			<trans-unit id="template.unsubscribedm" resname="template.unsubscribedm">
-				<source>Newsletter: unsubscribe via direct_mail-link</source>
-				<target>Newsletter: Abmeldung via direct_mail-Link</target>
-			</trans-unit>
 			<trans-unit id="template.unsubscribelux" resname="template.unsubscribelux">
 				<source>Newsletter: unsubscribe via Luxletter-link</source>
 				<target>Newsletter: Abmeldung via Luxletter-Link</target>
@@ -177,23 +173,23 @@
 			</trans-unit>
 			<trans-unit id="settings.enableConfirmationMails" resname="settings.enableConfirmationMails">
 				<source>Enable confirmation emails to the user?</source>
-				<target>Bestätigungs-E-Mails einschalten?</target>
+				<target>Bestätigung-E-Mails einschalten?</target>
 			</trans-unit>
 			<trans-unit id="settings.dontAppendL" resname="settings.dontAppendL">
 				<source>Add language UID to email templates?</source>
 				<target>Hänge die Sprach-UID an die E-Mail-Templates an?</target>
 			</trans-unit>
-			<trans-unit id="settings.dmUnsubscribeMode" resname="settings.dmUnsubscribeMode">
-				<source>Direct mail unsubscribe mode: direct unsubscribe (no) or go to the unsubscribe page (yes)?</source>
-				<target>Direct mail Abmelde-Modus: Sofort-Abmeldung (nein) oder erst auf die Abmeldeseite weiterleiten (ja)?</target>
+			<trans-unit id="settings.unsubscribeMode" resname="settings.unsubscribeMode">
+				<source>Luxletter unsubscribe mode: direct unsubscribe (no) or go to the unsubscribe page (yes)?</source>
+				<target>Luxletter Abmelde-Modus: Sofort-Abmeldung (nein) oder erst auf die Abmeldeseite weiterleiten (ja)?</target>
 			</trans-unit>
-			<trans-unit id="settings.module_sys_dmail_html" resname="settings.module_sys_dmail_html">
-				<source>Subscribe to a HTML-newsletter?</source>
+			<trans-unit id="settings.html" resname="settings.html">
+				<source>Subscribe to an HTML-newsletter?</source>
 				<target>Newsletter im HTML-Format abonnieren?</target>
 			</trans-unit>
-			<trans-unit id="settings.module_sys_dmail_category" resname="settings.module_sys_dmail_category">
-				<source>UIDs of the direct-mail-categories (direct-mail) OR fe_groups (luxletter), e.g. 3,4</source>
-				<target>UIDs von direct-mail-Kategorien (direct-mail) oder fe_groups (luxletter), Z.B. 3,4</target>
+			<trans-unit id="settings.categoryOrGroup" resname="settings.categoryOrGroup">
+				<source>UIDs of the categories (mail) OR fe_groups (luxletter), e.g. 3,4</source>
+				<target>UIDs von Kategorien (mail) oder Gruppen (luxletter), Z.B. 3,4</target>
 			</trans-unit>
 			<trans-unit id="parameters" resname="parameters">
 				<source>External parameters</source>
@@ -213,7 +209,7 @@
 			</trans-unit>
 			<trans-unit id="dashboard.widget.fixpunktRecentLogEntries.description" resname="dashboard.widget.fixpunktRecentLogEntries.description">
 				<source>Shows date, name, email and status of the last entries</source>
-				<target>Zeigt Datum, Name, E-mail und Status der letzten Log-Einträge</target>
+				<target>Zeigt Datum, Name, E-Mail und Status der letzten Log-Einträge</target>
 			</trans-unit>
 			<trans-unit id="dashboard.widget.fixpunktLogStatus.title" resname="dashboard.widget.fixpunktLogStatus.title">
 				<source>fp_newsletter: status diagram</source>

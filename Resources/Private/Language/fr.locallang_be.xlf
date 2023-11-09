@@ -43,10 +43,6 @@
 				<source>Newsletter: unsubscribe via form</source>
 				<target>Infolettre: Formulaire de désinscription</target>
 			</trans-unit>
-			<trans-unit id="template.unsubscribedm" resname="template.unsubscribedm">
-				<source>Newsletter: unsubscribe via direct_mail-link</source>
-				<target>Infolettre: Désinscription via un direct_mail-lien</target>
-			</trans-unit>
 			<trans-unit id="template.unsubscribelux" resname="template.unsubscribelux">
 				<source>Newsletter: unsubscribe via Luxletter-link</source>
 				<target>Infolettre: Désinscription via un Luxletter-lien</target>
@@ -183,17 +179,17 @@
 				<source>Add language UID to email templates?</source>
 				<target>Ajouter l&#039;UID de la langue aux templates d&#039;email ?</target>
 			</trans-unit>
-			<trans-unit id="settings.dmUnsubscribeMode" resname="settings.dmUnsubscribeMode">
-				<source>Direct mail unsubscribe mode: direct unsubscribe (no) or go to the unsubscribe page (yes)?</source>
-				<target>Mode de désinscription pour Direct mail : Désinscription direct OU aller à la page de désinscription ?</target>
+			<trans-unit id="settings.unsubscribeMode" resname="settings.unsubscribeMode">
+				<source>Luxletter unsubscribe mode: direct unsubscribe (no) or go to the unsubscribe page (yes)?</source>
+				<target>Mode de désinscription pour Luxletter : Désinscription direct OU aller à la page de désinscription ?</target>
 			</trans-unit>
-			<trans-unit id="settings.module_sys_dmail_html" resname="settings.module_sys_dmail_html">
-				<source>Subscribe to a HTML-newsletter?</source>
+			<trans-unit id="settings.html" resname="settings.html">
+				<source>Subscribe to an HTML-newsletter?</source>
 				<target>Recevoir les infolettres au format HTML ?</target>
 			</trans-unit>
-			<trans-unit id="settings.module_sys_dmail_category" resname="settings.module_sys_dmail_category">
-				<source>UIDs of the direct-mail-categories (direct-mail) OR fe_groups (luxletter), e.g. 3,4</source>
-				<target>UID de module_sys_dmail_category (direct-mail) OU fe_groups (luxletter)</target>
+			<trans-unit id="settings.categoryOrGroup" resname="settings.categoryOrGroup">
+				<source>UIDs of the categories (mail) OR fe_groups (luxletter), e.g. 3,4</source>
+				<target>UID de sys_category (mail) OU fe_groups (luxletter)</target>
 			</trans-unit>
 			<trans-unit id="parameters" resname="parameters">
 				<source>External parameters</source>

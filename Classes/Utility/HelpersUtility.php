@@ -75,25 +75,6 @@ class HelpersUtility
     }
 
     /**
-     * Checks a Direct-mail auth Code
-     *
-     * @param array $user tt_address Array
-     * @param string $authCode auth code to check
-     * @return boolean
-     */
-    public function checkDirectmailAuthCode(array $user, string $authCode): bool
-    {
-        if (strlen($authCode) == 8) {
-            // dies funktioniert in TYPO3 12 garantiert nicht mehr!
-            return (preg_match('/^[0-9a-f]{8}$/', $authCode) &&
-                ($authCode == GeneralUtility::stdAuthCode($user, 'uid')));
-        } else {
-            return (preg_match('/^[0-9a-f]{40}$/', $authCode) &&
-                ($authCode == \DirectMailTeam\DirectMail\Utility\AuthCodeUtility::getHmac($user, 'uid')));
-        }
-    }
-
-    /**
      * Set a hash and the language to a new log-entry
      *
      * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log

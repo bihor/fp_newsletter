@@ -169,8 +169,8 @@ class LogController extends ActionController
             if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('tt_address')) {
                 $error = 20;
             }
-            if ((intval($this->settings['module_sys_dmail_html'])>-1 || $this->settings['module_sys_dmail_category'])
-                && !\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('direct_mail')) {
+            if ((intval($this->settings['html'])>-1 || $this->settings['categoryOrGroup'])
+                && !\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('mail')) {
                 $error = 21;
             }
         }
@@ -394,7 +394,7 @@ class LogController extends ActionController
                             $groups = $this->logRepository->getAllCats($catOrderBy);
                             $own_groups_tmp = $this->logRepository->getOwnCats($dbuidext);
                             foreach ($own_groups_tmp as $tmp) {
-                                $own_groups[] = $tmp['uid_foreign'];
+                                $own_groups[] = $tmp['uid_local'];
                             }
                         } elseif ($table == 'fe_users') {
                             $log->setPhone($user['telephone']);
@@ -403,7 +403,7 @@ class LogController extends ActionController
                         }
                         if (!$this->settings['categoryMode']) {
                             // nur angegebene Kategorien erlauben
-                            $dmCat = str_replace(' ', '', $this->settings['module_sys_dmail_category']);
+                            $dmCat = str_replace(' ', '', $this->settings['categoryOrGroup']);
                             $dmCatArr = explode(',', $dmCat);
                             foreach ($groups as $key => $array) {
                                 if (!in_array($array['uid'], $dmCatArr)) {
@@ -463,7 +463,11 @@ class LogController extends ActionController
             $dbuidext = $this->logRepository->getExternalUid($dbemail, $log->getPid(), $table, $this->settings['searchPidMode']);
             if ($dbuidext) {
                 if ($table == 'tt_address') {
-                    $this->logRepository->updateInTtAddress($log, $dbuidext);
+                    $salutation = '';
+                    if ($log->getGender() == 1) $salutation = $this->settings['gender']['mrs'];
+                    elseif ($log->getGender() == 2) $salutation = $this->settings['gender']['mr'];
+                    elseif ($log->getGender() == 3) $salutation = $this->settings['gender']['divers'];
+                    $this->logRepository->updateInTtAddress($log, intval($this->settings['html']), $dbuidext, $salutation);
                 } elseif ($table == 'fe_users') {
                     $this->logRepository->updateInFeUsers($log, $dbuidext);
                 }
@@ -522,6 +526,7 @@ class LogController extends ActionController
             return $this->responseFactory->createResponse(307)
                 ->withHeader('Location', $uri);
         }
+        //if ($log->getGdpr()) { $log->setGdpr(true); }
         $hash = $this->helpersUtility->setHashAndLanguage($log, intval($this->settings['languageMode']));
         $log->setStatus(0);
         if ($log->getUid() > 0) {
@@ -652,7 +657,7 @@ class LogController extends ActionController
         if (! $log) {
             $log = GeneralUtility::makeInstance('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
             $log->setPid($pid);
-            // default E-Mail holen, falls log noch nicht definiert ist; default email from unsubscribeDMAction
+            // default E-Mail holen, falls log noch nicht definiert ist; default email from unsubscribeLuxAction
             $email = $this->request->hasArgument('defaultEmail') ? $this->request->getArgument('defaultEmail') : '';
             if (! $email && $this->settings['parameters']['email']) {
                 if (isset($_GET[$this->settings['parameters']['email']])) {
@@ -685,75 +690,6 @@ class LogController extends ActionController
         }
         $this->view->assign('plugin', $pi);
         $this->view->assign('log', $log);
-        $this->view->assign('error', $error);
-        return $this->htmlResponse();
-    }
-
-    /**
-     * action unsubscribe with direct_mail link
-     *
-     * @return ResponseInterface
-     */
-    public function unsubscribeDMAction(): ResponseInterface
-    {
-        $error = 0;
-        $tables = [
-            't' => 'tt_address',
-            'f' => 'fe_users'
-        ];
-        if (isset($_GET['t']) && isset($_GET['u']) && isset($_GET['a'])) {
-            $t = $tables[$_GET['t']];
-            $u = intval($_GET['u']);
-            $a = $_GET['a'];
-        } else {
-            $t = null;
-            $u = null;
-            $a = null;
-        }
-        if ($t && $t == $this->settings['table'] && $u && $a) {
-            $user = $this->logRepository->getUserFromExternal($u, $t);
-            // zum testen: echo GeneralUtility::stdAuthCode($user, 'uid');
-            if (is_array($user) && isset($user['email'])) {
-                if ($this->helpersUtility->checkDirectmailAuthCode($user, $a)) {
-                    if ($this->settings['dmUnsubscribeMode'] == 1) {
-                        $uri = $this->uriBuilder->reset()
-                            ->uriFor(
-                                'unsubscribe',
-                                [
-                                    'defaultEmail' => $user['email']
-                                ],
-                                'Log',
-                                null,
-                                'unsubscribedm'
-                            );
-                        return $this->responseFactory->createResponse(307)
-                            ->withHeader('Location', $uri);
-                    } else {
-                        // unsubscribe user now
-                        $GLOBALS['TSFE']->fe_user->setKey('ses', 'authDM', $a);
-                        $GLOBALS['TSFE']->fe_user->storeSessionData();
-                        $uri = $this->uriBuilder->reset()
-                            ->uriFor(
-                                'delete',
-                                [
-                                    'user' => $user
-                                ],
-                                'Log',
-                                null,
-                                'unsubscribedm'
-                            );
-                        return $this->responseFactory->createResponse(307)
-                            ->withHeader('Location', $uri);
-                    }
-                } else {
-                    $error = 10;
-                }
-            } else {
-                $error = 11;
-            }
-        } else {
-            $error = 10;
-        }
         $this->view->assign('error', $error);
         return $this->htmlResponse();
     }
@@ -800,7 +736,7 @@ class LogController extends ActionController
                         // stimmt der angegebene hash überein?
                         if ($this->helpersUtility->checkLuxletterHash($userArray, $hash)) {
                             // Abmeldung kann beginnen!
-                            if ($this->settings['dmUnsubscribeMode'] == 1) {
+                            if ($this->settings['unsubscribeMode'] == 1) {
                                 $uri = $this->uriBuilder->reset()
                                     ->uriFor(
                                         'unsubscribe',
@@ -870,7 +806,7 @@ class LogController extends ActionController
                 $error = 1;
             }
         } elseif (isset($user['email'])) {
-            // we came from unsubscribeDMAction or unsubscribeLuxAction: an email and session must be present too!
+            // we came from unsubscribeLuxAction: an email and session must be present too!
             $log = GeneralUtility::makeInstance('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
             $log->setEmail($user['email']);
             $log->setPid(intval($user['pid']));
@@ -915,31 +851,18 @@ class LogController extends ActionController
                 $error = 7;
             }
             if ($checkSession) {
-                // wenn man von unsubscribeDM oder unsubscribeLux kommt, muss die Session noch überprüft werden
-                $a = $GLOBALS['TSFE']->fe_user->getKey('ses', 'authDM');
+                // wenn man von unsubscribeLux kommt, muss die Session noch überprüft werden
+                $a = $GLOBALS['TSFE']->fe_user->getKey('ses', 'authLux');
                 if ($a) {
-                    // authCode von unsubscribeDM ist vorhanden!
-                    $GLOBALS['TSFE']->fe_user->setKey('ses', 'authDM', '');
+                    // hash von unsubscribeLux ist vorhanden!
+                    $GLOBALS['TSFE']->fe_user->setKey('ses', 'authLux', '');
                     $GLOBALS['TSFE']->fe_user->storeSessionData();
-                    if ($this->helpersUtility->checkDirectmailAuthCode($user, $a)) {
+                    if ($this->helpersUtility->checkLuxletterHash($user, $a)) {
                         $skipCaptchaTest = true;
                     } else {
                         $error = 1;
                     }
                 } else {
-                    $a = $GLOBALS['TSFE']->fe_user->getKey('ses', 'authLux');
-                    if ($a) {
-                        // hash von unsubscribeLux ist vorhanden!
-                        $GLOBALS['TSFE']->fe_user->setKey('ses', 'authLux', '');
-                        $GLOBALS['TSFE']->fe_user->storeSessionData();
-                        if ($this->helpersUtility->checkLuxletterHash($user, $a)) {
-                            $skipCaptchaTest = true;
-                        } else {
-                            $error = 1;
-                        }
-                    }
-                }
-                if (!$a) {
                     $error = 1;
                 }
             }
@@ -1060,8 +983,8 @@ class LogController extends ActionController
     {
         $error = 0;
         $dbuid = 0;
-        $html = intval($this->settings['module_sys_dmail_html']);
-        $dmCat = str_replace(' ', '', $this->settings['module_sys_dmail_category']);
+        $html = intval($this->settings['html']);
+        $dmCat = str_replace(' ', '', $this->settings['categoryOrGroup']);
         $uid = intval($this->request->hasArgument('uid')) ? $this->request->getArgument('uid') : 0;
         $hash = ($this->request->hasArgument('hash')) ? $this->request->getArgument('hash') : '';
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
@@ -1070,32 +993,32 @@ class LogController extends ActionController
             $this->view->assign('error', 1);
         } else {
             if ($sys_language_uid > 0 && $this->settings['languageMode']) {
-                $address = $this->logRepository->findAnotherByUid($uid, $sys_language_uid);
+                $log = $this->logRepository->findAnotherByUid($uid, $sys_language_uid);
             } else {
-                $address = $this->logRepository->findOneByUid($uid);
+                $log = $this->logRepository->findOneByUid($uid);
             }
-            if ($address) {
-                $dbuid = $address->getUid();
-                $this->view->assign('address', $address);
+            if ($log) {
+                $dbuid = $log->getUid();
+                $this->view->assign('address', $log);
             }
             if (! $dbuid) {
                 $error = 2;
-            } elseif ($address->getStatus() == 2) {
+            } elseif ($log->getStatus() == 2) {
                 $error = 5;
             } else {
-                $error = $this->helpersUtility->checkIfValid($address, $hash, $this->settings['daysExpire']);
+                $error = $this->helpersUtility->checkIfValid($log, $hash, $this->settings['daysExpire']);
                 if (!$error) {
-                    // $dbstatus = $address->getStatus();
-                    $dbemail = $address->getEmail();
+                    // $dbstatus = $log->getStatus();
+                    $dbemail = $log->getEmail();
                     $dbuidext = 0;
                     if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
-                        $dbuidext = $this->logRepository->getUidFromExternal($dbemail, $address->getPid(), $this->settings['table']);
+                        $dbuidext = $this->logRepository->getUidFromExternal($dbemail, $log->getPid(), $this->settings['table']);
                     }
                     if ($dbuidext > 0) {
                         $error = 6;
                     } else {
-                        $address->setStatus(2);
-                        $this->logRepository->update($address);
+                        $log->setStatus(2);
+                        $this->logRepository->update($log);
                         $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
                         $persistenceManager->persistAll();
                         $success = 0;
@@ -1105,7 +1028,11 @@ class LogController extends ActionController
                             } else {
                                 $dmCatArr = [];
                             }
-                            $success = $this->logRepository->insertInTtAddress($address, $html, $dmCatArr);
+                            $salutation = '';
+                            if ($log->getGender() == 1) $salutation = $this->settings['gender']['mrs'];
+                            elseif ($log->getGender() == 2) $salutation = $this->settings['gender']['mr'];
+                            elseif ($log->getGender() == 3) $salutation = $this->settings['gender']['divers'];
+                            $success = $this->logRepository->insertInTtAddress($log, $html, $dmCatArr, $salutation);
                         } else if ($this->settings['table'] == 'fe_users' && $this->settings['password']) {
                             $frontendUser = new \Fixpunkt\FpNewsletter\Domain\Model\FrontendUser();
                             $password = $this->settings['password'];
@@ -1116,20 +1043,20 @@ class LogController extends ActionController
                             $hashedPassword = $hashInstance->getHashedPassword($password);
                             $frontendUser->setUsername($dbemail);
                             $frontendUser->setPassword($hashedPassword);
-                            $frontendUser->setPid(intval($address->getPid()));
+                            $frontendUser->setPid(intval($log->getPid()));
                             $frontendUser->setEmail($dbemail);
-                            if ($address->getFirstName() || $address->getLastName()) {
-                                $frontendUser->setFirstName($address->getFirstName());
-                                $frontendUser->setLastName($address->getLastName());
-                                $frontendUser->setName(trim($address->getFirstName() . ' ' . $address->getLastName()));
+                            if ($log->getFirstName() || $log->getLastName()) {
+                                $frontendUser->setFirstName($log->getFirstName());
+                                $frontendUser->setLastName($log->getLastName());
+                                $frontendUser->setName(trim($log->getFirstName() . ' ' . $log->getLastName()));
                             }
-                            $frontendUser->setAddress($address->getAddress());
-                            $frontendUser->setZip($address->getZip());
-                            $frontendUser->setCity($address->getCity());
-                            $frontendUser->setCountry($address->getCountry());
-                            $frontendUser->setTelephone($address->getPhone());
-                            $frontendUser->setFax($address->getFax());
-                            $frontendUser->setCompany($address->getCompany());
+                            $frontendUser->setAddress($log->getAddress());
+                            $frontendUser->setZip($log->getZip());
+                            $frontendUser->setCity($log->getCity());
+                            $frontendUser->setCountry($log->getCountry());
+                            $frontendUser->setTelephone($log->getPhone());
+                            $frontendUser->setFax($log->getFax());
+                            $frontendUser->setCompany($log->getCompany());
                             if ($dmCat) {
                                 $frontendUser->setUsergroup($dmCat);
                                 //$frontendUser->addUserGroup($this->frontendUserGroupRepository->findByUid($this->settings['frontendUserGroup']));
@@ -1141,7 +1068,7 @@ class LogController extends ActionController
                             $error = 8;
                         } elseif (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || $this->settings['email']['enableConfirmationMails']) {
                             $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                            $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), true, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
+                            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
                         }
                     }
                 }
@@ -1180,28 +1107,28 @@ class LogController extends ActionController
             $this->view->assign('error', 1);
         } else {
             if ($sys_language_uid > 0 && $this->settings['languageMode']) {
-                $address = $this->logRepository->findAnotherByUid($uid, $sys_language_uid);
+                $log = $this->logRepository->findAnotherByUid($uid, $sys_language_uid);
             } else {
-                $address = $this->logRepository->findOneByUid($uid);
+                $log = $this->logRepository->findOneByUid($uid);
             }
-            if ($address) {
-                $dbuid = $address->getUid();
-                $this->view->assign('address', $address);
+            if ($log) {
+                $dbuid = $log->getUid();
+                $this->view->assign('address', $log);
             }
             if (! $dbuid) {
                 $error = 2;
-            } elseif ($address->getStatus() == 4) {
+            } elseif ($log->getStatus() == 4) {
                 $error = 5;
             } else {
-                $error = $this->helpersUtility->checkIfValid($address, $hash, $this->settings['daysExpire']);
+                $error = $this->helpersUtility->checkIfValid($log, $hash, $this->settings['daysExpire']);
                 if (!$error) {
-                    $dbemail = $address->getEmail();
-                    $dbuidext = $this->logRepository->getExternalUid($dbemail, $address->getPid(), $this->settings['table'], $this->settings['searchPidMode']);
+                    $dbemail = $log->getEmail();
+                    $dbuidext = $this->logRepository->getExternalUid($dbemail, $log->getPid(), $this->settings['table'], $this->settings['searchPidMode']);
                     if ($this->settings['table'] && ! $dbuidext) {
                         $error = 6;
                     } else {
-                        $address->setStatus(4);
-                        $this->logRepository->update($address);
+                        $log->setStatus(4);
+                        $this->logRepository->update($log);
                         $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
                         $persistenceManager->persistAll();
 
@@ -1210,7 +1137,7 @@ class LogController extends ActionController
                         }
                         if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                             $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                            $this->helpersUtility->prepareEmail($address, $this->settings, $this->getViewArray(), false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
+                            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
                         }
                     }
                 }
@@ -1240,8 +1167,8 @@ class LogController extends ActionController
     protected function deleteThisUser($uid)
     {
         if ($this->settings['table'] == 'tt_address') {
-            if ($this->settings['module_sys_dmail_category']) {
-                $dmail_cats = str_replace(' ', '', $this->settings['module_sys_dmail_category']);
+            if ($this->settings['categoryOrGroup']) {
+                $dmail_cats = str_replace(' ', '', $this->settings['categoryOrGroup']);
                 $dmCatArr = explode(',', $dmail_cats);
             } else {
                 $dmCatArr = [];

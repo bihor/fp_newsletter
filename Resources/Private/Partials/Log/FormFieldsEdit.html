@@ -181,7 +181,7 @@ you could use prependOptionLabel="-" prependOptionValue="0" for a select too.
 	</div>
 </f:if>
 
-<f:if condition="{settings.module_sys_dmail_category}">
+<f:if condition="{settings.categoryOrGroup}">
   <f:then>
 	  <f:if condition="{groups -> f:count()} > 1"><f:then>
 		  <div class="form-group">
@@ -193,7 +193,7 @@ you could use prependOptionLabel="-" prependOptionValue="0" for a select too.
 			  </f:for>
 		  </div>
 	  </f:then><f:else>
-		  <f:form.hidden name="categories" value="{settings.module_sys_dmail_category}" id="fp_categories" />
+		  <f:form.hidden name="categories" value="{settings.categoryOrGroup}" id="fp_categories" />
 	  </f:else></f:if>
   </f:then>
 </f:if>

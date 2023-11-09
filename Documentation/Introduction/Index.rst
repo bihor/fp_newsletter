@@ -18,7 +18,7 @@ What does it do?
 ----------------
 
 The extension fp_newsletter is designed to provide a newsletter subscription and unsubscription service for the table
-tt_address or fe_users which can be used by the extension direct_mail or luxletter.
+tt_address or fe_users which can be used by the extension mail or luxletter.
 Furthermore it is designed to be compatible with the GDPR.
 A log is written about (every) action in a separate table.
 Old log entries can be deleted by a scheduler task.

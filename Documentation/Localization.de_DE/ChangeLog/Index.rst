@@ -140,3 +140,8 @@ Version 5.1:
 Version 5.2:
 - Es wird nun automatisch der passende PluginName in Templates gesetzt.
 - PHP-Bugfix.
+
+Version 6.0.0:
+- Breaking: der Support für direct_mail wurde entfernt. Stattdessen wird nun die Extension "mail" unterstützt.
+- Breaking: die TypoScript-settings dmUnsubscribeMode, module_sys_dmail_html, module_sys_dmail_category wurden umbenannt zu
+  unsubscribeMode, html, categoryOrGroup. Siehe Kapitel Administrator / Updaten auf version 6.x.

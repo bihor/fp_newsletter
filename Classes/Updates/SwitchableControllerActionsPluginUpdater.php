@@ -65,12 +65,12 @@ class SwitchableControllerActionsPluginUpdater implements UpgradeWizardInterface
         [
             'sourceListType' => 'fpnewsletter_pi1',
             'switchableControllerActions' => 'Log->unsubscribeDM;Log->unsubscribe;Log->delete;Log->verifyUnsubscribe',
-            'targetListType' => 'fpnewsletter_unsubscribedm',
+            'targetListType' => 'fpnewsletter_unsubscribe',
         ],
         [
             'sourceListType' => 'fpnewsletter_pi1',
             'switchableControllerActions' => 'Log->unsubscribeDM;Log->delete;Log->verifyUnsubscribe',
-            'targetListType' => 'fpnewsletter_unsubscribedm',
+            'targetListType' => 'fpnewsletter_unsubscribe',
         ],
         [
             'sourceListType' => 'fpnewsletter_pi1',

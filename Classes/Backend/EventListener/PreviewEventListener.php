@@ -84,7 +84,7 @@ final class PreviewEventListener
      *
      * @var array
      */
-    protected $pis = ['fpnewsletter_new', 'fpnewsletter_form', 'fpnewsletter_subscribeext', 'fpnewsletter_verify', 'fpnewsletter_editemail', 'fpnewsletter_edit', 'fpnewsletter_unsubscribe', 'fpnewsletter_unsubscribedm', 'fpnewsletter_unsubscribelux', 'fpnewsletter_verifyunsubscribe', 'fpnewsletter_resend', 'fpnewsletter_list'];
+    protected $pis = ['fpnewsletter_new', 'fpnewsletter_form', 'fpnewsletter_subscribeext', 'fpnewsletter_verify', 'fpnewsletter_editemail', 'fpnewsletter_edit', 'fpnewsletter_unsubscribe', 'fpnewsletter_unsubscribelux', 'fpnewsletter_verifyunsubscribe', 'fpnewsletter_resend', 'fpnewsletter_list'];
 
     /**
      * Table information

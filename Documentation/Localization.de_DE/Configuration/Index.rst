@@ -55,9 +55,9 @@ searchPidMode                     integer     Suche in tt_address: 0: nur im 1. 
 deleteMode                        integer     1: setze delete-Flag; 2: lösche endgültig                             1
 languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
 categoryMode                      integer     0: nur Kat./Gruppen aus module_sys_dmail_category erlauben; 1: alle   1
-dmUnsubscribeMode                 integer     0: Sofort-Abmeldung durch Link aus direct_mail; 1: zeige Abmeldeform. 0
-module_sys_dmail_html             integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere dieses Feld              1
-module_sys_dmail_category         string      Liste von Kategorien (uid) aus sys_dmail_category oder fe_groups°°
+unsubscribeMode                   integer     0: Sofort-Abmeldung durch Link aus Luxletter; 1: zeige Abmeldeform    0
+categoryOrGroup                   string      Liste von Kategorien (uid) aus sys_category oder fe_groups°°
+html                              integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere Felder der mail-Extens.  1
 password                          string      Passwort für die fe_users Tabelle. random erzeugt ein zufälliges Pw.  random
 reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3.
 reCAPTCHA_secret_key              string      Geheimer Schlüssel für Google reCaptcha v3
@@ -191,7 +191,7 @@ dann tut diese Extension das selbe wie auch direct_mail_subscription. Sie wird 2
 und sie wird module_sys_dmail_category in tt_address setzen (nach der Verifikation). Gibt es diesbezüglich etwa andere Erwartungen?
 
 Die Kategorien werden als hidden-Feld ins Template eingefügt. Wenn man eine flexiblere Lösung will, könnte man z.B. Checkboxes per jQuery auswerten und
-die angeklicken Kategorien ins hidden-Feld kopieren.
+die angeklickten Kategorien ins hidden-Feld kopieren.
 
 Ändern der Labels
 ^^^^^^^^^^^^^^^^^
@@ -207,8 +207,8 @@ Benötigte Extensions
 ^^^^^^^^^^^^^^^^^^^^
 
 Standardmäßig überprüft die Extension in der Action new (Anmeldeformular), ob die benötigten Extensions installiert sind.
-settings.table kann leer, tt_address oder fe_users sein. Bei tt_address wird auch direct_mail benötigt, wenn man entweder
-settings.module_sys_dmail_html oder settings.module_sys_dmail_category verwendet. Die Überprüfung kann man ausschalten::
+settings.table kann leer, tt_address oder fe_users sein. Bei tt_address wird auch mail benötigt, wenn man entweder
+settings.html oder settings.categoryOrGroup verwendet. Die Überprüfung kann man ausschalten::
 
   plugin.tx_fpnewslettersettings.checkForRequiredExtensions = 0
 
@@ -230,7 +230,7 @@ Hier ein komplettes Beispiel für Luxletter und 2 Sprachen::
         subscribeUid = 1167
         unsubscribeUid = 1002
         subscribeVerifyUid = 1001
-        module_sys_dmail_category = 19
+        categoryOrGroup = 19
         company = Ihre Online-Redaktion von „Test“
     }
     plugin.tx_fpnewsletter._LOCAL_LANG.de {

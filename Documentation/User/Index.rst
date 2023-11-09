@@ -12,10 +12,10 @@ Users Manual
 ============
 
 This extension can be configured via TypoScript and via FlexForms.
-Users will use the FlexForms. Here you find a screenshot of the FlexForm settings:
+Users will use the FlexForms. Here you find a screenshot of some FlexForm settings:
 
 .. figure:: ../Images/UserManual/BackendView.png
-   :width: 660px
+   :width: 457px
    :alt: Backend view
 
    Default Backend view of the plugin
@@ -26,7 +26,7 @@ The unsubscribe-link must be specified and there must be an extra page for the u
 Here you see an example configuration:
 
 .. figure:: ../Images/UserManual/SampleConfiguration.png
-   :width: 674px
+   :width: 624px
    :alt: Sample configuration
 
    Sample configuration of the plugin

@@ -35,14 +35,14 @@ plugin.tx_fpnewsletter {
 	editUid =
 	gdprUid = 1
 	daysExpire = 2
-	dmUnsubscribeMode = 0
+	unsubscribeMode = 0
 	searchPidMode = 0
 	deleteMode = 1
 	languageMode = 0
     categoryMode = 1
 	categoryOrderBy = title
-	module_sys_dmail_html = 1
-	module_sys_dmail_category =
+	categoryOrGroup =
+	html = 1
 	password = random
 	reCAPTCHA_site_key =
 	reCAPTCHA_secret_key =
@@ -77,7 +77,7 @@ plugin.tx_fpnewsletter {
 		unsubscribedSubject = Bestätigung Newsletter-Abmeldung
 		editSubject = Ändern Sie Ihr Newsletter-Abonnement
 	}
-	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,editUid,gdprUid,parameters.active,parameters.email,module_sys_dmail_category
+	overrideFlexformSettingsIfEmpty = subscribeUid,subscribeVerifyUid,unsubscribeUid,unsubscribeVerifyUid,editUid,gdprUid,parameters.active,parameters.email,categoryOrGroup
 	debug = 0
   }
 }

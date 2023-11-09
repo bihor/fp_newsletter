@@ -101,7 +101,7 @@
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.categories" resname="tx_fpnewsletter_domain_model_log.categories">
 				<source>Categories (comma separated)</source>
-				<target>Kategorien (Kommagetrennt)</target>
+				<target>Kategorien/Gruppen (Kommagetrennt)</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status" resname="tx_fpnewsletter_domain_model_log.status">
 				<source>Status</source>

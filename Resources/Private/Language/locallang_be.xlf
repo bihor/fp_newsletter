@@ -33,9 +33,6 @@
 			<trans-unit id="template.unsubscribe" resname="template.unsubscribe">
 				<source>Newsletter: unsubscribe via form</source>
 			</trans-unit>
-			<trans-unit id="template.unsubscribedm" resname="template.unsubscribedm">
-				<source>Newsletter: unsubscribe via direct_mail-link</source>
-			</trans-unit>
 			<trans-unit id="template.unsubscribelux" resname="template.unsubscribelux">
 				<source>Newsletter: unsubscribe via Luxletter-link</source>
 			</trans-unit>
@@ -138,14 +135,14 @@
 			<trans-unit id="settings.dontAppendL" resname="settings.dontAppendL">
 				<source>Add language UID to email templates?</source>
 			</trans-unit>
-			<trans-unit id="settings.dmUnsubscribeMode" resname="settings.dmUnsubscribeMode">
-				<source>Direct mail unsubscribe mode: direct unsubscribe (no) or go to the unsubscribe page (yes)?</source>
+			<trans-unit id="settings.unsubscribeMode" resname="settings.unsubscribeMode">
+				<source>Unsubscribe mode for Luxletter: direct unsubscribe (no) or go to the unsubscribe page (yes)?</source>
 			</trans-unit>
-			<trans-unit id="settings.module_sys_dmail_html" resname="settings.module_sys_dmail_html">
-				<source>Subscribe to a HTML-newsletter?</source>
+			<trans-unit id="settings.html" resname="settings.html">
+				<source>Subscribe to an HTML-newsletter?</source>
 			</trans-unit>
-			<trans-unit id="settings.module_sys_dmail_category" resname="settings.module_sys_dmail_category">
-				<source>UIDs of the direct-mail-categories (direct-mail) OR fe_groups (luxletter), e.g. 3,4</source>
+			<trans-unit id="settings.categoryOrGroup" resname="settings.categoryOrGroup">
+				<source>UIDs of the categories (mail) OR fe_groups (luxletter), e.g. 3,4</source>
 			</trans-unit>
 			<trans-unit id="parameters" resname="parameters">
 				<source>External parameters</source>

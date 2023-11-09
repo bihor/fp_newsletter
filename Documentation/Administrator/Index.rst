@@ -102,28 +102,33 @@ a verification or delete plugin::
   lib.nlsubscriptionContent.value =
 
 
-.. _admin-direct_mail:
+.. _admin-mail:
 
-Direct_mail
------------
+Unsubscription via Mail-extension
+---------------------------------
 
-When you send a newsletter you want to add an unsubscription link to your newsletter. If you are using direct_mail, you can do that this way::
+When you send a newsletter you want to add an unsubscription link to your newsletter. If you are using mail, you can do that this way::
 
   Unsubscribe from the newsletter:
-  http://www.domain.com/newsletter/unsubscribe.html?u=###USER_uid###&t=###SYS_TABLE_NAME###&a=###SYS_AUTHCODE###
+  https://www.domain.com/newsletter/unsubscribe.html?email=###USER_email###
 
-The 3 values ###USER_uid###, ###SYS_TABLE_NAME### and ###SYS_AUTHCODE### will be replaced by direct_mail.
-Replace the link with the link to your unsubscribe page.
-The extension fp_newsletter will check the parameters and will unsubscribe the given user directly.
-Note: at the target page you need to set the template "Newsletter: unsubscribe via link" in this extension.
+Replace the link with the link to your unsubscribe page and put it in the newsletter-template or use it as email-content.
+###USER_email### will be replaced by the mail-extension. The email-parameter can be changed. It must be set via
+TypoScript::
+
+  plugin.tx_fpnewsletter.settings.parameters.email = email
+
+The extension fp_newsletter will read this parameter and use it as default email-address.
+Note: at the target page you need to select the plugin "Newsletter: unsubscribe via form" from this extension.
+There is no possibility for a direct unsubscription like it was possible with direct_mail or luxletter.
 Disadvantage: it is not possible to unsubscribe only from a specific newsletter in a folder. The whole tt_address entry
 will be deleted!
 
 
 .. _admin-luxletter:
 
-Luxletter
----------
+Unsubscription via Luxletter-extension
+--------------------------------------
 
 There is a unsubscribe link in the luxletter template. If you use the Luxletter-plugin at the target page,
 it is not possible to change the status of a Log entry. Furthermore Luxletter removes only the fe_groups category
@@ -140,6 +145,9 @@ Example for an unsubscribe-link::
     Unsubscribe from this newsletter abbestellen
   </f:link.external>
 
+Set plugin.tx_fpnewsletter.settings.unsubscribeMode = 1 if the unsubscription form should be shown instead of the
+direct unsubscription.
+
 
 .. _admin-captchas:
 
@@ -153,7 +161,7 @@ And maybe a third one, e.g. a "friendly captcha" extension.
 This extension provides a validate event. If you want to use this validator, add some lines to the New.html template of
 this extension::
 
-  <html xmlns:fp="http://typo3.org/ns/YourVendor/YourExtension/ViewHelpers" xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
+  <html xmlns:fp="https://typo3.org/ns/YourVendor/YourExtension/ViewHelpers" xmlns:f="https://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers" data-namespace-typo3-fluid="true">
     ...
     <f:form action="create" name="log" pluginName="new" object="{log}">
 		<f:render partial="Log/FormFields" arguments="{_all}" />
@@ -167,7 +175,7 @@ this extension::
     ...
   </html>
 
-  Add xmlns:fp="http://typo3.org/ns/YourVendor/YourExtension/ViewHelpers" and replace YourVendor and YourExtension.
+  Add xmlns:fp="https://typo3.org/ns/YourVendor/YourExtension/ViewHelpers" and replace YourVendor and YourExtension.
   Add <fp:form.friendlyCaptcha name="captcha_solution">...</fp:form.friendlyCaptcha>
   and adapt it to your custom captcha extension. And set the TypoScript settings "site_key".
   Note: the lines about shows you only an example for a "friendly captcha" solution.
@@ -240,6 +248,24 @@ If you use older versions, you should know this information about the fixed secu
 Therefore you should update the extension!
 
 
+.. _version_6:
+
+Updating to version 6.x
+-----------------------
+
+Because the support for the extension direct_mail was removed in version 6.0.0, some TypoScript settings changed
+the name. Unfortunately there is no update-script for migrating this fields to the new name.
+You must adapt your TypoScript settings, FlexForms and HTML-Templates by your own. That means you need to set the
+FlexForm settings again and in TypoScript and HTML-files (FormFields.html and FormFieldsEdit.html) you must rename them.
+This settings are affected:
+
+1. dmUnsubscribeMode was renamed to unsubscribeMode.
+
+2. module_sys_dmail_html was renamed to html.
+
+3. module_sys_dmail_category was renamed to categoryOrGroup.
+
+
 .. _admin-faq:
 
 FAQ
@@ -250,6 +276,11 @@ FAQ
   Maybe you need to set the storage PID twice: via plugin and via TypoScript.
   Note, that you need an own page for the newsletter unsubscription.
 
+- A link is not working as expected. Whats wrong?
+
+  Since version 5.x there is more than one plugin. Maybe the plugin is not the right one.
+  See chapter "Important" above.
+
 - The domain is missing in the email. Why?
 
   TYPO3 9 ignores the parameter absolute="1"? Or you have not added a domain in the backend?
@@ -258,15 +289,15 @@ FAQ
 - What will be the username if I use fe_users?
 
   The username will be the email-address. The default password is joh316. The category can be set via
-  module_sys_dmail_category and is mandatory!!!
+  categoryOrGroup and is mandatory!!!
 
 - I use fe_users but nothing happens.
 
-  Have you set the setting module_sys_dmail_category? You must define a category.
+  Have you set the setting categoryOrGroup? You must define a category.
 
 - I use tt_address but not direct_mail and nothing happens.
 
-  Have you set the setting module_sys_dmail_html to -1? For the HTML-option-field direct_mail is required.
+  Have you set the setting html to -1? For the HTML-option-field direct_mail/mail is required.
 
 - I get the error 'The action "xyz" is not allowed by this plugin.' Whats wrong?
 

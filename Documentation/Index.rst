@@ -26,7 +26,7 @@ Newsletter subscriber management
 		Plugin for newsletter subscription and unsubscription. Can be used for the table tt_address or fe_users. A log is written.
 
 	:Keywords:
-		newsletter,subscription,unsubscription,verify,gdpr
+		newsletter,subscription,unsubscription,verify,gdpr,mail,luxletter
 
 	:Copyright:
 		2023
@@ -45,7 +45,7 @@ Newsletter subscriber management
         `english Version <https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/en-us/>`_, `deutsche Version <https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/de-de/>`_
 
 	The content of this document is related to TYPO3,
-	a GNU/GPL CMS/Framework available from `www.typo3.org <http://www.typo3.org/>`_.
+	a GNU/GPL CMS/Framework available from `www.typo3.org <https://www.typo3.org/>`_.
 
 	**Table of Contents**
 

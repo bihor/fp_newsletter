@@ -310,15 +310,16 @@ return [
 	    'gdpr' => [
 	        'exclude' => true,
 	        'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.gdpr',
-	        'config' => [
-			    'type' => 'check',
-			    'items' => [
-			        '1' => [
-			            '0' => 'LLL:EXT:lang/locallang_core.xlf:labels.enabled'
-			        ]
-			    ],
-			    'default' => 0
-			]
+            'config' => [
+                'type' => 'check',
+                'renderType' => 'checkboxToggle',
+                'items' => [
+                    [
+                        'label' => '',
+                        'invertStateDisplay' => false,
+                    ],
+                ],
+            ],
 	    ],
     ],
 ];

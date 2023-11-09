@@ -12,13 +12,13 @@
 
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Newsletter subscriber management',
-    'description' => 'Plugin for newsletter subscription and unsubscription with double opt in (and double opt out). For: direct_mail or luxletter / tt_address or fe_users. A log is written.',
+    'description' => 'Plugin for newsletter subscription and unsubscription with double opt in (and double opt out). For: mail or luxletter / tt_address or fe_users. A log is written.',
     'category' => 'plugin',
     'author' => 'Kurt Gusbeth',
     'author_company' => 'fixpunkt für digitales GmbH',
     'state' => 'stable',
     'clearCacheOnLoad' => 0,
-    'version' => '5.2.0',
+    'version' => '6.0.0',
     'constraints' => [
         'depends' => [
         	'typo3' => '12.0.0-12.4.99'

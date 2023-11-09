@@ -92,9 +92,9 @@
 					</config>
 				</TCEforms>
 			</settings.gdprUid>
-			<settings.module_sys_dmail_category>
+			<settings.categoryOrGroup>
 				<TCEforms>
-					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.module_sys_dmail_category</label>
+					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.categoryOrGroup</label>
 					<config>
 						<type>input</type>
 						<size>10</size>
@@ -102,7 +102,7 @@
 						<eval>trim</eval>
 					</config>
 				</TCEforms>
-			</settings.module_sys_dmail_category>
+			</settings.categoryOrGroup>
         </el>
       </ROOT>
     </sDEF>
@@ -283,9 +283,9 @@
 					</config>
 				</TCEforms>
 			</settings.email.dontAppendL>
-			<settings.module_sys_dmail_html>
+			<settings.html>
 				<TCEforms>
-					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.module_sys_dmail_html</label>
+					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.html</label>
 	                <config>
 						<type>radio</type>
 						<items type="array">
@@ -304,10 +304,10 @@
 						</items>
 					</config>
 				</TCEforms>
-			</settings.module_sys_dmail_html>
-			  <settings.dmUnsubscribeMode>
+			</settings.html>
+			  <settings.unsubscribeMode>
 				  <TCEforms>
-					  <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.dmUnsubscribeMode</label>
+					  <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.unsubscribeMode</label>
 					  <config>
 						  <type>radio</type>
 						  <items type="array">
@@ -322,7 +322,7 @@
 						  </items>
 					  </config>
 				  </TCEforms>
-			  </settings.dmUnsubscribeMode>
+			  </settings.unsubscribeMode>
 			  <settings.searchPidMode>
 				  <TCEforms>
 					  <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.searchPidMode</label>

@@ -12,10 +12,10 @@ Benutzerhandbuch
 ================
 
 Die Extension kann über TypoScript und FlexForms konfiguriert werden.
-Benutzer werden eher die FlexForms benutzen. Hier ein Beispiel der FlexForm-Einstellungen:
+Benutzer werden eher die FlexForms benutzen. Hier ein Beispiel einiger FlexForm-Einstellungen:
 
 .. figure:: ../../Images/UserManual/BackendView.png
-   :width: 660px
+   :width: 457px
    :alt: Backend view
 
    Die Backend-Ansicht (BE)
@@ -26,7 +26,7 @@ Der Abmeldelink muss per TypoScript oder via FlexForms angegeben werden und es m
 Hier eine Beispiel-Konfiguration:
 
 .. figure:: ../../Images/UserManual/SampleConfiguration.png
-   :width: 674px
+   :width: 624px
    :alt: Beispiel-Konfiguration
 
    Beispiel-Konfiguration des Plugins

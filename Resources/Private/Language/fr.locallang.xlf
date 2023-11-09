@@ -301,15 +301,15 @@
 			</trans-unit>
 			<trans-unit id="missing_edit_uid" resname="missing_edit_uid">
 				<source>Error: the settings.editUid is not set!</source>
-				<target>Erreur : le settings.editUid n&#039;est pas défini !</target>
+				<target>Erreur: le settings.editUid n&#039;est pas défini!</target>
 			</trans-unit>
 			<trans-unit id="missing_tt_address" resname="missing_tt_address">
 				<source>Error: the extension tt_address is required if you use settings.table=tt_address!</source>
 				<target>Erreur: l&#039;extension tt_address est requise si vous utilisez le paramètre. table=tt_address!</target>
 			</trans-unit>
-			<trans-unit id="missing_direct_mail" resname="missing_direct_mail">
-				<source>Error: the extension direct_mail is required if settings.module_sys_dmail_html!=-1 or settings.module_sys_dmail_category is set!</source>
-				<target>Erreur : l&#039;extension direct_mail est requise si settings.module_sys_dmail_html!=-1 ou settings.module_sys_dmail_category est défini !</target>
+			<trans-unit id="missing_mail" resname="missing_mail">
+				<source>Error: the extension direct_mail is required if settings.html!=-1 or settings.categoryOrGroup is set!</source>
+				<target>Erreur: l&#039;extension mail est requise si settings.html!=-1 ou settings.categoryOrGroup est défini!</target>
 			</trans-unit>
 			<trans-unit id="email.dear-gender-first-and-last-name" resname="email.dear-gender-first-and-last-name">
 				<source>Dear %s %s %s,</source>
