@@ -142,7 +142,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     }
 
     /**
-     * getOwnCats: find own direct_mail categories
+     * getOwnCats: find own mail categories
      * @return	array
      */
     function getOwnCats($uid)
@@ -189,7 +189,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             $count = 0;
             foreach ($dmCatArr as $uid) {
                 if (is_numeric(trim($uid))) {
-                    // set the categories to the mm table of direct_mail
+                    // set the categories to the mm table of sys_category
                     $count++;
                     $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_category_record_mm');
                     $queryBuilder
@@ -379,7 +379,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * deleteExternalUser: delete user
      * @param	integer	$uid		tt_address oder fe_users uid
      * @param	integer	$mode		Löschen-Modus: 1: update, 2: löschen
-     * @param	array	$dmCatArr	direct_mail categories
+     * @param	array	$dmCatArr	sys_category categories
      * @param   string  $table      tt_address or fe_users
      */
     function deleteExternalUser($uid, $mode, $dmCatArr = [], $table = 'tt_address')

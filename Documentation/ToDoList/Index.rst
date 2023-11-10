@@ -14,5 +14,3 @@ To-Do list
 - Fix the problems with other languages.
 
 - Remove {lang}-files.
-
-- Remove support for direct_mail.

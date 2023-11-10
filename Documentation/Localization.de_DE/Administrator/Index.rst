@@ -11,9 +11,11 @@
 Administrator-Handbuch
 ======================
 
-Man braucht die Extension tt_address und direct_mail um diese Extension benutzen zu können.
-Benutzer können sich zum Newsletter anmelden, wenn die Tabelle tt_address in der Newsletter-Extension benutzt wird.
-Die Tabelle fe_users sollte auch noch benutzt werden können, aber das geht noch nicht.
+Man braucht nicht unbedingt die Extension tt_address und mail, um diese Extension benutzen zu können.
+Es geht auch ohne, aber mehr Sinn macht es schon, wenn man die Tabellen tt_address oder fe_users benutzt.
+Die Tabelle fe_users kann man zusammen mit der Extension Luxletter benutzen.
+Benutzer können sich dann zum Newsletter anmelden, wenn die Tabelle tt_address oder fe_users in der Newsletter-Extension
+benutzt wird.
 
 
 .. _admin-templates:
@@ -291,7 +293,7 @@ FAQ
 
   Hast du auch settings.categoryOrGroup gesetzt?
 
-- Ich benutzte die tt_address Tabelle, aber kein mail/direct_mail und es passiert nichts.
+- Ich benutzte die tt_address Tabelle, aber nicht die mail-Extension und es passiert nichts.
 
   Hast du auch settings.html=-1 gesetzt? Für das HTML-Feld wird nämlich direct_mail/mail benötigt.
 

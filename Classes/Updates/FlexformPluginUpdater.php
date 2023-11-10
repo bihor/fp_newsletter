@@ -69,7 +69,7 @@ class FlexformPluginUpdater implements UpgradeWizardInterface
 
     public function getTitle(): string
     {
-        return 'Migrates direct_mail settings of fp_newsletter in FlexForms';
+        return 'Migrates direct_mail settings of fp_newsletter in the FlexForms';
     }
 
     public function getDescription(): string

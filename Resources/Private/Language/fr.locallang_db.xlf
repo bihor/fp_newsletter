@@ -8,8 +8,8 @@
 				<target>Gestion des inscriptions aux infolettres</target>
 			</trans-unit>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description" resname="tx_fp_newsletter_domain_model_pi1.description">
-				<source>Privacy compliant plugin for newsletter subscription and unsubscription (for direct_mail via tt_address/luxletter via fe_users).</source>
-				<target>Plugin respectant la confidentialité pour l&#039;abonnement et le désabonnement aux newsletter (pour direct_mail via tt_address/luxletter via fe_users) .</target>
+				<source>Privacy compliant plugin for newsletter subscription and unsubscription (for mail via tt_address/luxletter via fe_users).</source>
+				<target>Plugin respectant la confidentialité pour l&#039;abonnement et le désabonnement aux newsletter (pour mail via tt_address/luxletter via fe_users) .</target>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log" resname="tx_fpnewsletter_domain_model_log">
 				<source>Log</source>

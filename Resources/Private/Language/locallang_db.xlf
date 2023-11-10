@@ -7,7 +7,7 @@
 				<source>Newsletter subscriber management</source>
 			</trans-unit>
 			<trans-unit id="tx_fp_newsletter_domain_model_pi1.description" resname="tx_fp_newsletter_domain_model_pi1.description">
-				<source>Privacy compliant plugin for newsletter subscription and unsubscription (for direct_mail via tt_address/luxletter via fe_users).</source>
+				<source>Privacy compliant plugin for newsletter subscription and unsubscription (for mail via tt_address/luxletter via fe_users).</source>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log" resname="tx_fpnewsletter_domain_model_log">
 				<source>Log</source>

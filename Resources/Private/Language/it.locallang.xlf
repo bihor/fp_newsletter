@@ -308,7 +308,7 @@
 				<target>Errore: l&#039;estensione tt_address è richiesta se si utilizza settings.table=tt_address!</target>
 			</trans-unit>
 			<trans-unit id="missing_mail" resname="missing_mail">
-				<source>Error: the extension direct_mail is required if settings.html!=-1 or settings.categoryOrGroup is set!</source>
+				<source>Error: the extension mail is required if settings.html!=-1 or settings.categoryOrGroup is set!</source>
 				<target>Errore: l&#039;estensione mail è richiesta se è impostato settings.html!=-1 o settings.categoryOrGroup!</target>
 			</trans-unit>
 			<trans-unit id="email.dear-gender-first-and-last-name" resname="email.dear-gender-first-and-last-name">

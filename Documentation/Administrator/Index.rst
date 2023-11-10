@@ -11,8 +11,9 @@
 Administrator manual
 ====================
 
-You will need the extension tt_address and direct_mail for this extension.
-Users can subscribe to your newsletter, if you uses addresses from tt_address. fe_users is not supported today.
+You will not need the extension tt_address and mail or luxletter for this extension, but it is recommended.
+Users can subscribe to your newsletter, if you use addresses from tt_address with the extension mail
+or if you use addresses from fe_users with the extension luxletter.
 
 
 .. _admin-templates:
@@ -295,7 +296,7 @@ FAQ
 
   Have you set the setting categoryOrGroup? You must define a category.
 
-- I use tt_address but not direct_mail and nothing happens.
+- I use tt_address but not mail and nothing happens.
 
   Have you set the setting html to -1? For the HTML-option-field direct_mail/mail is required.
 
