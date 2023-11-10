@@ -249,10 +249,10 @@ Deshalb sollte man unbedingt updaten!
 Updaten auf Version 6.x
 -----------------------
 
-Weil der Support für die Extension direct_mail in Version 6.0.0 entfernt wurde, wurden auch manch TypoScript-Variablen
-umbenannt! Leider gibt es aber kein Update-Skript, dass die alten Variablen umbenennt.
-Du musst nun also selber im TypoScript-Setup, in FlexForms und HTML-Templates Anpassungen vornehmen. Das heißt, du
-musst gesetzte TypoScript-Variablen selber umbenennen, FlexForms neu speichern und in eigenen HTML-Dateien
+Weil der Support für die Extension direct_mail in Version 6.0.0 entfernt wurde, wurden auch manche TypoScript-Variablen
+umbenannt! Leider gibt es nur ein Update-Skript, welches die alten Variablen in FlexForms umbenennt.
+Du musst nun also selber im TypoScript-Setup und in HTML-Templates Anpassungen vornehmen. Das heißt, du
+musst gesetzte TypoScript-Variablen selber umbenennen und in eigenen HTML-Dateien
 (FormFields.html und FormFieldsEdit.html) Felder umbenennen.
 Betroffen sind diese 3 TypoScript-Settings:
 
@@ -285,13 +285,13 @@ FAQ
 
 - Was ist der username wenn ich die Tabelle fe_users verwende?
 
-  Als username wird die E-Mail-Adresse verwendet. Das Standard-Passwort ist joh316. Die Kategorie setzt man mittels module_sys_dmail_category.
+  Als username wird die E-Mail-Adresse verwendet. Das Standard-Passwort ist joh316. Die Gruppe setzt man mittels categoryOrGroup.
 
 - Ich benutzte die fe_users Tabelle, aber es passiert nichts.
 
   Hast du auch settings.categoryOrGroup gesetzt?
 
-- Ich benutzte die tt_address Tabelle, aber kein direct_mail und es passiert nichts.
+- Ich benutzte die tt_address Tabelle, aber kein mail/direct_mail und es passiert nichts.
 
   Hast du auch settings.html=-1 gesetzt? Für das HTML-Feld wird nämlich direct_mail/mail benötigt.
 

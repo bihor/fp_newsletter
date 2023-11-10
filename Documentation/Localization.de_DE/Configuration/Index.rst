@@ -54,7 +54,7 @@ daysExpire                        integer     Der Verifikations-Link wird ungül
 searchPidMode                     integer     Suche in tt_address: 0: nur im 1. Ordner; 1: in allen Ordners°        0
 deleteMode                        integer     1: setze delete-Flag; 2: lösche endgültig                             1
 languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
-categoryMode                      integer     0: nur Kat./Gruppen aus module_sys_dmail_category erlauben; 1: alle   1
+categoryMode                      integer     0: nur angegebene Kategorien bei Edit erlauben; 1: alle               1
 unsubscribeMode                   integer     0: Sofort-Abmeldung durch Link aus Luxletter; 1: zeige Abmeldeform    0
 categoryOrGroup                   string      Liste von Kategorien (uid) aus sys_category oder fe_groups°°
 html                              integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere Felder der mail-Extens.  1
@@ -182,16 +182,16 @@ Man kann alle diese Felder auch als erforderlich markieren. Hier ein Beispiel f�
 Benutzung von Kategorien
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
-Die Tabelle module_sys_dmail_category enthält Kategorien für direct_mail. Diese Extension benutzt diese Kategorien und nicht die von sys_category.
-Wenn man sie so benutzt::
+Die Tabelle sys_category enthält Kategorien für mail. So benutzt man sie::
 
-  plugin.tx_fpnewsletter.settings.module_sys_dmail_category = 1,3
+  plugin.tx_fpnewsletter.settings.categoryOrGroup = 1,3
 
-dann tut diese Extension das selbe wie auch direct_mail_subscription. Sie wird 2 Einträge in sys_dmail_ttaddress_category_mm machen
-und sie wird module_sys_dmail_category in tt_address setzen (nach der Verifikation). Gibt es diesbezüglich etwa andere Erwartungen?
+Es werden dann 2 Einträge in sys_category_record_mm gemacht und in tt_address wird categories gesetzt (nach der Verifikation).
 
 Die Kategorien werden als hidden-Feld ins Template eingefügt. Wenn man eine flexiblere Lösung will, könnte man z.B. Checkboxes per jQuery auswerten und
 die angeklickten Kategorien ins hidden-Feld kopieren.
+
+Genau so kann man auch Gruppen für fe_users angeben.
 
 Ändern der Labels
 ^^^^^^^^^^^^^^^^^

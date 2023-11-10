@@ -254,9 +254,9 @@ Updating to version 6.x
 -----------------------
 
 Because the support for the extension direct_mail was removed in version 6.0.0, some TypoScript settings changed
-the name. Unfortunately there is no update-script for migrating this fields to the new name.
-You must adapt your TypoScript settings, FlexForms and HTML-Templates by your own. That means you need to set the
-FlexForm settings again and in TypoScript and HTML-files (FormFields.html and FormFieldsEdit.html) you must rename them.
+the name. Unfortunately there is only a update-script for migrating this fields to the new name for FlexForms.
+You must adapt your TypoScript settings and HTML-Templates by your own. That means you need to edit your
+TypoScript-settings and HTML-files (FormFields.html and FormFieldsEdit.html): rename the old names.
 This settings are affected:
 
 1. dmUnsubscribeMode was renamed to unsubscribeMode.

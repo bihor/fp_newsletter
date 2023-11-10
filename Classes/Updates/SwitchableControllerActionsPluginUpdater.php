@@ -98,7 +98,7 @@ class SwitchableControllerActionsPluginUpdater implements UpgradeWizardInterface
 
     public function getIdentifier(): string
     {
-        return 'switchableControllerActionsPluginUpdaterFpRef';
+        return 'switchableControllerActionsPluginUpdaterFpNl';
     }
 
     public function getTitle(): string

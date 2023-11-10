@@ -53,7 +53,7 @@ daysExpire                        integer     The link expires after X days     
 searchPidMode                     integer     Search in tt_address: 0: only in the 1. folder; 1: in all folders°    0
 deleteMode                        integer     1: set deletion flag; 2: delete entry                                 1
 languageMode                      integer     0: uses -1 if L>0; 1: uses the sys_language_uid from pages            0
-categoryMode                      integer     0: only categories/groups specified in categoryOrGroup; 1: all        1
+categoryMode                      integer     0: allow only categories/groups specified in categoryOrGroup; 1: all  1
 categoryOrderBy                   string      category order by: title, sorting or uid                              title
 unsubscribeMode                   integer     0: direct unsubscription with a link from Luxletter; 1: show a form   0
 categoryOrGroup                   string      List of categories/groups (uid) from sys_category or fe_groups°°
@@ -186,14 +186,11 @@ TypoScript setup::
 Using of categories
 ^^^^^^^^^^^^^^^^^^^
 
-The table module_sys_dmail_category contains categories for direct_mail. This extension uses that categories installed
-of the categories from sys_category. If you use them like this::
+The table sys_category contains categories for mail. Use them like this::
 
-  plugin.tx_fpnewsletter.settings.module_sys_dmail_category = 1,3
+  plugin.tx_fpnewsletter.settings.categoryOrGroup = 1,3
 
-Then this extension will do the same like the direct_mail_subscription extension.
-It will make two entires into sys_dmail_ttaddress_category_mm and it will set module_sys_dmail_category in tt_address
-(after the verification). Do you expect something else?
+It will make two entires into sys_category_record_mm and it will set categories in tt_address (after the verification).
 
 The categories are as hidden-field in the template. You could add checkboxes and copy the checked values by jQuery to
 the hidden-field if you need a more flexible solution.

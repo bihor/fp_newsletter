@@ -237,6 +237,10 @@ call_user_func(
         $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['switchableControllerActionsPluginUpdaterFpNl']
             = \Fixpunkt\FpNewsletter\Updates\SwitchableControllerActionsPluginUpdater::class;
 
+        // Register flexform plugin migrator
+        $GLOBALS['TYPO3_CONF_VARS']['SC_OPTIONS']['ext/install']['update']['flexformPluginUpdaterFpNl']
+            = \Fixpunkt\FpNewsletter\Updates\FlexformPluginUpdater::class;
+
         /**
          * Fluid Namespace
          */

@@ -144,6 +144,6 @@ Version 5.2:
 - PHP-Bugfix.
 
 Version 6.0.0:
-- Breaking: support for direct_mail removed. Instead support for the extension "mail" added.
+- Breaking: support for direct_mail removed. Instead, support for the extension "mail" added.
 - Breaking: TypoScript settings dmUnsubscribeMode, module_sys_dmail_html, module_sys_dmail_category renamed to
   unsubscribeMode, html, categoryOrGroup. See chapter Administrator / Updating to version 6.x.
