@@ -25,13 +25,11 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
      * @var \DateTime
      */
     protected $tstamp = NULL;
-    
+
     /**
-     * Language
-     *
-     * @var int<-1, max>|null The uid of the language of the object. This is the id of the corresponding sing language.
+     * @var int
      */
-    protected int|null $_languageUid = null;
+    protected $sysLanguageUid = 0;
     
     /**
      * Anrede
@@ -239,26 +237,25 @@ class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
     {
         $this->tstamp = $tstamp;
     }
-    
+
     /**
-     * Returns the sys_language_uid
+     * Set sys language
      *
-     * @return int|null $sys_language_uid
+     * @param int $sysLanguageUid
      */
-    public function get_languageUid()
+    public function setSysLanguageUid($sysLanguageUid): void
+    {
+        $this->_languageUid = $sysLanguageUid;
+    }
+
+    /**
+     * Get sys language
+     *
+     * @return int
+     */
+    public function getSysLanguageUid(): int
     {
         return $this->_languageUid;
-    }
-    
-    /**
-     * Sets the sys_language_uid
-     *
-     * @param int|null $sys_language_uid
-     * @return void
-     */
-    public function set_languageUid($sys_language_uid)
-    {
-        $this->_languageUid = $sys_language_uid;
     }
     
     /**

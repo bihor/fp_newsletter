@@ -26,6 +26,7 @@ class GetActionUrlViewHelper extends AbstractViewHelper
         $this->registerArgument('action', 'string', 'action', true);
         $this->registerArgument('uid', 'string', 'uid', true);
         $this->registerArgument('hash', 'string', 'hash', true);
+        $this->registerArgument('languageUid', 'string', 'sys_language_uid', false);
     }
 
     /**
@@ -35,6 +36,10 @@ class GetActionUrlViewHelper extends AbstractViewHelper
     public function render(): string
     {
         try {
+            $language = 0;
+            if (isset($this->arguments['languageUid'])) {
+                $language = intval($this->arguments['languageUid']);
+            }
             $site = GeneralUtility::makeInstance(SiteFinder::class)->getSiteByPageId($this->arguments['pageUid']);
             $uri = $site->getRouter()->generateUri($this->arguments['pageUid'], [
                 'tx_fpnewsletter_' . $this->arguments['pi'] => [
@@ -43,6 +48,7 @@ class GetActionUrlViewHelper extends AbstractViewHelper
                     'uid' => $this->arguments['uid'],
                     'hash' => $this->arguments['hash']
                 ],
+                '_language' => $language
             ]);
             return $uri->__tostring();
         } catch (Throwable $exception) {

@@ -145,3 +145,7 @@ Version 6.0.0:
 - Breaking: der Support für direct_mail wurde entfernt. Stattdessen wird nun die Extension "mail" unterstützt.
 - Breaking: die TypoScript-settings dmUnsubscribeMode, module_sys_dmail_html, module_sys_dmail_category wurden umbenannt zu
   unsubscribeMode, html, categoryOrGroup. Siehe Kapitel Administrator / Updaten auf version 6.x.
+
+Version 6.1.0:
+- Kompatibilität zu TYPO3 11.5 erneut hinzugefügt.
+- Bugfix: Sprache zu den Links in den E-Mails hinzugefügt.

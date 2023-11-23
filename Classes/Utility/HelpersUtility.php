@@ -91,9 +91,9 @@ class HelpersUtility
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
         $sys_language_uid = intval($languageAspect->getId());
         if ($sys_language_uid > 0 && ! $languageMode) {
-            $log->set_languageUid(-1);
+            $log->setSysLanguageUid(-1);
         } else {
-            $log->set_languageUid($sys_language_uid);
+            $log->setSysLanguageUid($sys_language_uid);
         }
         return $hash;
     }
@@ -190,7 +190,7 @@ class HelpersUtility
         }
         $dataArray = [];
         $dataArray['uid'] = $log->getUid();
-        $dataArray['sys_language_uid'] = $log->get_languageUid();
+        $dataArray['sys_language_uid'] = $log->getSysLanguageUid();
         $dataArray['gender_id'] = $log->getGender();
         $dataArray['gender'] = $genders[$log->getGender()];
         $dataArray['title'] = $log->getTitle();

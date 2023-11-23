@@ -40,6 +40,11 @@ Der komplette Abonnent wird bei der Abmeldung gelöscht, sodass man sich nicht n
 Allerdings ist seit Version 4.1.0 eine Bearbeitung der Newsletter-Daten möglich! Im Bearbeiten-Formular stehen alle
 möglichen Kategorien zur Auswahl verfügbar.
 
+Achtung!
+^^^^^^^^
+
+Wenn man man Version 6 mit TYPO3 11.5 benutzt, gibt es keine Vorschau im Backend.
+
 
 .. _screenshots:
 

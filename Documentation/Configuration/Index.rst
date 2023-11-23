@@ -21,6 +21,9 @@ TypoScript Reference
 
 Configuration via TypoScript (and FlexForms).
 
+***Important***: for fp_newsletter-versions < 6 you should look here:
+https://docs.typo3.org/p/fixpunkt/fp-newsletter/5.2/en-us/Configuration/Index.html
+
 
 Properties for settings
 ^^^^^^^^^^^^^^^^^^^^^^^

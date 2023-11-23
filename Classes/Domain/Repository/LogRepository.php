@@ -240,7 +240,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		else $gender = '';
 		// PS: crdate fehlt in älteren Versionen!
 		// Die Sprache übernehmen wir ab sofort 1:1
-		$sys_language_uid = $address->get_languageUid();
+		$sys_language_uid = $address->getSysLanguageUid();
 		$insert =  ['pid' => intval($address->getPid()),
 			'tstamp' => $timestamp,
 			'crdate' => $timestamp,

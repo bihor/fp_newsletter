@@ -1,6 +1,6 @@
 # fp_newsletter
 
-version 6.0.0
+version 6.1.0
 
 The TYPO3 extension fp_newsletter is designed to provide a newsletter subscription and unsubscription service for the 
 table tt_address which can be used by the extension mail OR for the table fe_users which can be used by luxletter. 
@@ -35,3 +35,7 @@ Version 6.0:
 - Breaking: support for direct_mail removed. Instead, support for the extension "mail" added.
 - Breaking: TypoScript settings dmUnsubscribeMode, module_sys_dmail_html, module_sys_dmail_category renamed to
   unsubscribeMode, html, categoryOrGroup. See chapter Administrator / Updating to version 6.x.
+
+Version 6.1.0:
+- Compatibility to TYPO3 11.5 added again.
+- Bugfix: language added to the links in the email.

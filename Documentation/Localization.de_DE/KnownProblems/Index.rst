@@ -18,6 +18,8 @@ Der Modus unsubscribeMode=1 funktioniert nur, wenn auch unsubscribeUid gesetzt i
 Seit Version 5.x wird nicht nur ein Plugin-Name verwendet. In manchen Fällen muss man deshalb leider die Templates
 anpassen und entweder den pi-Parameter hinzufügen, ändern oder entfernen bei f:form oder f:link.external!
 
+Seit Version 5.x werden E-Mail-Inhalte nicht übersetzt, wenn man settings.email.dontAppendL=1 setzt.
+
 Einen
 `Bug-Tracker <https://github.com/bihor/fp_newsletter/issues>`_
 für diese Extension findet man bei GitHub.

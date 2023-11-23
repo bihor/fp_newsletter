@@ -1,7 +1,7 @@
 <f:render partial="Email/Salutation.txt" arguments="{_all}" />
 
 klicken Sie bitte auf diesen Link, um Ihr Newsletter-Abonnement zu ändern:
-<f:format.raw><f:uri.external uri="{fpnl:getActionUrl(pageUid:editUid, pi:'edit', action:'edit', uid:uid, hash:hash)}" /></f:format.raw>
+<f:format.raw><f:uri.external uri="{fpnl:getActionUrl(pageUid:editUid, pi:'edit', action:'edit', uid:uid, hash:hash, languageUid:'0')}" /></f:format.raw>
 
 Mit freundlichen Grüßen
 {settings.company}

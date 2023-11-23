@@ -20,12 +20,12 @@ use Fixpunkt\FpNewsletter\Utility\HelpersUtility;
 
 /**
  *
- * This file is part of the "Newsletter managment" Extension for TYPO3 CMS.
+ * This file is part of the "Newsletter management" Extension for TYPO3 CMS.
  *
  * For the full copyright and license information, please read the
  * LICENSE.txt file that was distributed with this source code.
  *
- * (c) 2021 Kurt Gusbeth <k.gusbeth@fixpunkt.com>, fixpunkt werbeagentur gmbh
+ * (c) 2023 Kurt Gusbeth <k.gusbeth@fixpunkt.com>, fixpunkt für digitales GmbH
  *
  */
 

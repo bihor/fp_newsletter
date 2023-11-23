@@ -7,9 +7,9 @@
 <body>
 <f:render partial="Email/Salutation" arguments="{_all}" />
 <p>you need to click at the verify link to verify your email-address:</p>
-<p><f:link.external uri="{fpnl:getActionUrl(pageUid:subscribeVerifyUid, pi:pi, action:'verify', uid:uid, hash:hash)}"
-                    target="_blank"><f:format.raw><f:uri.external uri="{fpnl:getActionUrl(pageUid:subscribeVerifyUid, pi:pi, action:'verify', uid:uid, hash:hash)}" /></f:format.raw></f:link.external></p>
-<p><f:link.external uri="{fpnl:getActionUrl(pageUid:subscribeVerifyUid, pi:pi, action:'verify', uid:uid, hash:hash)}"
+<p><f:link.external uri="{fpnl:getActionUrl(pageUid:subscribeVerifyUid, pi:pi, action:'verify', uid:uid, hash:hash, languageUid:'1')}"
+                    target="_blank"><f:format.raw><f:uri.external uri="{fpnl:getActionUrl(pageUid:subscribeVerifyUid, pi:pi, action:'verify', uid:uid, hash:hash, languageUid:'1')}" /></f:format.raw></f:link.external></p>
+<p><f:link.external uri="{fpnl:getActionUrl(pageUid:subscribeVerifyUid, pi:pi, action:'verify', uid:uid, hash:hash, languageUid:'1')}"
                     target="_blank" style="border:1px solid #000;border-radius:3px;padding:2px 10px;">Alternatively, you can also click on this button</f:link.external></p>
 <p>Best regards<br>
 {settings.company}</p>
