@@ -8,17 +8,10 @@
 
 .. _configuration:
 
-Configuration Reference
-=======================
+Configuration/TypoScript Reference
+==================================
 
 Here you find all configuration (settings) possibilities.
-
-
-.. _configuration-typoscript:
-
-TypoScript Reference
---------------------
-
 Configuration via TypoScript (and FlexForms).
 
 ***Important***: for fp_newsletter-versions < 6 you should look here:

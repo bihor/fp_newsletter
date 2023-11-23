@@ -8,19 +8,11 @@
 
 .. _configuration:
 
-Konfiguration
-=============
+Konfiguration/TypoScript Referenz
+=================================
 
 Hier sieht man, welche TypoScript-Einstellungen (settings) vorgenommen werden können. Es gibt mehr
 TypoScript-Einstellungen als FlexForm-Einstellungen, was bedeutet, dass man nicht alles per FlexForms einstellen kann.
-
-
-.. _configuration-typoscript:
-
-TypoScript Referenz
--------------------
-
-Konfiguration via TypoScript (und FlexForms).
 
 ***Wichtig***: für fp_newsletter-Versionen < 6 sollte man hier nachsehen:
 https://docs.typo3.org/p/fixpunkt/fp-newsletter/5.2/de-de/Configuration/Index.html
