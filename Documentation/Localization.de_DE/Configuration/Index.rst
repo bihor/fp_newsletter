@@ -159,6 +159,11 @@ bei einer Bestellung auch zum Newsletter anmelden können soll, dann muss man di
 Es können an dieser Stelle nur Parameter von anderen Extensions mit dem selben Format ausgewertet werden.
 Wenn beide Parameter gesetzt sind, wird zur Action create weitergeleitet.
 
+Achtung:
+
+Wenn man bei den Einstellungen "[FE][cacheHash][enforceValidation] = 1" gesetzt hat, muss man diesen Parameter unter
+"[FE][cacheHash][excludedParameters]" mit hinzufügen!
+
 Captchas
 ^^^^^^^^
 

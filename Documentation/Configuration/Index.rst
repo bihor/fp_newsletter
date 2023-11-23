@@ -163,6 +163,11 @@ Furthermore you must specify the POST-parameter, which are used in the other ext
 
 Only parameters of this format are possible. If they are there, a forward will be made to the action create.
 
+Note:
+
+If you have set the setting "[FE][cacheHash][enforceValidation] = 1", then you must add the parameter from above here:
+"[FE][cacheHash][excludedParameters]".
+
 Captchas
 ^^^^^^^^
 
