@@ -26,6 +26,12 @@ class FrontendUser extends AbstractEntity
     protected string $www = '';
     protected string $company = '';
 
+    protected int $luxletterLanguage = 0;
+    protected int $mailActive = 0;
+    protected int $mailHtml = 0;
+    protected string $mailSalutation = '';
+    protected int $categories = 0;
+
     public function __construct(string $username = '', string $password = '')
     {
         $this->username = $username;
@@ -222,5 +228,60 @@ class FrontendUser extends AbstractEntity
     public function getUsergroup(): string
     {
         return $this->usergroup;
+    }
+
+    public function getLuxletterLanguage(): int
+    {
+        return $this->luxletterLanguage;
+    }
+
+    public function setLuxletterLanguage(int $luxletterLanguage): self
+    {
+        $this->luxletterLanguage = $luxletterLanguage;
+        return $this;
+    }
+
+    public function getMailActive(): int
+    {
+        return $this->mailActive;
+    }
+
+    public function setMailActive(int $active): self
+    {
+        $this->mailActive = $active;
+        return $this;
+    }
+
+    public function getMailHtml(): int
+    {
+        return $this->mailHtml;
+    }
+
+    public function setMailHtml(int $html): self
+    {
+        $this->mailHtml = $html;
+        return $this;
+    }
+
+    public function setMailSalutation(string $salutation): self
+    {
+        $this->mailSalutation = $salutation;
+        return $this;
+    }
+
+    public function getMailSalutation(): string
+    {
+        return $this->mailSalutation;
+    }
+
+    public function getCategories(): int
+    {
+        return $this->categories;
+    }
+
+    public function setCategories(int $categories): self
+    {
+        $this->categories = $categories;
+        return $this;
     }
 }

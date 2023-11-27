@@ -99,6 +99,24 @@ Falls du das Anmelde-Plugin von fp_newsletter benutzt, solltest du das cachable 
 In dem Fall muss noch eine Seite für die Anmeldung definiert werden, wohin das Formular umleiten soll.
 Ein mathematisches Captcha ist bei diesem cachable Anmelde-Formular nicht möglich!
 
+.. _admin-note-mail:
+
+Anmerkung für die Mail-Extension
+--------------------------------
+
+Wenn man die Mail-Extension benutzt, kann man die Tabellen tt_address oder fe_users benutzen.
+Wenn man tt_address benutzt, werden diese zusätzlichen Felder befüllt: mail_html, mail_salutation und mail_active.
+Wenn man fe_users benutzt, werden diese zusätzlichen Felder befüllt:  mail_html, mail_salutation, mail_active und
+categories von categoryOrGroup. Es wird keine Gruppe zugewiesen!
+
+.. _admin-note-luxletter:
+
+Anmerkung für die Luxletter-Extension
+-------------------------------------
+
+Wenn man die Luxletter-Extension benutzt, kann man nur die Tabelle fe_users verwenden.
+Diese zusätzlichen Felder werden befüllt: Gruppe von categoryOrGroup und wenn die Setting newsletterExtension=luxletter
+gesetzt ist: luxletter_language.
 
 .. _admin-mail:
 

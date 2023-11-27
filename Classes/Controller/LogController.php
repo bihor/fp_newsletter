@@ -345,6 +345,7 @@ class LogController extends ActionController
         $dbuid = 0;
         $table = $this->settings['table'];
         $groups = [];
+        $own_groups = [];
         $uid = intval($this->request->hasArgument('uid')) ? $this->request->getArgument('uid') : 0;
         $hash = ($this->request->hasArgument('hash')) ? $this->request->getArgument('hash') : '';
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
@@ -391,13 +392,23 @@ class LogController extends ActionController
                             elseif ($user['gender'] == 'm') $gender = 2;
                             elseif ($user['gender'] == 'v') $gender = 3;
                             $log->setGender($gender);
+                        } elseif ($table == 'fe_users') {
+                            $log->setPhone($user['telephone']);
+                            if ($this->settings['newsletterExtension'] == 'mail') {
+                                $gender = 0;
+                                if ($user['mail_salutation'] == $this->settings['gender']['mrs']) $gender = 1;
+                                elseif ($user['mail_salutation'] == $this->settings['gender']['mr']) $gender = 2;
+                                elseif ($user['mail_salutation'] == $this->settings['gender']['divers']) $gender = 3;
+                                $log->setGender($gender);
+                            }
+                        }
+                        if ($table == 'tt_address' || $this->settings['newsletterExtension'] == 'mail') {
                             $groups = $this->logRepository->getAllCats($catOrderBy);
-                            $own_groups_tmp = $this->logRepository->getOwnCats($dbuidext);
+                            $own_groups_tmp = $this->logRepository->getOwnCats($dbuidext, $table);
                             foreach ($own_groups_tmp as $tmp) {
                                 $own_groups[] = $tmp['uid_local'];
                             }
                         } elseif ($table == 'fe_users') {
-                            $log->setPhone($user['telephone']);
                             $groups = $this->logRepository->getAllGroups($catOrderBy);
                             $own_groups = explode(',', $user['usergroup']);
                         }
@@ -461,15 +472,12 @@ class LogController extends ActionController
             $this->logRepository->update($log);
             $dbemail = $log->getEmail();
             $dbuidext = $this->logRepository->getExternalUid($dbemail, $log->getPid(), $table, $this->settings['searchPidMode']);
+            $salutation = $this->helpersUtility->getSalutation(intval($log->getGender()), $this->settings['gender']);
             if ($dbuidext) {
                 if ($table == 'tt_address') {
-                    $salutation = '';
-                    if ($log->getGender() == 1) $salutation = $this->settings['gender']['mrs'];
-                    elseif ($log->getGender() == 2) $salutation = $this->settings['gender']['mr'];
-                    elseif ($log->getGender() == 3) $salutation = $this->settings['gender']['divers'];
                     $this->logRepository->updateInTtAddress($log, intval($this->settings['html']), $dbuidext, $salutation);
                 } elseif ($table == 'fe_users') {
-                    $this->logRepository->updateInFeUsers($log, $dbuidext);
+                    $this->logRepository->updateInFeUsers($log, $dbuidext, $this->settings['newsletterExtension']);
                 }
             } else {
                 $error = 1;
@@ -1022,16 +1030,13 @@ class LogController extends ActionController
                         $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
                         $persistenceManager->persistAll();
                         $success = 0;
+                        $salutation = $this->helpersUtility->getSalutation(intval($log->getGender()), $this->settings['gender']);
+                        if ($dmCat) {
+                            $dmCatArr = explode(',', $dmCat);
+                        } else {
+                            $dmCatArr = [];
+                        }
                         if ($this->settings['table'] == 'tt_address') {
-                            if ($dmCat) {
-                                $dmCatArr = explode(',', $dmCat);
-                            } else {
-                                $dmCatArr = [];
-                            }
-                            $salutation = '';
-                            if ($log->getGender() == 1) $salutation = $this->settings['gender']['mrs'];
-                            elseif ($log->getGender() == 2) $salutation = $this->settings['gender']['mr'];
-                            elseif ($log->getGender() == 3) $salutation = $this->settings['gender']['divers'];
                             $success = $this->logRepository->insertInTtAddress($log, $html, $dmCatArr, $salutation);
                         } else if ($this->settings['table'] == 'fe_users' && $this->settings['password']) {
                             $frontendUser = new \Fixpunkt\FpNewsletter\Domain\Model\FrontendUser();
@@ -1057,12 +1062,29 @@ class LogController extends ActionController
                             $frontendUser->setTelephone($log->getPhone());
                             $frontendUser->setFax($log->getFax());
                             $frontendUser->setCompany($log->getCompany());
-                            if ($dmCat) {
-                                $frontendUser->setUsergroup($dmCat);
-                                //$frontendUser->addUserGroup($this->frontendUserGroupRepository->findByUid($this->settings['frontendUserGroup']));
+                            if ($this->settings['newsletterExtension'] == 'mail') {
+                                $frontendUser->setMailActive(1);
+                                $frontendUser->setMailHtml(1);
+                                $frontendUser->setMailSalutation($salutation);
+                                $frontendUser->setCategories(count($dmCatArr));
+                            } else {
+                                // default: Luxletter
+                                if ($this->settings['newsletterExtension'] == 'luxletter') {
+                                    $frontendUser->setLuxletterLanguage($sys_language_uid);
+                                }
+                                if ($dmCat) {
+                                    $frontendUser->setUsergroup($dmCat);
+                                    //$frontendUser->addUserGroup($this->frontendUserGroupRepository->findByUid($this->settings['frontendUserGroup']));
+                                }
                             }
                             $this->frontendUserRepository->add($frontendUser);
+                            $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+                            $persistenceManager->persistAll();
                             $success = 1;
+                            $tableUid = $frontendUser->getUid();
+                            if ($tableUid) {
+                                $this->logRepository->insertIntoMm($tableUid, $dmCatArr, $this->settings['table']);
+                            }
                         }
                         if ($this->settings['table'] && $success < 1) {
                             $error = 8;

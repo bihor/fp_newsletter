@@ -7,9 +7,9 @@ you could use prependOptionLabel="-" prependOptionValue="0" for a select too.
 	<div class="form-group">
 		<label for="fp_gender"><f:translate key="tx_fpnewsletter_domain_model_log.gender" /> <f:if condition="{required.gender} == 1"><span class="required">*</span></f:if></label>
 		<f:if condition="{required.gender} == 1"><f:then>
-			<f:form.select class="form-control" property="gender" id="fp_gender" options="{genders}" additionalAttributes="{required : 'required'}" />
+			<f:form.select class="form-control" property="gender" id="fp_gender" options="{genders}" value="{log.gender}" additionalAttributes="{required : 'required'}" />
 		</f:then><f:else>
-			<f:form.select class="form-control" property="gender" id="fp_gender" options="{genders}" />
+			<f:form.select class="form-control" property="gender" id="fp_gender" options="{genders}" value="{log.gender}" />
 		</f:else></f:if>
 	</div>
 </f:if>

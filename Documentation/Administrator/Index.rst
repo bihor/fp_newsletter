@@ -103,6 +103,25 @@ a verification or delete plugin::
   lib.nlsubscriptionContent.value =
 
 
+.. _admin-note-mail:
+
+Note for the Mail-extension
+---------------------------
+
+If you are using the Mail-Extension, you can use tt_address or fe_users.
+If you are using tt_address, this additional fields will be filled: mail_html, mail_salutation and mail_active.
+If you use the table fe_users, this additional fields will be set:  mail_html, mail_salutation, mail_active and
+categories from categoryOrGroup. New users will not have a group set!
+
+.. _admin-note-luxletter:
+
+Note for the Luxletter-extension
+--------------------------------
+
+If you are using the Luxletter-Extension, you can use only the table fe_users.
+This additional fields will be filled: user group with categoryOrGroup and if the setting newsletterExtension=luxletter
+is set: luxletter_language.
+
 .. _admin-mail:
 
 Unsubscription via Mail-extension

@@ -53,7 +53,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
     /**
 	 * getUidFromExternal: find user ID
-	 * @param	string $email die Email-Adresse wurde schon vorher geprüft!
+	 * @param	string $email die E-Mail-Adresse wurde schon vorher geprüft!
 	 * @param	mixed	$pid PID oder Liste mit PIDs
      * @param   string  $table tt_address oder fe_users
 	 * @return  integer
@@ -143,9 +143,11 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
     /**
      * getOwnCats: find own mail categories
+     * @param integer $uid user-uid
+     * @param string $table tt_address or fe_users
      * @return	array
      */
-    function getOwnCats($uid)
+    function getOwnCats($uid, $table = 'tt_address')
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_category_record_mm');
         $statement = $queryBuilder
@@ -153,14 +155,14 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->from('sys_category_record_mm')
             ->where(
                 $queryBuilder->expr()->eq('uid_foreign', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT)),
-                $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('tt_address'))
+                $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter($table))
             )
             ->executeQuery();
         return $statement->fetchAllAssociative();
     }
 
     /**
-     * getAllGroups: find all fe_groups
+     * getAllGroups: find all fe_groups for Luxletter
      * @param   string $groupsOrderBy groups order by
      * @return	array
      */
@@ -182,8 +184,9 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * insertIntoMm: insert relations into sys_category_record_mm
      * @param	integer	$tableUid user-uid
      * @param	array	$dmCatArr sys_category UIDs
+     * @param   string  $table    tt_content or fe_users
      */
-    protected function insertIntoMm($tableUid, $dmCatArr = [])
+    function insertIntoMm($tableUid, $dmCatArr = [], $table = 'tt_address')
     {
         if (is_array($dmCatArr) && count($dmCatArr)>0) {
             $count = 0;
@@ -197,7 +200,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                         ->values([
                             'uid_foreign' => intval($tableUid),
                             'uid_local' => intval($uid),
-                            'tablenames' => 'tt_address',
+                            'tablenames' => $table,
                             'fieldname' => 'categories',
                             'sorting_foreign' => $count
                         ])
@@ -210,8 +213,9 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * deleteInMm: delete relations into sys_category_record_mm
      * @param	integer	$tableUid user-uid
+     * @param string $table tt_content or fe_users
      */
-    protected function deleteInMm($tableUid)
+    function deleteInMm($tableUid, $table = 'tt_address')
     {
         // alle Kategorie-Relationen löschen
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_category_record_mm');
@@ -219,7 +223,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->delete('sys_category_record_mm')
             ->where(
                 $queryBuilder->expr()->eq('uid_foreign', $queryBuilder->createNamedParameter($tableUid, \PDO::PARAM_INT)),
-                $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter('tt_address'))
+                $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter($table))
             )
             ->executeStatement();
     }
@@ -283,7 +287,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 			->executeStatement();
 		$tableUid = $queryBuilder->getConnection()->lastInsertId();
         if ($tableUid) {
-            $this->insertIntoMm($tableUid, $dmCatArr);
+            $this->insertIntoMm($tableUid, $dmCatArr, 'tt_address');
         }
 		return $tableUid;
 	}
@@ -339,8 +343,8 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->set('mail_active', 1);
         }
         $queryBuilder->executeStatement();
-        $this->deleteInMm($tableUid);
-        $this->insertIntoMm($tableUid, $dmCatArr);
+        $this->deleteInMm($tableUid, 'tt_address');
+        $this->insertIntoMm($tableUid, $dmCatArr, 'tt_address');
         return $tableUid;
     }
 
@@ -348,8 +352,9 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * updateInFeUsers: update fe_user
      * @param	\Fixpunkt\FpNewsletter\Domain\Model\Log	$address User
      * @param   int     $tableUid   externe uid
+     * @param   string  $extension  mail or luxletter
      */
-    function updateInFeUsers($address, $tableUid)
+    function updateInFeUsers($address, $tableUid, $extension)
     {
         $timestamp = time();
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('fe_users');
@@ -372,6 +377,34 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->set('company', $address->getCompany())
             ->set('usergroup', $address->getCategories())
             ->executeStatement();
+        if ($extension == 'mail') {
+            if ($address->getCategories()) {
+                // Priorität haben die Kategorien aus dem Formular/Log-Eintrag
+                $dmCatArr = explode(',', $address->getCategories());
+            } else {
+                $dmCatArr = [];
+            }
+            $this->deleteInMm($tableUid, 'fe_users');
+            $this->insertIntoMm($tableUid, $dmCatArr, 'fe_users');
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('fe_users');
+            $queryBuilder
+                ->update('fe_users')
+                ->where(
+                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($tableUid, \PDO::PARAM_INT))
+                )
+                ->set('categories', count($dmCatArr))
+                ->executeStatement();
+        } else {
+            // Luxletter
+            $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('fe_users');
+            $queryBuilder
+                ->update('fe_users')
+                ->where(
+                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($tableUid, \PDO::PARAM_INT))
+                )
+                ->set('usergroup', $address->getCategories())
+                ->executeStatement();
+        }
         return $tableUid;
     }
 
@@ -403,7 +436,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                 ->executeStatement();
         }
         if (($table == 'tt_address') && is_array($dmCatArr) && count($dmCatArr)>0) {
-            $this->deleteInMm($uid);
+            $this->deleteInMm($uid, $table);
         }
     }
 

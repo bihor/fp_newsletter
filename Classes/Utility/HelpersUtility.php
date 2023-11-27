@@ -125,6 +125,15 @@ class HelpersUtility
         return 0;
     }
 
+    public function getSalutation(int $gender, array $settings): string
+    {
+        $salutation = '';
+        if ($gender == 1) $salutation = $settings['mrs'];
+        elseif ($gender == 2) $salutation = $settings['mr'];
+        elseif ($gender == 3) $salutation = $settings['divers'];
+        return $salutation;
+    }
+
     /**
      * Returns an array with genders
      *

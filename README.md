@@ -39,3 +39,6 @@ Version 6.0:
 Version 6.1.0:
 - Compatibility to TYPO3 11.5 added again.
 - Bugfix: language added to the links in the email.
+
+Version 6.2.0:
+- fe_users can now be used with the extension luxletter or mail.
