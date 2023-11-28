@@ -159,6 +159,10 @@
 				<source>delete entry</source>
 				<target>Suppression physique</target>
 			</trans-unit>
+			<trans-unit id="settings.deleteMode.3" resname="settings.deleteMode.3">
+				<source>delete only cat/group</source>
+				<target>Supprimer uniquement les catégories (Mail) ou le groupe d'utilisateurs (Luxletter)</target>
+			</trans-unit>
 			<trans-unit id="settings.languageMode" resname="settings.languageMode">
 				<source>Language mode</source>
 				<target>Mode de localisation</target>

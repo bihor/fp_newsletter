@@ -149,3 +149,8 @@ Version 6.0.0:
 Version 6.1.0:
 - Kompatibilität zu TYPO3 11.5 erneut hinzugefügt.
 - Bugfix: Sprache zu den Links in den E-Mails hinzugefügt.
+
+Version 6.2.0:
+- fe_users kann nun mit der Extension Luxletter oder Mail benutzt werden.
+- deleteMode 3 hinzugefügt: lösche nur Kategorien (Mail) oder Benutzergruppe (Luxletter).
+- Neue Einstellungsmöglichkeit: newsletterExtension (mail oder luxletter).

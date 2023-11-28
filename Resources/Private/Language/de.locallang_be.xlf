@@ -159,6 +159,10 @@
 				<source>delete entry</source>
 				<target>lösche den Eintrag endgültig</target>
 			</trans-unit>
+			<trans-unit id="settings.deleteMode.3" resname="settings.deleteMode.3">
+				<source>delete only cat./group</source>
+				<target>lösche nur die Kategorien (Mail) oder die Benutzergruppe (Luxletter)</target>
+			</trans-unit>
 			<trans-unit id="settings.languageMode" resname="settings.languageMode">
 				<source>Language mode</source>
 				<target>Sprachmodus</target>

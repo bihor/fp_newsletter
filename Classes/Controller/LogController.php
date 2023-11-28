@@ -850,6 +850,12 @@ class LogController extends ActionController
                         elseif ($extAddress['gender'] == 'm') $gender = 2;
                         elseif ($extAddress['gender'] == 'v') $gender = 3;
                         $log->setGender($gender);
+                    } elseif ($this->settings['newsletterExtension'] == 'mail' && $this->settings['table'] == 'fe_users' && $extAddress['mail_salutation']) {
+                        $gender = 0;
+                        if ($extAddress['mail_salutation'] == $this->settings['gender']['mrs']) $gender = 1;
+                        elseif ($extAddress['mail_salutation'] == $this->settings['gender']['mr']) $gender = 2;
+                        elseif ($extAddress['mail_salutation'] == $this->settings['gender']['divers']) $gender = 3;
+                        $log->setGender($gender);
                     }
                 }
             } else {
@@ -1188,7 +1194,8 @@ class LogController extends ActionController
      */
     protected function deleteThisUser($uid)
     {
-        if ($this->settings['table'] == 'tt_address') {
+        if ($this->settings['table'] == 'tt_address' ||
+            ($this->settings['table'] == 'fe_users' && $this->settings['newsletterExtension'] == 'mail')) {
             if ($this->settings['categoryOrGroup']) {
                 $dmail_cats = str_replace(' ', '', $this->settings['categoryOrGroup']);
                 $dmCatArr = explode(',', $dmail_cats);
@@ -1198,7 +1205,13 @@ class LogController extends ActionController
         } else {
             $dmCatArr = [];
         }
-        $this->logRepository->deleteExternalUser($uid, $this->settings['deleteMode'], $dmCatArr, $this->settings['table']);
+        $this->logRepository->deleteExternalUser(
+            $uid,
+            $this->settings['deleteMode'],
+            $dmCatArr,
+            $this->settings['table'],
+            $this->settings['newsletterExtension']
+        );
     }
 
     /**

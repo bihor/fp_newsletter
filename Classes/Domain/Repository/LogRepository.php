@@ -411,11 +411,12 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     /**
      * deleteExternalUser: delete user
      * @param	integer	$uid		tt_address oder fe_users uid
-     * @param	integer	$mode		Löschen-Modus: 1: update, 2: löschen
+     * @param	integer	$mode		Löschen-Modus: 1: update, 2: löschen, 3: nur Kategorien/Gruppen entfernen
      * @param	array	$dmCatArr	sys_category categories
      * @param   string  $table      tt_address or fe_users
+     * @param   string  $extension  luxletter or mail
      */
-    function deleteExternalUser($uid, $mode, $dmCatArr = [], $table = 'tt_address')
+    function deleteExternalUser($uid, $mode, $dmCatArr = [], $table = 'tt_address', $extension)
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
         if ($mode == 2) {
@@ -425,17 +426,37 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
                     $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
                 )
                 ->executeStatement();
-        } else {
+        } elseif ($mode != 3) {
             $queryBuilder
                 ->update($table)
                 ->where(
                     $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
                 )
-                ->set('deleted', '1')
+                ->set('deleted', 1)
                 ->set('tstamp', time())
                 ->executeStatement();
+        } elseif ($mode == 3 && $table == 'fe_users') {
+            if ($extension == 'luxletter') {
+                $queryBuilder
+                    ->update($table)
+                    ->where(
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+                    )
+                    ->set('usergroup', '')
+                    ->set('tstamp', time())
+                    ->executeStatement();
+            } elseif ($extension == 'mail') {
+                $queryBuilder
+                    ->update($table)
+                    ->where(
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+                    )
+                    ->set('mail_active', 0)
+                    ->set('tstamp', time())
+                    ->executeStatement();
+            }
         }
-        if (($table == 'tt_address') && is_array($dmCatArr) && count($dmCatArr)>0) {
+        if (is_array($dmCatArr) && count($dmCatArr)>0) {
             $this->deleteInMm($uid, $table);
         }
     }

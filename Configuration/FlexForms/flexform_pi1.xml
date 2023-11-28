@@ -355,6 +355,10 @@
 								<numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.deleteMode.2</numIndex>
 								<numIndex index="1">2</numIndex>
 							</numIndex>
+							<numIndex index="2" type="array">
+								<numIndex index="0">LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.deleteMode.3</numIndex>
+								<numIndex index="1">3</numIndex>
+							</numIndex>
 						</items>
 					</config>
 				</TCEforms>

@@ -48,7 +48,7 @@ editUid                           integer     Seite, auf der man seit Abonnement
 gdprUid                           integer     Seite mit den DSGVO-Texten                                            1
 daysExpire                        integer     Der Verifikations-Link wird ungültig nach X Tagen                     2
 searchPidMode                     integer     Suche in tt_address: 0: nur im 1. Ordner; 1: in allen Ordners°        0
-deleteMode                        integer     1: setze delete-Flag; 2: lösche endgültig                             1
+deleteMode                        integer     1: setze delete-Flag; 2: lösche endgültig; 3: lösche nur Kat./Gruppe  1
 languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
 categoryMode                      integer     0: nur angegebene Kategorien bei Edit erlauben; 1: alle               1
 unsubscribeMode                   integer     0: Sofort-Abmeldung durch Link aus Luxletter; 1: zeige Abmeldeform    0
@@ -192,7 +192,11 @@ Es werden dann 2 Einträge in sys_category_record_mm gemacht und in tt_address w
 Die Kategorien werden als hidden-Feld ins Template eingefügt. Wenn man eine flexiblere Lösung will, könnte man z.B. Checkboxes per jQuery auswerten und
 die angeklickten Kategorien ins hidden-Feld kopieren.
 
-Genau so kann man auch Gruppen für fe_users angeben.
+Genau so kann man auch Gruppen für fe_users angeben. Das gilt nur für die Extension Luxletter.
+Wenn newsletterExtension=mail gesetzt ist, werden keine Benutzer-Gruppen beachtet. Dann werden nur Kategorien benutzt.
+
+Beachte: wenn deleteMode=3 gesetzt ist, werden nur die Kategorien entfernt, die unter categoryOrGroup angegeben sind.
+Und das Feld mail_active wird auf 0 gesetzt, wenn newsletterExtension=mail gesetzt ist.
 
 Ändern der Labels
 ^^^^^^^^^^^^^^^^^

@@ -48,7 +48,7 @@ editUid                           integer     Page, where a user can edit his su
 gdprUid                           integer     Page with the GDPR text                                               1
 daysExpire                        integer     The link expires after X days                                         2
 searchPidMode                     integer     Search in tt_address: 0: only in the 1. folder; 1: in all folders°    0
-deleteMode                        integer     1: set deletion flag; 2: delete entry                                 1
+deleteMode                        integer     1: set deletion flag; 2: delete entry; 3: remove only the cat./group  1
 languageMode                      integer     0: uses -1 if L>0; 1: uses the sys_language_uid from pages            0
 categoryMode                      integer     0: allow only categories/groups specified in categoryOrGroup; 1: all  1
 categoryOrderBy                   string      category order by: title, sorting or uid                              title
@@ -198,6 +198,11 @@ The categories are as hidden-field in the template. You could add checkboxes and
 the hidden-field if you need a more flexible solution.
 
 Note: this setting is used for groups of fe_users too! If you use fe_users, here you can set the fe_groups.
+That works only with the extension Luxletter. If newsletterExtension=mail is set, user groups are ignored.
+Therefore only categories are used.
+
+Note: if deleteMode=3 is set, only categories set in categoryOrGroup will be removed. And the flag mail_active will be
+set to 0, if newsletterExtension=mail is set.
 
 Changing the labels
 ^^^^^^^^^^^^^^^^^^^

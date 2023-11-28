@@ -159,6 +159,10 @@
 				<source>delete entry</source>
 				<target>eliminare la voce</target>
 			</trans-unit>
+			<trans-unit id="settings.deleteMode.3" resname="settings.deleteMode.3">
+				<source>delete only cat./group</source>
+				<target>eliminare solo le categorie (Mail) o il gruppo utenti (Luxletter)</target>
+			</trans-unit>
 			<trans-unit id="settings.languageMode" resname="settings.languageMode">
 				<source>Language mode</source>
 				<target>Modalità lingua</target>

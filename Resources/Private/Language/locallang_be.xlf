@@ -120,6 +120,9 @@
 			<trans-unit id="settings.deleteMode.2" resname="settings.deleteMode.2">
 				<source>delete entry</source>
 			</trans-unit>
+			<trans-unit id="settings.deleteMode.3" resname="settings.deleteMode.3">
+				<source>delete only categories (mail) or user-group (luxletter)</source>
+			</trans-unit>
 			<trans-unit id="settings.languageMode" resname="settings.languageMode">
 				<source>Language mode</source>
 			</trans-unit>
