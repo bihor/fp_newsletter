@@ -47,6 +47,10 @@
 				<source>Newsletter: unsubscribe via Luxletter-link</source>
 				<target>Infolettre: Désinscription via un Luxletter-lien</target>
 			</trans-unit>
+			<trans-unit id="template.unsubscribemail" resname="template.unsubscribemail">
+				<source>Newsletter: unsubscribe via mail-link</source>
+				<target>Infolettre: Désinscription via un mail-lien</target>
+			</trans-unit>
 			<trans-unit id="template.verifyunsubscribe" resname="template.verifyunsubscribe">
 				<source>Newsletter: verify unsubscription</source>
 				<target>Infolettre: Validation de la désinscription</target>

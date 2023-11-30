@@ -794,6 +794,95 @@ class LogController extends ActionController
     }
 
     /**
+     * action unsubscribe with mail link
+     *
+     * @return ResponseInterface
+     */
+    public function unsubscribeMailAction(): ResponseInterface
+    {
+        $error = 0;
+        if (isset($_GET[ $this->settings['parameters']['email'] ])) {
+            $email = $_GET[ $this->settings['parameters']['email'] ];
+        } else {
+            $email = null;
+        }
+        if (isset($_GET[ $this->settings['parameters']['authcode'] ])) {
+            $hash = $_GET[ $this->settings['parameters']['authcode'] ];
+        } else {
+            $hash = null;
+        }
+        if (!$email || !$hash) {
+            $error = 10;
+        } else {
+            $userArray = $this->logRepository->getUserFromExternal($user, 'fe_users');
+            $newsletterArray = $this->logRepository->getUserFromExternal($newsletter, 'tx_luxletter_domain_model_newsletter');
+            if (is_array($userArray) && isset($userArray['email']) && isset($userArray['usergroup']) &&
+                is_array($newsletterArray) && isset($newsletterArray['receivers'])) {
+                // ist user in versendeter newsletter-Gruppe?
+                $match = false;
+                $usergroups = explode(",", $userArray['usergroup']);
+                $receivers = explode(",", $newsletterArray['receivers']);
+                foreach ($usergroups as $group) {
+                    foreach ($receivers as $receiver) {
+                        if ($group == $receiver) {
+                            $match = true;
+                            break;
+                        }
+                    }
+                }
+                if ($match) {
+                    // stimmt der angegebene hash überein?
+                    if ($this->helpersUtility->checkLuxletterHash($userArray, $hash)) {
+                        // Abmeldung kann beginnen!
+                        if ($this->settings['unsubscribeMode'] == 1) {
+                            $uri = $this->uriBuilder->reset()
+                                ->uriFor(
+                                    'unsubscribe',
+                                    [
+                                        'defaultEmail' => $userArray['email']
+                                    ],
+                                    'Log',
+                                    null,
+                                    'unsubscribelux'
+                                );
+                            return $this->responseFactory->createResponse(307)
+                                ->withHeader('Location', $uri);
+                        } else {
+                            // unsubscribe user now
+                            $GLOBALS['TSFE']->fe_user->setKey('ses', 'authLux', $hash);
+                            $GLOBALS['TSFE']->fe_user->storeSessionData();
+                            $uri = $this->uriBuilder->reset()
+                                ->uriFor(
+                                    'delete',
+                                    [
+                                        'user' => $userArray
+                                    ],
+                                    'Log',
+                                    null,
+                                    'unsubscribelux'
+                                );
+                            return $this->responseFactory->createResponse(307)
+                                ->withHeader('Location', $uri);
+                        }
+                    } else {
+                        $error = 10;
+                    }
+                } else {
+                    $error = 11;
+                }
+            } else {
+                if (!isset($userArray['email'])) {
+                    $error = 11;
+                } else {
+                    $error = 10;
+                }
+            }
+        }
+        $this->view->assign('error', $error);
+        return $this->htmlResponse();
+    }
+
+    /**
      * action delete a user from the DB: unsubscribe him from the newsletter
      *
      * @param Log|null $log

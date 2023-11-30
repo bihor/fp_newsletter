@@ -61,6 +61,7 @@ plugin.tx_fpnewsletter {
 	parameters {
 	  active =
 	  email =
+	  authcode =
 	}
 	email {
 		senderMail = info@example.org

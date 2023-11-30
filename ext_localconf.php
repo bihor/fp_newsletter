@@ -86,6 +86,16 @@ call_user_func(
         );
         \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
             'FpNewsletter',
+            'Unsubscribemail',
+            [
+                \Fixpunkt\FpNewsletter\Controller\LogController::class => 'unsubscribeMail, unsubscribe, delete, verifyUnsubscribe'
+            ],
+            [
+                \Fixpunkt\FpNewsletter\Controller\LogController::class => 'unsubscribeMail, unsubscribe, delete, verifyUnsubscribe'
+            ]
+        );
+        \TYPO3\CMS\Extbase\Utility\ExtensionUtility::configurePlugin(
+            'FpNewsletter',
             'Verifyunsubscribe',
             [
                 \Fixpunkt\FpNewsletter\Controller\LogController::class => 'verifyUnsubscribe'
@@ -190,6 +200,15 @@ call_user_func(
     						tt_content_defValues {
     							CType = list
     							list_type = fpnewsletter_unsubscribelux
+    						}
+    					}
+    					fpnewsletter_unsubscribemail {
+    						iconIdentifier = fp_newsletter-plugin-pi1
+    						title = LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:template.unsubscribemail
+    						description = LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fp_newsletter_domain_model_pi1.description
+    						tt_content_defValues {
+    							CType = list
+    							list_type = fpnewsletter_unsubscribemail
     						}
     					}
     					fpnewsletter_verifyunsubscribe {

@@ -43,7 +43,7 @@ möglichen Kategorien zur Auswahl verfügbar.
 Achtung!
 ^^^^^^^^
 
-Wenn man man Version 6 mit TYPO3 11.5 benutzt, gibt es keine Vorschau im Backend.
+Wenn man Version 6 mit TYPO3 11.5 benutzt, gibt es keine Vorschau (mehr) im Backend.
 
 
 .. _screenshots:

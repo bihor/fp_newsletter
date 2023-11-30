@@ -36,6 +36,9 @@
 			<trans-unit id="template.unsubscribelux" resname="template.unsubscribelux">
 				<source>Newsletter: unsubscribe via Luxletter-link</source>
 			</trans-unit>
+			<trans-unit id="template.unsubscribemail" resname="template.unsubscribemail">
+				<source>Newsletter: unsubscribe via mail-link</source>
+			</trans-unit>
 			<trans-unit id="template.verifyunsubscribe" resname="template.verifyunsubscribe">
 				<source>Newsletter: verify unsubscription</source>
 			</trans-unit>
