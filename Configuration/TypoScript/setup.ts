@@ -45,6 +45,7 @@ plugin.tx_fpnewsletter {
 	categoryOrGroup =
 	html = 1
 	password = random
+	authCodeFields =
 	reCAPTCHA_site_key =
 	reCAPTCHA_secret_key =
 	mathCAPTCHA = 0

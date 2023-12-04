@@ -56,6 +56,7 @@ unsubscribeMode                   integer     0: direct unsubscription with a li
 categoryOrGroup                   string      List of categories/groups (uid) from sys_category or fe_groups°°
 html                              integer     0: only TEXT; 1: TEXT and HTML; -1: ignore mail-fields in tt_address  1
 password                          string      Password for the fe_users table. random creates a random password.    random
+authCodeFields                    string      Copy "Fields ... of authentication codes" from mail here
 reCAPTCHA_site_key                string      Website-key for Google reCaptcha v3.
 reCAPTCHA_secret_key              string      Secret key for Google reCaptcha v3
 mathCAPTCHA                       integer     Show a mathematical captcha? 0: no; 1: with 1 digit; 2: with 2 digits 0

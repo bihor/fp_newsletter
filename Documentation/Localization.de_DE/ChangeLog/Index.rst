@@ -154,3 +154,6 @@ Version 6.2.0:
 - fe_users kann nun mit der Extension Luxletter oder Mail benutzt werden.
 - deleteMode 3 hinzugefügt: lösche nur Kategorien (Mail) oder Benutzergruppe (Luxletter).
 - Neue Einstellungsmöglichkeit: newsletterExtension (mail oder luxletter).
+
+Version 6.3.0:
+- Neue action: direkte Abmeldung via Mail-Link und neue setting: authCodeFields.

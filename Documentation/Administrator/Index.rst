@@ -13,7 +13,7 @@ Administrator manual
 
 You will not need the extension tt_address and mail or luxletter for this extension, but it is recommended.
 Users can subscribe to your newsletter, if you use addresses from tt_address with the extension mail
-or if you use addresses from fe_users with the extension luxletter.
+or if you use addresses from fe_users with the extension luxletter or mail.
 
 
 .. _admin-templates:
@@ -130,17 +130,20 @@ Unsubscription via Mail-extension
 When you send a newsletter you want to add an unsubscription link to your newsletter. If you are using mail, you can do that this way::
 
   Unsubscribe from the newsletter:
-  https://www.domain.com/newsletter/unsubscribe.html?email=###USER_email###
+  https://www.domain.com/newsletter/unsubscribe.html?email=###USER_email###&authcode=###MAIL_AUTHCODE###
 
 Replace the link with the link to your unsubscribe page and put it in the newsletter-template or use it as email-content.
-###USER_email### will be replaced by the mail-extension. The email-parameter can be changed. It must be set via
+###USER_email### and ###MAIL_AUTHCODE### will be replaced by the mail-extension. The parameters can be changed. It must be set via
 TypoScript::
 
   plugin.tx_fpnewsletter.settings.parameters.email = email
+  plugin.tx_fpnewsletter.settings.parameters.authcode = authcode
 
-The extension fp_newsletter will read this parameter and use it as default email-address.
-Note: at the target page you need to select the plugin "Newsletter: unsubscribe via form" from this extension.
-There is no possibility for a direct unsubscription like it was possible with direct_mail or luxletter.
+The extension fp_newsletter will read those parameters and use the email as default email-address or it will make a
+direct unsubscription.
+Note: at the target page you need to select the plugin "Newsletter: unsubscribe via form" or
+"Newsletter: unsubscribe via mail-link" from this extension.
+In the last case, settings.authCodeFields must be set too.
 Disadvantage: it is not possible to unsubscribe only from a specific newsletter in a folder. The whole tt_address entry
 will be deleted!
 

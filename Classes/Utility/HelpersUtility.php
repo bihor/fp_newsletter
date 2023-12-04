@@ -75,6 +75,33 @@ class HelpersUtility
     }
 
     /**
+     * Checks a Mail hash
+     *
+     * @param array $record fe_users or tt_address Array
+     * @param string $hash hash to check
+     * @param string $fields Fields used in the computation of authentication codes
+     * @param int $codeLength length of returned authentication code
+     * @return boolean
+     */
+    public function checkMailHash(array $record, string $hash, string $fields, int $codeLength = 8): bool
+    {
+        $prefixFields = [];
+        if ($fields) {
+            $fieldArray = GeneralUtility::trimExplode(',', $fields, true);
+            foreach ($fieldArray as $key => $value) {
+                $prefixFields[$key] = $record[$value];
+            }
+        } else {
+            $prefixFields = $record;
+        }
+        $prefix = implode('|', $prefixFields);
+        $authCode = $prefix . '||' . $GLOBALS['TYPO3_CONF_VARS']['SYS']['encryptionKey'];
+        $hashCalculated = substr(md5($authCode), 0, $codeLength);
+        // var_dump($hashCalculated);
+        return ($hashCalculated == $hash);
+    }
+
+    /**
      * Set a hash and the language to a new log-entry
      *
      * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log

@@ -814,68 +814,59 @@ class LogController extends ActionController
         if (!$email || !$hash) {
             $error = 10;
         } else {
-            $userArray = $this->logRepository->getUserFromExternal($user, 'fe_users');
-            $newsletterArray = $this->logRepository->getUserFromExternal($newsletter, 'tx_luxletter_domain_model_newsletter');
-            if (is_array($userArray) && isset($userArray['email']) && isset($userArray['usergroup']) &&
-                is_array($newsletterArray) && isset($newsletterArray['receivers'])) {
-                // ist user in versendeter newsletter-Gruppe?
-                $match = false;
-                $usergroups = explode(",", $userArray['usergroup']);
-                $receivers = explode(",", $newsletterArray['receivers']);
-                foreach ($usergroups as $group) {
-                    foreach ($receivers as $receiver) {
-                        if ($group == $receiver) {
-                            $match = true;
-                            break;
-                        }
-                    }
+            if (GeneralUtility::validEmail($email)) {
+                $storagePidsArray = $this->logRepository->getStoragePids();
+                $pid = intval($storagePidsArray[0]);
+                if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
+                    $user = $this->logRepository->getUidFromExternal($email, $pid, $this->settings['table']);
                 }
-                if ($match) {
-                    // stimmt der angegebene hash überein?
-                    if ($this->helpersUtility->checkLuxletterHash($userArray, $hash)) {
-                        // Abmeldung kann beginnen!
-                        if ($this->settings['unsubscribeMode'] == 1) {
-                            $uri = $this->uriBuilder->reset()
-                                ->uriFor(
-                                    'unsubscribe',
-                                    [
-                                        'defaultEmail' => $userArray['email']
-                                    ],
-                                    'Log',
-                                    null,
-                                    'unsubscribelux'
-                                );
-                            return $this->responseFactory->createResponse(307)
-                                ->withHeader('Location', $uri);
+                if (!$user) {
+                    $error = 11;
+                } else {
+                    $userArray = $this->logRepository->getUserFromExternal($user, $this->settings['table']);
+                    if (is_array($userArray) && isset($userArray['email'])) {
+                        // stimmt der angegebene hash überein?
+                        if ($this->helpersUtility->checkMailHash($userArray, $hash, $this->settings['authCodeFields'])) {
+                            // Abmeldung kann beginnen!
+                            if ($this->settings['unsubscribeMode'] == 1) {
+                                $uri = $this->uriBuilder->reset()
+                                    ->uriFor(
+                                        'unsubscribe',
+                                        [
+                                            'defaultEmail' => $userArray['email']
+                                        ],
+                                        'Log',
+                                        null,
+                                        'unsubscribemail'
+                                    );
+                                return $this->responseFactory->createResponse(307)
+                                    ->withHeader('Location', $uri);
+                            } else {
+                                // unsubscribe user now
+                                $GLOBALS['TSFE']->fe_user->setKey('ses', 'authMail', $hash);
+                                $GLOBALS['TSFE']->fe_user->storeSessionData();
+                                $uri = $this->uriBuilder->reset()
+                                    ->uriFor(
+                                        'delete',
+                                        [
+                                            'user' => $userArray
+                                        ],
+                                        'Log',
+                                        null,
+                                        'unsubscribemail'
+                                    );
+                                return $this->responseFactory->createResponse(307)
+                                    ->withHeader('Location', $uri);
+                            }
                         } else {
-                            // unsubscribe user now
-                            $GLOBALS['TSFE']->fe_user->setKey('ses', 'authLux', $hash);
-                            $GLOBALS['TSFE']->fe_user->storeSessionData();
-                            $uri = $this->uriBuilder->reset()
-                                ->uriFor(
-                                    'delete',
-                                    [
-                                        'user' => $userArray
-                                    ],
-                                    'Log',
-                                    null,
-                                    'unsubscribelux'
-                                );
-                            return $this->responseFactory->createResponse(307)
-                                ->withHeader('Location', $uri);
+                            $error = 10;
                         }
                     } else {
                         $error = 10;
                     }
-                } else {
-                    $error = 11;
                 }
             } else {
-                if (!isset($userArray['email'])) {
-                    $error = 11;
-                } else {
-                    $error = 10;
-                }
+                $error = 8;
             }
         }
         $this->view->assign('error', $error);
@@ -966,6 +957,19 @@ class LogController extends ActionController
                         $error = 1;
                     }
                 } else {
+                    $a = $GLOBALS['TSFE']->fe_user->getKey('ses', 'authMail');
+                    if ($a) {
+                        // hash von unsubscribeMail ist vorhanden!
+                        $GLOBALS['TSFE']->fe_user->setKey('ses', 'authMail', '');
+                        $GLOBALS['TSFE']->fe_user->storeSessionData();
+                        if ($this->helpersUtility->checkMailHash($user, $a, $this->settings['authCodeFields'])) {
+                            $skipCaptchaTest = true;
+                        } else {
+                            $error = 1;
+                        }
+                    }
+                }
+                if (!$a) {
                     $error = 1;
                 }
             }

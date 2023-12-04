@@ -13,7 +13,7 @@ Administrator-Handbuch
 
 Man braucht nicht unbedingt die Extension tt_address und mail, um diese Extension benutzen zu können.
 Es geht auch ohne, aber mehr Sinn macht es schon, wenn man die Tabellen tt_address oder fe_users benutzt.
-Die Tabelle fe_users kann man zusammen mit der Extension Luxletter benutzen.
+Die Tabelle fe_users kann man zusammen mit der Extension Luxletter oder Mail benutzen.
 Benutzer können sich dann zum Newsletter anmelden, wenn die Tabelle tt_address oder fe_users in der Newsletter-Extension
 benutzt wird.
 
@@ -127,16 +127,19 @@ Wenn du einen Newsletter verschickst, soll darin sicherlich auch ein Abmeldelink
 wenn man mail benutzt::
 
   Newsletter abbestellen:
-  https://www.domain.de/newsletter/abmelden.html?email=###USER_email###
+  https://www.domain.de/newsletter/abmelden.html?email=###USER_email###&authcode=###MAIL_AUTHCODE###
 
 Ersetze den Link durch deine Abmeldeseite und füge ihn in dein Newsletter-Template oder den Newsletter-Inhalt ein.
-###USER_email### wird von mail automatisch ersetzt. Der email-Parameter kann so geändert werden via TypoScript::
+###USER_email### und ###MAIL_AUTHCODE### wird von mail automatisch ersetzt.
+Der email- und authCodeFields-Parameter kann so geändert werden via TypoScript::
 
   plugin.tx_fpnewsletter.settings.parameters.email = email
+  plugin.tx_fpnewsletter.settings.parameters.authcode = authcode
 
-Die Extension fp_newsletter wird den Parameter lesen und als Default-E-Mail-Adresse setzen.
-Achtung: bei der Zielseite muss dabei das Plugin "Newsletter: Abmeldung via Formular" ausgewählt sein.
-Eine direkte/sofortige Abmeldung ist nicht möglich, so wie sie bei direct_mail oder Luxletter möglich ist.
+Die Extension fp_newsletter wird die Parameter lesen und die E-Mail als Default-E-Mail-Adresse setzen
+oder den Abonnenten gleich abmelden.
+Achtung: bei der Zielseite muss dabei das Plugin "Newsletter: Abmeldung via Formular" oder
+"Newsletter: Abmeldung via mail-Link" ausgewählt sein. In letzterem Fall muss auch settings.authCodeFields gesetzt werden.
 Nachteil: man kann sich mit fp_newsletter nicht nur von einem speziellen Newsletter abmelden.
 Man wird von allen abonnierten Newslettern eines Ordners abgemeldet.
 

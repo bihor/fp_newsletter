@@ -55,6 +55,7 @@ unsubscribeMode                   integer     0: Sofort-Abmeldung durch Link aus
 categoryOrGroup                   string      Liste von Kategorien (uid) aus sys_category oder fe_groups°°
 html                              integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere Felder der mail-Extens.  1
 password                          string      Passwort für die fe_users Tabelle. random erzeugt ein zufälliges Pw.  random
+authCodeFields                    string      Kopiere "Fields ... of authentication codes" von mail hierhin
 reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3.
 reCAPTCHA_secret_key              string      Geheimer Schlüssel für Google reCaptcha v3
 mathCAPTCHA                       integer     Zeige ein mathematisches Captcha? 0: nein; 1, 2: ja, mit 1-2 Ziffern  0
