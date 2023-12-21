@@ -27,7 +27,7 @@ Settings-Einstellungen
 Feld                              Typ         Beschreibung                                                          Standard-Wert
 ================================= =========== ===================================================================== ================================
 table                             string      tt_address, fe_users oder keine Tabelle (leerer Wert) möglich         tt_address
-newsletterExtension               string      luxletter (default für fe_users) oder mail (default für tt_address)
+newsletterExtension               string      luxletter (default für fe_users) oder mail (default für tt_address)   leer = luxletter
 optionalFields                    string      Optionale Werte: siehe weiter unten                                   gender,firstname,lastname
 optionalFieldsRequired            string      Optionale erforderliche* Werte: siehe weiter unten
 doubleOptOut                      boolean     Double opt out Abmeldung einschalten?                                 1

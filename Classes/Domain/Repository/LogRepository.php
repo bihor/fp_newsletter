@@ -354,7 +354,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param   int     $tableUid   externe uid
      * @param   string  $extension  mail or luxletter
      */
-    function updateInFeUsers($address, $tableUid, $extension)
+    function updateInFeUsers($address, $tableUid, $extension = 'luxletter')
     {
         $timestamp = time();
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('fe_users');
@@ -416,7 +416,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param   string  $table      tt_address or fe_users
      * @param   string  $extension  luxletter or mail
      */
-    function deleteExternalUser($uid, $mode, $dmCatArr = [], $table = 'tt_address', $extension)
+    function deleteExternalUser($uid, $mode, $dmCatArr = [], $table = 'tt_address', $extension = 'luxletter')
     {
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
         if ($mode == 2) {

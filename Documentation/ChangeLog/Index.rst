@@ -159,3 +159,6 @@ Version 6.2.0:
 
 Version 6.3.0:
 - New action: direct unsubscribe via Mail-link and new setting: authCodeFields.
+
+Version 6.3.1:
+- Bugfix: Luxletter is now the default newsletter-extension - to prevent a PHP warning.

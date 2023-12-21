@@ -27,7 +27,7 @@ Properties for settings
 Property                          Data type   Description                                                           Default
 ================================= =========== ===================================================================== =================================
 table                             string      tt_address, fe_users or none (empty value) supported                  tt_address
-newsletterExtension               string      luxletter (default for fe_users) or mail (default for tt_address)
+newsletterExtension               string      luxletter (default for fe_users) or mail (default for tt_address)     empty = luxletter
 optionalFields                    string      Optional fields: see below                                            gender,firstname,lastname
 optionalFieldsRequired            string      Optional required* fields: see below
 doubleOptOut                      boolean     Enable double out out unsubscription?                                 1
