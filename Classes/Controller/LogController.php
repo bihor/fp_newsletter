@@ -475,9 +475,13 @@ class LogController extends ActionController
             $salutation = $this->helpersUtility->getSalutation(intval($log->getGender()), $this->settings['gender']);
             if ($dbuidext) {
                 if ($table == 'tt_address') {
-                    $this->logRepository->updateInTtAddress($log, intval($this->settings['html']), $dbuidext, $salutation);
+                    $this->logRepository->updateInTtAddress(
+                        $log, intval($this->settings['html']), $dbuidext, $salutation, $this->settings['additionalTtAddressFields']
+                    );
                 } elseif ($table == 'fe_users') {
-                    $this->logRepository->updateInFeUsers($log, $dbuidext, $this->settings['newsletterExtension']);
+                    $this->logRepository->updateInFeUsers(
+                        $log, $dbuidext, $this->settings['newsletterExtension']
+                    );
                 }
             } else {
                 $error = 1;
@@ -1136,7 +1140,9 @@ class LogController extends ActionController
                             $dmCatArr = [];
                         }
                         if ($this->settings['table'] == 'tt_address') {
-                            $success = $this->logRepository->insertInTtAddress($log, $html, $dmCatArr, $salutation);
+                            $success = $this->logRepository->insertInTtAddress(
+                                $log, $html, $dmCatArr, $salutation, $this->settings['additionalTtAddressFields']
+                            );
                         } else if ($this->settings['table'] == 'fe_users' && $this->settings['password']) {
                             $frontendUser = new \Fixpunkt\FpNewsletter\Domain\Model\FrontendUser();
                             $password = $this->settings['password'];

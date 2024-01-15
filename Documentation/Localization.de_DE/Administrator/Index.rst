@@ -248,6 +248,22 @@ benutzt werden kann::
     }
 
 
+.. _admin-additional-fields:
+
+Weitere Felder zu tt_address hinzufügen
+---------------------------------------
+
+Wenn du weitere Felder zu tt_address hinzufügen möchtest, dann müssen diese Felder sowohl in der Log-Tabelle
+(tx_fpnewsletter_domain_model_log) als auch in der tt_address-Tabelle vorhanden sein.
+Wenn sie noch nicht da sind, müssen sie in einer Extension in der Datei ext_tables.sql hinzugefügt werden.
+Beispiel: du willst das Feld "gdpr" nach tt_address kopieren.
+Dieses Feld ist in der Log-Tabelle bereits vorhanden und deshalb muss es nur noch zur tt_address-Tabelle von dir
+hinzugefügt werden. Danach muss man noch per TypoScript angeben, welche zusätzlichen Felder mit kopiert werden soll::
+
+  plugin.tx_fpnewsletter.settings.additionalTtAddressFields = gdpr
+
+Das ist alles.
+
 .. _admin-security:
 
 Sicherheitshinweis zu Version 3.2.6

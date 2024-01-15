@@ -163,3 +163,6 @@ Version 6.3.1:
 
 Version 6.3.2:
 - Bugfix: reCAPTCHA repariert.
+
+Version 6.4.0:
+- Zusätzliche Felder können nun aus dem Log-Eintrag in eine tt_address-Tabelle kopiert werden. Setting additionalTtAddressFields hinzugefügt.

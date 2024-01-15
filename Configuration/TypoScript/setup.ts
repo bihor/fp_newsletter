@@ -19,6 +19,7 @@ plugin.tx_fpnewsletter {
 	newsletterExtension =
 	optionalFields = gender,firstname,lastname
 	optionalFieldsRequired =
+    additionalTtAddressFields =
 	doubleOptOut = 1
 	disableErrorMsg = 0
 	enableUnsubscribeForm = 0

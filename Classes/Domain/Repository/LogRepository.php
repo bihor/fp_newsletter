@@ -52,37 +52,59 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     }
 
     /**
-	 * getUidFromExternal: find user ID
-	 * @param	string $email die E-Mail-Adresse wurde schon vorher geprüft!
-	 * @param	mixed	$pid PID oder Liste mit PIDs
-     * @param   string  $table tt_address oder fe_users
-	 * @return  integer
+	 * getAllFields: find additional fields
+	 * @param	int $uid UID
+	 * @return  array
 	 */
-	function getUidFromExternal($email, $pid, $table)
+	function getAllFields($uid)
 	{
-		$dbuid = 0;
+        $table = 'tx_fpnewsletter_domain_model_log';
 		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
+		$statement = $queryBuilder
+					->select('*')
+					->from($table)
+					->where(
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+					)
+					->executeQuery();
+		while ($row = $statement->fetchAssociative()) {
+			return $row;
+		}
+        return [];
+	}
+
+    /**
+     * getUidFromExternal: find user ID
+     * @param	string $email die E-Mail-Adresse wurde schon vorher geprüft!
+     * @param	mixed	$pid PID oder Liste mit PIDs
+     * @param   string  $table tt_address oder fe_users
+     * @return  integer
+     */
+    function getUidFromExternal($email, $pid, $table)
+    {
+        $dbuid = 0;
+        $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
         if (is_numeric($pid)) {
             $where = $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT));
         } else {
             $where = $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter($pid, Connection::PARAM_INT_ARRAY));
         }
-		$statement = $queryBuilder
-					->select('uid')
-					->from($table)
-					->where(
-						$where
-					)
-					->andWhere(
-						$queryBuilder->expr()->eq('email', $queryBuilder->createNamedParameter($email))
-					)
-					->executeQuery();
-		while ($row = $statement->fetchAssociative()) {
-			$dbuid = intval($row['uid']);
+        $statement = $queryBuilder
+            ->select('uid')
+            ->from($table)
+            ->where(
+                $where
+            )
+            ->andWhere(
+                $queryBuilder->expr()->eq('email', $queryBuilder->createNamedParameter($email))
+            )
+            ->executeQuery();
+        while ($row = $statement->fetchAssociative()) {
+            $dbuid = intval($row['uid']);
             break;
-		}		
-		return $dbuid;
-	}
+        }
+        return $dbuid;
+    }
 
     /**
      * getExternalUid: found user in tt_address or fe_users
@@ -234,8 +256,9 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 	 * @param integer	$mode 		HTML-mode
 	 * @param array	$dmCatArr	categories
      * @param string  $salutation Anrede
+     * @param string $additionalFields weitere extern zugefügte Felder
 	 */
-	function insertInTtAddress($address, $mode, $dmCatArr = [], $salutation = '')
+	function insertInTtAddress($address, $mode, $dmCatArr = [], $salutation = '', $additionalFields = '')
     {
 		$timestamp = time();
 		if ($address->getGender() == 1) $gender = 'f';
@@ -280,6 +303,14 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 		if ($gender) {
 			$insert['gender'] = $gender;
 		}
+        if ($additionalFields) {
+            // um zusätzliche Felder befüllen zu können, wird ein Array statt ein Objekt gebraucht
+            $addressArray = $this->getAllFields($address->getUid());
+            $additionalArray = explode(',', $additionalFields);
+            foreach ($additionalArray as $customField) {
+                $insert[trim($customField)] = $addressArray[trim($customField)];
+            }
+        }
 		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
 		$queryBuilder
 			->insert('tt_address')
@@ -298,8 +329,9 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param integer $mode HTML-mode
      * @param int     $tableUid   externe uid
      * @param string $salutation Anrede
+     * @param string $additionalFields weitere extern zugefügte Felder
      */
-    function updateInTtAddress($address, $mode, $tableUid, $salutation = '')
+    function updateInTtAddress($address, $mode, $tableUid, $salutation = '', $additionalFields)
     {
         $timestamp = time();
         if ($address->getGender() == 1) $gender = 'f';
@@ -341,6 +373,14 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
             ->set('mail_html', $mode)
             ->set('mail_salutation', $salutation)
             ->set('mail_active', 1);
+        }
+        if ($additionalFields) {
+            // um zusätzliche Felder befüllen zu können, wird ein Array statt ein Objekt gebraucht
+            $addressArray = $this->getAllFields($address->getUid());
+            $additionalArray = explode(',', $additionalFields);
+            foreach ($additionalArray as $customField) {
+                $queryBuilder->set(trim($customField), $addressArray[trim($customField)]);
+            }
         }
         $queryBuilder->executeStatement();
         $this->deleteInMm($tableUid, 'tt_address');
