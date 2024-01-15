@@ -212,7 +212,7 @@ you could use prependOptionLabel="-" prependOptionValue="0" for a select too.
 <f:if condition="{settings.reCAPTCHA_site_key}">
   <f:form.hidden property="retoken" id="recaptcha3keyS" />
   <script>
-  var recaptcha3keyS = '{settings.reCAPTCHA_site_key}';
+  var recaptcha3keyS = '<f:format.raw>{settings.reCAPTCHA_site_key}</f:format.raw>';
   grecaptcha.ready(function() {
       grecaptcha.execute(recaptcha3keyS, {action: 'homepage'}).then(function(token) {
          $('#recaptcha3keyS').val(token);

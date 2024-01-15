@@ -1,6 +1,6 @@
 # fp_newsletter
 
-version 6.3.1
+version 6.3.2
 
 The TYPO3 extension fp_newsletter is designed to provide a newsletter subscription and unsubscription service for the 
 table tt_address which can be used by the extension mail OR for the table fe_users which can be used by luxletter or mail. 
@@ -16,20 +16,6 @@ https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/en-us/
 Es gibt auch eine deutsche Anleitung/Dokumentation zu dieser Erweiterung:
 https://docs.typo3.org/p/fixpunkt/fp-newsletter/master/de-de/
 
-
-Version 5.0:
-- First release for TYPO3 12.
-- Breaking: the email-templates and -partials must be changed! Add extensionName="FpNewsletter" to every f:translate.
-- Breaking: in template-forms the argument pluginName must be specified! You find them in the templates of this extension.
-- Breaking: all plugins must be changed via an update-script (in the install-tool)!
-
-Version 5.1:
-- Custom validator added.
-- Bugfix for TYPO3 12.
-
-Version 5.2:
-- Automatically set the correct PluginName in templates.
-- PHP-Bugfix.
 
 Version 6.0:
 - Breaking: support for direct_mail removed. Instead, support for the extension "mail" added.
@@ -50,3 +36,6 @@ Version 6.3.0:
 
 Version 6.3.1:
 - Bugfix: Luxletter is now the default newsletter-extension - to prevent a PHP warning.
+
+Version 6.3.2:
+- Bugfix: reCAPTCHA fixed.

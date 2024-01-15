@@ -162,3 +162,6 @@ Version 6.3.0:
 
 Version 6.3.1:
 - Bugfix: Luxletter is now the default newsletter-extension - to prevent a PHP warning.
+
+Version 6.3.2:
+- Bugfix: reCAPTCHA fixed.

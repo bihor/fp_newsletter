@@ -34,7 +34,7 @@
 <f:if condition="{settings.reCAPTCHA_site_key}">
   <f:form.hidden property="retoken" id="un_recaptcha3keyU" />
   <script>
-  var recaptcha3keyU = '{settings.reCAPTCHA_site_key}';
+  var recaptcha3keyU = '<f:format.raw>{settings.reCAPTCHA_site_key}</f:format.raw>';
   grecaptcha.ready(function() {
       grecaptcha.execute(recaptcha3keyU, {action: 'homepage'}).then(function(token) {
          $('#un_recaptcha3keyU').val(token);
