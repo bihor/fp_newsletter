@@ -331,7 +331,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param string $salutation Anrede
      * @param string $additionalFields weitere extern zugefügte Felder
      */
-    function updateInTtAddress($address, $mode, $tableUid, $salutation = '', $additionalFields)
+    function updateInTtAddress($address, $mode, $tableUid, $salutation = '', $additionalFields = '')
     {
         $timestamp = time();
         if ($address->getGender() == 1) $gender = 'f';
