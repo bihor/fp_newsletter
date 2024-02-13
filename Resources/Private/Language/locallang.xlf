@@ -37,10 +37,10 @@
 				<source>Title</source>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.firstname" resname="tx_fpnewsletter_domain_model_log.firstname">
-				<source>Firstname</source>
+				<source>First name</source>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.lastname" resname="tx_fpnewsletter_domain_model_log.lastname">
-				<source>Lastname</source>
+				<source>Last name</source>
 			</trans-unit>
 			<trans-unit id="tx_fpnewsletter_domain_model_log.email" resname="tx_fpnewsletter_domain_model_log.email">
 				<source>E-Mail</source>
