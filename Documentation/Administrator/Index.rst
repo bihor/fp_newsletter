@@ -146,6 +146,7 @@ Note: at the target page you need to select the plugin "Newsletter: unsubscribe 
 In the last case, settings.authCodeFields must be set too.
 Disadvantage: it is not possible to unsubscribe only from a specific newsletter in a folder. The whole tt_address entry
 will be deleted!
+Note: this method does not work with test-newsletters!!!
 
 
 .. _admin-luxletter:
