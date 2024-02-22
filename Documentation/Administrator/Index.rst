@@ -133,14 +133,16 @@ When you send a newsletter you want to add an unsubscription link to your newsle
   https://www.domain.com/newsletter/unsubscribe.html?email=###USER_email###&authcode=###MAIL_AUTHCODE###
 
 Replace the link with the link to your unsubscribe page and put it in the newsletter-template or use it as email-content.
-###USER_email### and ###MAIL_AUTHCODE### will be replaced by the mail-extension. The parameters can be changed. It must be set via
-TypoScript::
+###USER_email### and ###MAIL_AUTHCODE### will be replaced by the mail-extension. The parameters can be changed.
+It must be set via TypoScript::
 
   plugin.tx_fpnewsletter.settings.parameters.email = email
   plugin.tx_fpnewsletter.settings.parameters.authcode = authcode
+  plugin.tx_fpnewsletter.settings.authCodeFields = gender,name
 
 The extension fp_newsletter will read those parameters and use the email as default email-address or it will make a
 direct unsubscription.
+Note: copy "Fields ... of authentication codes" from mail to plugin.tx_fpnewsletter.settings.authCodeFields too.
 Note: at the target page you need to select the plugin "Newsletter: unsubscribe via form" or
 "Newsletter: unsubscribe via mail-link" from this extension.
 In the last case, settings.authCodeFields must be set too.
