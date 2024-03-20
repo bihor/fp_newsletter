@@ -1,14 +1,2 @@
-plugin.tx_fpnewsletter {
-  view {
-    # cat=plugin.tx_fpnewsletter_pi1/file; type=string; label=Path to template root (FE)
-    templateRootPath = EXT:fp_newsletter/Resources/Private/Templates/
-    # cat=plugin.tx_fpnewsletter_pi1/file; type=string; label=Path to template partials (FE)
-    partialRootPath = EXT:fp_newsletter/Resources/Private/Partials/
-    # cat=plugin.tx_fpnewsletter_pi1/file; type=string; label=Path to template layouts (FE)
-    layoutRootPath = EXT:fp_newsletter/Resources/Private/Layouts/
-  }
-  persistence {
-    # cat=plugin.tx_fpnewsletter_pi1//a; type=string; label=Default storage PID
-    storagePid =
-  }
-}
+# Important: This is just a fallback solution for TYPO3 v11 Systems
+@import 'EXT:fp_newsletter/Configuration/TypoScript/constants.typoscript'
