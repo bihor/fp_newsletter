@@ -104,13 +104,13 @@ class FlexformPluginUpdater implements UpgradeWizardInterface
     public function performMigration(): bool
     {
         $records = $this->getMigrationRecords();
-        $search  = array('settings.module_sys_dmail_category', 'settings.module_sys_dmail_html', 'settings.dmUnsubscribeMode');
-        $replace = array('settings.categoryOrGroup', 'settings.html', 'settings.unsubscribeMode');
+        $search  = ['settings.module_sys_dmail_category', 'settings.module_sys_dmail_html', 'settings.dmUnsubscribeMode'];
+        $replace = ['settings.categoryOrGroup', 'settings.html', 'settings.unsubscribeMode'];
         $connectionPool = GeneralUtility::makeInstance(ConnectionPool::class);
         $queryBuilder = $connectionPool->getQueryBuilderForTable('tt_content');
         foreach ($records as $record) {
             $flexFormData = $record['pi_flexform'];
-            $flexFormData = str_replace($search, $replace, $flexFormData);
+            $flexFormData = str_replace($search, $replace, (string) $flexFormData);
             $queryBuilder
                 ->update('tt_content')
                 ->where(

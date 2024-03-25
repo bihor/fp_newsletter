@@ -19,7 +19,6 @@ class HelpersUtility
     /**
      * Prüft, ob ein angegebenes math. Captcha OK ist
      *
-     * @param int $result
      * @return int
      */
     public function checkMathCaptcha(int $result): int
@@ -104,8 +103,6 @@ class HelpersUtility
     /**
      * Set a hash and the language to a new log-entry
      *
-     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log
-     * @param int $languageMode
      * @return string
      */
     public function setHashAndLanguage(
@@ -128,9 +125,6 @@ class HelpersUtility
     /**
      * Check if a given log entry is valid
      *
-     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log
-     * @param string $hash
-     * @param string $daysExpire
      * @return int
      */
     public function checkIfValid(
@@ -193,17 +187,17 @@ class HelpersUtility
     /**
      * Prepare Array for emails and trigger sending of emails
      *
-     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log $log
-     * @param array   $settings       settings
-     * @param array   $view           view
-     * @param boolean $isSubscribe    Subscription or unsubscription?
-     * @param boolean $isConfirmation verify or confirmation?
-     * @param boolean $isEdit         edit mode?
-     * @param boolean $toUser         email to user?
-     * @param boolean $toAdmin        email to admin?
-     * @param string  $hash           hash
-     * @param integer $verifyUid      UID of the verification page
-     * @param string  $pi             plugin name
+     * param array   $settings       settings
+     * param array   $view           view
+     * param boolean $isSubscribe    Subscription or unsubscription?
+     * param boolean $isConfirmation verify or confirmation?
+     * param boolean $isEdit         edit mode?
+     * param boolean $toUser         email to user?
+     * param boolean $toAdmin        email to admin?
+     * param string  $hash           hash
+     * param integer $verifyUid      UID of the verification page
+     * param string  $pi             plugin name
+     * param string  $lCode          request language code
      */
     public function prepareEmail(
         \Fixpunkt\FpNewsletter\Domain\Model\Log &$log,
@@ -216,7 +210,8 @@ class HelpersUtility
         bool $toAdmin = false,
         string $hash = '',
         int $verifyUid = 0,
-        string $pi = ''): void
+        string $pi = '',
+        string $lCode = ''): void
     {
         $genders = $this->getGenders($settings['preferXlfFile'], $settings['gender'], false);
         $email = $log->getEmail();
@@ -227,6 +222,7 @@ class HelpersUtility
         $dataArray = [];
         $dataArray['uid'] = $log->getUid();
         $dataArray['sys_language_uid'] = $log->getSysLanguageUid();
+        $dataArray['language_code'] = $lCode;
         $dataArray['gender_id'] = $log->getGender();
         $dataArray['gender'] = $genders[$log->getGender()];
         $dataArray['title'] = $log->getTitle();
@@ -290,8 +286,8 @@ class HelpersUtility
             }
             $this->sendTemplateEmail(
                 $view,
-                array($email => $from),
-                array($settings['email']['senderMail'] => $settings['email']['senderName']),
+                [$email => $from],
+                [$settings['email']['senderMail'] => $settings['email']['senderName']],
                 $subject,
                 $template,
                 $dataArray,
@@ -319,8 +315,8 @@ class HelpersUtility
             }
             $this->sendTemplateEmail(
                 $view,
-                array($settings['email']['adminMail'] => $settings['email']['adminName']),
-                array($settings['email']['senderMail'] => $settings['email']['senderName']),
+                [$settings['email']['adminMail'] => $settings['email']['adminName']],
+                [$settings['email']['senderMail'] => $settings['email']['senderName']],
                 $subject,
                 $template,
                 $dataArray,
@@ -331,18 +327,17 @@ class HelpersUtility
     /**
      * Send an email
      *
-     * @param array $view
-     * @param array $recipient
+     * param array $recipient
      *            recipient of the email in the format array('recipient@domain.tld' => 'Recipient Name')
-     * @param array $sender
+     * param array $sender
      *            sender of the email in the format array('sender@domain.tld' => 'Sender Name')
-     * @param string $subject
+     * param string $subject
      *            subject of the email
-     * @param string $templateName
+     * param string $templateName
      *            template name (UpperCamelCase)
-     * @param array $variables
+     * param array $variables
      *            variables to be passed to the Fluid view
-     * @param boolean $toAdmin
+     * param boolean $toAdmin
      *            email to the admin?
      * @return boolean TRUE on success, otherwise false
      */
@@ -352,7 +347,7 @@ class HelpersUtility
         array $sender,
         string $subject,
         string $templateName,
-        array $variables = array(),
+        array $variables = [],
         bool $toAdmin = false): bool
     {
         // Das hier ist von hier: https://wiki.typo3.org/How_to_use_the_Fluid_Standalone_view_to_render_template_based_emails
@@ -361,8 +356,7 @@ class HelpersUtility
         if (!$toAdmin && !$variables['settings']['email']['dontAppendL']) {
             $templateName .= $sys_language_uid;
         }
-        $extensionName = 'FpNewsletter'; // $this->request->getControllerExtensionName();
-
+        //$extensionName = 'FpNewsletter'; // $this->request->getControllerExtensionName();
         /** @var \TYPO3\CMS\Fluid\View\StandaloneView $emailView */
         $emailViewHtml = GeneralUtility::makeInstance(\TYPO3\CMS\Fluid\View\StandaloneView::class);
         // geht in TYPO3 12 nicht mehr:

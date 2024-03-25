@@ -28,9 +28,6 @@ class ValidateEvent
         return $this->valid;
     }
 
-    /**
-     * @param bool $valid
-     */
     public function setValid(bool $valid): void
     {
         $this->valid = $valid;
@@ -44,9 +41,6 @@ class ValidateEvent
         return $this->message;
     }
 
-    /**
-     * @param string $message
-     */
     public function setMessage(string $message): void
     {
         $this->message = $message;

@@ -1,27 +1,27 @@
 <?php
 namespace Fixpunkt\FpNewsletter\Tests\Unit\Domain\Model;
 
+use TYPO3\CMS\Core\Tests\UnitTestCase;
+use Fixpunkt\FpNewsletter\Domain\Model\Log;
 /**
  * Test case.
  *
  * @author Kurt Gusbeth <k.gusbeth@fixpunkt.com>
  */
-class LogTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class LogTest extends UnitTestCase
 {
     /**
-     * @var \Fixpunkt\FpNewsletter\Domain\Model\Log
+     * @var Log
      */
     protected $subject = null;
 
     protected function setUp()
     {
-        parent::setUp();
-        $this->subject = new \Fixpunkt\FpNewsletter\Domain\Model\Log();
+        $this->subject = new Log();
     }
 
     protected function tearDown()
     {
-        parent::tearDown();
     }
 
     /**

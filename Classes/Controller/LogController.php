@@ -4,7 +4,10 @@ declare(strict_types=1);
 
 namespace Fixpunkt\FpNewsletter\Controller;
 
-use Fixpunkt\FpNewsletter\Events\ValidateEvent;
+use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
+use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Extbase\Http\ForwardResponse;
 use Psr\Http\Message\ResponseInterface;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
@@ -35,15 +38,9 @@ use Fixpunkt\FpNewsletter\Utility\HelpersUtility;
 class LogController extends ActionController
 {
 
-    protected FrontendUserRepository $frontendUserRepository;
-
-    protected LogRepository $logRepository;
-
-    protected HelpersUtility $helpersUtility;
-
     /**
      *
-     * @var \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface
+     * @var ConfigurationManagerInterface
      */
     protected $configurationManager;
 
@@ -53,14 +50,8 @@ class LogController extends ActionController
      * @param LogRepository $logRepository
      * @param HelpersUtility $helpersUtility
      */
-    public function __construct(
-        FrontendUserRepository $frontendUserRepository,
-        LogRepository $logRepository,
-        HelpersUtility $helpersUtility
-    ) {
-        $this->frontendUserRepository = $frontendUserRepository;
-        $this->logRepository = $logRepository;
-        $this->helpersUtility = $helpersUtility;
+    public function __construct(protected FrontendUserRepository $frontendUserRepository, protected LogRepository $logRepository, protected HelpersUtility $helpersUtility)
+    {
     }
 
     /**
@@ -69,11 +60,11 @@ class LogController extends ActionController
     public function initializeAction()
     {
         $tsSettings = $this->configurationManager->getConfiguration(
-            \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
         );
         $tsSettings = $tsSettings['plugin.']['tx_fpnewsletter.']['settings.'];
         $originalSettings = $this->configurationManager->getConfiguration(
-            \TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_SETTINGS
         );
         // if flexform setting is empty and value is available in TS
         $overrideFlexformFields = GeneralUtility::trimExplode(',', $tsSettings['overrideFlexformSettingsIfEmpty'], true);
@@ -121,14 +112,14 @@ class LogController extends ActionController
         $optionalFields = $this->settings['optionalFields'];
         $requiredFields = $this->settings['optionalFieldsRequired'];
         if ($optionalFields) {
-            $tmp = explode(',', $optionalFields);
+            $tmp = explode(',', (string) $optionalFields);
             foreach ($tmp as $field) {
                 $optional[trim($field)] = 1;
                 $required[trim($field)] = 0;
             }
         }
         if ($requiredFields) {
-            $tmp = explode(',', $requiredFields);
+            $tmp = explode(',', (string) $requiredFields);
             foreach ($tmp as $field) {
                 $required[trim($field)] = 1;
             }
@@ -142,12 +133,12 @@ class LogController extends ActionController
             }
         }
         if (! $log) {
-            $log = GeneralUtility::makeInstance('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+            $log = GeneralUtility::makeInstance(Log::class);
         }
         if (!$log->getEmail() && $this->settings['parameters']['email']) {
-            $email = isset($_GET[$this->settings['parameters']['email']]) ? $_GET[$this->settings['parameters']['email']] : '';
+            $email = $_GET[$this->settings['parameters']['email']] ?? '';
             if (! $email) {
-                $email = isset($_POST[$this->settings['parameters']['email']]) ? $_POST[$this->settings['parameters']['email']] : '';
+                $email = $_POST[$this->settings['parameters']['email']] ?? '';
             }
             if ($email) {
                 $log->setEmail($email);
@@ -166,11 +157,11 @@ class LogController extends ActionController
             $GLOBALS['TSFE']->fe_user->storeSessionData();
         }
         if (!$error && $this->settings['checkForRequiredExtensions'] && $this->settings['table']=='tt_address') {
-            if (!\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('tt_address')) {
+            if (!ExtensionManagementUtility::isLoaded('tt_address')) {
                 $error = 20;
             }
             if ((intval($this->settings['html'])>-1 || $this->settings['categoryOrGroup'])
-                && !\TYPO3\CMS\Core\Utility\ExtensionManagementUtility::isLoaded('mail')) {
+                && !ExtensionManagementUtility::isLoaded('mail')) {
                 $error = 21;
             }
         }
@@ -196,14 +187,14 @@ class LogController extends ActionController
         $optionalFields = $this->settings['optionalFields'];
         $requiredFields = $this->settings['optionalFieldsRequired'];
         if ($optionalFields) {
-            $tmp = explode(',', $optionalFields);
+            $tmp = explode(',', (string) $optionalFields);
             foreach ($tmp as $field) {
                 $optional[trim($field)] = 1;
                 $required[trim($field)] = 0;
             }
         }
         if ($requiredFields) {
-            $tmp = explode(',', $requiredFields);
+            $tmp = explode(',', (string) $requiredFields);
             foreach ($tmp as $field) {
                 $required[trim($field)] = 1;
             }
@@ -234,6 +225,9 @@ class LogController extends ActionController
             $storagePidsArray = $this->logRepository->getStoragePids();
             $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
             $sys_language_uid = intval($languageAspect->getId());
+            $requestLanguage = $this->request->getAttribute('language');
+            $requestLocale = $requestLanguage->getLocale();
+            $requestLanguageCode = $requestLocale->getLanguageCode();
             if ($sys_language_uid > 0 && $this->settings['languageMode']) {
                 $log = $this->logRepository->getByEmailAndPid($email, $storagePidsArray, $sys_language_uid, $maxDate);
             } else {
@@ -245,7 +239,7 @@ class LogController extends ActionController
                 } else {
                     $pi = 'verify';
                 }
-                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, false, $log->getSecurityhash(), intval($subscribeVerifyUid), $pi);
+                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, false, $log->getSecurityhash(), intval($subscribeVerifyUid), $pi, $requestLanguageCode);
             }
         }
         $this->view->assign('email', $email);
@@ -275,16 +269,19 @@ class LogController extends ActionController
                 if (!$dbuidext) {
                     $error = 7;
                 } else {
-                    $log = GeneralUtility::makeInstance('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+                    $log = GeneralUtility::makeInstance(Log::class);
                     $log->setPid($pid);
                     $log->setEmail($email);
                     $hash = $this->helpersUtility->setHashAndLanguage($log, intval($this->settings['languageMode']));
+                    $requestLanguage = $this->request->getAttribute('language');
+                    $requestLocale = $requestLanguage->getLocale();
+                    $requestLanguageCode = $requestLocale->getLanguageCode();
                     $log->setStatus(10);
                     $this->logRepository->add($log);
-                    $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+                    $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
                     $persistenceManager->persistAll();
                     $error = 51;
-                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, true,true, false, $hash, intval($this->settings['editUid']), 'email');
+                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, true,true, false, $hash, intval($this->settings['editUid']), 'email', $requestLanguageCode);
                     // reset log entry
                     $log = null;
                 }
@@ -324,14 +321,14 @@ class LogController extends ActionController
         $optionalFields = $this->settings['optionalFields'];
         $requiredFields = $this->settings['optionalFieldsRequired'];
         if ($optionalFields) {
-            $tmp = explode(',', $optionalFields);
+            $tmp = explode(',', (string) $optionalFields);
             foreach ($tmp as $field) {
                 $optional[trim($field)] = 1;
                 $required[trim($field)] = 0;
             }
         }
         if ($requiredFields) {
-            $tmp = explode(',', $requiredFields);
+            $tmp = explode(',', (string) $requiredFields);
             foreach ($tmp as $field) {
                 $required[trim($field)] = 1;
             }
@@ -410,11 +407,11 @@ class LogController extends ActionController
                             }
                         } elseif ($table == 'fe_users') {
                             $groups = $this->logRepository->getAllGroups($catOrderBy);
-                            $own_groups = explode(',', $user['usergroup']);
+                            $own_groups = explode(',', (string) $user['usergroup']);
                         }
                         if (!$this->settings['categoryMode']) {
                             // nur angegebene Kategorien erlauben
-                            $dmCat = str_replace(' ', '', $this->settings['categoryOrGroup']);
+                            $dmCat = str_replace(' ', '', (string) $this->settings['categoryOrGroup']);
                             $dmCatArr = explode(',', $dmCat);
                             foreach ($groups as $key => $array) {
                                 if (!in_array($array['uid'], $dmCatArr)) {
@@ -445,7 +442,6 @@ class LogController extends ActionController
     /**
      * action update
      *
-     * @param Log $log
      * @return ResponseInterface
      */
     public function updateAction(Log $log): ResponseInterface
@@ -500,20 +496,20 @@ class LogController extends ActionController
     public function subscribeExtAction(): ResponseInterface
     {
         if ($this->settings['parameters']['active'] && $this->settings['parameters']['email']) {
-            $pactive = explode('|', $this->settings['parameters']['active']);
-            $active = isset($_POST[$pactive[0]]) ? $_POST[$pactive[0]] : array();
+            $pactive = explode('|', (string) $this->settings['parameters']['active']);
+            $active = $_POST[$pactive[0]] ?? [];
             if ($active[$pactive[1]][$pactive[2]]) {
-                $pemail = explode('|', $this->settings['parameters']['email']);
-                $email = isset($_POST[$pemail[0]]) ? $_POST[$pemail[0]] : array();
+                $pemail = explode('|', (string) $this->settings['parameters']['email']);
+                $email = $_POST[$pemail[0]] ?? [];
                 $email = $email[$pemail[1]][$pemail[2]];
                 if ($email) {
                     $storagePidsArray = $this->logRepository->getStoragePids();
                     $pid = intval($storagePidsArray[0]);
-                    $log = GeneralUtility::makeInstance('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+                    $log = GeneralUtility::makeInstance(Log::class);
                     $log->setPid($pid);
                     $log->setEmail($email);
                     $log->setGdpr(true);
-					return (new \TYPO3\CMS\Extbase\Http\ForwardResponse('create'))
+					return (new ForwardResponse('create'))
 					->withControllerName('Log')
 					->withExtensionName('fp_newsletter')
 					->withArguments(['log' => $log]);
@@ -539,6 +535,9 @@ class LogController extends ActionController
                 ->withHeader('Location', $uri);
         }
         //if ($log->getGdpr()) { $log->setGdpr(true); }
+        $requestLanguage = $this->request->getAttribute('language');
+        $requestLocale = $requestLanguage->getLocale();
+        $requestLanguageCode = $requestLocale->getLanguageCode();
         $hash = $this->helpersUtility->setHashAndLanguage($log, intval($this->settings['languageMode']));
         $log->setStatus(0);
         if ($log->getUid() > 0) {
@@ -546,7 +545,7 @@ class LogController extends ActionController
         } else {
             $this->logRepository->add($log);
         }
-        $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+        $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
         $persistenceManager->persistAll();
 
         $error = 0;
@@ -578,7 +577,7 @@ class LogController extends ActionController
             $request = $requestFactory->request($url, 'POST', $additionalOptions);
 
             if ($request->getStatusCode() === 200) {
-                $resultBody = json_decode($request->getBody()->getContents(), true);
+                $resultBody = json_decode((string) $request->getBody()->getContents(), true);
                 if (!$resultBody['success'])
                     $error = 9;
 
@@ -597,7 +596,7 @@ class LogController extends ActionController
             $error = 10;
         }
         $error_msg = '';
-        $customValidatorEvent = GeneralUtility::makeInstance(ValidateEvent::class);
+        $customValidatorEvent = GeneralUtility::makeInstance(\Fixpunkt\FpNewsletter\Events\ValidateEvent::class);
         if(!$customValidatorEvent->isValid()) {
             $error = 901;
             $error_msg = $customValidatorEvent->getMessage();
@@ -618,7 +617,7 @@ class LogController extends ActionController
             } else {
                 $pi = 'verify';
             }
-            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, $toAdmin, $hash, intval($subscribeVerifyUid), $pi);
+            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, $toAdmin, $hash, intval($subscribeVerifyUid), $pi, $requestLanguageCode);
         } else if ($error >= 8) {
             $uri = $this->uriBuilder->uriFor('new', [
                 'log' => $log,
@@ -667,7 +666,7 @@ class LogController extends ActionController
             }
         }
         if (! $log) {
-            $log = GeneralUtility::makeInstance('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+            $log = GeneralUtility::makeInstance(Log::class);
             $log->setPid($pid);
             // default E-Mail holen, falls log noch nicht definiert ist; default email from unsubscribeLuxAction
             $email = $this->request->hasArgument('defaultEmail') ? $this->request->getArgument('defaultEmail') : '';
@@ -734,8 +733,8 @@ class LogController extends ActionController
                     is_array($newsletterArray) && isset($newsletterArray['receivers'])) {
                     // ist user in versendeter newsletter-Gruppe?
                     $match = false;
-                    $usergroups = explode(",", $userArray['usergroup']);
-                    $receivers = explode(",", $newsletterArray['receivers']);
+                    $usergroups = explode(",", (string) $userArray['usergroup']);
+                    $receivers = explode(",", (string) $newsletterArray['receivers']);
                     foreach ($usergroups as $group) {
                         foreach ($receivers as $receiver) {
                             if ($group == $receiver) {
@@ -899,7 +898,7 @@ class LogController extends ActionController
             }
         } elseif (isset($user['email'])) {
             // we came from unsubscribeLuxAction: an email and session must be present too!
-            $log = GeneralUtility::makeInstance('Fixpunkt\\FpNewsletter\\Domain\\Model\\Log');
+            $log = GeneralUtility::makeInstance(Log::class);
             $log->setEmail($user['email']);
             $log->setPid(intval($user['pid']));
             $checkSession = true;
@@ -913,6 +912,9 @@ class LogController extends ActionController
                 $pid = intval($storagePidsArray[0]);
             }
             // zum testen: var_dump ($storagePidsArray);
+            $requestLanguage = $this->request->getAttribute('language');
+            $requestLocale = $requestLanguage->getLocale();
+            $requestLanguageCode = $requestLocale->getLanguageCode();
             $hash = $this->helpersUtility->setHashAndLanguage($log, intval($this->settings['languageMode']));
             $dbuidext = 0;
 
@@ -992,7 +994,7 @@ class LogController extends ActionController
                     $request = $requestFactory->request($url, 'POST', $additionalOptions);
 
                     if ($request->getStatusCode() === 200) {
-                        $resultBody = json_decode($request->getBody()->getContents(), true);
+                        $resultBody = json_decode((string) $request->getBody()->getContents(), true);
                         if (!$resultBody['success'])
                             $error = 9;
 
@@ -1021,7 +1023,7 @@ class LogController extends ActionController
             } else {
                 $this->logRepository->add($log);
             }
-            $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+            $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
             $persistenceManager->persistAll();
         }
 
@@ -1041,7 +1043,7 @@ class LogController extends ActionController
                 $this->logRepository->update($log);
                 $persistenceManager->persistAll();
                 $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
-                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, false, true, $toAdmin, $hash, $unsubscribeVerifyUid, $pi);
+                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, false, true, $toAdmin, $hash, $unsubscribeVerifyUid, $pi, $requestLanguageCode);
                 $messageUid = (int) $this->settings['unsubscribeMessageUid'];
             } else {
                 if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
@@ -1052,7 +1054,7 @@ class LogController extends ActionController
                 $persistenceManager->persistAll();
                 if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                     $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
+                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '', $requestLanguageCode);
                 }
                 $messageUid = (int) $this->settings['unsubscribeVerifyMessageUid'];
             }
@@ -1095,11 +1097,14 @@ class LogController extends ActionController
         $error = 0;
         $dbuid = 0;
         $html = intval($this->settings['html']);
-        $dmCat = str_replace(' ', '', $this->settings['categoryOrGroup']);
+        $dmCat = str_replace(' ', '', (string) $this->settings['categoryOrGroup']);
         $uid = intval($this->request->hasArgument('uid')) ? $this->request->getArgument('uid') : 0;
         $hash = ($this->request->hasArgument('hash')) ? $this->request->getArgument('hash') : '';
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
         $sys_language_uid = intval($languageAspect->getId());
+        $requestLanguage = $this->request->getAttribute('language');
+        $requestLocale = $requestLanguage->getLocale();
+        $requestLanguageCode = $requestLocale->getLanguageCode();
         if (! $uid || ! $hash) {
             $this->view->assign('error', 1);
         } else {
@@ -1130,7 +1135,7 @@ class LogController extends ActionController
                     } else {
                         $log->setStatus(2);
                         $this->logRepository->update($log);
-                        $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+                        $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
                         $persistenceManager->persistAll();
                         $success = 0;
                         $salutation = $this->helpersUtility->getSalutation(intval($log->getGender()), $this->settings['gender']);
@@ -1183,7 +1188,7 @@ class LogController extends ActionController
                                 }
                             }
                             $this->frontendUserRepository->add($frontendUser);
-                            $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+                            $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
                             $persistenceManager->persistAll();
                             $success = 1;
                             $tableUid = $frontendUser->getUid();
@@ -1195,7 +1200,7 @@ class LogController extends ActionController
                             $error = 8;
                         } elseif (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || $this->settings['email']['enableConfirmationMails']) {
                             $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
+                            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '', $requestLanguageCode);
                         }
                     }
                 }
@@ -1230,6 +1235,9 @@ class LogController extends ActionController
         $hash = ($this->request->hasArgument('hash')) ? $this->request->getArgument('hash') : '';
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
         $sys_language_uid = intval($languageAspect->getId());
+        $requestLanguage = $this->request->getAttribute('language');
+        $requestLocale = $requestLanguage->getLocale();
+        $requestLanguageCode = $requestLocale->getLanguageCode();
         if (! $uid || ! $hash) {
             $this->view->assign('error', 1);
         } else {
@@ -1256,7 +1264,7 @@ class LogController extends ActionController
                     } else {
                         $log->setStatus(4);
                         $this->logRepository->update($log);
-                        $persistenceManager = GeneralUtility::makeInstance('TYPO3\\CMS\\Extbase\\Persistence\\Generic\\PersistenceManager');
+                        $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
                         $persistenceManager->persistAll();
 
                         if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
@@ -1264,7 +1272,7 @@ class LogController extends ActionController
                         }
                         if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                             $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
+                            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '', $requestLanguageCode);
                         }
                     }
                 }
@@ -1296,7 +1304,7 @@ class LogController extends ActionController
         if ($this->settings['table'] == 'tt_address' ||
             ($this->settings['table'] == 'fe_users' && $this->settings['newsletterExtension'] == 'mail')) {
             if ($this->settings['categoryOrGroup']) {
-                $dmail_cats = str_replace(' ', '', $this->settings['categoryOrGroup']);
+                $dmail_cats = str_replace(' ', '', (string) $this->settings['categoryOrGroup']);
                 $dmCatArr = explode(',', $dmail_cats);
             } else {
                 $dmCatArr = [];
@@ -1318,7 +1326,7 @@ class LogController extends ActionController
      */
     protected function getViewArray(): array
     {
-        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(\TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
+        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
         return $extbaseFrameworkConfiguration['view'];
     }
 }

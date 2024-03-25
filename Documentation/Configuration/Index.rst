@@ -127,7 +127,7 @@ You can overwrite the text for other languages like this (if preferXlfFile=0, el
 Note: if you want to overwrite the text for the default language, remove this lines: [siteLanguage("languageId") == "1"]
 and [END].
 
-If you enable the setting preferXlfFile, then you can overwrite the text (except company) like this::
+If you enable the setting preferXlfFile, then you can overwrite the text (subject and salutation) like this::
 
   plugin.tx_fpnewsletter._LOCAL_LANG.en.email.subscribedSubject = Your newsletter subscription is now confirmed
   plugin.tx_fpnewsletter._LOCAL_LANG.de.email.subscribedSubject = Deine Newsletter-Anmeldung ist nun bestätigt
@@ -138,6 +138,8 @@ You should copy the files and modify the path to the templates via TypoScript. S
 Otherwise set settings.email.dontAppendL=1.
 Note: till version 3.0.0, the default language is german even when settings.email.dontAppendL=1.
 From version 3.0.0, the email-templates without a appended number are using translated texts by default.
+
+*Deprecation-note*: dontAppendL will be removed in version 8.0.0. Even all the templates with the ending 0 and 1.
 
 External fields
 ^^^^^^^^^^^^^^^

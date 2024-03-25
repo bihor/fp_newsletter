@@ -2,13 +2,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><f:translate key="email.subscription" extensionName="FpNewsletter" /></title>
+<title><f:translate key="email.subscription" extensionName="FpNewsletter" languageKey="{language_code}" /></title>
 </head>
 <body>
 <f:render partial="Email/Salutation" arguments="{_all}" />
-<p><f:translate key="email.subscribedSuccess" extensionName="FpNewsletter" /></p>
-<p><f:translate key="email.usedEmail" extensionName="FpNewsletter" /> <a href="mailto:{email}">{email}</a></p>
-<p><f:translate key="email.bestRegards" extensionName="FpNewsletter" /><br>
+<p><f:translate key="email.subscribedSuccess" extensionName="FpNewsletter" languageKey="{language_code}" /></p>
+<p><f:translate key="email.usedEmail" extensionName="FpNewsletter" languageKey="{language_code}" /> <a href="mailto:{email}">{email}</a></p>
+<p><f:translate key="email.bestRegards" extensionName="FpNewsletter" languageKey="{language_code}" /><br>
 {settings.company}</p>
 </body>
 </html>

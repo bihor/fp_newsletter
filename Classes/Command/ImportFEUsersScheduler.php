@@ -2,6 +2,9 @@
 declare(strict_types = 1);
 namespace Fixpunkt\FpNewsletter\Command;
 
+use TYPO3\CMS\Core\Crypto\Random;
+use TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory;
+use TYPO3\CMS\Core\Database\ConnectionPool;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
@@ -55,15 +58,15 @@ class ImportFEUsersScheduler extends Command
         $group = intval($input->getArgument('group'));
         $password = $input->getArgument('password');
         if ($password == 'random') {
-            $password = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\Random::class)->generateRandomBytes(20);
+            $password = GeneralUtility::makeInstance(Random::class)->generateRandomBytes(20);
         }
-        $hashInstance = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Crypto\PasswordHashing\PasswordHashFactory::class)->getDefaultHashInstance('FE');
+        $hashInstance = GeneralUtility::makeInstance(PasswordHashFactory::class)->getDefaultHashInstance('FE');
         $hashedPassword = $hashInstance->getHashedPassword($password);
         $addresses = [];
         $count = 0;
 
         // Alle tt_address-Elemente holen
-        $connection = GeneralUtility::makeInstance(\TYPO3\CMS\Core\Database\ConnectionPool::class)->getConnectionForTable('tt_address');
+        $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tt_address');
         $queryBuilder = $connection->createQueryBuilder();
         if ($pid) {
             $statement = $queryBuilder->select('*')->from('tt_address')->where(
@@ -83,9 +86,9 @@ class ImportFEUsersScheduler extends Command
                 $affectedRows = $queryBuilder
                     ->insert('fe_users')
                     ->values([
-                        'name' => (($address['name']) ? trim($address['name']) : ''),
-                        'first_name' => (($address['first_name']) ? trim($address['first_name']) : ''),
-                        'last_name' => (($address['last_name']) ? trim($address['last_name']) : ''),
+                        'name' => (($address['name']) ? trim((string) $address['name']) : ''),
+                        'first_name' => (($address['first_name']) ? trim((string) $address['first_name']) : ''),
+                        'last_name' => (($address['last_name']) ? trim((string) $address['last_name']) : ''),
                         'email' => $address['email'],
                         'username' => $address['email'],
                         'password' => $hashedPassword,
@@ -93,7 +96,7 @@ class ImportFEUsersScheduler extends Command
                         'description' => 'Imported by fp_newsletter',
                         'pid' => $pid,
                         'tstamp' => $address['tstamp'],
-                        'crdate' => (($address['crdate']) ? $address['crdate'] : $address['tstamp'])
+                        'crdate' => ($address['crdate'] ?: $address['tstamp'])
                     ])
                     ->executeStatement();
                 $count++;

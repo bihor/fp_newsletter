@@ -1,6 +1,7 @@
 <?php
 namespace Fixpunkt\FpNewsletter\Domain\Repository;
 
+use TYPO3\CMS\Extbase\Persistence\Repository;
 /***
  *
  * This file is part of the "Newsletter management" Extension for TYPO3 CMS.
@@ -11,11 +12,10 @@ namespace Fixpunkt\FpNewsletter\Domain\Repository;
  *  (c) 2019 Kurt Gusbeth <k.gusbeth@fixpunkt.com>, fixpunkt werbeagentur gmbh
  *
  ***/
-
 /**
  * The repository for Logs
  */
-class FrontendUserRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class FrontendUserRepository extends Repository
 {
 
 }

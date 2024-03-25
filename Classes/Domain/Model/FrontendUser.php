@@ -7,8 +7,6 @@ use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 
 class FrontendUser extends AbstractEntity
 {
-    protected string $username = '';
-    protected string $password = '';
     protected string $usergroup = '';
 
     protected string $name = '';
@@ -32,10 +30,8 @@ class FrontendUser extends AbstractEntity
     protected string $mailSalutation = '';
     protected int $categories = 0;
 
-    public function __construct(string $username = '', string $password = '')
+    public function __construct(protected string $username = '', protected string $password = '')
     {
-        $this->username = $username;
-        $this->password = $password;
     }
 
     public function initializeObject()

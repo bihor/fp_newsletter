@@ -1,6 +1,10 @@
 <?php
 namespace Fixpunkt\FpNewsletter\Domain\Repository;
 
+use TYPO3\CMS\Extbase\Persistence\Repository;
+use TYPO3\CMS\Extbase\Persistence\QueryResultInterface;
+use TYPO3\CMS\Extbase\Persistence\QueryInterface;
+use Fixpunkt\FpNewsletter\Domain\Model\Log;
 use TYPO3\CMS\Core\Database\Connection;
 use TYPO3\CMS\Core\Database\ConnectionPool;
 use TYPO3\CMS\Core\Database\Query\QueryBuilder;
@@ -20,7 +24,7 @@ use TYPO3\CMS\Core\Utility\GeneralUtility;
 /**
  * The repository for Logs
  */
-class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
+class LogRepository extends Repository
 {
 
     /**
@@ -29,7 +33,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param	array $pids: PIDs
      * @param	int $sys_language_uid: language
      * @param	int $maxDate: x days ago
-     * @return	array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
+     * @return array|QueryResultInterface
      */
     function getByEmailAndPid(string $email, array $pids, int $sys_language_uid, int $maxDate)
     {
@@ -46,7 +50,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         }
         $query->matching($query->logicalAnd(...$constraints));
         $query->setOrderings([
-            'crdate' => \TYPO3\CMS\Extbase\Persistence\QueryInterface::ORDER_DESCENDING
+            'crdate' => QueryInterface::ORDER_DESCENDING
         ]);
         return $query->execute()->getFirst();
     }
@@ -80,7 +84,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
      * @param   string  $table tt_address oder fe_users
      * @return  integer
      */
-    function getUidFromExternal($email, $pid, $table)
+    function getUidFromExternal($email, mixed $pid, $table)
     {
         $dbuid = 0;
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
@@ -213,7 +217,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
         if (is_array($dmCatArr) && count($dmCatArr)>0) {
             $count = 0;
             foreach ($dmCatArr as $uid) {
-                if (is_numeric(trim($uid))) {
+                if (is_numeric(trim((string) $uid))) {
                     // set the categories to the mm table of sys_category
                     $count++;
                     $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('sys_category_record_mm');
@@ -251,14 +255,14 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     }
 
     /**
-	 * insertInTTAddress: insert user
-	 * @param \Fixpunkt\FpNewsletter\Domain\Model\Log	$address User
-	 * @param integer	$mode 		HTML-mode
-	 * @param array	$dmCatArr	categories
-     * @param string  $salutation Anrede
-     * @param string $additionalFields weitere extern zugefügte Felder
-	 */
-	function insertInTtAddress($address, $mode, $dmCatArr = [], $salutation = '', $additionalFields = '')
+  * insertInTTAddress: insert user
+  * @param Log $address User
+  * @param integer	$mode 		HTML-mode
+  * @param array	$dmCatArr	categories
+  * @param string  $salutation Anrede
+  * @param string $additionalFields weitere extern zugefügte Felder
+  */
+ function insertInTtAddress($address, $mode, $dmCatArr = [], $salutation = '', $additionalFields = '')
     {
 		$timestamp = time();
 		if ($address->getGender() == 1) $gender = 'f';
@@ -325,7 +329,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
     /**
      * updateInTTAddress: update user in tt_address
-     * @param \Fixpunkt\FpNewsletter\Domain\Model\Log	$address User
+     * @param Log $address User
      * @param integer $mode HTML-mode
      * @param int     $tableUid   externe uid
      * @param string $salutation Anrede
@@ -390,7 +394,7 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
 
     /**
      * updateInFeUsers: update fe_user
-     * @param	\Fixpunkt\FpNewsletter\Domain\Model\Log	$address User
+     * @param Log $address User
      * @param   int     $tableUid   externe uid
      * @param   string  $extension  mail or luxletter
      */
@@ -502,14 +506,14 @@ class LogRepository extends \TYPO3\CMS\Extbase\Persistence\Repository
     }
 
     /**
-	 * Find an entry with sys_language_uid > 0
-	 * https://forge.typo3.org/issues/86405
-	 * 
-	 * @param	integer	$uid
-	 * @param	integer	$sys_language_uid
-	 * @return array|\TYPO3\CMS\Extbase\Persistence\QueryResultInterface
-	 */
-	public function findAnotherByUid($uid, $sys_language_uid)
+  * Find an entry with sys_language_uid > 0
+  * https://forge.typo3.org/issues/86405
+  *
+  * @param	integer	$uid
+  * @param	integer	$sys_language_uid
+  * @return array|QueryResultInterface
+  */
+ public function findAnotherByUid($uid, $sys_language_uid)
     {
 	    $query = $this->createQuery();
 	    $query->getQuerySettings()->setRespectSysLanguage(false);

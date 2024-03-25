@@ -125,7 +125,7 @@ Man kann die Texte für andere Sprachen so überschreiben (falls preferXlfFile=0
 Achtung: wenn man den Text der Standardsprache überschreiben will, entfernt man die beiden Zeilen:
 [siteLanguage("languageId") == "1"] und [END].
 
-Falls man die Setting preferXlfFile=1 setzt, kann man die Texte (bis auf company) so überschreiben::
+Falls man die Setting preferXlfFile=1 setzt, kann man die Texte (Betreff und Anrede) so überschreiben::
 
   plugin.tx_fpnewsletter._LOCAL_LANG.en.email.subscribedSubject = Your newsletter subscription is now confirmed
   plugin.tx_fpnewsletter._LOCAL_LANG.de.email.subscribedSubject = Deine Newsletter-Anmeldung ist nun bestätigt
@@ -133,6 +133,8 @@ Falls man die Setting preferXlfFile=1 setzt, kann man die Texte (bis auf company
 Achtung: wenn man andere Sprachen in den Emails verwenden will, sollte man das Kapitel "Administrator-Handbuch" lesen.
 Bei settings.email.dontAppendL=0  ist die Standardsprache deutsch. Diese Templates enden ab Version 3.0.0 mit 0.html.
 Ab Version 3.0.0 werden in den E-Mail-Templates ohne Zahl-Endung übersetzte Texte verwendet.
+
+*Deprecation*: dontAppendL wird in Version 8.0.0 entfernt. Auch alle Templates mit der Endung 0 und 1.
 
 Externe Felder
 ^^^^^^^^^^^^^^

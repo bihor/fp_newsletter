@@ -2,16 +2,16 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title><f:translate key="email.unsubscription" extensionName="FpNewsletter" /></title>
+<title><f:translate key="email.unsubscription" extensionName="FpNewsletter" languageKey="{language_code}" /></title>
 </head>
 <body>
 <f:render partial="Email/Salutation" arguments="{_all}" />
-<p><f:translate key="email.pleaseVerifyUnsubscription" extensionName="FpNewsletter" /></p>
+<p><f:translate key="email.pleaseVerifyUnsubscription" extensionName="FpNewsletter" languageKey="{language_code}" /></p>
 <p><f:link.external uri="{fpnl:getActionUrl(pageUid:unsubscribeVerifyUid, pi:pi, action:'verifyUnsubscribe', uid:uid, hash:hash, languageUid:sys_language_uid)}"
                     target="_blank"><f:format.raw><f:uri.external uri="{fpnl:getActionUrl(pageUid:unsubscribeVerifyUid, pi:pi, action:'verifyUnsubscribe', uid:uid, hash:hash, languageUid:sys_language_uid)}" /></f:format.raw></f:link.external></p>
 <p><f:link.external uri="{fpnl:getActionUrl(pageUid:unsubscribeVerifyUid, pi:pi, action:'verifyUnsubscribe', uid:uid, hash:hash, languageUid:sys_language_uid)}"
-                    target="_blank" style="border:1px solid #000;border-radius:3px;padding:2px 10px;"><f:translate key="email.alternative" extensionName="FpNewsletter" /></f:link.external></p>
-<p><f:translate key="email.bestRegards" extensionName="FpNewsletter" /><br>
+                    target="_blank" style="border:1px solid #000;border-radius:3px;padding:2px 10px;"><f:translate key="email.alternative" extensionName="FpNewsletter" languageKey="{language_code}" /></f:link.external></p>
+<p><f:translate key="email.bestRegards" extensionName="FpNewsletter" languageKey="{language_code}" /><br>
 {settings.company}</p>
 </body>
 </html>

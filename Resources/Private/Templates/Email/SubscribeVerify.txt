@@ -1,6 +1,6 @@
 <f:render partial="Email/Salutation.txt" arguments="{_all}" />
-<f:translate key="email.pleaseVerify" extensionName="FpNewsletter" />
+<f:translate key="email.pleaseVerify" extensionName="FpNewsletter" languageKey="{language_code}" />
 <f:format.raw><f:uri.external uri="{fpnl:getActionUrl(pageUid:subscribeVerifyUid, pi:pi, action:'verify', uid:uid, hash:hash, languageUid:sys_language_uid)}" /></f:format.raw>
 
-<f:translate key="email.bestRegards" extensionName="FpNewsletter" />
+<f:translate key="email.bestRegards" extensionName="FpNewsletter" languageKey="{language_code}" />
 {settings.company}

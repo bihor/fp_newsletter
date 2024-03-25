@@ -12,34 +12,16 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 class RecentLogEntriesWidget implements WidgetInterface
 {
     /**
-     * @var WidgetConfigurationInterface
-     */
-    private $configuration;
-
-    /**
-     * @var StandaloneView
-     */
-    private $view;
-
-    /**
      * @var array
      */
     private $options;
 
-    /**
-     * @var LogDataProvider
-     */
-    private $dataProvider;
-
     public function __construct(
-        WidgetConfigurationInterface $configuration,
-        StandaloneView               $view,
-        LogDataProvider              $dataProvider,
+        private readonly WidgetConfigurationInterface $configuration,
+        private readonly StandaloneView               $view,
+        private readonly LogDataProvider              $dataProvider,
         array                        $options = []
     ) {
-        $this->configuration = $configuration;
-        $this->view = $view;
-        $this->dataProvider = $dataProvider;
         $this->options = array_merge(
             [
                 'showErrors' => true,

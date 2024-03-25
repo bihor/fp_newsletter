@@ -1,22 +1,26 @@
 <?php
 namespace Fixpunkt\FpNewsletter\Tests\Unit\Controller;
 
+use TYPO3\CMS\Core\Tests\UnitTestCase;
+use Fixpunkt\FpNewsletter\Controller\LogController;
+use TYPO3\CMS\Extbase\Persistence\ObjectStorage;
+use Fixpunkt\FpNewsletter\Domain\Repository\LogRepository;
+use Fixpunkt\FpNewsletter\Domain\Model\Log;
 /**
  * Test case.
  *
  * @author Kurt Gusbeth <k.gusbeth@fixpunkt.com>
  */
-class LogControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
+class LogControllerTest extends UnitTestCase
 {
     /**
-     * @var \Fixpunkt\FpNewsletter\Controller\LogController
+     * @var LogController
      */
     protected $subject = null;
 
     protected function setUp()
     {
-        parent::setUp();
-        $this->subject = $this->getMockBuilder(\Fixpunkt\FpNewsletter\Controller\LogController::class)
+        $this->subject = $this->getMockBuilder(LogController::class)
             ->setMethods(['redirect', 'forward', 'addFlashMessage'])
             ->disableOriginalConstructor()
             ->getMock();
@@ -24,7 +28,6 @@ class LogControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
 
     protected function tearDown()
     {
-        parent::tearDown();
     }
 
     /**
@@ -33,11 +36,11 @@ class LogControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
     public function listActionFetchesAllLogsFromRepositoryAndAssignsThemToView()
     {
 
-        $allLogs = $this->getMockBuilder(\TYPO3\CMS\Extbase\Persistence\ObjectStorage::class)
+        $allLogs = $this->getMockBuilder(ObjectStorage::class)
             ->disableOriginalConstructor()
             ->getMock();
 
-        $logRepository = $this->getMockBuilder(\Fixpunkt\FpNewsletter\Domain\Repository\LogRepository::class)
+        $logRepository = $this->getMockBuilder(LogRepository::class)
             ->setMethods(['findAll'])
             ->disableOriginalConstructor()
             ->getMock();
@@ -58,9 +61,9 @@ class LogControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function createActionAddsTheGivenLogToLogRepository()
     {
-        $log = new \Fixpunkt\FpNewsletter\Domain\Model\Log();
+        $log = new Log();
 
-        $logRepository = $this->getMockBuilder(\Fixpunkt\FpNewsletter\Domain\Repository\LogRepository::class)
+        $logRepository = $this->getMockBuilder(LogRepository::class)
             ->setMethods(['add'])
             ->disableOriginalConstructor()
             ->getMock();
@@ -76,9 +79,9 @@ class LogControllerTest extends \TYPO3\CMS\Core\Tests\UnitTestCase
      */
     public function deleteActionRemovesTheGivenLogFromLogRepository()
     {
-        $log = new \Fixpunkt\FpNewsletter\Domain\Model\Log();
+        $log = new Log();
 
-        $logRepository = $this->getMockBuilder(\Fixpunkt\FpNewsletter\Domain\Repository\LogRepository::class)
+        $logRepository = $this->getMockBuilder(LogRepository::class)
             ->setMethods(['remove'])
             ->disableOriginalConstructor()
             ->getMock();

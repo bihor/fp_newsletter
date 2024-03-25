@@ -51,7 +51,7 @@ class GetActionUrlViewHelper extends AbstractViewHelper
                 '_language' => $language
             ]);
             return $uri->__tostring();
-        } catch (Throwable $exception) {
+        } catch (Throwable) {
             throw new \RuntimeException(
                 'Could not build a valid URL to a fp_newsletter page with target page uid "' . $this->arguments['pageUid'] . '"',
                 5588995474

@@ -168,3 +168,9 @@ Version 6.3.2:
 
 Version 6.4.0:
 - Additional fields can now be copied from the log-entry to the tt_address-table. Setting additionalTtAddressFields added.
+
+Version 7.0.0:
+- Refactoring with the rector tool.
+- Adding of the language code to the email text.
+- TypoScript-files have now the ending .typoscript.
+- setting dontAppendL is now deprecated.

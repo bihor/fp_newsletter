@@ -1,6 +1,7 @@
 <?php
 namespace Fixpunkt\FpNewsletter\Domain\Model;
 
+use TYPO3\CMS\Extbase\DomainObject\AbstractEntity;
 use TYPO3\CMS\Extbase\Annotation as Extbase;
 
 /***
@@ -17,7 +18,7 @@ use TYPO3\CMS\Extbase\Annotation as Extbase;
 /**
  * Log
  */
-class Log extends \TYPO3\CMS\Extbase\DomainObject\AbstractEntity
+class Log extends AbstractEntity
 {
     /**
      * Time stamp date
