@@ -658,7 +658,8 @@ class LogController extends ActionController
     {
         $storagePidsArray = $this->logRepository->getStoragePids();
         $pid = intval($storagePidsArray[0]);
-        if ($log) {
+        if ($log && $log->getUid()) {
+            // es ist nicht klar, woher dieser securityhash her kommt, denn im Template ist er nicht drin.
 			$securityhash = $this->request->hasArgument('securityhash') ? $this->request->getArgument('securityhash') : '';
             if (empty($securityhash) || !is_string($securityhash) || !hash_equals($log->getSecurityhash(), $securityhash)) {
                 $error = 1;
@@ -699,6 +700,8 @@ class LogController extends ActionController
         } else {
             $pi = 'unsubscribe';
         }
+        $unsubscribeUid = ($this->settings['unsubscribeUid']) ? : intval($GLOBALS["TSFE"]->id);
+        $this->view->assign('unsubscribeUid', $unsubscribeUid);
         $this->view->assign('plugin', $pi);
         $this->view->assign('log', $log);
         $this->view->assign('error', $error);
