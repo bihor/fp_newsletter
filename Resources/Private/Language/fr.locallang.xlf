@@ -271,6 +271,10 @@
 				<source>Error: the captcha is not valid!</source>
 				<target>Erreur: Le cryptogramme de sécurité n&#039;est pas valide!</target>
 			</trans-unit>
+			<trans-unit id="wrong_edituid" resname="wrong_edituid">
+				<source>Error: no editUid was set!</source>
+				<target>Error: no editUid was set!</target>
+			</trans-unit>
 			<trans-unit id="wrong_honeypot" resname="wrong_honeypot">
 				<source>Error: spam detected (honeypot)!</source>
 				<target>Erreur: spam détecté (honeypot)!</target>

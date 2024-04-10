@@ -207,6 +207,9 @@
 			<trans-unit id="wrong_honeypot" resname="wrong_honeypot">
 				<source>Error: spam detected (honeypot)!</source>
 			</trans-unit>
+			<trans-unit id="wrong_edituid" resname="wrong_edituid">
+				<source>Error: no editUid was set!</source>
+			</trans-unit>
 			<trans-unit id="wrong_insert" resname="wrong_insert">
 				<source>Error: sql insert error!</source>
 			</trans-unit>

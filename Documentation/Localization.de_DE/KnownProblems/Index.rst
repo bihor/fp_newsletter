@@ -15,6 +15,10 @@ Die Domain fehlt in den E-Mails wenn man TYPO3 9 benutzt? Dann muss man die Doma
 
 Der Modus unsubscribeMode=1 funktioniert nur, wenn auch unsubscribeUid gesetzt ist.
 
+Es scheint ein TYPO3-Bug zu geben, wo die Abmelde-Seite nicht funktioniert.
+In solch einem Fall sollte man versuchen, die settings.unsubscribeUid via FlexForms zu setzen.
+Bei mir funktionierte es dann.
+
 Seit Version 5.x wird nicht nur ein Plugin-Name verwendet. In manchen Fällen muss man deshalb leider die Templates
 anpassen und entweder den pi-Parameter hinzufügen, ändern oder entfernen bei f:form oder f:link.external!
 

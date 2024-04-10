@@ -47,7 +47,7 @@ resendVerificationUid             integer     Seite, auf der man die Verifizieru
 editUid                           integer     Seite, auf der man seit Abonnement bearbeiten kann
 gdprUid                           integer     Seite mit den DSGVO-Texten                                            1
 daysExpire                        integer     Der Verifikations-Link wird ungültig nach X Tagen                     2
-searchPidMode                     integer     Suche in tt_address: 0: nur im 1. Ordner; 1: in allen Ordners°        0
+searchPidMode                     integer     Suche in Ordnern: 0: nur im 1. Ordner; 1: in allen Ordners°           0
 deleteMode                        integer     1: setze delete-Flag; 2: lösche endgültig; 3: lösche nur Kat./Gruppe  1
 languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
 categoryMode                      integer     0: nur angegebene Kategorien bei Edit erlauben; 1: alle               1

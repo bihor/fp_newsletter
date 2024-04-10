@@ -260,11 +260,18 @@ class LogController extends ActionController
         if ($email) {
             // send email with a link to an edit page
             $dbuidext = 0;
-            if (GeneralUtility::validEmail($email)) {
+            if (!$this->settings['editUid']) {
+                $error = 9;
+            } elseif (GeneralUtility::validEmail($email)) {
                 $storagePidsArray = $this->logRepository->getStoragePids();
                 $pid = intval($storagePidsArray[0]);
                 if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
-                    $dbuidext = $this->logRepository->getUidFromExternal($email, $pid, $this->settings['table']);
+                    if ($this->settings['searchPidMode']) {
+                        $pids = $storagePidsArray;
+                    } else {
+                        $pids = $pid;
+                    }
+                    $dbuidext = $this->logRepository->getUidFromExternal($email, $pids, $this->settings['table']);
                 }
                 if (!$dbuidext) {
                     $error = 7;
@@ -659,7 +666,7 @@ class LogController extends ActionController
         $storagePidsArray = $this->logRepository->getStoragePids();
         $pid = intval($storagePidsArray[0]);
         if ($log && $log->getUid()) {
-            // es ist nicht klar, woher dieser securityhash her kommt, denn im Template ist er nicht drin.
+            // her kommt man nach einem redirect von delete her
 			$securityhash = $this->request->hasArgument('securityhash') ? $this->request->getArgument('securityhash') : '';
             if (empty($securityhash) || !is_string($securityhash) || !hash_equals($log->getSecurityhash(), $securityhash)) {
                 $error = 1;
@@ -822,7 +829,11 @@ class LogController extends ActionController
         } else {
             if (GeneralUtility::validEmail($email)) {
                 $storagePidsArray = $this->logRepository->getStoragePids();
-                $pid = intval($storagePidsArray[0]);
+                if ($this->settings['searchPidMode']) {
+                    $pid = $storagePidsArray;
+                } else {
+                    $pid = intval($storagePidsArray[0]);
+                }
                 if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
                     $user = $this->logRepository->getUidFromExternal($email, $pid, $this->settings['table']);
                 }

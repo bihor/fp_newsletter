@@ -24,6 +24,7 @@ class HelpersUtility
     public function checkMathCaptcha(int $result): int
     {
         $error = 0;
+        //echo "ses: ".$GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1').'---'.$GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2');
         if($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1') !== NULL && $GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2') !== NULL && $GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptchaop') !== NULL) {
             //$result = intval($log->getMathcaptcha());
             $no1 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1'));

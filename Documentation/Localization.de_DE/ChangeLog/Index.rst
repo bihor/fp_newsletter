@@ -167,8 +167,9 @@ Version 6.3.2:
 Version 6.4.0:
 - Zusätzliche Felder können nun aus dem Log-Eintrag in eine tt_address-Tabelle kopiert werden. Setting additionalTtAddressFields hinzugefügt.
 
-Version 7.0.0:
+Version 7.0.1:
 - Refactoring mit dem rector-Tool.
 - Der Sprach-Code wird nun bei f:translate in den E-Mail-Templates hinzugefügt.
 - TypoScript-Dateien haben nun die Endung .typoscript.
 - Die setting dontAppendL ist nun deprecated.
+- Bugfix: Suche in allen Ordners greift nun öfters.

@@ -46,8 +46,9 @@ Version 6.4.0:
 Version 6.4.3:
 - Small bugfixes.
 
-Version 7.0.0:
+Version 7.0.1:
 - Refactoring with the rector tool.
 - Adding of the language code to f:translate in the email-templates.
 - TypoScript-files have now the ending .typoscript.
 - setting dontAppendL is now deprecated.
+- Bugfix: search in all folders now for mail-unsubscription and edit too.

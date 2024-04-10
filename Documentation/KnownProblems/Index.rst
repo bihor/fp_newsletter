@@ -15,6 +15,9 @@ The domain is missing in the emails when using TYPO3 9? Then you need to add the
 
 The mode unsubscribeMode=1 works only if unsubscribeUid is set.
 
+There is a TYPO3 bug in some releases where the unsubscribe form does not work.
+In that case you can try to set the settings.unsubscribeUid via FlexForms. For me that helps.
+
 Since version 5.x there is not only one plugin name (pi1). In some cases therefore you need to change the template
 and add, modify or delete the pi-parameter at a f:link.external or f:form.
 

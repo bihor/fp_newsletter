@@ -275,6 +275,10 @@
 				<source>Error: spam detected (honeypot)!</source>
 				<target>Fehler - Spam erkannt (Honeypot)!</target>
 			</trans-unit>
+			<trans-unit id="wrong_edituid" resname="wrong_edituid">
+				<source>Error: no editUid was set!</source>
+				<target>Fehler - Es wurde keine editUid angegeben.</target>
+			</trans-unit>
 			<trans-unit id="wrong_insert" resname="wrong_insert">
 				<source>Error: sql insert error!</source>
 				<target>Fehler - Der Datensatz konnte nicht eingefügt werden.</target>

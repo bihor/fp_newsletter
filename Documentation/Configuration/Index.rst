@@ -47,7 +47,7 @@ resendVerificationUid             integer     Page, where a user can request the
 editUid                           integer     Page, where a user can edit his subscription
 gdprUid                           integer     Page with the GDPR text                                               1
 daysExpire                        integer     The link expires after X days                                         2
-searchPidMode                     integer     Search in tt_address: 0: only in the 1. folder; 1: in all folders°    0
+searchPidMode                     integer     Search in folders: 0: only in the 1. folder; 1: in all folders°       0
 deleteMode                        integer     1: set deletion flag; 2: delete entry; 3: remove only the cat./group  1
 languageMode                      integer     0: uses -1 if L>0; 1: uses the sys_language_uid from pages            0
 categoryMode                      integer     0: allow only categories/groups specified in categoryOrGroup; 1: all  1

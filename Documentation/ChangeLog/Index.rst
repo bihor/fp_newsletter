@@ -174,3 +174,4 @@ Version 7.0.0:
 - Adding of the language code to the email text.
 - TypoScript-files have now the ending .typoscript.
 - setting dontAppendL is now deprecated.
+- Bugfix: search in all folders now for mail-unsubscription and edit too.
