@@ -175,3 +175,6 @@ Version 7.0.0:
 - TypoScript-files have now the ending .typoscript.
 - setting dontAppendL is now deprecated.
 - Bugfix: search in all folders now for mail-unsubscription and edit too.
+
+Version 7.0.2:
+- Bugfix: backend preview.

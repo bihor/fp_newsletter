@@ -173,3 +173,6 @@ Version 7.0.1:
 - TypoScript-Dateien haben nun die Endung .typoscript.
 - Die setting dontAppendL ist nun deprecated.
 - Bugfix: Suche in allen Ordners greift nun öfters.
+
+Version 7.0.2:
+- Bugfix: Backend-Vorschau.
