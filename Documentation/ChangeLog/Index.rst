@@ -176,5 +176,6 @@ Version 7.0.0:
 - setting dontAppendL is now deprecated.
 - Bugfix: search in all folders now for mail-unsubscription and edit too.
 
-Version 7.0.2:
+Version 7.0.3:
 - Bugfix: backend preview.
+- Bugfix: Plugin-Updater.

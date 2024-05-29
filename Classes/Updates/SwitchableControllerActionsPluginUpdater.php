@@ -150,16 +150,20 @@ class SwitchableControllerActionsPluginUpdater implements UpgradeWizardInterface
             $allowedSettings = $this->getAllowedSettingsFromFlexForm($targetListType);
 
             // Remove flexform data which do not exist in flexform of new plugin
-            foreach ($flexFormData['data'] as $sheetKey => $sheetData) {
-                foreach ($sheetData['lDEF'] as $settingName => $setting) {
-                    if (!in_array($settingName, $allowedSettings, true)) {
-                        unset($flexFormData['data'][$sheetKey]['lDEF'][$settingName]);
-                    }
-                }
+            if (is_array($flexFormData['data'])) {
+                foreach ($flexFormData['data'] as $sheetKey => $sheetData) {
+                    if (is_array($sheetData['lDEF'])) {
+                        foreach ($sheetData['lDEF'] as $settingName => $setting) {
+                            if (!in_array($settingName, $allowedSettings, true)) {
+                                unset($flexFormData['data'][$sheetKey]['lDEF'][$settingName]);
+                            }
+                        }
 
-                // Remove empty sheets
-                if (!count($flexFormData['data'][$sheetKey]['lDEF']) > 0) {
-                    unset($flexFormData['data'][$sheetKey]);
+                        // Remove empty sheets
+                        if (!count($flexFormData['data'][$sheetKey]['lDEF']) > 0) {
+                            unset($flexFormData['data'][$sheetKey]);
+                        }
+                    }
                 }
             }
 

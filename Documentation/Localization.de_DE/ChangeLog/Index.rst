@@ -174,5 +174,6 @@ Version 7.0.1:
 - Die setting dontAppendL ist nun deprecated.
 - Bugfix: Suche in allen Ordners greift nun öfters.
 
-Version 7.0.2:
+Version 7.0.3:
 - Bugfix: Backend-Vorschau.
+- Bugfix: Plugin-Updater.
