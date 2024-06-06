@@ -143,16 +143,20 @@ Version 5.2:
 
 Version 6.0.0:
 - Breaking: der Support für direct_mail wurde entfernt. Stattdessen wird nun die Extension "mail" unterstützt.
+
 - Breaking: die TypoScript-settings dmUnsubscribeMode, module_sys_dmail_html, module_sys_dmail_category wurden umbenannt zu
-  unsubscribeMode, html, categoryOrGroup. Siehe Kapitel Administrator / Updaten auf version 6.x.
+unsubscribeMode, html, categoryOrGroup. Siehe Kapitel Administrator / Updaten auf version 6.x.
 
 Version 6.1.0:
 - Kompatibilität zu TYPO3 11.5 erneut hinzugefügt.
+
 - Bugfix: Sprache zu den Links in den E-Mails hinzugefügt.
 
 Version 6.2.0:
 - fe_users kann nun mit der Extension Luxletter oder Mail benutzt werden.
+
 - deleteMode 3 hinzugefügt: lösche nur Kategorien (Mail) oder Benutzergruppe (Luxletter).
+
 - Neue Einstellungsmöglichkeit: newsletterExtension (mail oder luxletter).
 
 Version 6.3.0:
@@ -167,13 +171,21 @@ Version 6.3.2:
 Version 6.4.0:
 - Zusätzliche Felder können nun aus dem Log-Eintrag in eine tt_address-Tabelle kopiert werden. Setting additionalTtAddressFields hinzugefügt.
 
-Version 7.0.1:
+Version 7.0.0/1:
 - Refactoring mit dem rector-Tool.
+
 - Der Sprach-Code wird nun bei f:translate in den E-Mail-Templates hinzugefügt.
+
 - TypoScript-Dateien haben nun die Endung .typoscript.
+
 - Die setting dontAppendL ist nun deprecated.
+
 - Bugfix: Suche in allen Ordners greift nun öfters.
 
 Version 7.0.3:
 - Bugfix: Backend-Vorschau.
+
 - Bugfix: Plugin-Updater.
+
+Version 7.0.4:
+- Unnötige SQL-Felder entfernt.
