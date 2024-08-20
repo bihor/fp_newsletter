@@ -23,67 +23,67 @@ Settings-Einstellungen
 
 .. container:: ts-properties
 
-================================= =========== ===================================================================== ================================
-Feld                              Typ         Beschreibung                                                          Standard-Wert
-================================= =========== ===================================================================== ================================
-table                             string      tt_address, fe_users oder keine Tabelle (leerer Wert) möglich         tt_address
-newsletterExtension               string      luxletter (default für fe_users) oder mail (default für tt_address)   leer = luxletter
-optionalFields                    string      Optionale Werte: siehe weiter unten                                   gender,firstname,lastname
+================================= =========== ========================================================================= ================================
+Feld                              Typ         Beschreibung                                                              Standard-Wert
+================================= =========== ========================================================================= ================================
+table                             string      tt_address, fe_users oder keine Tabelle (leerer Wert) möglich             tt_address
+newsletterExtension               string      luxletter (default für fe_users) oder mail (default für tt_address)       leer = luxletter
+optionalFields                    string      Optionale Werte: siehe weiter unten                                       gender,firstname,lastname
 optionalFieldsRequired            string      Optionale erforderliche* Werte: siehe weiter unten
-doubleOptOut                      boolean     Double opt out Abmeldung einschalten?                                 1
-disableErrorMsg                   boolean     Manche Fehlermeldungen ignorieren (z.B. bereits/nicht angemeldet)?    0
-enableUnsubscribeForm             boolean     Abmeldeformular auf der Anmeldeseite mit ausgeben?**                  0
-enableUnsubscribeGdprAsHidden     boolean     DSGVO-Checkbox beim Abmeldeformular verbergen?                        0
-enableEditForm                    boolean     Bearbeiten-Formular auf der Anmeldeseite mit ausgeben?**              0
-subscribeUid                      integer     Seite für die Anmeldung                                               1
+doubleOptOut                      boolean     Double opt out Abmeldung einschalten?                                     1
+disableErrorMsg                   boolean     Manche Fehlermeldungen ignorieren (z.B. bereits/nicht angemeldet)?        0
+enableUnsubscribeForm             boolean     Abmeldeformular auf der Anmeldeseite mit ausgeben?**                      0
+enableUnsubscribeGdprAsHidden     boolean     DSGVO-Checkbox beim Abmeldeformular verbergen?                            0
+enableEditForm                    boolean     Bearbeiten-Formular auf der Anmeldeseite mit ausgeben?**                  0
+subscribeUid                      integer     Seite für die Anmeldung                                                   1
 subscribeMessageUid               integer     Optionale Seite für einen Redirect nach der Anmeldung
 subscribeVerifyUid                integer     Seite für die Anmelde-Verifikation
 subscribeVerifyMessageUid         integer     Optionale Seite für den Redirect nach der Anmelde-Verifikation
-unsubscribeUid                    integer     Seite für die Abmeldung                                               1
+unsubscribeUid                    integer     Seite für die Abmeldung                                                   1
 unsubscribeMessageUid             integer     Optionale Seite für den Redirect nach der Abmeldung
 unsubscribeVerifyUid              integer     Seite für die Abmelde-Verifikation (demnächst)
 unsubscribeVerifyMessageUid       integer     Optionale Seite für den Redirect nach der Abmelde-Verifikation***
 resendVerificationUid             integer     Seite, auf der man die Verifizierungsemail erneut anfordern kann
 editUid                           integer     Seite, auf der man seit Abonnement bearbeiten kann
-gdprUid                           integer     Seite mit den DSGVO-Texten                                            1
-daysExpire                        integer     Der Verifikations-Link wird ungültig nach X Tagen                     2
-searchPidMode                     integer     Suche in Ordnern: 0: nur im 1. Ordner; 1: in allen Ordners°           0
-deleteMode                        integer     1: setze delete-Flag; 2: lösche endgültig; 3: lösche nur Kat./Gruppe  1
-languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages      0
-categoryMode                      integer     0: nur angegebene Kategorien bei Edit erlauben; 1: alle               1
-unsubscribeMode                   integer     0: Sofort-Abmeldung durch Link aus Luxletter; 1: zeige Abmeldeform    0
+gdprUid                           integer     Seite mit den DSGVO-Texten                                                1
+daysExpire                        integer     Der Verifikations-Link wird ungültig nach X Tagen                         2
+searchPidMode                     integer     Suche in Ordnern: 0: nur im 1. Ordner; 1: in allen Ordners°               0
+deleteMode                        integer     1: delete-Flag; 2: lösche endgültig; 3: lösche nur Kat./Gruppe; 4: hidden 1
+languageMode                      integer     0: setzt -1 wenn L>0; 1: benutzte die sys_language_uid von pages          0
+categoryMode                      integer     0: nur angegebene Kategorien bei Edit erlauben; 1: alle                   1
+unsubscribeMode                   integer     0: Sofort-Abmeldung durch Link aus Luxletter; 1: zeige Abmeldeform        0
 categoryOrGroup                   string      Liste von Kategorien (uid) aus sys_category oder fe_groups°°
-html                              integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere Felder der mail-Extens.  1
-password                          string      Passwort für die fe_users Tabelle. random erzeugt ein zufälliges Pw.  random
+html                              integer     0: nur TEXT; 1: TEXT und HTML; -1: ignoriere Felder der mail-Extens.      1
+password                          string      Passwort für die fe_users Tabelle. random erzeugt ein zufälliges Pw.      random
 authCodeFields                    string      Kopiere "Fields ... of authentication codes" von mail hierhin
 reCAPTCHA_site_key                string      Websiteschlüssel für Google reCaptcha v3.
 reCAPTCHA_secret_key              string      Geheimer Schlüssel für Google reCaptcha v3
-mathCAPTCHA                       integer     Zeige ein mathematisches Captcha? 0: nein; 1, 2: ja, mit 1-2 Ziffern  0
-honeypot                          boolean     Einen Honigtopf (honeypot) gegen Spam einschalten?                    0
-debug                             boolean     Sendet keine E-Mails wenn debug=1                                     0
-checkForRequiredExtensions        boolean     Prüfen, ob benötigte Extensions installiert sind? 0: nein; 1: ja.     1
-company                           string      Name der Firma                                                        Ihre Firma
-gender.please                     string      Text für die Anrede-Auswahl                                           Bitte auswählen
-gender.mr                         string      Text für Herr                                                         Herr
-gender.mrs                        string      Text für Frau                                                         Frau
+mathCAPTCHA                       integer     Zeige ein mathematisches Captcha? 0: nein; 1, 2: ja, mit 1-2 Ziffern      0
+honeypot                          boolean     Einen Honigtopf (honeypot) gegen Spam einschalten?                        0
+debug                             boolean     Sendet keine E-Mails wenn debug=1                                         0
+checkForRequiredExtensions        boolean     Prüfen, ob benötigte Extensions installiert sind? 0: nein; 1: ja.         1
+company                           string      Name der Firma                                                            Ihre Firma
+gender.please                     string      Text für die Anrede-Auswahl                                               Bitte auswählen
+gender.mr                         string      Text für Herr                                                             Herr
+gender.mrs                        string      Text für Frau                                                             Frau
 parameters.active                 string      Parameter für Anmeldung aus externer Extension (POST-Parameter)
 parameters.email                  string      Parameter für die E-Mail externer Herkunft (GET/POST-Parameter)
-email.senderMail                  string      E-Mail-Adresse des Absenders                                          beispiel@test.de
-email.senderName                  string      Absender-Name                                                         Absender-Name
-email.subscribeVerifySubject      string      Betreff der Verifikations-E-Mail (Anmeldung)                          Bitte verifizieren ...
-email.unsubscribeVerifySubject    string      Betreff der Verifikations-E-Mail (Abmeldung)                          Bitte verifizieren ...
+email.senderMail                  string      E-Mail-Adresse des Absenders                                              beispiel@test.de
+email.senderName                  string      Absender-Name                                                             Absender-Name
+email.subscribeVerifySubject      string      Betreff der Verifikations-E-Mail (Anmeldung)                              Bitte verifizieren ...
+email.unsubscribeVerifySubject    string      Betreff der Verifikations-E-Mail (Abmeldung)                              Bitte verifizieren ...
 email.adminMail                   string      Admin E-Mail-Adresse - wenn nicht leer: der Admin wird informiert
-email.adminName                   string      Admin-Name                                                            Admin
-email.adminSubscribeSubject       string      Betreff der Admin-E-Mail (Anmeldung)                                  Neue Newsletter-Anmeldung
-email.adminUnsubscribeSubject     string      Betreff der Admin-E-Mail (Abmeldung)                                  Neue Newsletter-Abmeldung
-email.adminMailBeforeVerification boolean     0: sende die E-Mail nach der Verifikation; 1: vor der Verifikation    0
-email.subscribedSubject           string      Betreff der Bestätigungsmail (Anmeldung)                              Bestätigung Newsletter-Anmeldung
-email.unsubscribedSubject         string      Betreff der Bestätigungsmail (Abmeldung)                              Bestätigung Newsletter-Abmeldung
-email.editSubject                 string      Betreff der Bearbeiten-Email                                          Ändern Sie Ihr Newsletter-Abo...
-email.enableConfirmationMails     boolean     Sende eine Bestätigungs-E-Mail an den Benutzer? 0: nein; 1: ja        0
-email.dontAppendL                 boolean     Hänge die Sprach-UID an Templates an (wenn L>0)? 0: ja; 1: nein°°°    1
-overrideFlexformSettingsIfEmpty   string      Leere Flexforms sollen durch TypoScript überschrieben werden          alle uid-Variablen
-================================= =========== ===================================================================== ================================
+email.adminName                   string      Admin-Name                                                                Admin
+email.adminSubscribeSubject       string      Betreff der Admin-E-Mail (Anmeldung)                                      Neue Newsletter-Anmeldung
+email.adminUnsubscribeSubject     string      Betreff der Admin-E-Mail (Abmeldung)                                      Neue Newsletter-Abmeldung
+email.adminMailBeforeVerification boolean     0: sende die E-Mail nach der Verifikation; 1: vor der Verifikation        0
+email.subscribedSubject           string      Betreff der Bestätigungsmail (Anmeldung)                                  Bestätigung Newsletter-Anmeldung
+email.unsubscribedSubject         string      Betreff der Bestätigungsmail (Abmeldung)                                  Bestätigung Newsletter-Abmeldung
+email.editSubject                 string      Betreff der Bearbeiten-Email                                              Ändern Sie Ihr Newsletter-Abo...
+email.enableConfirmationMails     boolean     Sende eine Bestätigungs-E-Mail an den Benutzer? 0: nein; 1: ja            0
+email.dontAppendL                 boolean     Hänge die Sprach-UID an Templates an (wenn L>0)? 0: ja; 1: nein°°°        1
+overrideFlexformSettingsIfEmpty   string      Leere Flexforms sollen durch TypoScript überschrieben werden              alle uid-Variablen
+================================= =========== ========================================================================= ================================
 
 Achtung*: die optional erforderlichen Werte werden nur per Browser geprüft.
 

@@ -157,7 +157,7 @@
 			</trans-unit>
 			<trans-unit id="settings.deleteMode.1" resname="settings.deleteMode.1">
 				<source>set deletion flag</source>
-				<target>setze das delete-Flag</target>
+				<target>setze das deleted-Flag</target>
 			</trans-unit>
 			<trans-unit id="settings.deleteMode.2" resname="settings.deleteMode.2">
 				<source>delete entry</source>
@@ -166,6 +166,10 @@
 			<trans-unit id="settings.deleteMode.3" resname="settings.deleteMode.3">
 				<source>delete only cat./group</source>
 				<target>lösche nur die Kategorien (Mail) oder die Benutzergruppe (Luxletter)</target>
+			</trans-unit>
+			<trans-unit id="settings.deleteMode.4" resname="settings.deleteMode.4">
+				<source>set hidden flag</source>
+				<target>setze das hidden-Flag</target>
 			</trans-unit>
 			<trans-unit id="settings.languageMode" resname="settings.languageMode">
 				<source>Language mode</source>

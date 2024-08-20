@@ -470,6 +470,20 @@ class LogRepository extends Repository
                     $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
                 )
                 ->executeStatement();
+        } elseif ($mode == 4) {
+            if ($table == 'fe_users') {
+                $flag = 'disable';
+            } else {
+                $flag = 'hidden';
+            }
+            $queryBuilder
+                ->update($table)
+                ->where(
+                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+                )
+                ->set($flag, 1)
+                ->set('tstamp', time())
+                ->executeStatement();
         } elseif ($mode != 3) {
             $queryBuilder
                 ->update($table)

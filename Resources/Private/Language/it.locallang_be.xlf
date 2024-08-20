@@ -167,6 +167,10 @@
 				<source>delete only cat./group</source>
 				<target>eliminare solo le categorie (Mail) o il gruppo utenti (Luxletter)</target>
 			</trans-unit>
+			<trans-unit id="settings.deleteMode.4" resname="settings.deleteMode.4">
+				<source>set hidden flag</source>
+				<target>imposta il flag di hidden</target>
+			</trans-unit>
 			<trans-unit id="settings.languageMode" resname="settings.languageMode">
 				<source>Language mode</source>
 				<target>Modalità lingua</target>

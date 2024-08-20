@@ -23,12 +23,13 @@ benutzt wird.
 Templates
 ---------
 
-Man findet 2 Ordner mit Templates: Email und Log. Im Log-Ordner findet man die Templates für die Formulare.
+Man findet 4 Ordner mit Templates: Backend, Widget, Email und Log. Backend und Widget wird nur im Backend verwendet.
+Im Log-Ordner findet man die Templates für die Formulare.
 Wenn ein Benutzer solch ein Formular absendet, landen die Daten in der Tabelle tx_fpnewsletter_domain_model_log.
 Erst nachdem ein Benutzer seine E-Mail-Adresse verifiziert hat, werden die Daten in die Tabelle tt_address oder fe_users kopiert.
 
 Im Email-Ordner findet man die Templates, die per E-Mail verschickt werden.
-Es gibt Email-Templates für die Verifizierung der E-Mail-Adresse und für den Admin.
+Es gibt E-Mail-Templates für die Verifizierung der E-Mail-Adresse und für den Admin.
 UserToAdmin wird vor der Verifikation benutzt und SubscribeToAdmin nach der Verifikation der E-Mail-Adresse.
 Zum ändern der Templates muss man sie z.B. nach fileadmin kopieren und den Link dazu angeben::
 

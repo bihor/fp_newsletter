@@ -189,3 +189,6 @@ Version 7.0.3:
 
 Version 7.0.4:
 - Unnötige SQL-Felder entfernt.
+
+Version 7.0.5:
+- deleteMode 4 (hidden-Flag setzen) hinzugefügt.

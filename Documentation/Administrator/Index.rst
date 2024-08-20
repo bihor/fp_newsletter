@@ -21,7 +21,8 @@ or if you use addresses from fe_users with the extension luxletter or mail.
 Templates
 ---------
 
-You will find 2 folders in the templates-folders: Email and Log. In the Log-folder are the form-templates.
+You will find 4 folders in the Templates-folders: Backend, Widget, Email and Log. Backend and Widget are used only in the backend.
+In the Log-folder are the form-templates.
 If a user submits the form, the entries lands in the table tx_fpnewsletter_domain_model_log.
 Only if a user verifies his email-address, his entry will be copied to the table tt_address.
 

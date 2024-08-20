@@ -23,68 +23,68 @@ Properties for settings
 
 .. container:: ts-properties
 
-================================= =========== ===================================================================== =================================
-Property                          Data type   Description                                                           Default
-================================= =========== ===================================================================== =================================
-table                             string      tt_address, fe_users or none (empty value) supported                  tt_address
-newsletterExtension               string      luxletter (default for fe_users) or mail (default for tt_address)     empty = luxletter
-optionalFields                    string      Optional fields: see below                                            gender,firstname,lastname
+================================= =========== ========================================================================= =================================
+Property                          Data type   Description                                                               Default value
+================================= =========== ========================================================================= =================================
+table                             string      tt_address, fe_users or none (empty value) supported                      tt_address
+newsletterExtension               string      luxletter (default for fe_users) or mail (default for tt_address)         empty = luxletter
+optionalFields                    string      Optional fields: see below                                                gender,firstname,lastname
 optionalFieldsRequired            string      Optional required* fields: see below
-doubleOptOut                      boolean     Enable double out out unsubscription?                                 1
-disableErrorMsg                   boolean     Disable some error messages (e.g. already/not subscribed)?            0
-enableUnsubscribeForm             boolean     Enable unsubscribe form at the subscribe page?**                      0
-enableUnsubscribeGdprAsHidden     boolean     Do not show the gdpr-checkbox at unsubscribe form?                    0
-enableEditForm                    boolean     Enable edit form at the subscribe page?**                             0
-subscribeUid                      integer     Page for the subscription                                             1
+doubleOptOut                      boolean     Enable double out out unsubscription?                                     1
+disableErrorMsg                   boolean     Disable some error messages (e.g. already/not subscribed)?                0
+enableUnsubscribeForm             boolean     Enable unsubscribe form at the subscribe page?**                          0
+enableUnsubscribeGdprAsHidden     boolean     Do not show the gdpr-checkbox at unsubscribe form?                        0
+enableEditForm                    boolean     Enable edit form at the subscribe page?**                                 0
+subscribeUid                      integer     Page for the subscription                                                 1
 subscribeMessageUid               integer     Optional page for the redirect after subscription
 subscribeVerifyUid                integer     Page for the subscription-verification
 subscribeVerifyMessageUid         integer     Optional page for the redirect after subscription-verification
-unsubscribeUid                    integer     Page for the unsubscription                                           1
+unsubscribeUid                    integer     Page for the unsubscription                                               1
 unsubscribeMessageUid             integer     Optional page for the redirect after unsubscription
 unsubscribeVerifyUid              integer     Page for the unsubscription-verification
 unsubscribeVerifyMessageUid       integer     Optional page for the redirect after unsubscription-verification***
 resendVerificationUid             integer     Page, where a user can request the verification-email again
 editUid                           integer     Page, where a user can edit his subscription
-gdprUid                           integer     Page with the GDPR text                                               1
-daysExpire                        integer     The link expires after X days                                         2
-searchPidMode                     integer     Search in folders: 0: only in the 1. folder; 1: in all folders°       0
-deleteMode                        integer     1: set deletion flag; 2: delete entry; 3: remove only the cat./group  1
-languageMode                      integer     0: uses -1 if L>0; 1: uses the sys_language_uid from pages            0
-categoryMode                      integer     0: allow only categories/groups specified in categoryOrGroup; 1: all  1
-categoryOrderBy                   string      category order by: title, sorting or uid                              title
-unsubscribeMode                   integer     0: direct unsubscription with a link from Luxletter; 1: show a form   0
+gdprUid                           integer     Page with the GDPR text                                                   1
+daysExpire                        integer     The link expires after X days                                             2
+searchPidMode                     integer     Search in folders: 0: only in the 1. folder; 1: in all folders°           0
+deleteMode                        integer     1: deleted flag; 2: delete entry; 3: remove only cat./group; 4: hidden f. 1
+languageMode                      integer     0: uses -1 if L>0; 1: uses the sys_language_uid from pages                0
+categoryMode                      integer     0: allow only categories/groups specified in categoryOrGroup; 1: all      1
+categoryOrderBy                   string      category order by: title, sorting or uid                                  title
+unsubscribeMode                   integer     0: direct unsubscription with a link from Luxletter; 1: show a form       0
 categoryOrGroup                   string      List of categories/groups (uid) from sys_category or fe_groups°°
-html                              integer     0: only TEXT; 1: TEXT and HTML; -1: ignore mail-fields in tt_address  1
-password                          string      Password for the fe_users table. random creates a random password.    random
+html                              integer     0: only TEXT; 1: TEXT and HTML; -1: ignore mail-fields in tt_address      1
+password                          string      Password for the fe_users table. random creates a random password.        random
 authCodeFields                    string      Copy "Fields ... of authentication codes" from mail here
 reCAPTCHA_site_key                string      Website-key for Google reCaptcha v3.
 reCAPTCHA_secret_key              string      Secret key for Google reCaptcha v3
-mathCAPTCHA                       integer     Show a mathematical captcha? 0: no; 1: with 1 digit; 2: with 2 digits 0
-honeypot                          boolean     Enable a honeypot against spam?                                       0
-debug                             boolean     Don´t send email when debug=1                                         0
-checkForRequiredExtensions        boolean     Check, if required extensions are installed. 0: no; 1: yes.           1
-company                           string      Name of your company                                                  Ihre Firma
-gender.please                     string      Text for gender selection                                             Bitte auswählen
-gender.mr                         string      Text for the gender mr                                                Herr
-gender.mrs                        string      Text for the gender mrs                                               Frau
+mathCAPTCHA                       integer     Show a mathematical captcha? 0: no; 1: with 1 digit; 2: with 2 digits     0
+honeypot                          boolean     Enable a honeypot against spam?                                           0
+debug                             boolean     Don´t send email when debug=1                                             0
+checkForRequiredExtensions        boolean     Check, if required extensions are installed. 0: no; 1: yes.               1
+company                           string      Name of your company                                                      Ihre Firma
+gender.please                     string      Text for gender selection                                                 Bitte auswählen
+gender.mr                         string      Text for the gender mr                                                    Herr
+gender.mrs                        string      Text for the gender mrs                                                   Frau
 parameters.active                 string      Parameter for newsletter subscription in external extension (POST)
 parameters.email                  string      Parameter for the email from external source (GET/POST-parameter)
-email.senderMail                  string      Your email-address                                                    beispiel@test.de
-email.senderName                  string      Your name                                                             Absender-Name
-email.subscribeVerifySubject      string      Subject of the verify email (subscription)                            Bitte verifizieren ...
-email.unsubscribeVerifySubject    string      Subject of the verify email (unsubscription)                          Bitte verifizieren ...
+email.senderMail                  string      Your email-address                                                        beispiel@test.de
+email.senderName                  string      Your name                                                                 Absender-Name
+email.subscribeVerifySubject      string      Subject of the verify email (subscription)                                Bitte verifizieren ...
+email.unsubscribeVerifySubject    string      Subject of the verify email (unsubscription)                              Bitte verifizieren ...
 email.adminMail                   string      Admin email-address - if not empty: an email goes to an admin too
-email.adminName                   string      Admin name                                                            Admin
-email.adminSubscribeSubject       string      Subject of the admin email (subscription)                             Neue Newsletter-Anmeldung
-email.adminUnsubscribeSubject     string      Subject of the admin email (unsubscription)                           Neue Newsletter-Abmeldung
-email.adminMailBeforeVerification boolean     0: send email to admin after verification; 1: before verification     0
-email.subscribedSubject           string      Subject of the confirmation email (subscription)                      Bestätigung Newsletter-Anmeldung
-email.unsubscribedSubject         string      Subject of the confirmation email (unsubscription)                    Bestätigung Newsletter-Abmeldung
-email.editSubject                 string      Subject to the edit email                                             Ändern Sie Ihr Newsletter-Abo...
-email.enableConfirmationMails     boolean     Send confirmation email to the user after verification? 0: no; 1: yes 0
-email.dontAppendL                 boolean     Append the language UID to a template (when L>0)? 0: yes; 1: no°°°    1
-overrideFlexformSettingsIfEmpty   string      Empty FlexForms should be overwritten by TypoScript                   all uid settings
-================================= =========== ===================================================================== =================================
+email.adminName                   string      Admin name                                                                Admin
+email.adminSubscribeSubject       string      Subject of the admin email (subscription)                                 Neue Newsletter-Anmeldung
+email.adminUnsubscribeSubject     string      Subject of the admin email (unsubscription)                               Neue Newsletter-Abmeldung
+email.adminMailBeforeVerification boolean     0: send email to admin after verification; 1: before verification         0
+email.subscribedSubject           string      Subject of the confirmation email (subscription)                          Bestätigung Newsletter-Anmeldung
+email.unsubscribedSubject         string      Subject of the confirmation email (unsubscription)                        Bestätigung Newsletter-Abmeldung
+email.editSubject                 string      Subject to the edit email                                                 Ändern Sie Ihr Newsletter-Abo...
+email.enableConfirmationMails     boolean     Send confirmation email to the user after verification? 0: no; 1: yes     0
+email.dontAppendL                 boolean     Append the language UID to a template (when L>0)? 0: yes; 1: no°°°        1
+overrideFlexformSettingsIfEmpty   string      Empty FlexForms should be overwritten by TypoScript                       all uid settings
+================================= =========== ========================================================================= =================================
 
 Note*: only a check via browser is made for the optional required fields.
 
