@@ -151,10 +151,12 @@ class LogController extends ActionController
             $log->setMathcaptcha1($no1);
             $log->setMathcaptcha2($no2);
             $log->setMathcaptchaop((($operator == 1) ? true : false));
-            $GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha1', $no1);
-            $GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha2', $no2);
-            $GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptchaop', $operator);
-            $GLOBALS['TSFE']->fe_user->storeSessionData();
+            /** @var \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication $frontendUser */
+            $frontendUser = $this->request->getAttribute('frontend.user');
+            $frontendUser->setKey('ses', 'mcaptcha1', $no1);
+            $frontendUser->setKey('ses', 'mcaptcha2', $no2);
+            $frontendUser->setKey('ses', 'mcaptchaop', $operator);
+            $frontendUser->storeSessionData();
         }
         if (!$error && $this->settings['checkForRequiredExtensions'] && $this->settings['table']=='tt_address') {
             if (!ExtensionManagementUtility::isLoaded('tt_address')) {
@@ -214,10 +216,11 @@ class LogController extends ActionController
     public function resendAction(): ResponseInterface
     {
         $log = null;
+        $pageArguments = $this->request->getAttribute('routing');
         $subscribeVerifyUid = $this->settings['subscribeVerifyUid'];
         if (! $subscribeVerifyUid) {
             // Fallback
-            $subscribeVerifyUid = intval($GLOBALS["TSFE"]->id);
+            $subscribeVerifyUid = intval($pageArguments->getPageId());
         }
         $email = $this->request->hasArgument('email') ? $this->request->getArgument('email') : '';
         if ($email && $subscribeVerifyUid) {
@@ -234,7 +237,7 @@ class LogController extends ActionController
                 $log = $this->logRepository->getByEmailAndPid($email, $storagePidsArray, 0, $maxDate);
             }
             if ($log) {
-                if (intval($subscribeVerifyUid) == intval($GLOBALS["TSFE"]->id)) {
+                if (intval($subscribeVerifyUid) == intval($pageArguments->getPageId())) {
                     $pi = strtolower($this->request->getPluginName());  // z.B. 'resend';
                 } else {
                     $pi = 'verify';
@@ -256,6 +259,7 @@ class LogController extends ActionController
     {
         $log = null;
         $error = 0;
+        $pageArguments = $this->request->getAttribute('routing');
         $email = $this->request->hasArgument('email') ? $this->request->getArgument('email') : '';
         if ($email) {
             // send email with a link to an edit page
@@ -302,9 +306,9 @@ class LogController extends ActionController
         $editUid = intval($this->settings['editUid']);
         if (! $editUid) {
             // Fallback
-            $editUid = intval($GLOBALS["TSFE"]->id);
+            $editUid = intval($pageArguments->getPageId());
         }
-        if ($editUid == intval($GLOBALS["TSFE"]->id)) {
+        if ($editUid == intval($pageArguments->getPageId())) {
             $pi = strtolower($this->request->getPluginName());  // z.B. 'editemail' oder 'edit;
         } else {
             $pi = 'email';
@@ -542,6 +546,7 @@ class LogController extends ActionController
                 ->withHeader('Location', $uri);
         }
         //if ($log->getGdpr()) { $log->setGdpr(true); }
+        $pageArguments = $this->request->getAttribute('routing');
         $requestLanguage = $this->request->getAttribute('language');
         $requestLocale = $requestLanguage->getLocale();
         $requestLanguageCode = $requestLocale->getLanguageCode();
@@ -559,7 +564,7 @@ class LogController extends ActionController
         $subscribeVerifyUid = $this->settings['subscribeVerifyUid'];
         if (! $subscribeVerifyUid) {
             // Fallback
-            $subscribeVerifyUid = intval($GLOBALS["TSFE"]->id);
+            $subscribeVerifyUid = intval($pageArguments->getPageId());
         }
         $email = $log->getEmail();
         $dbuidext = 0;
@@ -593,7 +598,9 @@ class LogController extends ActionController
             }
         }
         if ($this->settings['mathCAPTCHA']) {
-            $tmp_error = $this->helpersUtility->checkMathCaptcha(intval($log->getMathcaptcha()));
+            /** @var \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication $frontendUser */
+            $frontendUser = $this->request->getAttribute('frontend.user');
+            $tmp_error = $this->helpersUtility->checkMathCaptcha(intval($log->getMathcaptcha()), $frontendUser);
             if ($tmp_error > 0) {
                 $error = $tmp_error;
             }
@@ -619,7 +626,7 @@ class LogController extends ActionController
             $this->logRepository->update($log);
             $persistenceManager->persistAll();
             $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
-            if (intval($subscribeVerifyUid) == intval($GLOBALS["TSFE"]->id)) {
+            if (intval($subscribeVerifyUid) == intval($pageArguments->getPageId())) {
                 $pi = strtolower($this->request->getPluginName());  // z.B. 'new';
             } else {
                 $pi = 'verify';
@@ -665,6 +672,7 @@ class LogController extends ActionController
     {
         $storagePidsArray = $this->logRepository->getStoragePids();
         $pid = intval($storagePidsArray[0]);
+        $pageArguments = $this->request->getAttribute('routing');
         if ($log && $log->getUid()) {
             // her kommt man nach einem redirect von delete her
 			$securityhash = $this->request->hasArgument('securityhash') ? $this->request->getArgument('securityhash') : '';
@@ -697,17 +705,19 @@ class LogController extends ActionController
             $log->setMathcaptcha1($no1);
             $log->setMathcaptcha2($no2);
             $log->setMathcaptchaop((($operator == 1) ? true : false));
-            $GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha1', $no1);
-            $GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha2', $no2);
-            $GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptchaop', $operator);
-            $GLOBALS['TSFE']->fe_user->storeSessionData();
+            /** @var \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication $frontendUser */
+            $frontendUser = $this->request->getAttribute('frontend.user');
+            $frontendUser->setKey('ses', 'mcaptcha1', $no1);
+            $frontendUser->setKey('ses', 'mcaptcha2', $no2);
+            $frontendUser->setKey('ses', 'mcaptchaop', $operator);
+            $frontendUser->storeSessionData();
         }
-        if (intval($this->settings['unsubscribeUid']) == intval($GLOBALS["TSFE"]->id)) {
+        if (intval($this->settings['unsubscribeUid']) == intval($pageArguments->getPageId())) {
             $pi = strtolower($this->request->getPluginName());  // z.B. 'unsubscribelux';
         } else {
             $pi = 'unsubscribe';
         }
-        $unsubscribeUid = ($this->settings['unsubscribeUid']) ? : intval($GLOBALS["TSFE"]->id);
+        $unsubscribeUid = ($this->settings['unsubscribeUid']) ? : intval($pageArguments->getPageId());
         $this->view->assign('unsubscribeUid', $unsubscribeUid);
         $this->view->assign('plugin', $pi);
         $this->view->assign('log', $log);
@@ -772,8 +782,10 @@ class LogController extends ActionController
                                     ->withHeader('Location', $uri);
                             } else {
                                 // unsubscribe user now
-                                $GLOBALS['TSFE']->fe_user->setKey('ses', 'authLux', $hash);
-                                $GLOBALS['TSFE']->fe_user->storeSessionData();
+                                /** @var \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication $frontendUser */
+                                $frontendUser = $this->request->getAttribute('frontend.user');
+                                $frontendUser->setKey('ses', 'authLux', $hash);
+                                $frontendUser->storeSessionData();
                                 $uri = $this->uriBuilder->reset()
                                     ->uriFor(
                                         'delete',
@@ -860,8 +872,10 @@ class LogController extends ActionController
                                     ->withHeader('Location', $uri);
                             } else {
                                 // unsubscribe user now
-                                $GLOBALS['TSFE']->fe_user->setKey('ses', 'authMail', $hash);
-                                $GLOBALS['TSFE']->fe_user->storeSessionData();
+                                /** @var \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication $frontendUser */
+                                $frontendUser = $this->request->getAttribute('frontend.user');
+                                $frontendUser->setKey('ses', 'authMail', $hash);
+                                $frontendUser->storeSessionData();
                                 $uri = $this->uriBuilder->reset()
                                     ->uriFor(
                                         'delete',
@@ -905,6 +919,7 @@ class LogController extends ActionController
         $checkSession = false;
         $hash = '';
         $storagePidsArray = $this->logRepository->getStoragePids();
+        $pageArguments = $this->request->getAttribute('routing');
         if ($log) {
             // if we come from new/unsubscribeAction: an email must be present, but no UID!
             if ($log->getUid() || !$log->getEmail()) {
@@ -966,22 +981,24 @@ class LogController extends ActionController
             }
             if ($checkSession) {
                 // wenn man von unsubscribeLux kommt, muss die Session noch überprüft werden
-                $a = $GLOBALS['TSFE']->fe_user->getKey('ses', 'authLux');
+                /** @var \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication $frontendUser */
+                $frontendUser = $this->request->getAttribute('frontend.user');
+                $a = $frontendUser->getKey->getKey('ses', 'authLux');
                 if ($a) {
                     // hash von unsubscribeLux ist vorhanden!
-                    $GLOBALS['TSFE']->fe_user->setKey('ses', 'authLux', '');
-                    $GLOBALS['TSFE']->fe_user->storeSessionData();
+                    $frontendUser->setKey('ses', 'authLux', '');
+                    $frontendUser->storeSessionData();
                     if ($this->helpersUtility->checkLuxletterHash($user, $a)) {
                         $skipCaptchaTest = true;
                     } else {
                         $error = 1;
                     }
                 } else {
-                    $a = $GLOBALS['TSFE']->fe_user->getKey('ses', 'authMail');
+                    $a = $frontendUser->getKey('ses', 'authMail');
                     if ($a) {
                         // hash von unsubscribeMail ist vorhanden!
-                        $GLOBALS['TSFE']->fe_user->setKey('ses', 'authMail', '');
-                        $GLOBALS['TSFE']->fe_user->storeSessionData();
+                        $frontendUser->setKey('ses', 'authMail', '');
+                        $frontendUser->storeSessionData();
                         if ($this->helpersUtility->checkMailHash($user, $a, $this->settings['authCodeFields'])) {
                             $skipCaptchaTest = true;
                         } else {
@@ -1046,9 +1063,9 @@ class LogController extends ActionController
                 $unsubscribeVerifyUid = intval($this->settings['unsubscribeVerifyUid']);
                 if (! $unsubscribeVerifyUid) {
                     // Fallback
-                    $unsubscribeVerifyUid = intval($GLOBALS["TSFE"]->id);
+                    $unsubscribeVerifyUid = intval($pageArguments->getPageId());
                 }
-                if ($unsubscribeVerifyUid == intval($GLOBALS["TSFE"]->id)) {
+                if ($unsubscribeVerifyUid == intval($pageArguments->getPageId())) {
                     $pi = strtolower($this->request->getPluginName());  // z.B. 'unsubscribe' oder 'unsubscribelux';
                 } else {
                     $pi = 'verifyunsubscribe';

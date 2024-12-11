@@ -21,15 +21,15 @@ class HelpersUtility
      *
      * @return int
      */
-    public function checkMathCaptcha(int $result): int
+    public function checkMathCaptcha(int $result, \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication $frontendUser): int
     {
         $error = 0;
-        //echo "ses: ".$GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1').'---'.$GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2');
-        if($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1') !== NULL && $GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2') !== NULL && $GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptchaop') !== NULL) {
+        //echo "ses: ".$frontendUser->getKey('ses', 'mcaptcha1').'---'.$frontendUser->getKey('ses', 'mcaptcha2');
+        if($frontendUser->getKey('ses', 'mcaptcha1') !== NULL && $frontendUser->getKey('ses', 'mcaptcha2') !== NULL && $frontendUser->getKey('ses', 'mcaptchaop') !== NULL) {
             //$result = intval($log->getMathcaptcha());
-            $no1 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha1'));
-            $no2 = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptcha2'));
-            $operator = intval($GLOBALS['TSFE']->fe_user->getKey('ses', 'mcaptchaop'));
+            $no1 = intval($frontendUser->getKey('ses', 'mcaptcha1'));
+            $no2 = intval($frontendUser->getKey('ses', 'mcaptcha2'));
+            $operator = intval($frontendUser->getKey('ses', 'mcaptchaop'));
             if ($operator == 1) {
                 $real_result = $no1 + $no2;
             } else {
@@ -38,9 +38,9 @@ class HelpersUtility
             if ($result != $real_result) {
                 $error = 9;
             } else {
-                $GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha1', NULL);
-                $GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptcha2', NULL);
-                $GLOBALS['TSFE']->fe_user->setKey('ses', 'mcaptchaop', NULL);
+                $frontendUser->setKey('ses', 'mcaptcha1', NULL);
+                $frontendUser->setKey('ses', 'mcaptcha2', NULL);
+                $frontendUser->setKey('ses', 'mcaptchaop', NULL);
             }
         } else {
             $error = 9;
