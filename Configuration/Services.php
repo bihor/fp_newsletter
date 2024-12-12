@@ -44,12 +44,7 @@ return function (ContainerConfigurator $configurator, ContainerBuilder $containe
                 ]
             )
             ->arg('$dataProvider', new Reference(\Fixpunkt\FpNewsletter\Widgets\Provider\StatusDataProvider::class));
-        if ($containerBuilder->hasDefinition(BackendViewFactory::class)) {
             // TYPO3 12
             $configuration->arg('$backendViewFactory', new Reference(BackendViewFactory::class));
-        } else {
-            // Todo: Can be removed when TYPO3 11 support will be dropped
-            $configuration->arg('$view', new Reference('dashboard.views.widget'));
-        }
     }
 };
