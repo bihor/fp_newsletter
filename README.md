@@ -33,3 +33,7 @@ Version 7.0.4:
 
 Version 7.0.5:
 - deleteMode 4 (set hidden/disable flag) added.
+
+Version 7.1.0:
+- SwitchableControllerActionsPluginUpdater (update script for TYPO3 12) removed. Use older versions if you still need it.
+- FlexformPluginUpdater (update script for FlexForms) removed. Use older versions if you still need it.

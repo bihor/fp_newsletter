@@ -68,7 +68,7 @@ class LogRepository extends Repository
 					->select('*')
 					->from($table)
 					->where(
-                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT))
 					)
 					->executeQuery();
 		while ($row = $statement->fetchAssociative()) {
@@ -89,7 +89,7 @@ class LogRepository extends Repository
         $dbuid = 0;
         $queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable($table);
         if (is_numeric($pid)) {
-            $where = $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, \PDO::PARAM_INT));
+            $where = $queryBuilder->expr()->eq('pid', $queryBuilder->createNamedParameter($pid, Connection::PARAM_INT));
         } else {
             $where = $queryBuilder->expr()->in('pid', $queryBuilder->createNamedParameter($pid, Connection::PARAM_INT_ARRAY));
         }
@@ -144,7 +144,7 @@ class LogRepository extends Repository
 		->select('*')
 		->from($table)
 		->where(
-			$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+			$queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT))
 		)
 		->executeQuery();
 		//echo $queryBuilder->getSQL();
@@ -180,7 +180,7 @@ class LogRepository extends Repository
             ->select('uid_local')
             ->from('sys_category_record_mm')
             ->where(
-                $queryBuilder->expr()->eq('uid_foreign', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT)),
+                $queryBuilder->expr()->eq('uid_foreign', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT)),
                 $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter($table))
             )
             ->executeQuery();
@@ -248,7 +248,7 @@ class LogRepository extends Repository
         $queryBuilder
             ->delete('sys_category_record_mm')
             ->where(
-                $queryBuilder->expr()->eq('uid_foreign', $queryBuilder->createNamedParameter($tableUid, \PDO::PARAM_INT)),
+                $queryBuilder->expr()->eq('uid_foreign', $queryBuilder->createNamedParameter($tableUid, Connection::PARAM_INT)),
                 $queryBuilder->expr()->eq('tablenames', $queryBuilder->createNamedParameter($table))
             )
             ->executeStatement();
@@ -352,7 +352,7 @@ class LogRepository extends Repository
         $queryBuilder
             ->update('tt_address')
             ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($tableUid, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($tableUid, Connection::PARAM_INT))
             )
             ->set('tstamp', $timestamp)
             ->set('title', $address->getTitle())
@@ -405,7 +405,7 @@ class LogRepository extends Repository
         $queryBuilder
             ->update('fe_users')
             ->where(
-                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($tableUid, \PDO::PARAM_INT))
+                $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($tableUid, Connection::PARAM_INT))
             )
             ->set('tstamp', $timestamp)
             ->set('title', $address->getTitle())
@@ -434,7 +434,7 @@ class LogRepository extends Repository
             $queryBuilder
                 ->update('fe_users')
                 ->where(
-                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($tableUid, \PDO::PARAM_INT))
+                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($tableUid, Connection::PARAM_INT))
                 )
                 ->set('categories', count($dmCatArr))
                 ->executeStatement();
@@ -444,7 +444,7 @@ class LogRepository extends Repository
             $queryBuilder
                 ->update('fe_users')
                 ->where(
-                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($tableUid, \PDO::PARAM_INT))
+                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($tableUid, Connection::PARAM_INT))
                 )
                 ->set('usergroup', $address->getCategories())
                 ->executeStatement();
@@ -467,7 +467,7 @@ class LogRepository extends Repository
             $queryBuilder
                 ->delete($table)
                 ->where(
-                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT))
                 )
                 ->executeStatement();
         } elseif ($mode == 4) {
@@ -479,7 +479,7 @@ class LogRepository extends Repository
             $queryBuilder
                 ->update($table)
                 ->where(
-                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT))
                 )
                 ->set($flag, 1)
                 ->set('tstamp', time())
@@ -488,7 +488,7 @@ class LogRepository extends Repository
             $queryBuilder
                 ->update($table)
                 ->where(
-                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+                    $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT))
                 )
                 ->set('deleted', 1)
                 ->set('tstamp', time())
@@ -498,7 +498,7 @@ class LogRepository extends Repository
                 $queryBuilder
                     ->update($table)
                     ->where(
-                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT))
                     )
                     ->set('usergroup', '')
                     ->set('tstamp', time())
@@ -507,7 +507,7 @@ class LogRepository extends Repository
                 $queryBuilder
                     ->update($table)
                     ->where(
-                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, \PDO::PARAM_INT))
+                        $queryBuilder->expr()->eq('uid', $queryBuilder->createNamedParameter($uid, Connection::PARAM_INT))
                     )
                     ->set('mail_active', 0)
                     ->set('tstamp', time())
@@ -531,7 +531,6 @@ class LogRepository extends Repository
     {
 	    $query = $this->createQuery();
 	    $query->getQuerySettings()->setRespectSysLanguage(false);
-	    //$query->getQuerySettings()->setSysLanguageUid($sys_language_uid);
 	    $query->matching($query->logicalAnd(
 	        $query->equals('uid', intval($uid)),
 	        $query->equals("sys_language_uid", intval($sys_language_uid))

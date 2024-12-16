@@ -3,13 +3,10 @@
   <sheets>
     <sDEF>
       <ROOT>
-        <TCEforms>
           <sheetTitle>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:title</sheetTitle>
-        </TCEforms>
         <type>array</type>
         <el>
 			<settings.subscribeUid>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:subscribeUid</label>
 	                <config>
 						<type>group</type>
@@ -20,10 +17,8 @@
 						<minitems>0</minitems>
 						<show_thumbs>0</show_thumbs>
 					</config>
-				</TCEforms>
 			</settings.subscribeUid>
 			<settings.subscribeVerifyUid>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:subscribeVerifyUid</label>
 	                <config>
 						<type>group</type>
@@ -34,10 +29,8 @@
 						<minitems>0</minitems>
 						<show_thumbs>0</show_thumbs>
 					</config>
-				</TCEforms>
 			</settings.subscribeVerifyUid>
 			<settings.unsubscribeUid>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:unsubscribeUid</label>
 	                <config>
 						<type>group</type>
@@ -48,10 +41,8 @@
 						<minitems>0</minitems>
 						<show_thumbs>0</show_thumbs>
 					</config>
-				</TCEforms>
 			</settings.unsubscribeUid>
 			<settings.unsubscribeVerifyUid>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:unsubscribeVerifyUid</label>
 	                <config>
 						<type>group</type>
@@ -62,10 +53,8 @@
 						<minitems>0</minitems>
 						<show_thumbs>0</show_thumbs>
 					</config>
-				</TCEforms>
 			</settings.unsubscribeVerifyUid>
 			<settings.editUid>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:editUid</label>
 					<config>
 						<type>group</type>
@@ -76,10 +65,8 @@
 						<minitems>0</minitems>
 						<show_thumbs>0</show_thumbs>
 					</config>
-				</TCEforms>
 			</settings.editUid>
 			<settings.gdprUid>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:gdprUid</label>
 	                <config>
 						<type>group</type>
@@ -90,10 +77,8 @@
 						<minitems>0</minitems>
 						<show_thumbs>0</show_thumbs>
 					</config>
-				</TCEforms>
 			</settings.gdprUid>
 			<settings.categoryOrGroup>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.categoryOrGroup</label>
 					<config>
 						<type>input</type>
@@ -101,20 +86,16 @@
 						<max>25</max>
 						<eval>trim</eval>
 					</config>
-				</TCEforms>
 			</settings.categoryOrGroup>
         </el>
       </ROOT>
     </sDEF>
     <sENABLE>
       <ROOT>
-    	<TCEforms>
           <sheetTitle>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:enables</sheetTitle>
-        </TCEforms>
         <type>array</type>
     	  <el>
 			<settings.doubleOptOut>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.doubleOptOut</label>
 	                <config>
 						<type>radio</type>
@@ -129,10 +110,8 @@
 							</numIndex>
 						</items>
 					</config>
-				</TCEforms>
 			</settings.doubleOptOut>
 			  <settings.disableErrorMsg>
-				  <TCEforms>
 					  <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.disableErrorMsg</label>
 					  <config>
 						  <type>radio</type>
@@ -147,10 +126,8 @@
 							  </numIndex>
 						  </items>
 					  </config>
-				  </TCEforms>
 			  </settings.disableErrorMsg>
 			<settings.enableUnsubscribeForm>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.enableUnsubscribeForm</label>
 	                <config>
 						<type>radio</type>
@@ -165,10 +142,8 @@
 							</numIndex>
 						</items>
 					</config>
-				</TCEforms>
 			</settings.enableUnsubscribeForm>
 			<settings.enableUnsubscribeGdprAsHidden>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.enableUnsubscribeGdprAsHidden</label>
 	                <config>
 						<type>radio</type>
@@ -183,10 +158,8 @@
 							</numIndex>
 						</items>
 					</config>
-				</TCEforms>
 			</settings.enableUnsubscribeGdprAsHidden>
 			  <settings.enableEditForm>
-				  <TCEforms>
 					  <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.enableEditForm</label>
 					  <config>
 						  <type>radio</type>
@@ -205,10 +178,8 @@
 							  </numIndex>
 						  </items>
 					  </config>
-				  </TCEforms>
 			  </settings.enableEditForm>
 			<settings.mathCAPTCHA>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.mathCAPTCHA</label>
 	                <config>
 						<type>radio</type>
@@ -227,10 +198,8 @@
 							</numIndex>
 						</items>
 					</config>
-				</TCEforms>
 			</settings.mathCAPTCHA>
 			<settings.honeypot>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.honeypot</label>
 	                <config>
 						<type>radio</type>
@@ -245,10 +214,8 @@
 							</numIndex>
 						</items>
 					</config>
-				</TCEforms>
 			</settings.honeypot>
 			<settings.email.enableConfirmationMails>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.enableConfirmationMails</label>
 	                <config>
 						<type>radio</type>
@@ -263,10 +230,8 @@
 							</numIndex>
 						</items>
 					</config>
-				</TCEforms>
 			</settings.email.enableConfirmationMails>
 			<settings.email.dontAppendL>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.dontAppendL</label>
 	                <config>
 						<type>radio</type>
@@ -281,10 +246,8 @@
 							</numIndex>
 						</items>
 					</config>
-				</TCEforms>
 			</settings.email.dontAppendL>
 			<settings.html>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.html</label>
 	                <config>
 						<type>radio</type>
@@ -303,10 +266,8 @@
 							</numIndex>
 						</items>
 					</config>
-				</TCEforms>
 			</settings.html>
 			  <settings.unsubscribeMode>
-				  <TCEforms>
 					  <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.unsubscribeMode</label>
 					  <config>
 						  <type>radio</type>
@@ -321,10 +282,8 @@
 							  </numIndex>
 						  </items>
 					  </config>
-				  </TCEforms>
 			  </settings.unsubscribeMode>
 			  <settings.searchPidMode>
-				  <TCEforms>
 					  <label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.searchPidMode</label>
 					  <config>
 						  <type>radio</type>
@@ -339,10 +298,8 @@
 							  </numIndex>
 						  </items>
 					  </config>
-				  </TCEforms>
 			  </settings.searchPidMode>
 			<settings.deleteMode>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.deleteMode</label>
 	                <config>
 						<type>radio</type>
@@ -365,10 +322,8 @@
 							</numIndex>
 						</items>
 					</config>
-				</TCEforms>
 			</settings.deleteMode>
 			<settings.languageMode>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.languageMode</label>
 	                <config>
 						<type>radio</type>
@@ -383,20 +338,16 @@
 							</numIndex>
 						</items>
 					</config>
-				</TCEforms>
 			</settings.languageMode>
         </el>
       </ROOT>
     </sENABLE>
     <sPARAM>
       <ROOT>
-    	<TCEforms>
           <sheetTitle>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:parameters</sheetTitle>
-        </TCEforms>
         <type>array</type>
     	  <el>
 			<settings.parameters.active>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.parameters.active</label>
 	                <config>
                       <type>input</type>
@@ -404,10 +355,8 @@
                       <max>255</max>
                       <eval>trim</eval>
 	                </config>
-	            </TCEforms>
 			</settings.parameters.active>
 			<settings.parameters.email>
-				<TCEforms>
 					<label>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.parameters.email</label>
 	                <config>
                       <type>input</type>
@@ -415,7 +364,6 @@
                       <max>255</max>
                       <eval>trim</eval>
 	                </config>
-	            </TCEforms>
 			</settings.parameters.email>
         </el>
       </ROOT>

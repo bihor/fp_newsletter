@@ -57,7 +57,7 @@ class LogController extends ActionController
     /**
      * Initializes the current action
      */
-    public function initializeAction()
+    public function initializeAction(): void
     {
         $tsSettings = $this->configurationManager->getConfiguration(
             ConfigurationManagerInterface::CONFIGURATION_TYPE_FULL_TYPOSCRIPT
