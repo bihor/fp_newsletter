@@ -37,3 +37,6 @@ Version 7.0.5:
 Version 7.1.0/1:
 - SwitchableControllerActionsPluginUpdater (update script for TYPO3 12) removed. Use older versions if you still need it.
 - FlexformPluginUpdater (update script for FlexForms) removed. Use older versions if you still need it.
+
+Version 8.0.0:
+- First version for TYPO3 13.
