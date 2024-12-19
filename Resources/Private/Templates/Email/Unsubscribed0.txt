@@ -1,6 +1,0 @@
-<f:render partial="Email/Salutation.txt" arguments="{_all}" />
-Sie haben sich nun erfolgreich von unserem Newsletter abgemeldet.
-Verwendete E-Mail-Adresse: {email}
-
-Mit freundlichen Grüßen
-{settings.company}

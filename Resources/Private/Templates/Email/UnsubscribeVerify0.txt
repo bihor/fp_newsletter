@@ -1,6 +1,0 @@
-<f:render partial="Email/Salutation.txt" arguments="{_all}" />
-um sich von unserem Newsletter abzumelden, müssen Sie Ihre E-Mailadresse mit Klick auf diesen Link verifizieren:
-<f:format.raw><f:uri.external uri="{fpnl:getActionUrl(pageUid:unsubscribeVerifyUid, pi:pi, action:'verifyUnsubscribe', uid:uid, hash:hash, languageUid:'0')}" /></f:format.raw>
-
-Mit freundlichen Grüßen
-{settings.company}

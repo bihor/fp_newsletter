@@ -19,7 +19,7 @@ plugin.tx_fpnewsletter {
 	newsletterExtension =
 	optionalFields = gender,firstname,lastname
 	optionalFieldsRequired =
-    additionalTtAddressFields =
+  additionalTtAddressFields =
 	doubleOptOut = 1
 	disableErrorMsg = 0
 	enableUnsubscribeForm = 0
@@ -41,7 +41,7 @@ plugin.tx_fpnewsletter {
 	searchPidMode = 0
 	deleteMode = 1
 	languageMode = 0
-    categoryMode = 1
+  categoryMode = 1
 	categoryOrderBy = title
 	categoryOrGroup =
 	html = 1
@@ -51,7 +51,7 @@ plugin.tx_fpnewsletter {
 	reCAPTCHA_secret_key =
 	mathCAPTCHA = 0
 	honeypot = 0
-    checkForRequiredExtensions = 1
+  checkForRequiredExtensions = 1
 	preferXlfFile = 0
 	company = Ihre Firma
 	gender {
@@ -72,7 +72,6 @@ plugin.tx_fpnewsletter {
 		adminName = Admin
 		adminMailBeforeVerification = 0
 		enableConfirmationMails = 0
-		dontAppendL = 1
 		adminSubscribeSubject = Neue Newsletter-Anmeldung
 		adminUnsubscribeSubject = Neue Newsletter-Abmeldung
 		subscribeVerifySubject = Bitte verifizieren Sie Ihre E-Mail-Adresse

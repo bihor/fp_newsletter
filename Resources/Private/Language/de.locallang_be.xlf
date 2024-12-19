@@ -187,10 +187,6 @@
 				<source>Enable confirmation emails to the user?</source>
 				<target>Bestätigung-E-Mails einschalten?</target>
 			</trans-unit>
-			<trans-unit id="settings.dontAppendL" resname="settings.dontAppendL">
-				<source>Add language UID to email templates?</source>
-				<target>Hänge die Sprach-UID an die E-Mail-Templates an?</target>
-			</trans-unit>
 			<trans-unit id="settings.unsubscribeMode" resname="settings.unsubscribeMode">
 				<source>Luxletter unsubscribe mode: direct unsubscribe (no) or go to the unsubscribe page (yes)?</source>
 				<target>Luxletter Abmelde-Modus: Sofort-Abmeldung (nein) oder erst auf die Abmeldeseite weiterleiten (ja)?</target>

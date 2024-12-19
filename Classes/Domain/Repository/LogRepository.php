@@ -537,7 +537,7 @@ class LogRepository extends Repository
 	    ));
 	    return $query->execute()->getFirst();
 	}
-	
+
 	/**
 	 * Get the PIDs
 	 *

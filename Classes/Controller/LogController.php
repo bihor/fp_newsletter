@@ -5,17 +5,19 @@ declare(strict_types=1);
 namespace Fixpunkt\FpNewsletter\Controller;
 
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManagerInterface;
-use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Extbase\Persistence\Generic\PersistenceManager;
+use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
+use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
 use TYPO3\CMS\Extbase\Http\ForwardResponse;
-use Psr\Http\Message\ResponseInterface;
+use TYPO3\CMS\Core\Utility\ExtensionManagementUtility;
 use TYPO3\CMS\Core\Http\RequestFactory;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\Context\Context;
 use TYPO3\CMS\Core\Exception\SiteNotFoundException;
 use TYPO3\CMS\Core\Messaging\AbstractMessage;
-use TYPO3\CMS\Extbase\Mvc\Controller\ActionController;
-use TYPO3\CMS\Extbase\Mvc\Exception\StopActionException;
+use TYPO3\CMS\Core\View\ViewFactoryData;
+use TYPO3\CMS\Core\View\ViewFactoryInterface;
+use Psr\Http\Message\ResponseInterface;
 use Fixpunkt\FpNewsletter\Domain\Model\Log;
 use Fixpunkt\FpNewsletter\Domain\Repository\LogRepository;
 use Fixpunkt\FpNewsletter\Domain\Repository\FrontendUserRepository;
@@ -39,18 +41,9 @@ class LogController extends ActionController
 {
 
     /**
-     *
-     * @var ConfigurationManagerInterface
-     */
-    protected $configurationManager;
-
-    /*
      * Constructor
-     * @param FrontendUserRepository $frontendUserRepository
-     * @param LogRepository $logRepository
-     * @param HelpersUtility $helpersUtility
      */
-    public function __construct(protected FrontendUserRepository $frontendUserRepository, protected LogRepository $logRepository, protected HelpersUtility $helpersUtility)
+    public function __construct(protected FrontendUserRepository $frontendUserRepository, protected LogRepository $logRepository, protected HelpersUtility $helpersUtility, private ViewFactoryInterface $viewFactory)
     {
     }
 
@@ -242,7 +235,7 @@ class LogController extends ActionController
                 } else {
                     $pi = 'verify';
                 }
-                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, false, $log->getSecurityhash(), intval($subscribeVerifyUid), $pi, $requestLanguageCode);
+                $this->prepareEmail($log, true, false, false,true, false, $log->getSecurityhash(), intval($subscribeVerifyUid), $pi, $requestLanguageCode);
             }
         }
         $this->view->assign('email', $email);
@@ -292,7 +285,7 @@ class LogController extends ActionController
                     $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
                     $persistenceManager->persistAll();
                     $error = 51;
-                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, true,true, false, $hash, intval($this->settings['editUid']), 'email', $requestLanguageCode);
+                    $this->prepareEmail($log, false, false, true,true, false, $hash, intval($this->settings['editUid']), 'email', $requestLanguageCode);
                     // reset log entry
                     $log = null;
                 }
@@ -631,7 +624,7 @@ class LogController extends ActionController
             } else {
                 $pi = 'verify';
             }
-            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, false, false,true, $toAdmin, $hash, intval($subscribeVerifyUid), $pi, $requestLanguageCode);
+            $this->prepareEmail($log, true, false, false,true, $toAdmin, $hash, intval($subscribeVerifyUid), $pi, $requestLanguageCode);
         } else if ($error >= 8) {
             $uri = $this->uriBuilder->uriFor('new', [
                 'log' => $log,
@@ -1074,7 +1067,7 @@ class LogController extends ActionController
                 $this->logRepository->update($log);
                 $persistenceManager->persistAll();
                 $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
-                $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, false, false, true, $toAdmin, $hash, $unsubscribeVerifyUid, $pi, $requestLanguageCode);
+                $this->prepareEmail($log, false, false, false, true, $toAdmin, $hash, $unsubscribeVerifyUid, $pi, $requestLanguageCode);
                 $messageUid = (int) $this->settings['unsubscribeMessageUid'];
             } else {
                 if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
@@ -1085,7 +1078,7 @@ class LogController extends ActionController
                 $persistenceManager->persistAll();
                 if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                     $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                    $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '', $requestLanguageCode);
+                    $this->prepareEmail($log, false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '', $requestLanguageCode);
                 }
                 $messageUid = (int) $this->settings['unsubscribeVerifyMessageUid'];
             }
@@ -1231,7 +1224,7 @@ class LogController extends ActionController
                             $error = 8;
                         } elseif (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || $this->settings['email']['enableConfirmationMails']) {
                             $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), true, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '', $requestLanguageCode);
+                            $this->prepareEmail($log, true, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '', $requestLanguageCode);
                         }
                     }
                 }
@@ -1303,7 +1296,7 @@ class LogController extends ActionController
                         }
                         if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                             $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                            $this->helpersUtility->prepareEmail($log, $this->settings, $this->getViewArray(), false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '', $requestLanguageCode);
+                            $this->prepareEmail($log, false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '', $requestLanguageCode);
                         }
                     }
                 }
@@ -1360,4 +1353,205 @@ class LogController extends ActionController
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK);
         return $extbaseFrameworkConfiguration['view'];
     }
+
+
+    /**
+     * Prepare Array for emails and trigger sending of emails
+     *
+     * param array   $settings       settings
+     * param array   $view           view
+     * param boolean $isSubscribe    Subscription or unsubscription?
+     * param boolean $isConfirmation verify or confirmation?
+     * param boolean $isEdit         edit mode?
+     * param boolean $toUser         email to user?
+     * param boolean $toAdmin        email to admin?
+     * param string  $hash           hash
+     * param integer $verifyUid      UID of the verification page
+     * param string  $pi             plugin name
+     * param string  $lCode          request language code
+     */
+    public function prepareEmail(
+        Log &$log,
+        bool $isSubscribe = true,
+        bool $isConfirmation = false,
+        bool $isEdit = false,
+        bool $toUser = false,
+        bool $toAdmin = false,
+        string $hash = '',
+        int $verifyUid = 0,
+        string $pi = '',
+        string $lCode = ''): void
+    {
+        $settings = $this->settings;
+        $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(
+            ConfigurationManagerInterface::CONFIGURATION_TYPE_FRAMEWORK
+        );
+        $requestLanguage = $this->request->getAttribute('language');
+        $requestLocale = $requestLanguage->getLocale();
+        $genders = $this->helpersUtility->getGenders($settings['preferXlfFile'], $settings['gender'], false);
+        $email = $log->getEmail();
+        $from = trim($log->getFirstname() . ' ' . $log->getLastname());
+        if (! $from) {
+            $from = 'Subscriber';
+        }
+        $dataArray = [];
+        $dataArray['language_code'] = $requestLocale->getLanguageCode();
+        $dataArray['uid'] = $log->getUid();
+        $dataArray['sys_language_uid'] = $log->getSysLanguageUid();
+        $dataArray['language_code'] = $lCode;
+        $dataArray['gender_id'] = $log->getGender();
+        $dataArray['gender'] = $genders[$log->getGender()];
+        $dataArray['title'] = $log->getTitle();
+        $dataArray['firstname'] = $log->getFirstname();
+        $dataArray['lastname'] = $log->getLastname();
+        $dataArray['email'] = $email;
+        $dataArray['address'] = $log->getAddress();
+        $dataArray['zip'] = $log->getZip();
+        $dataArray['city'] = $log->getCity();
+        $dataArray['region'] = $log->getRegion();
+        $dataArray['country'] = $log->getCountry();
+        $dataArray['phone'] = $log->getPhone();
+        $dataArray['mobile'] = $log->getMobile();
+        $dataArray['fax'] = $log->getFax();
+        $dataArray['www'] = $log->getWww();
+        $dataArray['position'] = $log->getPosition();
+        $dataArray['company'] = $log->getCompany();
+        $dataArray['hash'] = $hash;
+        $dataArray['pi'] = $pi;
+        if ($verifyUid) {
+            if ($isSubscribe) {
+                $dataArray['subscribeVerifyUid'] = $verifyUid;
+            } else {
+                $dataArray['unsubscribeVerifyUid'] = $verifyUid;
+                $dataArray['editUid'] = $verifyUid;
+            }
+        }
+        $dataArray['settings'] = $settings;
+        if ($toUser) {
+            if ($isSubscribe) {
+                if ($isConfirmation) {
+                    $subject = (($settings['preferXlfFile']) ?
+                        LocalizationUtility::translate('email.subscribedSubject', 'FpNewsletter') :
+                        $settings['email']['subscribedSubject']);
+                    $template = 'Subscribed';
+                } else {
+                    $subject = (($settings['preferXlfFile']) ?
+                        LocalizationUtility::translate('email.subscribeVerifySubject', 'FpNewsletter') :
+                        $settings['email']['subscribeVerifySubject']);
+                    $template = 'SubscribeVerify';
+                }
+            } else {
+                if ($isConfirmation) {
+                    $subject = (($settings['preferXlfFile']) ?
+                        LocalizationUtility::translate('email.unsubscribedSubject', 'FpNewsletter') :
+                        $settings['email']['unsubscribedSubject']);
+                    $template = 'Unsubscribed';
+                } else {
+                    if ($isEdit) {
+                        $subject = (($settings['preferXlfFile']) ?
+                            LocalizationUtility::translate('email.editSubject', 'FpNewsletter') :
+                            $settings['email']['editSubject']);
+                        $template = 'EditLink';
+                    } else {
+                        $subject = (($settings['preferXlfFile']) ?
+                            LocalizationUtility::translate('email.unsubscribeVerifySubject', 'FpNewsletter') :
+                            $settings['email']['unsubscribeVerifySubject']);
+                        $template = 'UnsubscribeVerify';
+                    }
+                }
+            }
+
+            $viewFactoryData = new ViewFactoryData(
+                templateRootPaths: $extbaseFrameworkConfiguration['view']['templateRootPaths'],
+                partialRootPaths: $extbaseFrameworkConfiguration['view']['partialRootPaths'],
+                layoutRootPaths: $extbaseFrameworkConfiguration['view']['layoutRootPaths'],
+                request: $this->request,
+                format: 'html',
+            );
+            $view = $this->viewFactory->create($viewFactoryData);
+            $view->assignMultiple($dataArray);
+            $emailBodyHtml = $view->render('Email/' . $template);
+
+            $viewFactoryData = new ViewFactoryData(
+                templateRootPaths: $extbaseFrameworkConfiguration['view']['templateRootPaths'],
+                partialRootPaths: $extbaseFrameworkConfiguration['view']['partialRootPaths'],
+                layoutRootPaths: $extbaseFrameworkConfiguration['view']['layoutRootPaths'],
+                request: $this->request,
+                format: 'txt',
+            );
+            $view = $this->viewFactory->create($viewFactoryData);
+            $view->assignMultiple($dataArray);
+            $emailBodyText = $view->render('Email/' . $template);
+
+            if ($this->settings['debug']) {
+                echo "#" . $subject . '#';
+                echo "##" . $emailBodyText . '##';
+                echo "###" . $emailBodyHtml . '###';
+            } else {
+                $this->helpersUtility->sendTemplateEmail(
+                    [$email => $from],
+                    [$settings['email']['senderMail'] => $settings['email']['senderName']],
+                    $subject,
+                    $emailBodyHtml,
+                    $emailBodyText);
+            }
+        }
+        if ($toAdmin) {
+            if ($isSubscribe) {
+                $subject = (($settings['preferXlfFile']) ?
+                    LocalizationUtility::translate('email.adminSubscribeSubject', 'FpNewsletter') :
+                    $settings['email']['adminSubscribeSubject']);
+                if ($isConfirmation) {
+                    $template = 'SubscribeToAdmin';
+                } else {
+                    $template = 'UserToAdmin';
+                }
+            } else {
+                $subject = (($settings['preferXlfFile']) ?
+                    LocalizationUtility::translate('email.adminUnsubscribeSubject', 'FpNewsletter') :
+                    $settings['email']['adminUnsubscribeSubject']);
+                if ($isConfirmation) {
+                    $template = 'UnsubscribeToAdmin';
+                } else {
+                    $template = 'UserToAdmin';
+                }
+            }
+
+            $viewFactoryData = new ViewFactoryData(
+                templateRootPaths: $extbaseFrameworkConfiguration['view']['templateRootPaths'],
+                partialRootPaths: $extbaseFrameworkConfiguration['view']['partialRootPaths'],
+                layoutRootPaths: $extbaseFrameworkConfiguration['view']['layoutRootPaths'],
+                request: $this->request,
+                format: 'html',
+            );
+            $view = $this->viewFactory->create($viewFactoryData);
+            $view->assignMultiple($dataArray);
+            $emailBodyHtml = $view->render('Email/' . $template);
+
+            $viewFactoryData = new ViewFactoryData(
+                templateRootPaths: $extbaseFrameworkConfiguration['view']['templateRootPaths'],
+                partialRootPaths: $extbaseFrameworkConfiguration['view']['partialRootPaths'],
+                layoutRootPaths: $extbaseFrameworkConfiguration['view']['layoutRootPaths'],
+                request: $this->request,
+                format: 'txt',
+            );
+            $view = $this->viewFactory->create($viewFactoryData);
+            $view->assignMultiple($dataArray);
+            $emailBodyText = $view->render('Email/' . $template);
+
+            if ($this->settings['debug']) {
+                echo "#" . $subject . '#';
+                echo "##" . $emailBodyText . '##';
+                echo "###" . $emailBodyHtml . '###';
+            } else {
+                $this->helpersUtility->sendTemplateEmail(
+                    [$email => $from],
+                    [$settings['email']['senderMail'] => $settings['email']['senderName']],
+                    $subject,
+                    $emailBodyHtml,
+                    $emailBodyText);
+            }
+        }
+    }
+
 }

@@ -187,10 +187,6 @@
 				<source>Enable confirmation emails to the user?</source>
 				<target>Activer les emails de confirmations pour l&#039;utilisateur ?</target>
 			</trans-unit>
-			<trans-unit id="settings.dontAppendL" resname="settings.dontAppendL">
-				<source>Add language UID to email templates?</source>
-				<target>Ajouter l&#039;UID de la langue aux templates d&#039;email ?</target>
-			</trans-unit>
 			<trans-unit id="settings.unsubscribeMode" resname="settings.unsubscribeMode">
 				<source>Luxletter unsubscribe mode: direct unsubscribe (no) or go to the unsubscribe page (yes)?</source>
 				<target>Mode de désinscription pour Luxletter : Désinscription direct OU aller à la page de désinscription ?</target>

@@ -2,8 +2,8 @@
 
 Version 7.1.0
 
-The TYPO3 extension fp_newsletter is designed to provide a newsletter subscription and unsubscription service for the 
-table tt_address which can be used by the extension mail OR for the table fe_users which can be used by luxletter or mail. 
+The TYPO3 extension fp_newsletter is designed to provide a newsletter subscription and unsubscription service for the
+table tt_address which can be used by the extension mail OR for the table fe_users which can be used by luxletter or mail.
 Furthermore, it is designed to be compatible with the GDPR. A log is written about every action in a separate table.
 Old log entries can be deleted by a scheduler task.
 Supports Google reCaptcha v3 or a mathematical captcha.
@@ -40,3 +40,5 @@ Version 7.1.0/1:
 
 Version 8.0.0:
 - First version for TYPO3 13.
+- Breaking: setting dontAppendL removed: templates with language-id at the end removed.
+- Breaking: setup.ts and constants.ts removed.
