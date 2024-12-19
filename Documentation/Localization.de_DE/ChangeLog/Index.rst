@@ -197,3 +197,10 @@ Version 7.1.0:
 - SwitchableControllerActionsPluginUpdater (Update-Skript für TYPO3 12) entfernt. Benutze eine ältere Version, falls noch benötigt.
 
 - FlexformPluginUpdater (Update-Skript für FlexForms) entfernt. Benutze eine ältere Version, falls noch benötigt.
+
+Version 8.0.0:
+- Erste beta Version für TYPO3 13.
+
+- Breaking: setting dontAppendL entfernt: Templates mit Sprach-ID am Ende entfernt.
+
+- Breaking: setup.ts und constants.ts entfernt. Die .typoscript-Dateien sind freilich noch da.
