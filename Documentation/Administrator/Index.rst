@@ -104,6 +104,33 @@ a verification or delete plugin::
   lib.nlsubscriptionContent.value =
 
 
+.. _admin-genders:
+
+Using other salutations
+-----------------------
+
+If you don´t like the salutations in the sent email, you can change the text via TypoScript.
+See chapter configuration.
+If you want that it depends on the gender you need to change the Partials/Email/Salutation.html file.
+Example::
+
+  <f:if condition="{gender_id}==1 && {lastname}">
+    <f:then>
+      <f:translate key="email.dear-mrs-last-name" arguments="{0: lastname}" extensionName="FpNewsletter" languageKey="{language_code}" />
+    </f:then>
+  </f:if>
+  <f:if condition="{gender_id}==2 && {lastname}">
+    <f:then>
+      <f:translate key="email.dear-mr-last-name" arguments="{0: lastname}" extensionName="FpNewsletter" languageKey="{language_code}" />
+    </f:then>
+  </f:if>
+
+You can now use new TypoScript settings. TypoScript example for the above partial::
+
+  plugin.tx_fpnewsletter._LOCAL_LANG.de.email.dear-mr-last-name = Sehr geehrter Herr %s,
+  plugin.tx_fpnewsletter._LOCAL_LANG.de.email.dear-mrs-last-name = Sehr geehrte Frau %s,
+
+
 .. _admin-note-mail:
 
 Note for the Mail-extension
@@ -351,4 +378,4 @@ FAQ
 
   Not at all. You can add a task to your scheduler: select the task Scheduler / Table garbage collection.
   Select there the table tx_fpnewsletter_domain_model_log and set the days after the entries should be deleted.
-  If the CronJob is running, the task will delete all old log entries. 
+  If the CronJob is running, the task will delete all old log entries.

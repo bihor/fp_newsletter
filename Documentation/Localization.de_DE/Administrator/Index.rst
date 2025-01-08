@@ -100,6 +100,34 @@ Falls du das Anmelde-Plugin von fp_newsletter benutzt, solltest du das cachable 
 In dem Fall muss noch eine Seite für die Anmeldung definiert werden, wohin das Formular umleiten soll.
 Ein mathematisches Captcha ist bei diesem cachable Anmelde-Formular nicht möglich!
 
+
+.. _admin-genders:
+
+Verwendung von anderen Anreden in den E-Mails
+---------------------------------------------
+
+Wenn man die verwendeten Anreden nicht mag, kann man sie via TypoScript ändern.
+Siehe Kapitel Konfiguration/TypoScript Referenz.
+Wenn man jedoch für Herr und Frau unterschiedliche Anreden will, muss man die Datei
+Partials/Email/Salutation.html ändern. Beispiel::
+
+  <f:if condition="{gender_id}==1 && {lastname}">
+    <f:then>
+      <f:translate key="email.dear-mrs-last-name" arguments="{0: lastname}" extensionName="FpNewsletter" languageKey="{language_code}" />
+    </f:then>
+  </f:if>
+  <f:if condition="{gender_id}==2 && {lastname}">
+    <f:then>
+      <f:translate key="email.dear-mr-last-name" arguments="{0: lastname}" extensionName="FpNewsletter" languageKey="{language_code}" />
+    </f:then>
+  </f:if>
+
+Nun kann man neues TypoScript-Settings hinzufügen. TypoScript-Beispiel für das obige Partial::
+
+  plugin.tx_fpnewsletter._LOCAL_LANG.de.email.dear-mr-last-name = Sehr geehrter Herr %s,
+  plugin.tx_fpnewsletter._LOCAL_LANG.de.email.dear-mrs-last-name = Sehr geehrte Frau %s,
+
+
 .. _admin-note-mail:
 
 Anmerkung für die Mail-Extension
