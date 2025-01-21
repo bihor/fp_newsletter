@@ -27,7 +27,7 @@ Settings-Einstellungen
 Feld                              Typ         Beschreibung                                                              Standard-Wert
 ================================= =========== ========================================================================= ================================
 table                             string      tt_address, fe_users oder keine Tabelle (leerer Wert) möglich             tt_address
-newsletterExtension               string      luxletter (default für fe_users) oder mail (default für tt_address)       leer = luxletter
+newsletterExtension               string      luxletter (default für fe_users), mail (default für tt_address) o. other  leer = luxletter
 optionalFields                    string      Optionale Werte: siehe weiter unten                                       gender,firstname,lastname
 optionalFieldsRequired            string      Optionale erforderliche* Werte: siehe weiter unten
 doubleOptOut                      boolean     Double opt out Abmeldung einschalten?                                     1
@@ -215,10 +215,13 @@ Benötigte Extensions
 ^^^^^^^^^^^^^^^^^^^^
 
 Standardmäßig überprüft die Extension in der Action new (Anmeldeformular), ob die benötigten Extensions installiert sind.
-settings.table kann leer, tt_address oder fe_users sein. Bei tt_address wird auch mail benötigt, wenn man entweder
+settings.table kann leer, tt_address oder fe_users sein. Bei tt_address wird auch die Extension mail benötigt, wenn man entweder
 settings.html oder settings.categoryOrGroup verwendet. Die Überprüfung kann man ausschalten::
 
   plugin.tx_fpnewslettersettings.checkForRequiredExtensions = 0
+
+Achtung: wenn man bei den Einstellungen zu Newsletter Extension "andere" auswählt, dann wird
+settings.html=-1 gesetzt, da nicht klar ist, welche html-Felder andere Extensions haben.
 
 Komplettes Beispiel
 ^^^^^^^^^^^^^^^^^^^

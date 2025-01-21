@@ -27,7 +27,7 @@ Properties for settings
 Property                          Data type   Description                                                               Default value
 ================================= =========== ========================================================================= =================================
 table                             string      tt_address, fe_users or none (empty value) supported                      tt_address
-newsletterExtension               string      luxletter (default for fe_users) or mail (default for tt_address)         empty = luxletter
+newsletterExtension               string      luxletter (default for fe_users), mail (default for tt_address), or other empty = luxletter
 optionalFields                    string      Optional fields: see below                                                gender,firstname,lastname
 optionalFieldsRequired            string      Optional required* fields: see below
 doubleOptOut                      boolean     Enable double out out unsubscription?                                     1
@@ -187,7 +187,7 @@ TypoScript setup::
 
   plugin.tx_fpnewsletter.settings.optionalFields = gender,title,firstname,lastname,www,position,company
   plugin.tx_fpnewsletter.settings.optionalFieldsRequired = firstname,lastname,company
-  
+
 Using of categories
 ^^^^^^^^^^^^^^^^^^^
 
@@ -226,6 +226,9 @@ settings.table can be empty, tt_address or fe_users. When it is tt_address, mail
 settings.html or settings.categoryOrGroup. You can disable this check::
 
   plugin.tx_fpnewslettersettings.checkForRequiredExtensions = 0
+
+Atention: if you select "other" at "used newsletter extension", then
+settings.html=-1 will be set, because its not clear, which html-fields other extensions have.
 
 Full working example
 ^^^^^^^^^^^^^^^^^^^^

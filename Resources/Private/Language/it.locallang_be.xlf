@@ -199,6 +199,14 @@
 				<source>UIDs of the categories (mail) OR fe_groups (luxletter), e.g. 3,4</source>
 				<target>UID di sys_category (mail) O fe_groups (luxletter)</target>
 			</trans-unit>
+			<trans-unit id="settings.newsletterExtension" resname="settings.newsletterExtension">
+				<source>Used newsletter extension</source>
+				<target>Estensione newsletter usata</target>
+			</trans-unit>
+			<trans-unit id="settings.other" resname="settings.other">
+				<source>other</source>
+				<target>altro (html verrà impostato su -1)</target>
+			</trans-unit>
 			<trans-unit id="parameters" resname="parameters">
 				<source>External parameters</source>
 				<target>Parametri esterni</target>

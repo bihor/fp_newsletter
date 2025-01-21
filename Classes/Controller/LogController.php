@@ -473,10 +473,14 @@ class LogController extends ActionController
             $dbemail = $log->getEmail();
             $dbuidext = $this->logRepository->getExternalUid($dbemail, $log->getPid(), $table, $this->settings['searchPidMode']);
             $salutation = $this->helpersUtility->getSalutation(intval($log->getGender()), $this->settings['gender']);
+            $html = intval($this->settings['html']);
+            if ($this->settings['newsletterExtension'] == 'other') {
+                $html = -1;
+            }
             if ($dbuidext) {
                 if ($table == 'tt_address') {
                     $this->logRepository->updateInTtAddress(
-                        $log, intval($this->settings['html']), $dbuidext, $salutation, $this->settings['additionalTtAddressFields']
+                        $log, $html, $dbuidext, $salutation, $this->settings['additionalTtAddressFields']
                     );
                 } elseif ($table == 'fe_users') {
                     $this->logRepository->updateInFeUsers(
@@ -1121,6 +1125,9 @@ class LogController extends ActionController
         $error = 0;
         $dbuid = 0;
         $html = intval($this->settings['html']);
+        if ($this->settings['newsletterExtension'] == 'other') {
+            $html = -1;
+        }
         $dmCat = str_replace(' ', '', (string) $this->settings['categoryOrGroup']);
         $uid = intval($this->request->hasArgument('uid')) ? $this->request->getArgument('uid') : 0;
         $hash = ($this->request->hasArgument('hash')) ? $this->request->getArgument('hash') : '';

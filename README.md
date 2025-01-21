@@ -1,6 +1,6 @@
 # fp_newsletter
 
-Version 7.1.0
+Version 8.0.1
 
 The TYPO3 extension fp_newsletter is designed to provide a newsletter subscription and unsubscription service for the
 table tt_address which can be used by the extension mail OR for the table fe_users which can be used by luxletter or mail.
@@ -42,3 +42,7 @@ Version 8.0.0:
 - First version for TYPO3 13.
 - Breaking: setting dontAppendL removed: templates with language-id at the end removed.
 - Breaking: setup.ts and constants.ts removed.
+
+Version 8.0.1:
+- New Flexform setting: newsletterExtension. "other" sets html to -1.
+- Second Widget fixed.

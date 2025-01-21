@@ -150,6 +150,12 @@
 			<trans-unit id="settings.categoryOrGroup" resname="settings.categoryOrGroup">
 				<source>UIDs of the categories (mail) OR fe_groups (luxletter), e.g. 3,4</source>
 			</trans-unit>
+			<trans-unit id="settings.newsletterExtension" resname="settings.newsletterExtension">
+				<source>Used newsletter extension</source>
+			</trans-unit>
+			<trans-unit id="settings.other" resname="settings.other">
+				<source>other (html will be set to -1)</source>
+			</trans-unit>
 			<trans-unit id="parameters" resname="parameters">
 				<source>External parameters</source>
 			</trans-unit>
