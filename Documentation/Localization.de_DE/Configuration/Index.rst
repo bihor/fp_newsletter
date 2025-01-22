@@ -93,7 +93,7 @@ Achtung***: diese Seite wird auch dann benutzt, wenn doubleOptOut=0. unsubscribe
 
 Achtung°: dies funktioniert nur bei der Abmeldung.
 
-Achtung°°: Kommaseparierte Liste. Beispiel: 1,3. Also ohne Leerzeichen dazwischen. Erforderlich!
+Achtung°°: Kommaseparierte Liste. Beispiel: 1,3. Also ohne Leerzeichen dazwischen. Erforderlich für externe Extensions!
 
 Achtung°°°: der Default-Wert wurde von 0 auf 1 geändert in Version 3.0.0 und selbst wenn L=0 wird ab Version 3.0.0
 0 an den E-Mail-Template-Namen angehangen wenn email.dontAppendL=0.

@@ -94,7 +94,7 @@ Note***: this page is used too, if doubleOptOut=0. unsubscribeMessageUid is not 
 
 Note°: this works only at the unsubscription.
 
-Note°°: comma separated list. E.g. 1,3. Without space. Required!
+Note°°: comma separated list. E.g. 1,3. Without space. Required for external extensions!
 
 Note°°°: the default value was changed from 0 to 1 in version 3.0.0 and even when L=0 0 will be added from version 3.0.0
 to the email-templates when email.dontAppendL=0.
