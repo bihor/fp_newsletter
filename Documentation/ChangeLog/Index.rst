@@ -206,3 +206,8 @@ Version 8.0.0:
 - Breaking: setting dontAppendL removed: templates with language-id at the end removed.
 
 - Breaking: setup.ts and constants.ts removed. The .typoscript files are still there.
+
+Version 8.0.1:
+- New Flexform settings: newsletterExtension and table. "other" sets html to -1.
+
+- Second Widget fixed. Backend preview fixed again. Import task fixed for TYPO3 13.

@@ -26,7 +26,7 @@ Settings-Einstellungen
 ================================= =========== ========================================================================= ================================
 Feld                              Typ         Beschreibung                                                              Standard-Wert
 ================================= =========== ========================================================================= ================================
-table                             string      tt_address, fe_users oder keine Tabelle (leerer Wert) möglich             tt_address
+table                             string      tt_address, fe_users, other oder leerer Wert (= keine ext. Tabelle)       tt_address
 newsletterExtension               string      luxletter (default für fe_users), mail (default für tt_address) o. other  leer = luxletter
 optionalFields                    string      Optionale Werte: siehe weiter unten                                       gender,firstname,lastname
 optionalFieldsRequired            string      Optionale erforderliche* Werte: siehe weiter unten
@@ -220,7 +220,7 @@ settings.html oder settings.categoryOrGroup verwendet. Die Überprüfung kann ma
 
   plugin.tx_fpnewslettersettings.checkForRequiredExtensions = 0
 
-Achtung: wenn man bei den Einstellungen zu Newsletter Extension "andere" auswählt, dann wird
+Achtung: wenn man bei den Einstellungen zu Newsletter Extension "other"/"andere" auswählt, dann wird
 settings.html=-1 gesetzt, da nicht klar ist, welche html-Felder andere Extensions haben.
 
 Komplettes Beispiel

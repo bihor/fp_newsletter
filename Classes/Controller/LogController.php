@@ -104,6 +104,10 @@ class LogController extends ActionController
         $required = [];
         $optionalFields = $this->settings['optionalFields'];
         $requiredFields = $this->settings['optionalFieldsRequired'];
+        $html = intval($this->settings['html']);
+        if ($this->settings['newsletterExtension']=='other' || $this->settings['table']=='other') {
+            $html = -1;
+        }
         if ($optionalFields) {
             $tmp = explode(',', (string) $optionalFields);
             foreach ($tmp as $field) {
@@ -151,13 +155,15 @@ class LogController extends ActionController
             $frontendUser->setKey('ses', 'mcaptchaop', $operator);
             $frontendUser->storeSessionData();
         }
-        if (!$error && $this->settings['checkForRequiredExtensions'] && $this->settings['table']=='tt_address') {
-            if (!ExtensionManagementUtility::isLoaded('tt_address')) {
+        if (!$error && $this->settings['checkForRequiredExtensions']) {
+            if ($this->settings['table']=='tt_address' && !ExtensionManagementUtility::isLoaded('tt_address')) {
                 $error = 20;
             }
-            if ((intval($this->settings['html'])>-1 || $this->settings['categoryOrGroup'])
-                && !ExtensionManagementUtility::isLoaded('mail')) {
+            if ($this->settings['table']=='tt_address' && ($html>-1 || $this->settings['categoryOrGroup']) && !ExtensionManagementUtility::isLoaded('mail')) {
                 $error = 21;
+            }
+            if ($this->settings['newsletterExtension']=='luxletter' && !ExtensionManagementUtility::isLoaded('luxletter')) {
+                $error = 22;
             }
         }
         $this->view->assign('genders', $genders);
@@ -474,7 +480,7 @@ class LogController extends ActionController
             $dbuidext = $this->logRepository->getExternalUid($dbemail, $log->getPid(), $table, $this->settings['searchPidMode']);
             $salutation = $this->helpersUtility->getSalutation(intval($log->getGender()), $this->settings['gender']);
             $html = intval($this->settings['html']);
-            if ($this->settings['newsletterExtension'] == 'other') {
+            if ($this->settings['newsletterExtension'] == 'other' || $this->settings['table']=='other') {
                 $html = -1;
             }
             if ($dbuidext) {
@@ -823,6 +829,7 @@ class LogController extends ActionController
     public function unsubscribeMailAction(): ResponseInterface
     {
         $error = 0;
+        $user = null;
         if (isset($_GET[ $this->settings['parameters']['email'] ])) {
             $email = $_GET[ $this->settings['parameters']['email'] ];
         } else {
@@ -973,7 +980,7 @@ class LogController extends ActionController
             } else {
                 $error = 8;
             }
-            if ($this->settings['table'] && ($dbuidext == 0)) {
+            if (($this->settings['table'] && $this->settings['table']!='other') && ($dbuidext == 0)) {
                 $error = 7;
             }
             if ($checkSession) {
@@ -1125,7 +1132,7 @@ class LogController extends ActionController
         $error = 0;
         $dbuid = 0;
         $html = intval($this->settings['html']);
-        if ($this->settings['newsletterExtension'] == 'other') {
+        if ($this->settings['newsletterExtension'] == 'other' || $this->settings['table']=='other') {
             $html = -1;
         }
         $dmCat = str_replace(' ', '', (string) $this->settings['categoryOrGroup']);
@@ -1227,7 +1234,7 @@ class LogController extends ActionController
                                 $this->logRepository->insertIntoMm($tableUid, $dmCatArr, $this->settings['table']);
                             }
                         }
-                        if ($this->settings['table'] && $success < 1) {
+                        if (($this->settings['table'] && $this->settings['table']!='other') && $success < 1) {
                             $error = 8;
                         } elseif (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || $this->settings['email']['enableConfirmationMails']) {
                             $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
@@ -1290,7 +1297,7 @@ class LogController extends ActionController
                 if (!$error) {
                     $dbemail = $log->getEmail();
                     $dbuidext = $this->logRepository->getExternalUid($dbemail, $log->getPid(), $this->settings['table'], $this->settings['searchPidMode']);
-                    if ($this->settings['table'] && ! $dbuidext) {
+                    if (($this->settings['table'] && $this->settings['table']!='other') && ! $dbuidext) {
                         $error = 6;
                     } else {
                         $log->setStatus(4);

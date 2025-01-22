@@ -69,13 +69,13 @@ class ImportFEUsersScheduler extends Command
         $connection = GeneralUtility::makeInstance(ConnectionPool::class)->getConnectionForTable('tt_address');
         $queryBuilder = $connection->createQueryBuilder();
         if ($pid) {
-            $statement = $queryBuilder->select('*')->from('tt_address')->where(
+            $result  = $queryBuilder->select('*')->from('tt_address')->where(
                 $queryBuilder->expr()->eq('pid', $pid)
-            )->execute();
+            )->executeQuery()->fetchAllAssociative();
         } else {
-            $statement = $queryBuilder->select('*')->from('tt_address')->execute();
+            $result = $queryBuilder->select('*')->from('tt_address')->executeQuery()->fetchAllAssociative();
         }
-        while ($row = $statement->fetch()) {
+        foreach ($result as $row) {
             $addresses[] = $row;
         }
 

@@ -99,6 +99,30 @@
                 <sheetTitle>LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:enables</sheetTitle>
                 <type>array</type>
                 <el>
+                    <settings.table>
+                        <label>
+                            LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.table
+                        </label>
+                        <config>
+                            <type>radio</type>
+                            <items type="array">
+                                <numIndex index="0" type="array">
+                                    <numIndex index="0">tt_address</numIndex>
+                                    <numIndex index="1">tt_address (default)</numIndex>
+                                </numIndex>
+                                <numIndex index="1" type="array">
+                                    <numIndex index="0">fe_users</numIndex>
+                                    <numIndex index="1">fe_users</numIndex>
+                                </numIndex>
+                                <numIndex index="2" type="array">
+                                    <numIndex index="0">
+                                        LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.other
+                                    </numIndex>
+                                    <numIndex index="1">other</numIndex>
+                                </numIndex>
+                            </items>
+                        </config>
+                    </settings.table>
                     <settings.newsletterExtension>
                         <label>
                             LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_be.xlf:settings.newsletterExtension

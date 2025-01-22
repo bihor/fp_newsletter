@@ -315,6 +315,10 @@
 				<source>Error: the extension mail is required if settings.html!=-1 or settings.categoryOrGroup is set!</source>
 				<target>Errore: l&#039;estensione mail è richiesta se è impostato settings.html!=-1 o settings.categoryOrGroup!</target>
 			</trans-unit>
+			<trans-unit id="missing_luxletter" resname="missing_luxletter">
+				<source>Error: the extension luxletter is required if you use settings.newsletterExtension=luxletter!</source>
+				<target>Errore: l&#039;estensione luxletter è richiesta se si utilizza settings.newsletterExtension=luxletter!</target>
+			</trans-unit>
 			<trans-unit id="email.dear-gender-first-and-last-name" resname="email.dear-gender-first-and-last-name">
 				<source>Dear %s %s %s,</source>
 				<target>Cara %s %s %s,</target>

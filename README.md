@@ -44,5 +44,5 @@ Version 8.0.0:
 - Breaking: setup.ts and constants.ts removed.
 
 Version 8.0.1:
-- New Flexform setting: newsletterExtension. "other" sets html to -1.
-- Second Widget fixed.
+- New Flexform settings: newsletterExtension and table. "other" sets html to -1.
+- Second Widget fixed. Backend preview fixed again. Import task fixed for TYPO3 13.

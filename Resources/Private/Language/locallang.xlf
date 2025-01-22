@@ -237,6 +237,9 @@
 			<trans-unit id="missing_mail" resname="missing_mail">
 				<source>Error: the extension mail is required if settings.html!=-1 or settings.categoryOrGroup is set!</source>
 			</trans-unit>
+			<trans-unit id="missing_luxletter" resname="missing_luxletter">
+				<source>Error: the extension luxletter is required if you use settings.newsletterExtension=luxletter!</source>
+			</trans-unit>
 			<trans-unit id="email.dear-gender-first-and-last-name" resname="email.dear-gender-first-and-last-name">
 				<source>Dear %s %s %s,</source>
 			</trans-unit>

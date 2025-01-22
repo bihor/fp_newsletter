@@ -5,7 +5,7 @@
 		<body>
 			<trans-unit id="title" resname="title">
 				<source>Newsletter-subscriber-settings</source>
-				<target>Paramètre de l&#039;inscription à l&#039;infolettre</target>
+				<target>Paramètres de la page</target>
 			</trans-unit>
 			<trans-unit id="startingPoint" resname="startingPoint">
 				<source>Startingpoint</source>
@@ -89,7 +89,7 @@
 			</trans-unit>
 			<trans-unit id="enables" resname="enables">
 				<source>Enable/disable</source>
-				<target>Activé/désactivé</target>
+				<target>Paramètres des fonctionnalités</target>
 			</trans-unit>
 			<trans-unit id="settings.no" resname="settings.no">
 				<source>no</source>
@@ -203,9 +203,13 @@
 				<source>Used newsletter extension</source>
 				<target>Extension de newsletter utilisée</target>
 			</trans-unit>
+			<trans-unit id="settings.table" resname="settings.table">
+				<source>Used table</source>
+				<target>Table de base de données utilisée</target>
+			</trans-unit>
 			<trans-unit id="settings.other" resname="settings.other">
 				<source>other</source>
-				<target>autre (html sera défini sur -1)</target>
+				<target>autre (le paramètre html sera défini sur -1/sera ignoré)</target>
 			</trans-unit>
 			<trans-unit id="parameters" resname="parameters">
 				<source>External parameters</source>

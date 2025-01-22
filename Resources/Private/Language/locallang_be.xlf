@@ -4,7 +4,7 @@
 		<header/>
 		<body>
 			<trans-unit id="title" resname="title">
-				<source>Newsletter-subscriber-settings</source>
+				<source>Page-settings</source>
 			</trans-unit>
 			<trans-unit id="startingPoint" resname="startingPoint">
 				<source>Startingpoint</source>
@@ -67,7 +67,7 @@
 				<source>Page with the GDPR</source>
 			</trans-unit>
 			<trans-unit id="enables" resname="enables">
-				<source>Enable/disable</source>
+				<source>Feature settings</source>
 			</trans-unit>
 			<trans-unit id="settings.no" resname="settings.no">
 				<source>no</source>
@@ -153,8 +153,11 @@
 			<trans-unit id="settings.newsletterExtension" resname="settings.newsletterExtension">
 				<source>Used newsletter extension</source>
 			</trans-unit>
+			<trans-unit id="settings.table" resname="settings.table">
+				<source>Used database table</source>
+			</trans-unit>
 			<trans-unit id="settings.other" resname="settings.other">
-				<source>other (html will be set to -1)</source>
+				<source>other (html-setting will be set to -1/will be ignored)</source>
 			</trans-unit>
 			<trans-unit id="parameters" resname="parameters">
 				<source>External parameters</source>

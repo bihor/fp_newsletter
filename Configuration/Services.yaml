@@ -8,10 +8,10 @@ services:
     resource: '../Classes/*'
     exclude: '../Classes/Domain/Model/*'
 
-#  Fixpunkt\FpNewsletter\Backend\EventListener\PreviewEventListener:
-#    tags:
-#      - name: "event.listener"
-#        identifier: 'fp_newsletter/preview-rendering'
+  Fixpunkt\FpNewsletter\Backend\EventListener\PreviewEventListener:
+    tags:
+      - name: "event.listener"
+        identifier: 'fp_newsletter/preview-rendering'
 
   Fixpunkt\FpNewsletter\Command\ImportFEUsersScheduler:
     tags:
