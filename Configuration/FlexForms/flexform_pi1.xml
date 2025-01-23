@@ -107,8 +107,8 @@
                             <type>radio</type>
                             <items type="array">
                                 <numIndex index="0" type="array">
-                                    <numIndex index="0">tt_address</numIndex>
-                                    <numIndex index="1">tt_address (default)</numIndex>
+                                    <numIndex index="0">tt_address (default)</numIndex>
+                                    <numIndex index="1">tt_address</numIndex>
                                 </numIndex>
                                 <numIndex index="1" type="array">
                                     <numIndex index="0">fe_users</numIndex>
@@ -131,9 +131,7 @@
                             <type>radio</type>
                             <items type="array">
                                 <numIndex index="0" type="array">
-                                    <numIndex index="0">
-                                        luxletter (default)
-                                    </numIndex>
+                                    <numIndex index="0">luxletter (default)</numIndex>
                                     <numIndex index="1">luxletter</numIndex>
                                 </numIndex>
                                 <numIndex index="1" type="array">

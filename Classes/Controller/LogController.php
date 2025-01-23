@@ -1129,7 +1129,6 @@ class LogController extends ActionController
      */
     public function verifyAction(): ResponseInterface
     {
-        $error = 0;
         $dbuid = 0;
         $html = intval($this->settings['html']);
         if ($this->settings['newsletterExtension'] == 'other' || $this->settings['table']=='other') {

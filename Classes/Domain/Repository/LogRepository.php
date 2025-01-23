@@ -316,7 +316,7 @@ class LogRepository extends Repository
             }
         }
 		$queryBuilder = GeneralUtility::makeInstance(ConnectionPool::class)->getQueryBuilderForTable('tt_address');
-		$queryBuilder
+		$result = $queryBuilder
 			->insert('tt_address')
 			->values($insert)
 			->executeStatement();
@@ -324,7 +324,7 @@ class LogRepository extends Repository
         if ($tableUid) {
             $this->insertIntoMm($tableUid, $dmCatArr, 'tt_address');
         }
-		return $tableUid;
+		return $tableUid;       // oder $result
 	}
 
     /**
