@@ -22,6 +22,7 @@ use Fixpunkt\FpNewsletter\Domain\Model\Log;
 use Fixpunkt\FpNewsletter\Domain\Repository\LogRepository;
 use Fixpunkt\FpNewsletter\Domain\Repository\FrontendUserRepository;
 use Fixpunkt\FpNewsletter\Utility\HelpersUtility;
+use TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication;
 
 /**
  *
@@ -123,7 +124,7 @@ class LogController extends ActionController
         }
         if ($log && $log->getUid()) {
             // wenn man von "create" her kommt, muss der Eintrag validiert werden
-			$securityhash = $this->request->hasArgument('securityhash') ? $this->request->getArgument('securityhash') : '';
+            $securityhash = $this->request->hasArgument('securityhash') ? $this->request->getArgument('securityhash') : '';
             if (empty($securityhash) || !is_string($securityhash) || !hash_equals($log->getSecurityhash(), $securityhash)) {
                 $error = 1;
                 $log = NULL;
@@ -523,10 +524,10 @@ class LogController extends ActionController
                     $log->setPid($pid);
                     $log->setEmail($email);
                     $log->setGdpr(true);
-					return (new ForwardResponse('create'))
-					->withControllerName('Log')
-					->withExtensionName('fp_newsletter')
-					->withArguments(['log' => $log]);
+                    return (new ForwardResponse('create'))
+                        ->withControllerName('Log')
+                        ->withExtensionName('fp_newsletter')
+                        ->withArguments(['log' => $log]);
                 }
             }
         }
@@ -678,7 +679,7 @@ class LogController extends ActionController
         $pageArguments = $this->request->getAttribute('routing');
         if ($log && $log->getUid()) {
             // her kommt man nach einem redirect von delete her
-			$securityhash = $this->request->hasArgument('securityhash') ? $this->request->getArgument('securityhash') : '';
+            $securityhash = $this->request->hasArgument('securityhash') ? $this->request->getArgument('securityhash') : '';
             if (empty($securityhash) || !is_string($securityhash) || !hash_equals($log->getSecurityhash(), $securityhash)) {
                 $error = 1;
                 $log = NULL;
@@ -1038,8 +1039,7 @@ class LogController extends ActionController
                     }
                 }
                 if ($this->settings['mathCAPTCHA']) {
-                    /** @var \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication $frontendUser */
-                    $frontendUser = $this->request->getAttribute('frontend.user');
+                    $frontendUser = $this->getFrontendUserAuthentication();
                     $tmp_error = $this->helpersUtility->checkMathCaptcha(intval($log->getMathcaptcha()), $frontendUser);
 
                     if ($tmp_error > 0) {
@@ -1094,9 +1094,7 @@ class LogController extends ActionController
                     $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
                     $this->prepareEmail($log, false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '', $requestLanguageCode);
                 }
-                $messageUid = isset($this->settings['unsubscribeVerifyMessageUid'])
-                    ? (int) $this->settings['unsubscribeVerifyMessageUid']
-                    : 0; // Oder einen anderen Standardwert setzen
+                $messageUid = (int)($this->settings['unsubscribeVerifyMessageUid'] ?? 0);
             }
         } else if ($error >= 8) {
             $uri = $this->uriBuilder->reset()
@@ -1572,4 +1570,8 @@ class LogController extends ActionController
         }
     }
 
+    private function getFrontendUserAuthentication(): ?FrontendUserAuthentication
+    {
+        return $this->request->getAttribute('frontend.user');
+    }
 }
