@@ -1038,7 +1038,10 @@ class LogController extends ActionController
                     }
                 }
                 if ($this->settings['mathCAPTCHA']) {
-                    $tmp_error = $this->helpersUtility->checkMathCaptcha(intval($log->getMathcaptcha()));
+                    /** @var \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication $frontendUser */
+                    $frontendUser = $this->request->getAttribute('frontend.user');
+                    $tmp_error = $this->helpersUtility->checkMathCaptcha(intval($log->getMathcaptcha()), $frontendUser);
+
                     if ($tmp_error > 0) {
                         $error = $tmp_error;
                     }
@@ -1091,7 +1094,9 @@ class LogController extends ActionController
                     $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
                     $this->prepareEmail($log, false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '', $requestLanguageCode);
                 }
-                $messageUid = (int) $this->settings['unsubscribeVerifyMessageUid'];
+                $messageUid = isset($this->settings['unsubscribeVerifyMessageUid'])
+                    ? (int) $this->settings['unsubscribeVerifyMessageUid']
+                    : 0; // Oder einen anderen Standardwert setzen
             }
         } else if ($error >= 8) {
             $uri = $this->uriBuilder->reset()
