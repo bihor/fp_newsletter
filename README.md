@@ -46,3 +46,6 @@ Version 8.0.0:
 Version 8.0.1:
 - New Flexform settings: newsletterExtension and table. "other" sets html to -1.
 - Second Widget fixed. Backend preview fixed again. Import task fixed for TYPO3 13.
+
+Version 8.0.2:
+- Bugfix: unsubscription with captcha enabled.

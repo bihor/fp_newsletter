@@ -524,9 +524,9 @@ class LogController extends ActionController
                     $log->setEmail($email);
                     $log->setGdpr(true);
 					return (new ForwardResponse('create'))
-					->withControllerName('Log')
-					->withExtensionName('fp_newsletter')
-					->withArguments(['log' => $log]);
+                        ->withControllerName('Log')
+                        ->withExtensionName('fp_newsletter')
+                        ->withArguments(['log' => $log]);
                 }
             }
         }
@@ -983,10 +983,13 @@ class LogController extends ActionController
             if (($this->settings['table'] && $this->settings['table']!='other') && ($dbuidext == 0)) {
                 $error = 7;
             }
-            if ($checkSession) {
-                // wenn man von unsubscribeLux kommt, muss die Session noch überprüft werden
+            $frontendUser = null;
+            if ($checkSession || $this->settings['mathCAPTCHA']) {
                 /** @var \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication $frontendUser */
                 $frontendUser = $this->request->getAttribute('frontend.user');
+            }
+            if ($checkSession) {
+                // wenn man von unsubscribeLux kommt, muss die Session noch überprüft werden
                 $a = $frontendUser->getKey->getKey('ses', 'authLux');
                 if ($a) {
                     // hash von unsubscribeLux ist vorhanden!
@@ -1038,7 +1041,7 @@ class LogController extends ActionController
                     }
                 }
                 if ($this->settings['mathCAPTCHA']) {
-                    $tmp_error = $this->helpersUtility->checkMathCaptcha(intval($log->getMathcaptcha()));
+                    $tmp_error = $this->helpersUtility->checkMathCaptcha(intval($log->getMathcaptcha()), $frontendUser);
                     if ($tmp_error > 0) {
                         $error = $tmp_error;
                     }
@@ -1266,7 +1269,6 @@ class LogController extends ActionController
      */
     public function verifyUnsubscribeAction(): ResponseInterface
     {
-        $error = 0;
         $dbuid = 0;
         $uid = intval($this->request->hasArgument('uid')) ? $this->request->getArgument('uid') : 0;
         $hash = ($this->request->hasArgument('hash')) ? $this->request->getArgument('hash') : '';
