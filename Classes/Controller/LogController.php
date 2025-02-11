@@ -990,7 +990,7 @@ class LogController extends ActionController
             }
             if ($checkSession) {
                 // wenn man von unsubscribeLux kommt, muss die Session noch überprüft werden
-                $a = $frontendUser->getKey->getKey('ses', 'authLux');
+                $a = $frontendUser->getKey('ses', 'authLux');
                 if ($a) {
                     // hash von unsubscribeLux ist vorhanden!
                     $frontendUser->setKey('ses', 'authLux', '');
