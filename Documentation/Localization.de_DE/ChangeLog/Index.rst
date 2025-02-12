@@ -209,3 +209,8 @@ Version 8.0.1:
 - Neue Flexform-Einstellungen: newsletterExtension und table. "other" setzt settings.html auf -1.
 
 - Zweites Widget gefixt. Backend-Vorschau geht wieder. Import-Task gefixt für TYPO3 13.
+
+Version 8.0.4:
+- Edit-plugin geändert: Schritt 1 ist nun die default-Ansicht.
+
+- Bugfix: Abmeldung wenn Captcha aktiviert + Abmeldung aus Luxletter.

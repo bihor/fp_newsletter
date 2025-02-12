@@ -62,10 +62,10 @@ call_user_func(
             'FpNewsletter',
             'Edit',
             [
-                \Fixpunkt\FpNewsletter\Controller\LogController::class => 'edit, update, editEmail'
+                \Fixpunkt\FpNewsletter\Controller\LogController::class => 'editEmail, edit, update'
             ],
             [
-                \Fixpunkt\FpNewsletter\Controller\LogController::class => 'edit, update, editEmail'
+                \Fixpunkt\FpNewsletter\Controller\LogController::class => 'editEmail, edit, update'
             ]
         );
         ExtensionUtility::configurePlugin(
