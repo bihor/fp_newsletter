@@ -979,11 +979,14 @@ class LogController extends ActionController
             if ($this->settings['table'] && ($dbuidext == 0)) {
                 $error = 7;
             }
-            if ($checkSession) {
-                // wenn man von unsubscribeLux kommt, muss die Session noch überprüft werden
+            $frontendUser = null;
+            if ($checkSession || $this->settings['mathCAPTCHA']) {
                 /** @var \TYPO3\CMS\Frontend\Authentication\FrontendUserAuthentication $frontendUser */
                 $frontendUser = $this->request->getAttribute('frontend.user');
-                $a = $frontendUser->getKey->getKey('ses', 'authLux');
+            }
+            if ($checkSession) {
+                // wenn man von unsubscribeLux kommt, muss die Session noch überprüft werden
+                $a = $frontendUser->getKey('ses', 'authLux');
                 if ($a) {
                     // hash von unsubscribeLux ist vorhanden!
                     $frontendUser->setKey('ses', 'authLux', '');
@@ -1034,7 +1037,7 @@ class LogController extends ActionController
                     }
                 }
                 if ($this->settings['mathCAPTCHA']) {
-                    $tmp_error = $this->helpersUtility->checkMathCaptcha(intval($log->getMathcaptcha()));
+                    $tmp_error = $this->helpersUtility->checkMathCaptcha(intval($log->getMathcaptcha()), $frontendUser);
                     if ($tmp_error > 0) {
                         $error = $tmp_error;
                     }
