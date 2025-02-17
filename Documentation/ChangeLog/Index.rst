@@ -216,3 +216,6 @@ Version 8.0.4:
 - Edit-plugin changed: step 1 is now the default one.
 
 - Bugfix: unsubscription with captcha is enabled + deletion from Luxletter.
+
+Version 8.0.5:
+- Bugfix: email to admin.
