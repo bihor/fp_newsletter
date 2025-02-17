@@ -227,9 +227,6 @@ class LogController extends ActionController
             $storagePidsArray = $this->logRepository->getStoragePids();
             $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
             $sys_language_uid = intval($languageAspect->getId());
-            $requestLanguage = $this->request->getAttribute('language');
-            $requestLocale = $requestLanguage->getLocale();
-            $requestLanguageCode = $requestLocale->getLanguageCode();
             if ($sys_language_uid > 0 && $this->settings['languageMode']) {
                 $log = $this->logRepository->getByEmailAndPid($email, $storagePidsArray, $sys_language_uid, $maxDate);
             } else {
@@ -241,7 +238,7 @@ class LogController extends ActionController
                 } else {
                     $pi = 'verify';
                 }
-                $this->prepareEmail($log, true, false, false,true, false, $log->getSecurityhash(), intval($subscribeVerifyUid), $pi, $requestLanguageCode);
+                $this->prepareEmail($log, true, false, false,true, false, $log->getSecurityhash(), intval($subscribeVerifyUid), $pi);
             }
         }
         $this->view->assign('email', $email);
@@ -283,15 +280,12 @@ class LogController extends ActionController
                     $log->setPid($pid);
                     $log->setEmail($email);
                     $hash = $this->helpersUtility->setHashAndLanguage($log, intval($this->settings['languageMode']));
-                    $requestLanguage = $this->request->getAttribute('language');
-                    $requestLocale = $requestLanguage->getLocale();
-                    $requestLanguageCode = $requestLocale->getLanguageCode();
                     $log->setStatus(10);
                     $this->logRepository->add($log);
                     $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
                     $persistenceManager->persistAll();
                     $error = 51;
-                    $this->prepareEmail($log, false, false, true,true, false, $hash, intval($this->settings['editUid']), 'email', $requestLanguageCode);
+                    $this->prepareEmail($log, false, false, true,true, false, $hash, intval($this->settings['editUid']), 'email');
                     // reset log entry
                     $log = null;
                 }
@@ -550,9 +544,6 @@ class LogController extends ActionController
         }
         //if ($log->getGdpr()) { $log->setGdpr(true); }
         $pageArguments = $this->request->getAttribute('routing');
-        $requestLanguage = $this->request->getAttribute('language');
-        $requestLocale = $requestLanguage->getLocale();
-        $requestLanguageCode = $requestLocale->getLanguageCode();
         $hash = $this->helpersUtility->setHashAndLanguage($log, intval($this->settings['languageMode']));
         $log->setStatus(0);
         if ($log->getUid() > 0) {
@@ -634,7 +625,7 @@ class LogController extends ActionController
             } else {
                 $pi = 'verify';
             }
-            $this->prepareEmail($log, true, false, false,true, $toAdmin, $hash, intval($subscribeVerifyUid), $pi, $requestLanguageCode);
+            $this->prepareEmail($log, true, false, false,true, $toAdmin, $hash, intval($subscribeVerifyUid), $pi);
         } else if ($error >= 8) {
             $uri = $this->uriBuilder->uriFor('new', [
                 'log' => $log,
@@ -945,9 +936,6 @@ class LogController extends ActionController
                 $pid = intval($storagePidsArray[0]);
             }
             // zum testen: var_dump ($storagePidsArray);
-            $requestLanguage = $this->request->getAttribute('language');
-            $requestLocale = $requestLanguage->getLocale();
-            $requestLanguageCode = $requestLocale->getLanguageCode();
             $hash = $this->helpersUtility->setHashAndLanguage($log, intval($this->settings['languageMode']));
             $dbuidext = 0;
 
@@ -1081,7 +1069,7 @@ class LogController extends ActionController
                 $this->logRepository->update($log);
                 $persistenceManager->persistAll();
                 $toAdmin = ($this->settings['email']['adminMail'] && $this->settings['email']['adminMailBeforeVerification']);
-                $this->prepareEmail($log, false, false, false, true, $toAdmin, $hash, $unsubscribeVerifyUid, $pi, $requestLanguageCode);
+                $this->prepareEmail($log, false, false, false, true, $toAdmin, $hash, $unsubscribeVerifyUid, $pi);
                 $messageUid = (int) $this->settings['unsubscribeMessageUid'];
             } else {
                 if ($this->settings['table'] == 'tt_address' || $this->settings['table'] == 'fe_users') {
@@ -1092,7 +1080,7 @@ class LogController extends ActionController
                 $persistenceManager->persistAll();
                 if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                     $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                    $this->prepareEmail($log, false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '', $requestLanguageCode);
+                    $this->prepareEmail($log, false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
                 }
                 $messageUid = (int) $this->settings['unsubscribeVerifyMessageUid'];
             }
@@ -1142,9 +1130,6 @@ class LogController extends ActionController
         $hash = ($this->request->hasArgument('hash')) ? $this->request->getArgument('hash') : '';
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
         $sys_language_uid = intval($languageAspect->getId());
-        $requestLanguage = $this->request->getAttribute('language');
-        $requestLocale = $requestLanguage->getLocale();
-        $requestLanguageCode = $requestLocale->getLanguageCode();
         if (! $uid || ! $hash) {
             $this->view->assign('error', 1);
         } else {
@@ -1240,7 +1225,7 @@ class LogController extends ActionController
                             $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
                             $persistenceManager->persistAll();
                             $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                            $this->prepareEmail($log, true, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '', $requestLanguageCode);
+                            $this->prepareEmail($log, true, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
                         }
                     }
                 }
@@ -1274,9 +1259,6 @@ class LogController extends ActionController
         $hash = ($this->request->hasArgument('hash')) ? $this->request->getArgument('hash') : '';
         $languageAspect = GeneralUtility::makeInstance(Context::class)->getAspect('language');
         $sys_language_uid = intval($languageAspect->getId());
-        $requestLanguage = $this->request->getAttribute('language');
-        $requestLocale = $requestLanguage->getLocale();
-        $requestLanguageCode = $requestLocale->getLanguageCode();
         if (! $uid || ! $hash) {
             $this->view->assign('error', 1);
         } else {
@@ -1311,7 +1293,7 @@ class LogController extends ActionController
                         }
                         if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
                             $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                            $this->prepareEmail($log, false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '', $requestLanguageCode);
+                            $this->prepareEmail($log, false, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
                         }
                     }
                 }
@@ -1383,7 +1365,6 @@ class LogController extends ActionController
      * param string  $hash           hash
      * param integer $verifyUid      UID of the verification page
      * param string  $pi             plugin name
-     * param string  $lCode          request language code
      */
     public function prepareEmail(
         Log &$log,
@@ -1394,8 +1375,7 @@ class LogController extends ActionController
         bool $toAdmin = false,
         string $hash = '',
         int $verifyUid = 0,
-        string $pi = '',
-        string $lCode = ''): void
+        string $pi = ''): void
     {
         $settings = $this->settings;
         $extbaseFrameworkConfiguration = $this->configurationManager->getConfiguration(
@@ -1413,7 +1393,6 @@ class LogController extends ActionController
         $dataArray['language_code'] = $requestLocale->getLanguageCode();
         $dataArray['uid'] = $log->getUid();
         $dataArray['sys_language_uid'] = $log->getSysLanguageUid();
-        $dataArray['language_code'] = $lCode;
         $dataArray['gender_id'] = $log->getGender();
         $dataArray['gender'] = $genders[$log->getGender()];
         $dataArray['title'] = $log->getTitle();
@@ -1560,7 +1539,7 @@ class LogController extends ActionController
                 echo "###" . $emailBodyHtml . '###';
             } else {
                 $this->helpersUtility->sendTemplateEmail(
-                    [$email => $from],
+                    [$settings['email']['adminMail'] => $settings['email']['adminName']],
                     [$settings['email']['senderMail'] => $settings['email']['senderName']],
                     $subject,
                     $emailBodyHtml,
