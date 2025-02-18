@@ -12,7 +12,7 @@ use TYPO3\CMS\Extbase\Annotation as Extbase;
  * LICENSE.txt file that was distributed with this source code.
  *
  *  (c) 2020 Kurt Gusbeth <k.gusbeth@fixpunkt.com>, fixpunkt werbeagentur gmbh
- * 
+ *
  ***/
 
 /**
@@ -31,21 +31,21 @@ class Log extends AbstractEntity
      * @var int
      */
     protected $sysLanguageUid = 0;
-    
+
     /**
      * Anrede
      *
      * @var int
      */
     protected $gender = 0;
-    
+
     /**
      * Title
      *
      * @var string
      */
     protected $title = '';
-    
+
     /**
      * Vorname
      *
@@ -62,97 +62,97 @@ class Log extends AbstractEntity
 
     /**
      * E-Mail
-     * 
+     *
      * @Extbase\Validate("NotEmpty")
      * @Extbase\Validate("EmailAddress")
      * @var string
      */
     protected $email = '';
-    
+
     /**
      * Adresse
      *
      * @var string
      */
     protected $address = '';
-    
+
     /**
      * PLZ
      *
      * @var string
      */
     protected $zip = '';
-    
+
     /**
      * Ort
      *
      * @var string
      */
     protected $city = '';
-    
+
     /**
      * Region
      *
      * @var string
      */
     protected $region = '';
-    
+
     /**
      * Land
      *
      * @var string
      */
     protected $country = '';
-    
+
     /**
      * Telefon
      *
      * @var string
      */
     protected $phone = '';
-    
+
     /**
      * Mobil-Telefon
      *
      * @var string
      */
     protected $mobile = '';
-    
+
     /**
      * Telefax
      *
      * @var string
      */
     protected $fax = '';
-    
+
     /**
      * WWW
      *
      * @var string
      */
     protected $www = '';
-    
+
     /**
      * Position
      *
      * @var string
      */
     protected $position = '';
-    
+
     /**
      * Firma
      *
      * @var string
      */
     protected $company = '';
-    
+
     /**
      * Kategorien
      *
      * @var string
      */
     protected $categories = '';
-    
+
     /**
      * Status
      *
@@ -166,56 +166,84 @@ class Log extends AbstractEntity
      * @var string
      */
     protected $securityhash = '';
-    
+
     /**
      * reCaptcha token
      *
      * @var string
      */
     protected $retoken = '';
-    
+
     /**
      * Math. captcha
      *
      * @var string
      */
     protected $mathcaptcha = '';
-    
+
     /**
      * Math. captcha no. 1
      *
      * @var int
      */
     protected $mathcaptcha1 = 0;
-    
+
     /**
      * Math. captcha no. 2
      *
      * @var int
      */
     protected $mathcaptcha2 = 0;
-    
+
     /**
      * Math. captcha operator
      *
      * @var bool
      */
     protected $mathcaptchaop = false;
-    
+
     /**
      * Extras: Honeypot
      *
      * @var string
      */
     protected $extras = '';
-    
+
     /**
      * GDPR checkbox
-     * 
+     *
      * @Extbase\Validate("Boolean", options={"is": true})
      * @var bool
      */
     protected $gdpr = false;
+
+    /**
+     * Newsletter Tabelle
+     *
+     * @var string
+     */
+    protected $nlTable = '';
+
+    /**
+     * Newsletter-Extension
+     *
+     * @var string
+     */
+    protected $nlExtension = '';
+
+    /**
+     * Newsletter-Kategorie/Gruppe-Tabelle
+     *
+     * @var string
+     */
+    protected $cgTable = '';
+
+    /**
+     * Externe Uid
+     *
+     * @var int
+     */
+    protected $exUid = 0;
 
 
     /**
@@ -258,7 +286,7 @@ class Log extends AbstractEntity
     {
         return $this->_languageUid;
     }
-    
+
     /**
      * Returns the gender
      *
@@ -279,7 +307,7 @@ class Log extends AbstractEntity
     {
         $this->gender = $gender;
     }
-    
+
     /**
      * Returns the title
      *
@@ -289,7 +317,7 @@ class Log extends AbstractEntity
     {
     	return $this->title;
     }
-    
+
     /**
      * Sets the title
      *
@@ -300,7 +328,7 @@ class Log extends AbstractEntity
     {
     	$this->title = $title;
     }
-    
+
     /**
      * Returns the firstname
      *
@@ -373,7 +401,7 @@ class Log extends AbstractEntity
     {
     	return $this->address;
     }
-    
+
     /**
      * Sets the address
      *
@@ -384,7 +412,7 @@ class Log extends AbstractEntity
     {
     	$this->address = $address;
     }
-    
+
     /**
      * Returns the zip
      *
@@ -394,7 +422,7 @@ class Log extends AbstractEntity
     {
     	return $this->zip;
     }
-    
+
     /**
      * Sets the zip
      *
@@ -405,7 +433,7 @@ class Log extends AbstractEntity
     {
     	$this->zip = $zip;
     }
-    
+
     /**
      * Returns the city
      *
@@ -415,7 +443,7 @@ class Log extends AbstractEntity
     {
     	return $this->city;
     }
-    
+
     /**
      * Sets the city
      *
@@ -426,7 +454,7 @@ class Log extends AbstractEntity
     {
     	$this->city = $city;
     }
-    
+
     /**
      * Returns the region
      *
@@ -436,7 +464,7 @@ class Log extends AbstractEntity
     {
     	return $this->region;
     }
-    
+
     /**
      * Sets the region
      *
@@ -447,7 +475,7 @@ class Log extends AbstractEntity
     {
     	$this->region = $region;
     }
-    
+
     /**
      * Returns the country
      *
@@ -457,7 +485,7 @@ class Log extends AbstractEntity
     {
     	return $this->country;
     }
-    
+
     /**
      * Sets the country
      *
@@ -468,7 +496,7 @@ class Log extends AbstractEntity
     {
     	$this->country = $country;
     }
-    
+
     /**
      * Returns the phone
      *
@@ -478,7 +506,7 @@ class Log extends AbstractEntity
     {
     	return $this->phone;
     }
-    
+
     /**
      * Sets the phone
      *
@@ -489,7 +517,7 @@ class Log extends AbstractEntity
     {
     	$this->phone = $phone;
     }
-    
+
     /**
      * Returns the mobile
      *
@@ -499,7 +527,7 @@ class Log extends AbstractEntity
     {
     	return $this->mobile;
     }
-    
+
     /**
      * Sets the mobile
      *
@@ -510,7 +538,7 @@ class Log extends AbstractEntity
     {
     	$this->mobile = $mobile;
     }
-    
+
     /**
      * Returns the fax
      *
@@ -520,7 +548,7 @@ class Log extends AbstractEntity
     {
     	return $this->fax;
     }
-    
+
     /**
      * Sets the fax
      *
@@ -531,7 +559,7 @@ class Log extends AbstractEntity
     {
     	$this->fax = $fax;
     }
-    
+
     /**
      * Returns the www
      *
@@ -541,7 +569,7 @@ class Log extends AbstractEntity
     {
     	return $this->www;
     }
-    
+
     /**
      * Sets the www
      *
@@ -552,7 +580,7 @@ class Log extends AbstractEntity
     {
     	$this->www = $www;
     }
-    
+
     /**
      * Returns the position
      *
@@ -562,7 +590,7 @@ class Log extends AbstractEntity
     {
     	return $this->position;
     }
-    
+
     /**
      * Sets the position
      *
@@ -573,7 +601,7 @@ class Log extends AbstractEntity
     {
     	$this->position = $position;
     }
-    
+
     /**
      * Returns the company
      *
@@ -583,7 +611,7 @@ class Log extends AbstractEntity
     {
     	return $this->company;
     }
-    
+
     /**
      * Sets the company
      *
@@ -594,7 +622,7 @@ class Log extends AbstractEntity
     {
     	$this->company = $company;
     }
-    
+
     /**
      * Returns the categories
      *
@@ -604,7 +632,7 @@ class Log extends AbstractEntity
     {
     	return $this->categories;
     }
-    
+
     /**
      * Sets the categories
      *
@@ -615,7 +643,7 @@ class Log extends AbstractEntity
     {
     	$this->categories = $categories;
     }
-    
+
     /**
      * Returns the status
      *
@@ -657,7 +685,7 @@ class Log extends AbstractEntity
     {
         $this->securityhash = $securityhash;
     }
-    
+
     /**
      * Returns the retoken
      *
@@ -667,7 +695,7 @@ class Log extends AbstractEntity
     {
     	return $this->retoken;
     }
-    
+
     /**
      * Sets the retoken
      *
@@ -678,7 +706,7 @@ class Log extends AbstractEntity
     {
     	$this->retoken = $retoken;
     }
-    
+
     /**
      * Returns the mathcaptcha
      *
@@ -688,7 +716,7 @@ class Log extends AbstractEntity
     {
     	return $this->mathcaptcha;
     }
-    
+
     /**
      * Sets the mathcaptcha
      *
@@ -699,7 +727,7 @@ class Log extends AbstractEntity
     {
     	$this->mathcaptcha = $mathcaptcha;
     }
-    
+
     /**
      * Returns the mathcaptcha1
      *
@@ -709,7 +737,7 @@ class Log extends AbstractEntity
     {
     	return $this->mathcaptcha1;
     }
-    
+
     /**
      * Sets the mathcaptcha1
      *
@@ -720,7 +748,7 @@ class Log extends AbstractEntity
     {
     	$this->mathcaptcha1 = $mathcaptcha1;
     }
-    
+
     /**
      * Returns the mathcaptcha2
      *
@@ -730,7 +758,7 @@ class Log extends AbstractEntity
     {
     	return $this->mathcaptcha2;
     }
-    
+
     /**
      * Sets the mathcaptcha2
      *
@@ -741,7 +769,7 @@ class Log extends AbstractEntity
     {
     	$this->mathcaptcha2 = $mathcaptcha2;
     }
-    
+
     /**
      * Returns the math. captcha operator
      *
@@ -751,7 +779,7 @@ class Log extends AbstractEntity
     {
     	return $this->mathcaptchaop;
     }
-    
+
     /**
      * Sets the math. captcha operator
      *
@@ -762,7 +790,7 @@ class Log extends AbstractEntity
     {
     	$this->mathcaptchaop = $mathcaptchaop;
     }
-    
+
     /**
      * Returns the boolean state of math. captcha operator
      *
@@ -772,7 +800,7 @@ class Log extends AbstractEntity
     {
     	return $this->mathcaptchaop;
     }
-    
+
     /**
      * Returns the extras
      *
@@ -782,7 +810,7 @@ class Log extends AbstractEntity
     {
     	return $this->extras;
     }
-    
+
     /**
      * Sets the extras
      *
@@ -793,7 +821,7 @@ class Log extends AbstractEntity
     {
     	$this->extras = $extras;
     }
-    
+
     /**
      * Returns the gdpr
      *
@@ -824,4 +852,77 @@ class Log extends AbstractEntity
     {
         return $this->gdpr;
     }
+
+    /**
+     * Returns the nl-table
+     */
+    public function getNlTable()
+    {
+        return $this->nlTable;
+    }
+
+    /**
+     * Sets the nl-table
+     *
+     * @param string $table
+     */
+    public function setNlTable($table): void
+    {
+        $this->nlTable = $table;
+    }
+
+    /**
+     * Returns the nl-extension
+     */
+    public function getNlExtension(): string
+    {
+        return $this->nlExtension;
+    }
+
+    /**
+     * Sets the nl-extension
+     *
+     * @param string $nlExtension
+     */
+    public function setNlExtension($nlExtension): void
+    {
+        $this->nlExtension = $nlExtension;
+    }
+
+    /**
+     * Returns the cg-table
+     */
+    public function getCgTable(): string
+    {
+        return $this->cgTable;
+    }
+
+    /**
+     * Sets the cg-table
+     *
+     * @param string $table
+     */
+    public function setCgTable($table): void
+    {
+        $this->cgTable = $table;
+    }
+
+    /**
+     * Returns the external uid
+     */
+    public function getExUid(): int
+    {
+        return $this->exUid;
+    }
+
+    /**
+     * Sets the external uid
+     *
+     * @param int $exUid
+     */
+    public function setExUid(int $exUid): void
+    {
+        $this->exUid = $exUid;
+    }
+
 }

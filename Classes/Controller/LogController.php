@@ -487,6 +487,9 @@ class LogController extends ActionController
                         $log, $dbuidext, $this->settings['newsletterExtension']
                     );
                 }
+                $log->setExUid($dbuidext);
+                $log->setNlTable($table);
+                $log->setNlExtension($this->settings['newsletterExtension']);
             } else {
                 $error = 1;
             }
@@ -1076,6 +1079,9 @@ class LogController extends ActionController
                     $this->deleteThisUser($dbuidext);
                 }
                 $log->setStatus(7);
+                $log->setExUid($dbuidext);
+                $log->setNlTable($this->settings['table']);
+                $log->setNlExtension($this->settings['newsletterExtension']);
                 $this->logRepository->update($log);
                 $persistenceManager->persistAll();
                 if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || ($this->settings['email']['enableConfirmationMails'])) {
@@ -1159,6 +1165,7 @@ class LogController extends ActionController
                         $error = 6;
                     } else {
                         $success = 0;
+                        $log->setNlExtension($this->settings['newsletterExtension']);
                         $salutation = $this->helpersUtility->getSalutation(intval($log->getGender()), $this->settings['gender']);
                         if ($dmCat) {
                             $dmCatArr = explode(',', $dmCat);
@@ -1169,6 +1176,9 @@ class LogController extends ActionController
                             $success = $this->logRepository->insertInTtAddress(
                                 $log, $html, $dmCatArr, $salutation, $this->settings['additionalTtAddressFields']
                             );
+                            $log->setExUid($success);
+                            $log->setNlTable('tt_address');
+                            $log->setCgTable('sys_categories');
                         } else if ($this->settings['table'] == 'fe_users' && $this->settings['password']) {
                             $frontendUser = new \Fixpunkt\FpNewsletter\Domain\Model\FrontendUser();
                             $password = $this->settings['password'];
@@ -1198,6 +1208,7 @@ class LogController extends ActionController
                                 $frontendUser->setMailHtml(1);
                                 $frontendUser->setMailSalutation($salutation);
                                 $frontendUser->setCategories(count($dmCatArr));
+                                $log->setCgTable('sys_categories');
                             } else {
                                 // default: Luxletter
                                 if ($this->settings['newsletterExtension'] == 'luxletter') {
@@ -1207,6 +1218,7 @@ class LogController extends ActionController
                                     $frontendUser->setUsergroup($dmCat);
                                     //$frontendUser->addUserGroup($this->frontendUserGroupRepository->findByUid($this->settings['frontendUserGroup']));
                                 }
+                                $log->setCgTable('fe_groups');
                             }
                             $this->frontendUserRepository->add($frontendUser);
                             $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
@@ -1215,6 +1227,8 @@ class LogController extends ActionController
                             $tableUid = $frontendUser->getUid();
                             if ($tableUid) {
                                 $this->logRepository->insertIntoMm($tableUid, $dmCatArr, $this->settings['table']);
+                                $log->setExUid($tableUid);
+                                $log->setNlTable('fe_users');
                             }
                         }
                         if (($this->settings['table'] && $this->settings['table']!='other') && $success < 1) {
@@ -1284,6 +1298,9 @@ class LogController extends ActionController
                         $error = 6;
                     } else {
                         $log->setStatus(4);
+                        $log->setExUid($dbuidext);
+                        $log->setNlTable($this->settings['table']);
+                        $log->setNlExtension($this->settings['newsletterExtension']);
                         $this->logRepository->update($log);
                         $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
                         $persistenceManager->persistAll();

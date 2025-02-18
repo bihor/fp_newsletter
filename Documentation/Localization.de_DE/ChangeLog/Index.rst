@@ -217,3 +217,6 @@ Version 8.0.4:
 
 Version 8.0.5:
 - Bugfix: E-Mail an den Admin.
+
+Version 8.1.0:
+- Mehr Informationen zu den Log-Einträgen hinzugefügt.

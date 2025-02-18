@@ -219,3 +219,6 @@ Version 8.0.4:
 
 Version 8.0.5:
 - Bugfix: email to admin.
+
+Version 8.1.0:
+- More fields/information added to the log-entry.

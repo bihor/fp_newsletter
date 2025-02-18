@@ -25,6 +25,10 @@ CREATE TABLE tx_fpnewsletter_domain_model_log (
 	www varchar(255) DEFAULT '' NOT NULL,
 	position varchar(255) DEFAULT '' NOT NULL,
 	company varchar(255) DEFAULT '' NOT NULL,
-	categories varchar(255) DEFAULT '' NOT NULL
+	categories varchar(255) DEFAULT '' NOT NULL,
+	nl_table varchar(255) DEFAULT '' NOT NULL,
+	nl_extension varchar(255) DEFAULT '' NOT NULL,
+	cg_table varchar(255) DEFAULT '' NOT NULL,
+	ex_uid int(11) DEFAULT '0' NOT NULL
 
 );

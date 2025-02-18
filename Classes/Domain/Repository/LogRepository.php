@@ -262,8 +262,8 @@ class LogRepository extends Repository
   * @param string  $salutation Anrede
   * @param string $additionalFields weitere extern zugefügte Felder
   */
- function insertInTtAddress($address, $mode, $dmCatArr = [], $salutation = '', $additionalFields = '')
-    {
+ function insertInTtAddress($address, $mode, $dmCatArr = [], $salutation = '', $additionalFields = ''): int
+ {
 		$timestamp = time();
 		if ($address->getGender() == 1) $gender = 'f';
 		elseif ($address->getGender() == 2) $gender = 'm';
@@ -335,7 +335,7 @@ class LogRepository extends Repository
      * @param string $salutation Anrede
      * @param string $additionalFields weitere extern zugefügte Felder
      */
-    function updateInTtAddress($address, $mode, $tableUid, $salutation = '', $additionalFields = '')
+    function updateInTtAddress($address, $mode, $tableUid, $salutation = '', $additionalFields = ''): int
     {
         $timestamp = time();
         if ($address->getGender() == 1) $gender = 'f';

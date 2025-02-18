@@ -1,5 +1,5 @@
 <?php
-$tx_fpnewsletter_domain_model_log = [
+return [
     'ctrl' => [
         'title'	=> 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log',
         'label' => 'email',
@@ -20,7 +20,7 @@ $tx_fpnewsletter_domain_model_log = [
         'iconfile' => 'EXT:fp_newsletter/Resources/Public/Icons/tx_fpnewsletter_domain_model_log.gif'
     ],
     'types' => [
-        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, firstname, lastname, email, address, zip, city, region, country, phone, mobile, fax, www, birthday, position, company, categories, status, securityhash, retoken, mathcaptcha, gdpr'],
+        '1' => ['showitem' => 'sys_language_uid, l10n_parent, l10n_diffsource, hidden, gender, title, firstname, lastname, email, address, zip, city, region, country, phone, mobile, fax, www, birthday, position, company, categories, status, securityhash, retoken, mathcaptcha, gdpr, nl_table, nl_extension, cg_table, ex_uid'],
     ],
     'columns' => [
         'sys_language_uid' => [
@@ -297,33 +297,51 @@ $tx_fpnewsletter_domain_model_log = [
             'exclude' => true,
             'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.gdpr',
             'config' => [
+                'type' => 'check',
+                'renderType' => 'checkboxToggle',
+                'items' => [
+                    [
+                        'label' => '',
+                        'invertStateDisplay' => false,
+                    ],
+                ],
+            ],
+        ],
+        'nl_extension' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.nl_extension',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'nl_table' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.nl_table',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'cg_table' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.cg_table',
+            'config' => [
+                'type' => 'input',
+                'size' => 30,
+                'eval' => 'trim'
+            ],
+        ],
+        'ex_uid' => [
+            'exclude' => true,
+            'label' => 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.ex_uid',
+            'config' => [
+                'type' => 'input',
+                'size' => 10,
+                'eval' => 'trim'
             ],
         ],
     ],
 ];
-
-$versionInformation = \TYPO3\CMS\Core\Utility\GeneralUtility::makeInstance(\TYPO3\CMS\Core\Information\Typo3Version::class);
-if ($versionInformation->getMajorVersion() > 11) {
-    $tx_fpnewsletter_domain_model_log['columns']['gdpr']['config'] = [
-        'type' => 'check',
-        'renderType' => 'checkboxToggle',
-        'items' => [
-            [
-                'label' => '',
-                'invertStateDisplay' => false,
-            ],
-        ],
-    ];
-} else {
-    $tx_fpnewsletter_domain_model_log['columns']['gdpr']['config'] = [
-        'type' => 'check',
-        'items' => [
-            '1' => [
-                '0' => 'LLL:EXT:lang/locallang_core.xlf:labels.enabled'
-            ]
-        ],
-        'default' => 0
-    ];
-}
-
-return $tx_fpnewsletter_domain_model_log;

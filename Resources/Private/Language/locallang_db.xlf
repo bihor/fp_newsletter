@@ -132,6 +132,18 @@
 			<trans-unit id="tx_fpnewsletter_domain_model_log.status.11" resname="tx_fpnewsletter_domain_model_log.status.11">
 				<source>subscription changed</source>
 			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.nl_extension" resname="tx_fpnewsletter_domain_model_log.nl_extension">
+				<source>Used newsletter extension</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.nl_table" resname="tx_fpnewsletter_domain_model_log.nl_table">
+				<source>Used newsletter table</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.cg_table" resname="tx_fpnewsletter_domain_model_log.cg_table">
+				<source>Used table for categories or groups</source>
+			</trans-unit>
+			<trans-unit id="tx_fpnewsletter_domain_model_log.ex_uid" resname="tx_fpnewsletter_domain_model_log.ex_uid">
+				<source>External uid</source>
+			</trans-unit>
 		</body>
 	</file>
 </xliff>
