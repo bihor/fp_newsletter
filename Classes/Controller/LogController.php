@@ -1233,13 +1233,15 @@ class LogController extends ActionController
                         }
                         if (($this->settings['table'] && $this->settings['table']!='other') && $success < 1) {
                             $error = 8;
-                        } elseif (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || $this->settings['email']['enableConfirmationMails']) {
+                        } else {
                             $log->setStatus(2);
                             $this->logRepository->update($log);
                             $persistenceManager = GeneralUtility::makeInstance(PersistenceManager::class);
                             $persistenceManager->persistAll();
-                            $toAdmin = ($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']);
-                            $this->prepareEmail($log, true, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
+                            if (($this->settings['email']['adminMail'] && ! $this->settings['email']['adminMailBeforeVerification']) || $this->settings['email']['enableConfirmationMails']) {
+                                $toAdmin = ($this->settings['email']['adminMail'] && !$this->settings['email']['adminMailBeforeVerification']);
+                                $this->prepareEmail($log, true, true, false, filter_var($this->settings['email']['enableConfirmationMails'], FILTER_VALIDATE_BOOLEAN), $toAdmin, $hash, 0, '');
+                            }
                         }
                     }
                 }

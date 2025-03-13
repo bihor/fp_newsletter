@@ -220,3 +220,6 @@ Version 8.0.5:
 
 Version 8.1.0:
 - Mehr Informationen zu den Log-Einträgen hinzugefügt.
+
+Version 8.1.1:
+- Bugfix: aktualisiere das Log auch wenn keine E-Mail versendet wird.

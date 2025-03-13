@@ -222,3 +222,6 @@ Version 8.0.5:
 
 Version 8.1.0:
 - More fields/information added to the log-entry.
+
+Version 8.1.1:
+- Bugfix: update Log even no mail is sent.
