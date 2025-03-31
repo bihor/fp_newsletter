@@ -22,7 +22,7 @@ class RecentLogEntriesWidget implements WidgetInterface, RequestAwareWidgetInter
     public function __construct(
         private readonly WidgetConfigurationInterface $configuration,
         private readonly BackendViewFactory $backendViewFactory,
-        private readonly ParticipantsDataProvider     $dataProvider,
+        private readonly LogDataProvider     $dataProvider,
         array            $options = []
     )
     {
