@@ -128,6 +128,53 @@ Nun kann man neues TypoScript-Settings hinzufügen. TypoScript-Beispiel für das
   plugin.tx_fpnewsletter._LOCAL_LANG.de.email.dear-mrs-last-name = Sehr geehrte Frau %s,
 
 
+.. _admin-categories:
+
+Verwendung eigener Kategorien/Gruppen
+-------------------------------------
+
+Ab Version 8.2.0 kann man eigene Kategorien oder Gruppen im Template verwenden.
+Zuerst mnuss man dazu die Einstellung settings.categoryOrGroup z.B. auf 1 setzen auf der Anmeldeseite::
+
+  plugin.tx_fpnewsletter.settings.categoryOrGroup = 1
+
+Zweitens muss man die Einstellung settings.categoryOrGroup leeren auf der Verifikationsseite::
+
+  plugin.tx_fpnewsletter.settings.categoryOrGroup =
+
+Drittens fügt man seine eigenen Kategorien oder Gruppen im Template Partials/Log/FormFields.html hinzu.
+Dazu ersetzt man diese Zeile::
+
+  <f:form.hidden property="categories" value="{settings.categoryOrGroup}" id="fp_categories" />
+
+durch soetwas::
+
+  <div class="form-group">
+    <label class="form-label" class="form-label">Choose a group:</label>
+    <div class="form-check">
+        <label for="fp_category_1" class="form-check-label">
+            <f:form.radio class="form-check-input radiobox categories" id="fp_category_1" property="categories" value="3" /> Greenhorn
+        </label>
+    </div>
+    <div class="form-check">
+        <label for="fp_category_2" class="form-check-label">
+            <f:form.radio class="form-check-input radiobox categories" id="fp_category_2" property="categories" value="4" /> Kunde
+        </label>
+    </div>
+    <div class="form-check">
+        <label for="fp_category_3" class="form-check-label">
+            <f:form.radio class="form-check-input radiobox categories" id="fp_category_3" property="categories" value="5" /> Mitarbeiter
+        </label>
+    </div>
+  </div>
+
+Nun werden die gespeicherten Werte übernommen statt die von settings.categoryOrGroup.
+
+Achtung: auf der Abmeldeseite muss settings.categoryOrGroup auch z.B. auf 1 gesetzt sein.
+
+Achtung: das ganze wurde nicht mit der Bearbeiten-Seite getestet.
+
+
 .. _admin-note-mail:
 
 Anmerkung für die Mail-Extension

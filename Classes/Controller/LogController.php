@@ -1167,6 +1167,10 @@ class LogController extends ActionController
                         $success = 0;
                         $log->setNlExtension($this->settings['newsletterExtension']);
                         $salutation = $this->helpersUtility->getSalutation(intval($log->getGender()), $this->settings['gender']);
+                        if (!$dmCat) {
+                            // wenn auf der Verify-Seite keine categoryOrGroup angegeben ist, dann nehmen wir die vom log-Eintrag
+                            $dmCat = str_replace(' ', '', (string) $log->getCategories());
+                        }
                         if ($dmCat) {
                             $dmCatArr = explode(',', $dmCat);
                         } else {

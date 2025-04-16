@@ -14,16 +14,20 @@
         </tr>
         <f:for each="{logs}" as="log" iteration="iter">
             <tr>
-                <td class="{f:if(condition: '{iter.isOdd}', then: 'bg-warning', else: 'bg-success')}">
+                <td class="{f:if(condition: '{iter.isOdd}', then: 'bg-warning', else: 'bg-success')}"
+                    style="color:{f:if(condition: '{iter.isOdd}', then: 'black', else: 'white')};">
                     <f:format.date format="d.m.Y - H:i:s">{log.tstamp}</f:format.date>
                 </td>
-                <td class="{f:if(condition: '{iter.isOdd}', then: 'bg-warning', else: 'bg-success')}">
+                <td class="{f:if(condition: '{iter.isOdd}', then: 'bg-warning', else: 'bg-success')}"
+                    style="color:{f:if(condition: '{iter.isOdd}', then: 'black', else: 'white')};">
                     {log.firstname} {log.lastname}
                 </td>
-                <td class="{f:if(condition: '{iter.isOdd}', then: 'bg-warning', else: 'bg-success')}">
+                <td class="{f:if(condition: '{iter.isOdd}', then: 'bg-warning', else: 'bg-success')}"
+                    style="color:{f:if(condition: '{iter.isOdd}', then: 'black', else: 'white')};">
                     {log.email}
                 </td>
-                <td class="{f:if(condition: '{iter.isOdd}', then: 'bg-warning', else: 'bg-success')}">
+                <td class="{f:if(condition: '{iter.isOdd}', then: 'bg-warning', else: 'bg-success')}"
+                    style="color:{f:if(condition: '{iter.isOdd}', then: 'black', else: 'white')};">
                     <f:switch expression="{log.status}">
                         <f:case value="0">{f:translate(key: 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.status.0')}</f:case>
                         <f:case value="1">{f:translate(key: 'LLL:EXT:fp_newsletter/Resources/Private/Language/locallang_db.xlf:tx_fpnewsletter_domain_model_log.status.1')}</f:case>

@@ -182,9 +182,7 @@ you could use prependOptionLabel="-" prependOptionValue="0" for a select too.
 </f:if>
 
 <f:if condition="{settings.categoryOrGroup}">
-  <f:if condition="{settings.table} == 'tt_address'">
 	<f:form.hidden property="categories" value="{settings.categoryOrGroup}" id="fp_categories" />
-  </f:if>
 </f:if>
 
 <f:if condition="{settings.honeypot} > 0">

@@ -223,3 +223,7 @@ Version 8.1.0:
 
 Version 8.1.1:
 - Bugfix: aktualisiere das Log auch wenn keine E-Mail versendet wird.
+
+Version 8.2.0:
+- Speichere immer settings.categoryOrGroup im Log-Eintrag.
+- Benutze die Kategorien/Gruppen vom Log-Eintrag, wenn settings.categoryOrGroup leer ist.

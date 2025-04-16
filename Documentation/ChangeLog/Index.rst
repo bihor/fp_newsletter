@@ -225,3 +225,7 @@ Version 8.1.0:
 
 Version 8.1.1:
 - Bugfix: update Log even no mail is sent.
+
+Version 8.2.0:
+- Always save settings.categoryOrGroup in the log-entry.
+- Take the categories or groups from the log-entry when settings.categoryOrGroup is empty.

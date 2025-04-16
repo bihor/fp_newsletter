@@ -131,6 +131,53 @@ You can now use new TypoScript settings. TypoScript example for the above partia
   plugin.tx_fpnewsletter._LOCAL_LANG.de.email.dear-mrs-last-name = Sehr geehrte Frau %s,
 
 
+.. _admin-categories:
+
+Using own categories/groups
+---------------------------
+
+From version 8.2.0 you can use own categories or groups in your templates.
+First set the setting settings.categoryOrGroup to e.g. 1 at the subscription page::
+
+  plugin.tx_fpnewsletter.settings.categoryOrGroup = 1
+
+Second set the setting settings.categoryOrGroup to "" (empty value) at the verify page::
+
+  plugin.tx_fpnewsletter.settings.categoryOrGroup =
+
+Third add a list of categories or groups in the Partials/Log/FormFields.html
+Therefore replace this line::
+
+  <f:form.hidden property="categories" value="{settings.categoryOrGroup}" id="fp_categories" />
+
+with something like this::
+
+  <div class="form-group">
+    <label class="form-label" class="form-label">Choose a group:</label>
+    <div class="form-check">
+        <label for="fp_category_1" class="form-check-label">
+            <f:form.radio class="form-check-input radiobox categories" id="fp_category_1" property="categories" value="3" /> Greenhorn
+        </label>
+    </div>
+    <div class="form-check">
+        <label for="fp_category_2" class="form-check-label">
+            <f:form.radio class="form-check-input radiobox categories" id="fp_category_2" property="categories" value="4" /> Customer
+        </label>
+    </div>
+    <div class="form-check">
+        <label for="fp_category_3" class="form-check-label">
+            <f:form.radio class="form-check-input radiobox categories" id="fp_category_3" property="categories" value="5" /> Employee
+        </label>
+    </div>
+  </div>
+
+Now the saved value will be used instead of the value of settings.categoryOrGroup.
+
+Note: on the unsubscribe page, settings.categoryOrGroup needs to be set too to e.g. 1.
+
+Note: this was not tested with the edit form.
+
+
 .. _admin-note-mail:
 
 Note for the Mail-extension
