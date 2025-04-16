@@ -32,18 +32,8 @@ If you want to change the text of the email, copy the templates e.g. to fileadmi
 
   plugin.tx_fpnewsletter.view.templateRootPaths.1 = fileadmin/bsdist/theme/tmpl/fp_newsletter/Templates/
 
-There is a text and a HTML version for email-templates. And there is an (additional) english and a german version of this template (but not for the admin-templates).
-From version 3.0.0 the normal templates contains localized texts.
-The default template is in german till version 3.0.0. From version 3.0.0 the german templates have the ending 0.html.
-E.g. SubscribeVerify1.html contains the english text. You can use this email-templates like this::
-
-  SubscribeVerify<LANGUID>.html and SubscribeVerify<LANGUID>.txt
-
-Only for the language 0 you must remove the number until version 3.0.0. For the language 1 SubscribeVerify1.html is used automatically.
-This is the behavior when email.dontAppendL = 0. From version 3.0.0 email.dontAppendL is by default 1.
-
-You can switch off this behavior with the setting email.dontAppendL = 1!
-In this case you can use the variable {sys_language_uid} in the email templates.
+There is a text and a HTML version for email-templates.
+There you can use the variable {sys_language_uid} in the email templates.
 You could use <f:if condition="{sys_language_uid} == 1"> to use more than one language in one template.
 
 You can use this translate keys in the email templates:
