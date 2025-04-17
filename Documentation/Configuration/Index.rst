@@ -1,9 +1,4 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. include:: ../Includes.txt
+﻿.. include:: /Includes.txt
 
 
 .. _configuration:
@@ -14,7 +9,7 @@ Configuration/TypoScript Reference
 Here you find all configuration (settings) possibilities.
 Configuration via TypoScript (and FlexForms).
 
-***Important***: for fp_newsletter-versions < 6 you should look here:
+**Important**: for fp_newsletter-versions < 6 you should look here:
 https://docs.typo3.org/p/fixpunkt/fp-newsletter/5.2/en-us/Configuration/Index.html
 
 

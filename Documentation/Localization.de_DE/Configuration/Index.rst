@@ -1,9 +1,4 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. include:: ../../Includes.txt
+﻿.. include:: /Includes.txt
 
 
 .. _configuration:
@@ -14,7 +9,7 @@ Konfiguration/TypoScript Referenz
 Hier sieht man, welche TypoScript-Einstellungen (settings) vorgenommen werden können. Es gibt mehr
 TypoScript-Einstellungen als FlexForm-Einstellungen, was bedeutet, dass man nicht alles per FlexForms einstellen kann.
 
-***Wichtig***: für fp_newsletter-Versionen < 6 sollte man hier nachsehen:
+**Wichtig**: für fp_newsletter-Versionen < 6 sollte man hier nachsehen:
 https://docs.typo3.org/p/fixpunkt/fp-newsletter/5.2/de-de/Configuration/Index.html
 
 

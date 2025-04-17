@@ -1,9 +1,4 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. include:: ../Includes.txt
+﻿.. include:: /Includes.txt
 
 
 .. _changelog:
@@ -102,28 +97,39 @@ Backend: preview added.
 
 Version 3.2.5:
 - Switch from cURL to RequestFactory.
+
 - Bugfix: no categories added in tt_address.
 
 Version 3.2.6:
 - PHP email validation added.
+
 - Security fix: default password for fe_users set to a random password.
+
 - Security fix: mathematical captcha check enhanced (it was possible to cheat).
+
 - Security fix: settings.doubleOptOut set from 0 to 1. You can set it to 0 if you don´t want a double opt out subscription.
+
 - Security fix: additional check added to the delete-action (it was possible to unsubscribe all users).
+
 - Security fix: Information Disclosure in the new- and unsubscribe-action.
 
 Version 4.0.0/1:
 - Breaking: default TypoScript values for sys_language_uid 1 removed!
+
 - New actions: unsubscribe from Luxletter and cacheable form for subscription.
+
 - New task: import newsletter-subscribers from tt_address to fe_users.
+
 - Setting preferXlfFile added. If 1, genders and email subjects will come from the xlf file instead of the settings.
 
 Version 4.0.3:
 - Compatibility to direct_mail 11 added.
+
 - Bugfix: PHP 8 and delete-action.
 
 Version 4.1.0:
 - Edit/update-action added.
+
 - New TypoScript settings: enableEditForm, editUid, categoryMode, categoryOrderBy and editSubject.
 
 Version 4.1.1:
@@ -131,23 +137,28 @@ Version 4.1.1:
 
 Version 5.0:
 - Refactored for TYPO3 12 LTS.
+
 - Breaking: the email-templates and -partials must be changed! Add extensionName="FpNewsletter" to every f:translate.
+
 - Breaking: in template-forms the argument pluginName must be specified! You find them in the templates of this extension.
+
 - Breaking: all plugins must be changed via an update-script (in the install-tool)!
 
 Version 5.1:
 - Custom validator added which can be used for other captcha solutions.
+
 - Bugfix for TYPO3 12.
 
 Version 5.2:
 - Automatically set the correct PluginName in templates.
+
 - PHP-Bugfix.
 
 Version 6.0.0:
 - Breaking: support for direct_mail removed. Instead, support for the extension "mail" added.
 
 - Breaking: TypoScript settings dmUnsubscribeMode, module_sys_dmail_html, module_sys_dmail_category renamed to
-unsubscribeMode, html, categoryOrGroup. See chapter Administrator / Updating to version 6.x.
+  unsubscribeMode, html, categoryOrGroup. See chapter Administrator / Updating to version 6.x.
 
 Version 6.1.0:
 - Compatibility to TYPO3 11.5 added again.

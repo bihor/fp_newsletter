@@ -1,9 +1,4 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. include:: ../../Includes.txt
+﻿.. include:: /Includes.txt
 
 
 .. _introduction:
@@ -53,7 +48,7 @@ Screenshots
 
 Einfache Ansicht des Anmelde-Formulars im FE:
 
-.. figure:: ../../Images/frontend.png
+.. figure:: /Images/frontend.png
    :width: 814px
    :alt: Frontend page
 

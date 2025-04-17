@@ -1,9 +1,4 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. include:: ../Includes.txt
+﻿.. include:: /Includes.txt
 
 
 .. _user-manual:
@@ -14,7 +9,7 @@ Users Manual
 This extension can be configured via TypoScript and via FlexForms.
 Users will use the FlexForms. Here you find a screenshot of some FlexForm settings:
 
-.. figure:: ../Images/UserManual/BackendView.png
+.. figure:: /Images/UserManual/BackendView.png
    :width: 457px
    :alt: Backend view
 
@@ -25,7 +20,7 @@ Several links can be specified for entry pages and redirect pages.
 The unsubscribe-link must be specified and there must be an extra page for the unsubscription!
 Here you see an example configuration:
 
-.. figure:: ../Images/UserManual/SampleConfiguration.png
+.. figure:: /Images/UserManual/SampleConfiguration.png
    :width: 624px
    :alt: Sample configuration
 

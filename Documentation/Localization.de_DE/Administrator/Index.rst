@@ -1,9 +1,4 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. include:: ../../Includes.txt
+﻿.. include:: /Includes.txt
 
 
 .. _admin-manual:
@@ -340,7 +335,7 @@ Falls du eine ältere Version benutzt, solltest du folgendes über die behobenen
 1. Man konnte bisher alle Newsletter-Empfänger abmelden.
 
 2. Der TypoScript-Wert für plugin.tx_fpnewsletter.settings.doubleOptOut wurde auf 1 gesetzt.
-  Du könntest diesen Wert auch auf 1 setzen, falls nichts gegen double-opt-out bei der Abmeldung spricht.
+   Du könntest diesen Wert auch auf 1 setzen, falls nichts gegen double-opt-out bei der Abmeldung spricht.
 
 3. Es war möglich, beim mathematischen Captcha-Check zu mogeln.
 

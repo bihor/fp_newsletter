@@ -1,9 +1,4 @@
-﻿.. ==================================================
-.. FOR YOUR INFORMATION
-.. --------------------------------------------------
-.. -*- coding: utf-8 -*- with BOM.
-
-.. include:: ../Includes.txt
+﻿.. include:: /Includes.txt
 
 
 .. _introduction:
@@ -51,7 +46,7 @@ Screenshots
 
 One example view of a frontend page:
 
-.. figure:: ../Images/frontend.png
+.. figure:: /Images/frontend.png
    :width: 814px
    :alt: Frontend page
 
