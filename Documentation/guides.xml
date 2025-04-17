@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<guides xmlns="https://www.phpdoc.org/guides" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="https://www.phpdoc.org/guides ../vendor/phpdocumentor/guides-cli/resources/schema/guides.xsd"
+        links-are-relative="true"
+        default-code-language="php"
+>
+    <extension class="\T3Docs\Typo3DocsTheme\DependencyInjection\Typo3DocsThemeExtension"
+               project-home="https://extensions.typo3.org/extension/fp_newsletter"
+               project-contact="https://www.fixpunkt.com/webentwicklung/typo3/typo3-extensions/"
+               project-repository="https://github.com/bihor/fp_newsletter"
+               project-issues="https://github.com/bihor/fp_newsletter/issues"
+               project-discussions="https://github.com/bihor/fp_newsletter/discussions"
+               edit-on-github-branch="master"
+               edit-on-github="bihor/fp_newsletter"
+               interlink-shortcode="fixpunkt/fp-newsletter"
+               typo3-core-preferred="13.4"
+    />
+    <project title="Plugin for newsletter subscription and unsubscription with double opt in (and double opt out)."
+             version="local"
+             copyright="Kurt Gusbeth"
+    />
+</guides>
