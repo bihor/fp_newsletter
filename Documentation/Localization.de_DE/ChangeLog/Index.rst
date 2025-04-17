@@ -97,11 +97,13 @@ IDs im Abmeldeformular geändert.
 Backend: Vorschau hinzugefügt.
 
 Version 3.2.5:
+
 - Switch von cURL zu RequestFactory.
 
 - Bugfix: no categories added in tt_address.
 
 Version 3.2.6:
+
 - PHP-E-Mail-Validierung hinzugefügt.
 
 - Security fix: das Standard-Passwort für fe_users durch ein Zufallspasswort ersetzt.
@@ -115,6 +117,7 @@ Version 3.2.6:
 - Security fix: "Information Disclosure" in der new- und unsubscribe-action.
 
 Version 4.0.0/1:
+
 - Achtung: das default TypoScript für die Sprache sys_language_uid 1 wurde entfernt!
 
 - Neue Actions: Abmeldung via Luxletter und cachebares Formular für die Anmeldung.
@@ -124,16 +127,19 @@ Version 4.0.0/1:
 - Setting preferXlfFile hinzugefügt. Anreden und E-Mail-Betreff kommen aus der xlf-Datei anstatt aus den Settings, wenn 1.
 
 Version 4.0.3:
+
 - Compatibility to direct_mail 11 added.
 
 - Bugfix: PHP 8 und delete-action.
 
 Version 4.1.0:
+
 - Edit/Update-Action hinzugefügt.
 
 - Neue TypoScript-Variablen: enableEditForm, editUid, categoryMode und editSubject.
 
 Version 5.0:
+
 - Überarbeitet für TYPO3 12 LTS.
 
 - Breaking: die Email-Templates und -Partials müssen angepasst werden! extensionName="FpNewsletter" muss zu jedem f:translate hinzugefügt werden.
@@ -143,27 +149,32 @@ Version 5.0:
 - Breaking: alle Plugins müssen via ein Update-Skript (im Install-Tool) geändert werden!
 
 Version 5.1:
+
 - "Custom validator" hinzugefügt, welcher für andere Captcha-Lösungen benutzt werden kann.
 
 - Bugfix für TYPO3 12.
 
 Version 5.2:
+
 - Es wird nun automatisch der passende PluginName in Templates gesetzt.
 
 - PHP-Bugfix.
 
 Version 6.0.0:
+
 - Breaking: der Support für direct_mail wurde entfernt. Stattdessen wird nun die Extension "mail" unterstützt.
 
 - Breaking: die TypoScript-settings dmUnsubscribeMode, module_sys_dmail_html, module_sys_dmail_category wurden umbenannt zu
   unsubscribeMode, html, categoryOrGroup. Siehe Kapitel Administrator / Updaten auf version 6.x.
 
 Version 6.1.0:
+
 - Kompatibilität zu TYPO3 11.5 erneut hinzugefügt.
 
 - Bugfix: Sprache zu den Links in den E-Mails hinzugefügt.
 
 Version 6.2.0:
+
 - fe_users kann nun mit der Extension Luxletter oder Mail benutzt werden.
 
 - deleteMode 3 hinzugefügt: lösche nur Kategorien (Mail) oder Benutzergruppe (Luxletter).
@@ -171,18 +182,23 @@ Version 6.2.0:
 - Neue Einstellungsmöglichkeit: newsletterExtension (mail oder luxletter).
 
 Version 6.3.0:
+
 - Neue action: direkte Abmeldung via Mail-Link und neue setting: authCodeFields.
 
 Version 6.3.1:
+
 - Bugfix: Luxletter ist nun die Standard Newsletter-Extension - um eine PHP-Warnung zu verhindern.
 
 Version 6.3.2:
+
 - Bugfix: reCAPTCHA repariert.
 
 Version 6.4.0:
+
 - Zusätzliche Felder können nun aus dem Log-Eintrag in eine tt_address-Tabelle kopiert werden. Setting additionalTtAddressFields hinzugefügt.
 
 Version 7.0.0/1:
+
 - Refactoring mit dem rector-Tool.
 
 - Der Sprach-Code wird nun bei f:translate in den E-Mail-Templates hinzugefügt.
@@ -194,22 +210,27 @@ Version 7.0.0/1:
 - Bugfix: Suche in allen Ordners greift nun öfters.
 
 Version 7.0.3:
+
 - Bugfix: Backend-Vorschau.
 
 - Bugfix: Plugin-Updater.
 
 Version 7.0.4:
+
 - Unnötige SQL-Felder entfernt.
 
 Version 7.0.5:
+
 - deleteMode 4 (hidden-Flag setzen) hinzugefügt.
 
 Version 7.1.0:
+
 - SwitchableControllerActionsPluginUpdater (Update-Skript für TYPO3 12) entfernt. Benutze eine ältere Version, falls noch benötigt.
 
 - FlexformPluginUpdater (Update-Skript für FlexForms) entfernt. Benutze eine ältere Version, falls noch benötigt.
 
 Version 8.0.0:
+
 - Erste beta Version für TYPO3 13.
 
 - Breaking: setting dontAppendL entfernt: Templates mit Sprach-ID am Ende entfernt.
@@ -217,25 +238,31 @@ Version 8.0.0:
 - Breaking: setup.ts und constants.ts entfernt. Die .typoscript-Dateien sind freilich noch da.
 
 Version 8.0.1:
+
 - Neue Flexform-Einstellungen: newsletterExtension und table. "other" setzt settings.html auf -1.
 
 - Zweites Widget gefixt. Backend-Vorschau geht wieder. Import-Task gefixt für TYPO3 13.
 
 Version 8.0.4:
+
 - Edit-plugin geändert: Schritt 1 ist nun die default-Ansicht.
 
 - Bugfix: Abmeldung wenn Captcha aktiviert + Abmeldung aus Luxletter.
 
 Version 8.0.5:
+
 - Bugfix: E-Mail an den Admin.
 
 Version 8.1.0:
+
 - Mehr Informationen zu den Log-Einträgen hinzugefügt.
 
 Version 8.1.1:
+
 - Bugfix: aktualisiere das Log auch wenn keine E-Mail versendet wird.
 
 Version 8.2.0:
+
 - Speichere immer settings.categoryOrGroup im Log-Eintrag.
 
 - Benutze die Kategorien/Gruppen vom Log-Eintrag, wenn settings.categoryOrGroup leer ist.

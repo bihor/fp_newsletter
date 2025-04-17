@@ -96,11 +96,13 @@ IDs in unsubscribe form changed.
 Backend: preview added.
 
 Version 3.2.5:
+
 - Switch from cURL to RequestFactory.
 
 - Bugfix: no categories added in tt_address.
 
 Version 3.2.6:
+
 - PHP email validation added.
 
 - Security fix: default password for fe_users set to a random password.
@@ -114,6 +116,7 @@ Version 3.2.6:
 - Security fix: Information Disclosure in the new- and unsubscribe-action.
 
 Version 4.0.0/1:
+
 - Breaking: default TypoScript values for sys_language_uid 1 removed!
 
 - New actions: unsubscribe from Luxletter and cacheable form for subscription.
@@ -123,19 +126,23 @@ Version 4.0.0/1:
 - Setting preferXlfFile added. If 1, genders and email subjects will come from the xlf file instead of the settings.
 
 Version 4.0.3:
+
 - Compatibility to direct_mail 11 added.
 
 - Bugfix: PHP 8 and delete-action.
 
 Version 4.1.0:
+
 - Edit/update-action added.
 
 - New TypoScript settings: enableEditForm, editUid, categoryMode, categoryOrderBy and editSubject.
 
 Version 4.1.1:
+
 - Bugfix for translated text when using preferXlfFile=1.
 
 Version 5.0:
+
 - Refactored for TYPO3 12 LTS.
 
 - Breaking: the email-templates and -partials must be changed! Add extensionName="FpNewsletter" to every f:translate.
@@ -145,27 +152,32 @@ Version 5.0:
 - Breaking: all plugins must be changed via an update-script (in the install-tool)!
 
 Version 5.1:
+
 - Custom validator added which can be used for other captcha solutions.
 
 - Bugfix for TYPO3 12.
 
 Version 5.2:
+
 - Automatically set the correct PluginName in templates.
 
 - PHP-Bugfix.
 
 Version 6.0.0:
+
 - Breaking: support for direct_mail removed. Instead, support for the extension "mail" added.
 
 - Breaking: TypoScript settings dmUnsubscribeMode, module_sys_dmail_html, module_sys_dmail_category renamed to
   unsubscribeMode, html, categoryOrGroup. See chapter Administrator / Updating to version 6.x.
 
 Version 6.1.0:
+
 - Compatibility to TYPO3 11.5 added again.
 
 - Bugfix: language added to the links in the email.
 
 Version 6.2.0:
+
 - fe_users can now be used with the extension luxletter or mail.
 
 - deleteMode 3 added: delete only categories (Mail) or user-group (Luxletter).
@@ -173,18 +185,23 @@ Version 6.2.0:
 - New setting: newsletterExtension (mail or luxletter).
 
 Version 6.3.0:
+
 - New action: direct unsubscribe via Mail-link and new setting: authCodeFields.
 
 Version 6.3.1:
+
 - Bugfix: Luxletter is now the default newsletter-extension - to prevent a PHP warning.
 
 Version 6.3.2:
+
 - Bugfix: reCAPTCHA fixed.
 
 Version 6.4.0:
+
 - Additional fields can now be copied from the log-entry to the tt_address-table. Setting additionalTtAddressFields added.
 
 Version 7.0.0/1:
+
 - Refactoring with the rector tool.
 
 - Adding of the language code to the email text.
@@ -196,22 +213,27 @@ Version 7.0.0/1:
 - Bugfix: search in all folders now for mail-unsubscription and edit too.
 
 Version 7.0.3:
+
 - Bugfix: backend preview.
 
 - Bugfix: Plugin-Updater.
 
 Version 7.0.4:
+
 - Unnecessary sql-fields removed.
 
 Version 7.0.5:
+
 - deleteMode 4 (set hidden/disable flag) added.
 
 Version 7.1.0:
+
 - SwitchableControllerActionsPluginUpdater (update script for TYPO3 12) removed. Use older versions if you still need it.
 
 - FlexformPluginUpdater (update script for FlexForms) removed. Use older versions if you still need it.
 
 Version 8.0.0:
+
 - First version for TYPO3 13.
 
 - Breaking: setting dontAppendL removed: templates with language-id at the end removed.
@@ -219,24 +241,31 @@ Version 8.0.0:
 - Breaking: setup.ts and constants.ts removed. The .typoscript files are still there.
 
 Version 8.0.1:
+
 - New Flexform settings: newsletterExtension and table. "other" sets html to -1.
 
 - Second widget fixed. Backend preview fixed again. Import task fixed for TYPO3 13.
 
 Version 8.0.4:
+
 - Edit-plugin changed: step 1 is now the default one.
 
 - Bugfix: unsubscription with captcha is enabled + deletion from Luxletter.
 
 Version 8.0.5:
+
 - Bugfix: email to admin.
 
 Version 8.1.0:
+
 - More fields/information added to the log-entry.
 
 Version 8.1.1:
+
 - Bugfix: update Log even no mail is sent.
 
 Version 8.2.0:
+
 - Always save settings.categoryOrGroup in the log-entry.
+
 - Take the categories or groups from the log-entry when settings.categoryOrGroup is empty.
